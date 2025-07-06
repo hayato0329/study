@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>資格試験業界セッション企画 - 理事向け提案資料</title>
+    <title>CEO STORIES 出演提案 - 受検者獲得と認知度向上</title>
     <style>
         @media print {
             @page { margin: 15mm; size: A4; }
@@ -21,9 +21,9 @@
         }
         
         .header {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            background: linear-gradient(135deg, #059669, #047857);
             color: white;
-            padding: 15px 20px;
+            padding: 20px;
             border-radius: 8px;
             margin-bottom: 20px;
             text-align: center;
@@ -41,44 +41,47 @@
             margin-top: 5px;
         }
         
-        .overview {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 15px;
+        .key-benefits {
+            background: #ecfdf5;
+            border: 2px solid #10b981;
+            border-radius: 8px;
+            padding: 20px;
             margin-bottom: 25px;
+            text-align: center;
         }
         
-        .overview-card {
-            background: #f8fafc;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
+        .key-benefits h2 {
+            color: #047857;
+            margin: 0 0 15px 0;
+            font-size: 18px;
+        }
+        
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .benefit-item {
+            background: white;
+            border: 1px solid #a7f3d0;
+            border-radius: 6px;
             padding: 15px;
             text-align: center;
-            transition: transform 0.2s;
         }
         
-        .overview-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        
-        .overview-card .icon {
-            font-size: 32px;
-            margin-bottom: 8px;
+        .benefit-number {
+            font-size: 20px;
+            font-weight: 700;
+            color: #059669;
             display: block;
+            margin-bottom: 5px;
         }
         
-        .overview-card h3 {
-            margin: 0 0 8px 0;
-            font-size: 14px;
-            color: #1e40af;
-            font-weight: 600;
-        }
-        
-        .overview-card p {
-            margin: 0;
+        .benefit-text {
             font-size: 12px;
-            color: #64748b;
+            color: #374151;
         }
         
         .section {
@@ -88,136 +91,204 @@
         .section-title {
             background: #1e40af;
             color: white;
-            padding: 8px 15px;
+            padding: 10px 15px;
             margin: 0 0 15px 0;
             font-size: 16px;
             font-weight: 600;
             border-radius: 4px;
+            display: flex;
+            align-items: center;
         }
         
-        .value-grid {
+        .section-title .icon {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        
+        .effects-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
             margin-bottom: 20px;
         }
         
-        .value-box {
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
+        .effect-box {
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
             padding: 15px;
+            transition: transform 0.2s;
         }
         
-        .value-box h4 {
-            color: #059669;
-            margin: 0 0 10px 0;
+        .effect-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .effect-box.direct {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+        
+        .effect-box.indirect {
+            border-color: #f59e0b;
+            background: #fffbeb;
+        }
+        
+        .effect-box h4 {
+            margin: 0 0 12px 0;
             font-size: 14px;
             font-weight: 600;
             display: flex;
             align-items: center;
         }
         
-        .value-box h4:before {
-            content: "✓";
-            background: #10b981;
-            color: white;
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            margin-right: 8px;
+        .effect-box.direct h4 {
+            color: #1d4ed8;
         }
         
-        .value-list {
+        .effect-box.indirect h4 {
+            color: #d97706;
+        }
+        
+        .effect-box h4:before {
+            content: "▶";
+            margin-right: 8px;
+            font-size: 12px;
+        }
+        
+        .effect-list {
             list-style: none;
             padding: 0;
             margin: 0;
         }
         
-        .value-list li {
-            padding: 4px 0;
+        .effect-list li {
+            padding: 3px 0;
             font-size: 12px;
             color: #374151;
             position: relative;
             padding-left: 15px;
         }
         
-        .value-list li:before {
-            content: "•";
-            color: #6b7280;
+        .effect-list li:before {
+            content: "✓";
+            color: #10b981;
+            font-weight: 600;
             position: absolute;
             left: 0;
         }
         
-        .topics {
+        .content-topics {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
             margin-bottom: 20px;
         }
         
-        .topic-item {
-            background: #fef3c7;
-            border-left: 4px solid #f59e0b;
-            padding: 8px 12px;
+        .topic-card {
+            background: #f8fafc;
+            border-left: 4px solid #6366f1;
+            padding: 12px;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .topic-card h5 {
+            margin: 0 0 4px 0;
             font-size: 12px;
-            border-radius: 0 4px 4px 0;
+            font-weight: 600;
+            color: #4338ca;
         }
         
-        .topic-item strong {
-            color: #92400e;
-            display: block;
-            margin-bottom: 2px;
+        .topic-card p {
+            margin: 0;
+            font-size: 11px;
+            color: #64748b;
+            line-height: 1.3;
         }
         
-        .results {
-            background: #ecfdf5;
-            border: 1px solid #a7f3d0;
-            border-radius: 6px;
+        .example-section {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 8px;
             padding: 15px;
             margin-bottom: 20px;
         }
         
-        .results-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 15px;
+        .example-section h4 {
+            margin: 0 0 10px 0;
+            color: #92400e;
+            font-size: 14px;
+            font-weight: 600;
         }
         
-        .result-item {
+        .example-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        
+        .flow-item {
+            background: white;
+            border: 1px solid #f59e0b;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 11px;
+            text-align: center;
+            flex: 1;
+        }
+        
+        .flow-arrow {
+            color: #d97706;
+            font-weight: 600;
+        }
+        
+        .stats-highlight {
+            background: linear-gradient(135deg, #ddd6fe, #c7d2fe);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
             text-align: center;
         }
         
-        .result-number {
-            font-size: 20px;
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 24px;
             font-weight: 700;
-            color: #059669;
+            color: #4338ca;
             display: block;
         }
         
-        .result-label {
+        .stat-label {
             font-size: 11px;
-            color: #374151;
+            color: #64748b;
             margin-top: 2px;
         }
         
-        .action {
+        .cta {
             background: #1e40af;
             color: white;
-            padding: 15px;
-            border-radius: 6px;
+            padding: 18px;
+            border-radius: 8px;
             text-align: center;
         }
         
-        .action h4 {
+        .cta h4 {
             margin: 0 0 8px 0;
             font-size: 16px;
         }
         
-        .action p {
+        .cta p {
             margin: 0;
             font-size: 12px;
             opacity: 0.9;
@@ -226,137 +297,122 @@
 </head>
 <body>
     <div class="header">
-        <h1>CEO STORIES 資格試験業界セッション企画</h1>
-        <div class="subtitle">理事向け提案資料 - 147万PV実績チャンネルでの専門特化戦略</div>
+        <h1>CEO STORIES 出演のご提案</h1>
+        <div class="subtitle">資格試験主催者様の受検者獲得・認知度向上を支援</div>
     </div>
 
-    <div class="overview">
-        <div class="overview-card">
-            <span class="icon">📊</span>
-            <h3>チャンネル実績</h3>
-            <p><strong>147万PV</strong>の視聴実績</p>
-        </div>
-        <div class="overview-card">
-            <span class="icon">🎯</span>
-            <h3>ターゲット適合</h3>
-            <p>働く世代<strong>25-54歳が67%</strong></p>
-        </div>
-        <div class="overview-card">
-            <span class="icon">🚀</span>
-            <h3>戦略的価値</h3>
-            <p>資格取得意欲の高い層へ直接リーチ</p>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">📈 チャンネル実績とターゲット分析</h2>
-        <div class="results">
-            <div class="results-grid">
-                <div class="result-item">
-                    <span class="result-number">147万PV</span>
-                    <div class="result-label">総再生回数実績</div>
-                </div>
-                <div class="result-item">
-                    <span class="result-number">67%</span>
-                    <div class="result-label">働く世代（25-54歳）</div>
-                </div>
-                <div class="result-item">
-                    <span class="result-number">約98万PV</span>
-                    <div class="result-label">資格取得対象層視聴</div>
-                </div>
+    <div class="key-benefits">
+        <h2>🎯 出演による最重要効果</h2>
+        <p style="margin: 0 0 15px 0; font-size: 14px; color: #047857; font-weight: 600;">
+            <strong>受検者獲得</strong> × <strong>社会的認知度向上</strong>
+        </p>
+        <div class="benefit-grid">
+            <div class="benefit-item">
+                <span class="benefit-number">月1-2万</span>
+                <div class="benefit-text">推定視聴数（1本あたり）</div>
             </div>
-            <p style="text-align: center; margin: 15px 0 0 0; font-size: 12px; color: #059669;">
-                <strong>キャリアアップ意識の高い25-54歳が視聴者の中心層</strong><br>
-                資格試験のメインターゲットと完全一致
-            </p>
+            <div class="benefit-item">
+                <span class="benefit-number">67%</span>
+                <div class="benefit-text">働く世代・保護者層</div>
+            </div>
         </div>
     </div>
 
     <div class="section">
-        <h2 class="section-title">💡 双方への価値提供</h2>
-        <div class="value-grid">
-            <div class="value-box">
-                <h4>弊社が得られるメリット</h4>
-                <ul class="value-list">
-                    <li>「試験業界スペシャリスト」ブランド確立</li>
-                    <li>コア事業への強力な営業ツール化</li>
-                    <li>競合差別化とサービス付加価値</li>
-                    <li>実績あるチャンネルでの業界影響力拡大</li>
+        <h3 class="section-title">
+            <span class="icon">📈</span>
+            受検者獲得への具体的効果
+        </h3>
+        <div class="effects-grid">
+            <div class="effect-box direct">
+                <h4>直接的効果</h4>
+                <ul class="effect-list">
+                    <li>スキルアップ志向の25-54歳への直接訴求</li>
+                    <li>キャリア形成層への資格価値アピール</li>
+                    <li>転職・昇進を目指す層への認知拡大</li>
+                    <li>社会人向け資格の受検者獲得</li>
                 </ul>
             </div>
-            <div class="value-box">
-                <h4>パートナー様へのメリット</h4>
-                <ul class="value-list">
-                    <li>実績147万PVチャンネルでの露出</li>
-                    <li>働く世代67%への確実な訴求</li>
-                    <li>専門チャンネルによる高い信頼性</li>
-                    <li>唯一無二の露出機会の獲得</li>
+            <div class="effect-box indirect">
+                <h4>間接的効果</h4>
+                <ul class="effect-list">
+                    <li>保護者層→子供の受検促進（検定系資格）</li>
+                    <li>人事担当者→社員の資格取得推奨</li>
+                    <li>経営者→福利厚生・リスキリング導入</li>
+                    <li>教育関係者→生徒・学生への推薦</li>
                 </ul>
             </div>
         </div>
-        
-        <div style="background: #fef7cd; border: 1px solid #fbbf24; border-radius: 6px; padding: 12px; margin-top: 15px;">
-            <h4 style="margin: 0 0 8px 0; color: #92400e; font-size: 14px;">🎯 戦略的ポジショニング</h4>
-            <p style="margin: 0; font-size: 12px; color: #78350f;">
-                既存の「経営者育成」領域は競合過多のため、<strong>「資格試験業界」への専門特化</strong>により、
-                147万PVの実績あるチャンネルを活用した独自のブルーオーシャン戦略を展開
-            </p>
+    </div>
+
+    <div class="example-section">
+        <h4>📚 具体例：漢字検定の場合</h4>
+        <div class="example-flow">
+            <div class="flow-item">働く世代の保護者が視聴</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item">子供の教育に関心</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item">漢検受検を決断</div>
         </div>
+        <p style="margin: 5px 0 0 0; font-size: 11px; color: #78350f; text-align: center;">
+            メイン受験者（子供）は直接視聴しなくても、保護者経由で受検につながる効果
+        </p>
     </div>
 
     <div class="section">
-        <h2 class="section-title">📋 対談セッション内容</h2>
-        <div class="topics">
-            <div class="topic-item">
-                <strong>試験運営の思い</strong>
-                理念・使命感の深掘り
+        <h3 class="section-title">
+            <span class="icon">🎥</span>
+            対談による宣伝・PR内容
+        </h3>
+        <div class="content-topics">
+            <div class="topic-card">
+                <h5>試験運営への思い</h5>
+                <p>理念・使命感を深くアピール</p>
             </div>
-            <div class="topic-item">
-                <strong>成功事例・エピソード</strong>
-                面白い体験談・活用例
+            <div class="topic-card">
+                <h5>成功事例紹介</h5>
+                <p>魅力的な体験談・活用例</p>
             </div>
-            <div class="topic-item">
-                <strong>資格の歴史と意図</strong>
-                創設背景・対象者像
+            <div class="topic-card">
+                <h5>資格の価値</h5>
+                <p>取得メリット・将来性</p>
             </div>
-            <div class="topic-item">
-                <strong>今後の展開戦略</strong>
-                成長計画・新施策
+            <div class="topic-card">
+                <h5>受検サポート</h5>
+                <p>学習方法・対策のアドバイス</p>
             </div>
-            <div class="topic-item">
-                <strong>業界専門話</strong>
-                課題・トレンド・未来予測
+            <div class="topic-card">
+                <h5>最新情報告知</h5>
+                <p>キャンペーン・制度変更</p>
             </div>
-            <div class="topic-item">
-                <strong>視聴者特典</strong>
-                無料受講券・限定情報
-            </div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">📊 期待される効果</h2>
-        <div class="results">
-            <div class="results-grid">
-                <div class="result-item">
-                    <span class="result-number">月1-2万</span>
-                    <div class="result-label">推定視聴数（1本あたり）</div>
-                </div>
-                <div class="result-item">
-                    <span class="result-number">年12団体</span>
-                    <div class="result-label">パートナーシップ構築</div>
-                </div>
-                <div class="result-item">
-                    <span class="result-number">業界No.1</span>
-                    <div class="result-label">専門チャンネル地位</div>
-                </div>
+            <div class="topic-card">
+                <h5>視聴者特典</h5>
+                <p>無料受講券・限定情報</p>
             </div>
         </div>
     </div>
 
-    <div class="action">
-        <h4>🎬 次のステップ</h4>
-        <p>対象団体選定 → 初回セッション企画 → 撮影・公開 → 継続的パートナーシップ構築</p>
+    <div class="stats-highlight">
+        <h4 style="margin: 0 0 15px 0; color: #4338ca;">チャンネル実績による確実な効果</h4>
+        <div class="stats-row">
+            <div class="stat-item">
+                <span class="stat-number">147万PV</span>
+                <div class="stat-label">CBTSチャンネル3ヶ月実績</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">約98万PV</span>
+                <div class="stat-label">受検対象層の視聴</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">唯一無二</span>
+                <div class="stat-label">資格試験特化チャンネル</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta">
+        <h4>🎬 出演から公開までの流れ</h4>
+        <p>企画内容のご相談 → 対談テーマの調整 → 撮影実施 → 動画公開・プロモーション</p>
     </div>
 </body>
 </html>
