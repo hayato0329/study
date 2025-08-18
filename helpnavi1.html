@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中小企業向け「HelpNAVi」導入のご提案</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .slide {
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+        .slide.hidden {
+            opacity: 0;
+            transform: scale(0.95);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+        .slide:not(.hidden) {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .graph-bar {
+            transition: width 0.8s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 flex flex-col items-center justify-center min-h-screen p-4 overflow-hidden">
+
+    <div id="presentation-container" class="w-full max-w-5xl h-[600px] bg-white rounded-2xl shadow-2xl flex flex-col relative overflow-hidden">
+        
+        <header class="p-4 border-b border-slate-200 flex justify-between items-center bg-slate-100/50">
+            <h1 class="text-lg font-bold text-slate-700">中小企業向け HelpNAVi導入のご提案</h1>
+            <div id="slide-counter" class="text-sm font-medium text-slate-500"></div>
+        </header>
+
+        <main class="flex-grow p-8 md:p-10 relative overflow-y-auto">
+            <!-- Slide 1: タイトル -->
+            <div class="slide" data-slide="1">
+                <div class="flex flex-col items-center justify-center h-full text-center">
+                    <span class="text-indigo-500 font-semibold mb-4 text-lg">人手不足を解消し、事業を成長させる</span>
+                    <h2 class="text-5xl md:text-6xl font-extrabold text-slate-800 mb-4">AI-FAQ活用術</h2>
+                    <p class="text-xl text-slate-600 mt-2">HelpNAVi 導入のご案内</p>
+                </div>
+            </div>
+
+            <!-- Slide 2: 会社概要 -->
+            <div class="slide hidden" data-slide="2">
+                <h3 class="text-sm font-bold text-indigo-500 mb-2">はじめに</h3>
+                <h2 class="text-4xl font-bold mb-6">株式会社CBTソリューションズ</h2>
+                <div class="space-y-6">
+                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                        <h4 class="font-bold text-xl mb-3 text-slate-800">事業内容</h4>
+                        <p class="text-base leading-relaxed text-slate-600">私たちは、資格・検定試験の電子化（CBT）プラットフォーム開発から、全国320ヶ所以上のテストセンター運営、試験全体の運営アウトソーシングまで、<strong class="text-indigo-600">試験に関するあらゆる業務をワンストップで支援</strong>する専門企業です。</p>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                        <h4 class="font-bold text-xl mb-4 text-slate-800">事業規模</h4>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="text-center border-r border-slate-200 pr-6">
+                                <p class="text-sm font-semibold text-slate-500">年間受験者数</p>
+                                <p class="text-indigo-600 text-5xl font-bold">300<span class="text-2xl ml-1">万人</span></p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-sm font-semibold text-slate-500">売上高 (2024年9月期)</p>
+                                <p class="text-indigo-600 text-5xl font-bold">103<span class="text-2xl ml-1">億円</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <p class="text-center mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg font-semibold text-blue-800 text-base">テクノロジーで「学び」と「挑戦」を支援し、人々の可能性を最大化します。</p>
+            </div>
+
+            <!-- Slide 3: 私たちの歩み (NEW) -->
+            <div class="slide hidden" data-slide="3">
+                <h3 class="text-sm font-bold text-indigo-500 mb-2">製品開発ストーリー</h3>
+                <h2 class="text-4xl font-bold mb-6">HelpNAVi 誕生の背景</h2>
+                <div class="space-y-4">
+                    <!-- Step 1 -->
+                    <div class="p-4 bg-slate-100 rounded-lg">
+                        <h4 class="font-bold text-lg mb-1">【課題】年間300万人の声との格闘</h4>
+                        <p class="text-base">私たちも、皆様と同じように大量の問い合わせに追われる日々でした。業務効率化は常に最重要課題でした。</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="p-4 bg-slate-100 rounded-lg">
+                        <h4 class="font-bold text-lg mb-1">【試行錯誤】市場製品の導入と新たな壁</h4>
+                        <p class="text-base">市場で一番と言われる製品を導入し、問い合わせは40%削減。しかし、その裏側では<strong class="text-red-500">管理工数が爆発的に増加</strong>し、ROIは厳しい結果に…</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="p-4 bg-slate-100 rounded-lg">
+                        <h4 class="font-bold text-lg mb-1">【開発】現場のノウハウを結集</h4>
+                        <p class="text-base">本当に必要なのは「高機能」ではなく、「<strong class="text-indigo-600">簡単に使えて、しっかり成果が出る</strong>」ツールだ。そう確信し、2年の歳月をかけて自社開発を決意しました。</p>
+                    </div>
+                </div>
+                <p class="text-center mt-6 p-4 bg-green-50 border border-green-200 rounded-lg font-semibold text-green-800 text-lg">この製品は、私たちの苦労と成功のノウハウから生まれました。</p>
+            </div>
+
+            <!-- Slide 4: アジェンダ -->
+            <div class="slide hidden" data-slide="4">
+                <h2 class="text-4xl font-bold mb-8 text-center">本日のアジェンダ</h2>
+                <div class="max-w-2xl mx-auto">
+                    <ol class="space-y-4 text-lg">
+                        <li class="p-4 bg-slate-100 rounded-lg"><strong>0:00～0:05：</strong>オープニング・会社概要・開発ストーリー</li>
+                        <li class="p-4 bg-slate-100 rounded-lg"><strong>0:05～0:10：</strong>中小企業の現状と課題</li>
+                        <li class="p-4 bg-slate-100 rounded-lg"><strong>0:10～0:15：</strong>課題の分解・従来の導入障壁</li>
+                        <li class="p-4 bg-indigo-100 rounded-lg text-indigo-800"><strong>0:15～0:20：</strong>HelpNAViのご紹介 & デモンストレーション</li>
+                        <li class="p-4 bg-slate-100 rounded-lg"><strong>0:20～0:25：</strong>導入効果・リスク管理</li>
+                        <li class="p-4 bg-slate-100 rounded-lg"><strong>0:25～0:30：</strong>Q&A・まとめ</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Slide 5: オープニング（ストーリー） -->
+            <div class="slide hidden" data-slide="5">
+                <h3 class="text-sm font-bold text-indigo-500 mb-2">0:05～0:10：中小企業の現状</h3>
+                <h2 class="text-4xl font-bold mb-6">こんな日常、ありませんか？</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-slate-100 p-6 rounded-lg">
+                        <h4 class="font-bold text-xl mb-3">社内にて...</h4>
+                        <p class="text-base leading-relaxed">「あの資料どこだっけ？」「この商品のスペックは？」... 同じような社内質問に、担当者の貴重な時間が奪われていく。本来の業務がなかなか進まない。</p>
+                    </div>
+                    <div class="bg-slate-100 p-6 rounded-lg">
+                        <h4 class="font-bold text-xl mb-3">お客様からの電話...</h4>
+                        <p class="text-base leading-relaxed">「Webサイトを見たけど、送料がわからない」「営業時間は？」... 簡単な質問の電話対応に追われ、商談や見積作成の時間が削られていく。機会損失に繋がっているかも...</p>
+                    </div>
+                </div>
+                <p class="text-center mt-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg font-semibold text-yellow-800 text-lg">この「見えないコスト」と「機会損失」を、テクノロジーで解決します。</p>
+            </div>
+
+            <!-- Slide 6: 背景共有（課題の整理） -->
+            <div class="slide hidden" data-slide="6">
+                 <h3 class="text-sm font-bold text-indigo-500 mb-2">中小企業の課題</h3>
+                <h2 class="text-4xl font-bold mb-6">なぜ、成長が鈍化してしまうのか？</h2>
+                <div class="space-y-4">
+                     <div class="bg-red-50 border border-red-200 p-4 rounded-lg mb-4">
+                        <p class="font-bold text-red-800 text-center text-lg">問題定義：「情報が“あるのに届かない”ことで起こる、非効率と属人化」</p>
+                    </div>
+                    <ul class="list-disc list-inside space-y-3 text-base">
+                        <li><strong class="text-slate-700">情報の属人化：</strong>「あの人がいないと分からない」が多く、業務が停滞しがち。</li>
+                        <li><strong class="text-slate-700">問い合わせ対応に追われる日々：</strong>限られた人員が、社内外の定型的な質問対応に時間を取られる。</li>
+                        <li><strong class="text-slate-700">ナレッジの散在：</strong>必要な情報が色々な場所にあり、探すだけで一苦労。</li>
+                        <li><strong class="text-slate-700">機会損失の発生：</strong>顧客が求める情報をすぐ提供できず、商機を逃してしまう。</li>
+                    </ul>
+                    <p class="text-center mt-4 p-3 bg-slate-100 rounded-lg text-base">これらの課題は、<strong class="text-indigo-600">生産性の低下、従業員の疲弊、そして企業の競争力低下</strong>に直結します。</p>
+                </div>
+            </div>
+
+            <!-- Slide 7: 課題の分解 -->
+            <div class="slide hidden" data-slide="7">
+                <h3 class="text-sm font-bold text-indigo-500 mb-2">0:10～0:15：課題の分解</h3>
+                <h2 class="text-4xl font-bold mb-6">なぜ、問い合わせはなくならないのか？</h2>
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="font-bold text-xl mb-3">問い合わせの構造を理解する</h4>
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 text-sm">
+                            <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+                                <h5 class="font-bold">人が対応すべき問い合わせ</h5>
+                                <p class="font-extrabold text-red-500 text-3xl my-1">10-20%</p>
+                                <p>クレーム、個別相談など高度な判断が必要な業務。</p>
+                            </div>
+                            <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                                <h5 class="font-bold">一般的な手続き・質問</h5>
+                                <p class="font-extrabold text-yellow-500 text-3xl my-1">50-70%</p>
+                                <p>価格、納期、手続きなど、定型的な質問。</p>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
+                                <h5 class="font-bold">自己解決可能な質問</h5>
+                                <p class="font-extrabold text-green-500 text-3xl my-1">20-30%</p>
+                                <p>資料を見ればわかる簡単な質問。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-100 p-6 rounded-lg text-center">
+                        <h4 class="font-bold text-xl mb-2">根本的な原因：顧客・社員の行動</h4>
+                        <p class="text-4xl font-bold text-indigo-600">約3割</p>
+                        <p class="mt-1 text-lg">の人が、<strong class="text-indigo-600">問い合わせ前に公式サイトや社内資料を確認しない。</strong></p>
+                        <p class="text-xs text-slate-500 mt-2">出典：コールセンター白書2021</p>
+                        <p class="mt-4 font-semibold text-lg">→ 課題は「情報がない」ことではなく、「情報にたどり着けない」体験にある。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 8: 「ホームページ3.0」とは？ -->
+            <div class="slide hidden" data-slide="8">
+                <h3 class="text-sm font-bold text-indigo-500 mb-2">解決策の方向性</h3>
+                <h2 class="text-4xl font-bold mb-6">「ホームページ3.0」への進化</h2>
+                <div class="space-y-4">
+                    <div class="grid md:grid-cols-3 gap-4 text-left">
+                        <!-- HP 1.0 -->
+                        <div class="bg-slate-100 p-4 rounded-lg border-b-4 border-slate-300 h-full">
+                            <h4 class="font-bold text-xl mb-2">HP 1.0 <span class="text-base font-normal text-slate-500">- 情報掲載</span></h4>
+                            <p class="text-base">一方的な情報発信の時代。紙のパンフレットのような静的なWebサイトが主流でした。</p>
+                        </div>
+                        <!-- HP 2.0 -->
+                        <div class="bg-slate-100 p-4 rounded-lg border-b-4 border-slate-400 h-full">
+                            <h4 class="font-bold text-xl mb-2">HP 2.0 <span class="text-base font-normal text-slate-500">- 双方向</span></h4>
+                            <p class="text-base">ブログやSNS連携でコミュニケーションが可能に。しかし、情報はまだ利用者が "探す" 必要がありました。</p>
+                        </div>
+                        <!-- HP 3.0 -->
+                        <div class="bg-indigo-100 p-4 rounded-lg border-b-4 border-indigo-500 h-full">
+                            <h4 class="font-bold text-xl text-indigo-800 mb-2">HP 3.0 <span class="text-base font-normal text-indigo-600">- 課題解決</span></h4>
+                            <p class="text-base text-indigo-900">AIが意図を汲み取り、"探さず" に答えを提示。サイトが能動的にユーザーを支援し、課題解決まで導きます。</p>
+                        </div>
+                    </div>
+                     <div class="p-4 rounded-lg bg-green-50 border border-green-200 mt-6">
+                        <p class="font-bold text-green-800 text-lg">HelpNAViが実現するHP3.0：</p>
+                        <p class="text-base">顧客や社員が<strong class="text-green-600">「探さずに答えを見つけられる」</strong>体験を提供し、事業の成長を後押しします。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 9: 導入を見送った理由 -->
+            <div class="slide hidden" data-slide="9">
+                <h3 class="text-sm font-bold text-indigo-500 mb-2">従来の課題</h3>
+                <h2 class="text-4xl font-bold mb-6">なぜ導入は進まなかったのか？</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div class="bg-red-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-lg text-red-800 mb-2">🔴 コストの壁</h4>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li><strong>高額な初期費用:</strong> 43.6%の企業が導入の最大の課題と回答。</li>
+                            <li><strong>継続的な運用費:</strong> 38.0%が維持コストを懸念。</li>
+                            <li><strong>予算承認の困難:</strong> 費用対効果が見えにくく、稟議が通らない。</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-lg text-blue-800 mb-2">🔵 技術の壁</h4>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li><strong>回答精度への不安:</strong> 34.5%が精度の悪さを指摘。</li>
+                            <li><strong>既存システムとの連携困難:</strong> 限定的な効果しか見込めない。</li>
+                            <li><strong>カスタマイズ要求への限界:</strong> 自社要件を完全に満たせない。</li>
+                        </ul>
+                    </div>
+                    <div class="bg-yellow-50 p-4 rounded-lg col-span-1 md:col-span-2">
+                        <h4 class="font-bold text-lg text-yellow-800 mb-2">🟡 運用・組織の壁</h4>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li><strong>運用リソース不足:</strong> 「運用に割ける社員がいない」という現実。</li>
+                            <li><strong>社内体制の未整備:</strong> 導入前の準備段階で断念。</li>
+                            <li><strong>効果測定の困難さ:</strong> 導入効果が見えにくく、投資を見送る。</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="text-center mt-4 p-3 bg-indigo-100 rounded-lg text-lg font-semibold text-indigo-800">しかし、HelpNAViはこれらの課題をすべて解決します。</p>
+            </div>
+
+            <!-- Slide 10: HelpNAVi概要 -->
+            <div class="slide hidden" data-slide="10">
+                <h3 class="text-sm font-bold text-indigo-500 mb-2">0:15～0:20：HelpNAViのご紹介</h3>
+                <h2 class="text-4xl font-bold mb-6">貴社の情報に特化した「HelpNAVi」</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <p class="mb-4 text-base">商品カタログ、価格表、社内マニュアル、公式サイト等の情報を一括検索し、AIが質問に最適な回答を即座に表示します。</p>
+                        <h4 class="font-bold text-xl mb-3">主な特長</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-start p-3 bg-slate-100 rounded-lg">
+                                <div class="flex-shrink-0 h-8 w-8 rounded-full bg-indigo-200 text-indigo-600 flex items-center justify-center mr-4">
+                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-base">マルチ横断検索</h5>
+                                    <p class="text-sm text-slate-600">社内外の資料をAIがまとめて検索・回答します。</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start p-3 bg-slate-100 rounded-lg">
+                                <div class="flex-shrink-0 h-8 w-8 rounded-full bg-indigo-200 text-indigo-600 flex items-center justify-center mr-4">
+                                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-base">顧客・社員の行動分析</h5>
+                                    <p class="text-sm text-slate-600">「何が検索されているか」を可視化し、改善に繋げます。</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start p-3 bg-slate-100 rounded-lg">
+                                <div class="flex-shrink-0 h-8 w-8 rounded-full bg-indigo-200 text-indigo-600 flex items-center justify-center mr-4">
+                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H21M18 18h.008c.414 0 .75.336.75.75s-.336.75-.75.75h-.008a.75.75 0 01-.75-.75s.336-.75.75-.75zM9 15h.008c.414 0 .75.336.75.75s-.336.75-.75.75H9a.75.75 0 01-.75-.75s.336-.75.75-.75z" /><path stroke-linecap="round" stroke-linejoin="round" d="M18.75 18a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75v-.008a.75.75 0 00-.75-.75h-.008zM9.75 15a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75v-.008a.75.75 0 00-.75-.75H9.75z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 19.5h.008c.414 0 .75.336.75.75s-.336.75-.75.75h-.008a.75.75 0 01-.75-.75s.336-.75.75-.75z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 19.5a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75v-.008a.75.75 0 00-.75-.75H12z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 15h.008c.414 0 .75.336.75.75s-.336.75-.75.75h-.008a.75.75 0 01-.75-.75s.336-.75.75-.75z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 15a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75v-.008a.75.75 0 00-.75-.75H15z" /><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12v-.375c0-1.036.84-1.875 1.875-1.875h11.25c1.035 0 1.875.84 1.875 1.875v.375m-13.5 6.375v.625c0 1.036.84 1.875 1.875-1.875h11.25c1.035 0 1.875-.84 1.875-1.875v-.625" /></svg>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-base">貴社専用AI</h5>
+                                    <p class="text-sm text-slate-600">登録された情報からAIが学習し、最適化された回答を生成。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="bg-blue-50 border border-blue-200 p-4 rounded-lg mb-4">
+                            <h4 class="font-bold text-blue-800 text-lg mb-2">信頼できる回答の秘密</h4>
+                            <p class="text-base text-blue-700">HelpNAViのAIは、皆様が登録した<strong class="font-semibold">カタログやマニュアルなど、"正解データ"のみを学習</strong>します。AIの憶測で回答することは一切なく、常に"公式情報"を回答する信頼できるスタッフです。</p>
+                        </div>
+                        <h4 class="font-bold text-xl mb-2">料金イメージ</h4>
+                        <div class="bg-indigo-50 border border-indigo-200 p-3 rounded-lg text-center">
+                            <p class="text-base">初期費用無料</p>
+                            <p class="text-4xl font-bold text-indigo-600">月額 ¥20,000~</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 11: デモンストレーション -->
+            <div class="slide hidden" data-slide="11">
+                <h3 class="text-sm font-bold text-indigo-500 mb-2">0:15～0:20：デモンストレーション</h3>
+                <h2 class="text-4xl font-bold mb-6">「簡単さ」と「実用性」を体感</h2>
+                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="p-4 rounded-lg bg-slate-100">
+                        <h4 class="font-bold text-lg mb-2">社内ナレッジ検索</h4>
+                        <p class="text-base">「〇〇製品の価格表」「経費精算のルール」など、社内情報を瞬時に検索。</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-slate-100">
+                        <h4 class="font-bold text-lg mb-2">顧客向けFAQ</h4>
+                        <p class="text-base">「送料は？」「返品方法は？」など、顧客からのよくある質問に24時間自動回答。</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-slate-100">
+                        <h4 class="font-bold text-lg mb-2">資料の簡単登録</h4>
+                        <p class="text-base">PDFやHPのURLを登録するだけでAIが自動で学習を開始します。</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-slate-100">
+                        <h4 class="font-bold text-lg mb-2">簡単な導入設定</h4>
+                        <p class="text-base">自動生成されるHTMLコードをWebサイトに貼り付けるだけで導入が完了します。</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-slate-100">
+                        <h4 class="font-bold text-lg mb-2">ログ分析</h4>
+                        <p class="text-base">顧客や社員が「何を探しているか」を可視化し、改善点を特定します。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 12: 導入効果（見える化） -->
+            <div class="slide hidden" data-slide="12">
+                <h3 class="text-sm font-bold text-indigo-500 mb-2">0:20～0:25：導入効果</h3>
+                <h2 class="text-4xl font-bold mb-4">具体的なビジネスインパクトとその根拠</h2>
+                <div class="space-y-3">
+                    <!-- ROI -->
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-xl text-green-800 mb-2">現実的なROI（投資対効果）</h4>
+                        <p class="text-base text-green-700">仮に月間250件の電話対応があり、その40%（100件）を削減できた場合、<strong class="font-semibold">月間約25時間（人件費5万円相当※）の工数削減</strong>に。月額2万円の投資で、ROIは<strong class="font-semibold text-2xl">150%</strong>に達します。</p>
+                        <p class="text-xs text-green-600 mt-1">※1件15分（後処理含む）、時給2,000円で換算した場合</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <!-- 生産性向上 -->
+                        <div class="bg-slate-100 p-4 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2">生産性の向上</h4>
+                            <p class="text-sm">定型的な問い合わせ（ノンコア業務）から解放され、スタッフは<strong class="text-indigo-600">商品開発や営業活動（コア業務）に集中</strong>できます。業務の切り替えロスが減り、<strong class="text-indigo-600">コア業務への集中時間を創出</strong>します。</p>
+                        </div>
+                        <!-- 従業員満足度 -->
+                        <div class="bg-slate-100 p-4 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2">従業員満足度の向上</h4>
+                            <p class="text-sm">反復作業による<strong class="text-indigo-600">ストレスを軽減</strong>し、より創造的な業務への意欲を高めます。これは、多くの企業で<strong class="text-indigo-600">従業員エンゲージメント向上に繋がる</strong>と報告されています。</p>
+                        </div>
+                    </div>
+                    <!-- 受験者満足度 -->
+                    <div class="bg-slate-100 p-4 rounded-lg">
+                        <h4 class="font-bold text-lg mb-2">顧客満足度と売上向上</h4>
+                        <p class="text-sm">24時間365日、疑問を即時解決できる環境は、顧客の不安を解消します。これにより「疑問が解決しなかった」という<strong class="text-indigo-600">ネガティブな体験を減らし、機会損失を防ぎます</strong>。実際に、セルフサービスで問題解決できた顧客の満足度は高いという調査結果もあります。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 13: リスク管理の視点 -->
+            <div class="slide hidden" data-slide="13">
+                <h3 class="text-sm font-bold text-indigo-500 mb-2">リスク管理</h3>
+                <h2 class="text-4xl font-bold mb-6">安心して導入・運用いただくために</h2>
+                <div class="grid md:grid-cols-2 gap-6 h-full">
+                    <!-- 導入時のリスク回避 -->
+                    <div class="bg-slate-50 border-2 border-slate-200 p-6 rounded-xl flex flex-col">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-indigo-100 text-indigo-600 rounded-full p-3 mr-4">
+                                <!-- Rocket Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                            </div>
+                            <h4 class="font-bold text-2xl">導入時のリスク回避</h4>
+                        </div>
+                        <ul class="space-y-3 text-base text-slate-700">
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2 mt-1">&#10003;</span>
+                                <span><strong>既存システムに影響なし:</strong> HTMLコードを一行追加するだけで、現在のサイト改修は不要です。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2 mt-1">&#10003;</span>
+                                <span><strong>簡単なデータ登録:</strong> PDFやURLを登録するだけ。専門的な作業は必要ありません。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2 mt-1">&#10003;</span>
+                                <span><strong>手厚い導入サポート:</strong> 初期設定が必要な団体様は専門スタッフが丁寧にサポートします。（別途オプション）</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 運用時のリスク管理 -->
+                    <div class="bg-slate-50 border-2 border-slate-200 p-6 rounded-xl flex flex-col">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 text-blue-600 rounded-full p-3 mr-4">
+                                <!-- Shield Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
+                            </div>
+                            <h4 class="font-bold text-2xl">運用時のリスク管理</h4>
+                        </div>
+                        <ul class="space-y-3 text-base text-slate-700">
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2 mt-1">&#10003;</span>
+                                <span><strong>情報提供のブレを防止:</strong> AIが常に公式情報に基づき回答するため、人的ミスを防ぎます。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2 mt-1">&#10003;</span>
+                                <span><strong>情報漏洩リスクを遮断:</strong> RAG技術により、AIは登録された内部データのみを参照。外部にはアクセスしません。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2 mt-1">&#10003;</span>
+                                <span><strong>トラブルの未然防止:</strong> 「言った、言わない」等のトラブルを削減し、団体の信頼性を守ります。</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 14: Q&A -->
+            <div class="slide hidden" data-slide="14">
+                <h3 class="text-sm font-bold text-indigo-500 mb-2">0:25～0:30：Q&A</h3>
+                <h2 class="text-4xl font-bold mb-6">質疑応答</h2>
+                <div class="space-y-3 text-base">
+                    <details class="p-4 bg-slate-100 rounded-lg cursor-pointer">
+                        <summary class="font-bold">うちのような小さい会社でも使えますか？</summary>
+                        <p class="mt-2">はい、もちろんです。HelpNAViは月額2万円から利用でき、専任のIT担当者がいない企業様でも簡単に導入・運用できるよう設計されています。</p>
+                    </details>
+                    <details class="p-4 bg-slate-100 rounded-lg cursor-pointer">
+                        <summary class="font-bold">ITに詳しい社員がいなくても大丈夫ですか？</summary>
+                        <p class="mt-2">ご安心ください。資料の登録はドラッグ＆ドロップ、Webサイトへの設置はコードをコピー＆ペーストするだけです。不明点があればサポートが支援します。</p>
+                    </details>
+                    <details class="p-4 bg-slate-100 rounded-lg cursor-pointer">
+                        <summary class="font-bold">セキュリティは大丈夫ですか？</summary>
+                        <p class="mt-2">はい。AIは登録された貴社の情報のみを参照し、外部のインターネットにはアクセスしません。また、個人情報を学習することもないため、機密情報も安全です。</p>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Slide 15: まとめ -->
+            <div class="slide hidden" data-slide="15">
+                <h3 class="text-sm font-bold text-indigo-500 mb-2">まとめ</h3>
+                <h2 class="text-4xl font-bold mb-6">次のアクションのご案内</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="p-6 rounded-lg bg-indigo-50 border-2 border-indigo-500">
+                        <h4 class="text-xl font-bold text-indigo-800 mb-2">ウェビナー参加者様 限定特典</h4>
+                        <p class="text-base mb-4">通常は有料の<strong class="text-indigo-600">初期設定サポートやFAQコンテンツ作成を、今回に限り無料でご提供</strong>します！</p>
+                        <p class="font-bold text-base bg-yellow-200 text-yellow-800 px-3 py-1 rounded-full inline-block">スムーズな導入を専門スタッフが完全サポート！</p>
+                    </div>
+                     <div class="text-center flex flex-col justify-center">
+                        <p class="text-xl font-medium mb-4">繁忙期が来る前に、<br>今こそ業務効率化の一歩を。</p>
+                        <button class="bg-green-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-green-600 transition-colors text-lg">
+                            限定特典に申し込む
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="p-4 border-t border-slate-200 mt-auto flex justify-between items-center">
+            <div id="nav-dots" class="flex items-center gap-2"></div>
+            <div class="flex gap-2">
+                <button id="prev-btn" class="px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">戻る</button>
+                <button id="next-btn" class="px-4 py-2 text-sm font-medium text-white bg-indigo-500 border border-indigo-500 rounded-lg hover:bg-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">次へ</button>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const nextBtn = document.getElementById('next-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            const slideCounter = document.getElementById('slide-counter');
+            const navDotsContainer = document.getElementById('nav-dots');
+            const totalSlides = slides.length;
+            let currentSlide = 1;
+
+            for (let i = 1; i <= totalSlides; i++) {
+                const dot = document.createElement('button');
+                dot.classList.add('w-2.5', 'h-2.5', 'rounded-full', 'transition-colors');
+                dot.dataset.slideTo = i;
+                navDotsContainer.appendChild(dot);
+            }
+            const navDots = document.querySelectorAll('#nav-dots button');
+
+            const updateSlide = (newSlideIndex) => {
+                if (newSlideIndex < 1 || newSlideIndex > totalSlides) return;
+                currentSlide = newSlideIndex;
+
+                slides.forEach(slide => slide.classList.add('hidden'));
+                const activeSlide = document.querySelector(`.slide[data-slide="${currentSlide}"]`);
+                if (activeSlide) activeSlide.classList.remove('hidden');
+
+                prevBtn.disabled = currentSlide === 1;
+                nextBtn.disabled = currentSlide === totalSlides;
+                slideCounter.textContent = `スライド ${currentSlide} / ${totalSlides}`;
+
+                navDots.forEach(dot => {
+                    dot.classList.toggle('bg-indigo-500', parseInt(dot.dataset.slideTo) === currentSlide);
+                    dot.classList.toggle('bg-slate-300', parseInt(dot.dataset.slideTo) !== currentSlide);
+                });
+                
+                // Animate graph bar on slide 10
+                if (currentSlide === 10) {
+                    setTimeout(() => {
+                        const bars = activeSlide.querySelectorAll('.graph-bar');
+                        bars.forEach(bar => {
+                            const width = bar.style.width;
+                            bar.style.width = '0%';
+                            setTimeout(() => { bar.style.width = width; }, 100);
+                        });
+                    }, 100);
+                }
+            };
+
+            nextBtn.addEventListener('click', () => updateSlide(currentSlide + 1));
+            prevBtn.addEventListener('click', () => updateSlide(currentSlide - 1));
+
+            navDots.forEach(dot => {
+                dot.addEventListener('click', () => updateSlide(parseInt(dot.dataset.slideTo)));
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') updateSlide(currentSlide + 1);
+                else if (e.key === 'ArrowLeft') updateSlide(currentSlide - 1);
+            });
+
+            updateSlide(1);
+        });
+    </script>
+</body>
+</html>
