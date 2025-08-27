@@ -31,9 +31,57 @@
             opacity: 1;
             transform: scale(1);
         }
-        .graph-bar {
-            transition: width 0.8s ease-out;
+
+        /* ▼▼▼ PDF印刷用のスタイルを追加 ▼▼▼ */
+        @media print {
+            /* ヘッダーやフッターなど、PDFに不要なUIを非表示に */
+            header, footer {
+                display: none !important;
+            }
+
+            /* PDF化のためにスタイルをリセット */
+            body {
+                background-color: white !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                -webkit-print-color-adjust: exact !important; /* 背景色や文字色を強制的に印刷 */
+                print-color-adjust: exact !important;
+            }
+
+            #presentation-container {
+                box-shadow: none !important;
+                border: none !important;
+                height: auto !important;
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+            
+            main {
+                 overflow-y: visible !important;
+                 padding: 0 !important;
+            }
+
+            /* 各スライドを新しいページに配置 */
+            .slide, .slide.hidden {
+                display: block !important;
+                position: relative !important;
+                opacity: 1 !important;
+                transform: none !important;
+                page-break-after: always; /* スライドの後に改ページを強制 */
+                overflow: hidden !important;
+                padding: 2.5rem !important;
+                height: 95vh; /* 1ページの高さを画面の高さに合わせる */
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            /* 最後のスライドの後には改ページを入れない */
+            .slide:last-of-type {
+                page-break-after: auto;
+            }
         }
+        /* ▲▲▲ ここまで ▲▲▲ */
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 flex flex-col items-center justify-center min-h-screen p-4 overflow-hidden">
@@ -46,175 +94,163 @@
         </header>
 
         <main class="flex-grow p-8 md:p-10 relative overflow-y-auto">
-            <!-- Slide 1: タイトル -->
             <div class="slide" data-slide="1">
-                <div class="flex flex-col items-center justify-center h-full text-center">
-                    <span class="text-indigo-500 font-semibold mb-4 text-lg">受験者の満足度向上と運営の劇的な効率化を実現する</span>
-                    <h2 class="text-5xl md:text-6xl font-extrabold text-slate-800 mb-4">AIで試験運営を効率化する<br>対話型サイトの作り方</h2>
-                    <p class="text-xl text-slate-600 mt-2">HelpNAVi 導入ウェビナー</p>
+                <div class="flex flex-col items-center justify-center h-full text-center relative">
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-10">
+                        <svg width="600" height="600" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                          <path fill="#6366F1" d="M37.9,-54.6C51.6,-49.2,66.9,-41,75.3,-29.1C83.7,-17.2,85.2,-1.6,79.5,10.1C73.8,21.8,60.9,29.6,50.1,38.2C39.4,46.8,30.8,56.2,20.1,62.8C9.4,69.4,-3.4,73.1,-15.8,70.5C-28.1,67.9,-40.1,59,-50.7,48.8C-61.2,38.6,-70.5,27.1,-75.1,13.7C-79.7,0.3,-80,-14.9,-73,-26.8C-66,-38.7,-51.8,-47.2,-39.2,-52.7C-26.6,-58.2,-15.5,-60.7,-4.5,-59.5C6.4,-58.3,12.8,-54.3,21.3,-54.3C29.8,-54.3,37.9,-54.6,37.9,-54.6Z" transform="translate(100 100) scale(1.2)" />
+                        </svg>
+                    </div>
+                    <div class="z-10">
+                        <span class="text-indigo-500 font-semibold mb-4 text-lg">受験者の満足度向上と運営の劇的な効率化を実現する</span>
+                        <h2 class="text-5xl md:text-6xl font-extrabold text-slate-800 mb-4">AIで試験運営を効率化する<br>対話型サイトの作り方</h2>
+                        <p class="text-xl text-slate-600 mt-2">HelpNAVi 導入ウェビナー</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Slide 2: アジェンダ -->
             <div class="slide hidden" data-slide="2">
                 <h2 class="text-4xl font-bold mb-8 text-center">本日のアジェンダ</h2>
                 <div class="max-w-2xl mx-auto">
                     <ol class="space-y-4 text-lg">
-                        <li class="p-4 bg-slate-100 rounded-lg"><strong>0:00～0:05：</strong>オープニング・背景共有</li>
-                        <li class="p-4 bg-slate-100 rounded-lg"><strong>0:05～0:10：</strong>課題の分解と解決の方向性</li>
-                        <li class="p-4 bg-indigo-100 rounded-lg text-indigo-800"><strong>0:10～0:20：</strong>HelpNAViのご紹介 & デモンストレーション</li>
-                        <li class="p-4 bg-slate-100 rounded-lg"><strong>0:20～0:25：</strong>導入効果・リスク管理</li>
-                        <li class="p-4 bg-slate-100 rounded-lg"><strong>0:25～0:30：</strong>Q&A・まとめ</li>
+                        <li class="flex items-center p-4 bg-slate-100 rounded-lg"><span class="text-indigo-500 mr-4 text-2xl">▶️</span><strong>0:00～0:05：</strong>オープニング・背景共有</li>
+                        <li class="flex items-center p-4 bg-slate-100 rounded-lg"><span class="text-indigo-500 mr-4 text-2xl">🧩</span><strong>0:05～0:10：</strong>課題の分解と解決の方向性</li>
+                        <li class="flex items-center p-4 bg-indigo-100 rounded-lg text-indigo-800"><span class="mr-4 text-2xl">💡</span><strong>0:10～0:20：</strong>HelpNAViのご紹介 & デモンストレーション</li>
+                        <li class="flex items-center p-4 bg-slate-100 rounded-lg"><span class="text-indigo-500 mr-4 text-2xl">📈</span><strong>0:20～0:25：</strong>導入効果・リスク管理</li>
+                        <li class="flex items-center p-4 bg-slate-100 rounded-lg"><span class="text-indigo-500 mr-4 text-2xl">❓</span><strong>0:25～0:30：</strong>Q&A・まとめ</li>
                     </ol>
                 </div>
             </div>
 
-            <!-- Slide 3: 会社概要 (REVISED UI) -->
             <div class="slide hidden" data-slide="3">
                 <h2 class="text-4xl font-bold mb-6 text-center">会社概要</h2>
                 <div class="max-w-4xl mx-auto text-base">
                     <div class="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden">
                         <dl class="divide-y divide-slate-200">
-                            <div class="px-6 py-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                <dt class="font-semibold text-slate-600">会社名</dt>
-                                <dd class="sm:col-span-2 text-slate-900 font-medium">株式会社CBTソリューションズ</dd>
-                            </div>
-                            <div class="px-6 py-4 grid grid-cols-1 sm:grid-cols-3 gap-4 bg-slate-50">
-                                <dt class="font-semibold text-slate-600">設立</dt>
-                                <dd class="sm:col-span-2 text-slate-900">2009年5月</dd>
-                            </div>
-                            <div class="px-6 py-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                <dt class="font-semibold text-slate-600">代表取締役</dt>
-                                <dd class="sm:col-span-2 text-slate-900">野口 功司</dd>
-                            </div>
-                            <div class="px-6 py-4 grid grid-cols-1 sm:grid-cols-3 gap-4 bg-slate-50">
-                                <dt class="font-semibold text-slate-600">資本金</dt>
-                                <dd class="sm:col-span-2 text-slate-900">3,000万円</dd>
-                            </div>
-                            <div class="px-6 py-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                <dt class="font-semibold text-slate-600">所在地</dt>
-                                <dd class="sm:col-span-2 text-slate-900 space-y-3">
-                                    <div>
-                                        <p class="font-medium flex items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-500" viewBox="0 0 20 20" fill="currentColor">
-                                              <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-                                            </svg>
-                                            【東京本社】
-                                        </p>
-                                        <p class="pl-7 text-sm">〒101-0022 東京都千代田区神田練塀町3 AKSビル6階</p>
-                                    </div>
-                                    <div>
-                                        <p class="font-medium flex items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-500" viewBox="0 0 20 20" fill="currentColor">
-                                              <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-                                            </svg>
-                                            【分室】
-                                        </p>
-                                        <p class="pl-7 text-sm">〒110-0006 東京都台東区秋葉原5-9 明治安田生命秋葉原ビル5階</p>
-                                    </div>
-                                </dd>
-                            </div>
-                            <div class="px-6 py-4 grid grid-cols-1 sm:grid-cols-3 gap-4 bg-slate-50">
-                                <dt class="font-semibold text-slate-600">事業内容</dt>
-                                <dd class="sm:col-span-2 text-slate-900">
-                                    <ul class="space-y-2 text-sm">
-                                        <li class="flex items-start"><span class="text-indigo-500 mr-2 mt-1">&#10148;</span>資格・検定試験のCBT化支援サービス</li>
-                                        <li class="flex items-start"><span class="text-indigo-500 mr-2 mt-1">&#10148;</span>受験サポートサイトの構築・運営サービス</li>
-                                        <li class="flex items-start"><span class="text-indigo-500 mr-2 mt-1">&#10148;</span>事務局代行・コールセンターサービス</li>
-                                        <li class="flex items-start"><span class="text-indigo-500 mr-2 mt-1">&#10148;</span>資格・検定ポータルサイト運営</li>
-                                        <li class="flex items-start"><span class="text-indigo-500 mr-2 mt-1">&#10148;</span>Webマーケティング支援サービス</li>
-                                        <li class="flex items-start"><span class="text-indigo-500 mr-2 mt-1">&#10148;</span>Webコンテンツ・動画の制作サービス</li>
-                                    </ul>
-                                </dd>
-                            </div>
+                            <div class="px-6 py-4 grid grid-cols-1 sm:grid-cols-3 gap-4"><dt class="font-semibold text-slate-600">会社名</dt><dd class="sm:col-span-2 text-slate-900 font-medium">株式会社CBTソリューションズ</dd></div>
+                            <div class="px-6 py-4 grid grid-cols-1 sm:grid-cols-3 gap-4 bg-slate-50"><dt class="font-semibold text-slate-600">設立</dt><dd class="sm:col-span-2 text-slate-900">2009年5月</dd></div>
+                            <div class="px-6 py-4 grid grid-cols-1 sm:grid-cols-3 gap-4"><dt class="font-semibold text-slate-600">代表取締役</dt><dd class="sm:col-span-2 text-slate-900">野口 功司</dd></div>
+                            <div class="px-6 py-4 grid grid-cols-1 sm:grid-cols-3 gap-4 bg-slate-50"><dt class="font-semibold text-slate-600">資本金</dt><dd class="sm:col-span-2 text-slate-900">3,000万円</dd></div>
+                            <div class="px-6 py-4 grid grid-cols-1 sm:grid-cols-3 gap-4"><dt class="font-semibold text-slate-600">所在地</dt><dd class="sm:col-span-2 text-slate-900 space-y-3"><p class="font-medium flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" /></svg>【東京本社】</p><p class="pl-7 text-sm">〒101-0022 東京都千代田区神田練塀町3 AKSビル6階</p><div><p class="font-medium flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" /></svg>【分室】</p><p class="pl-7 text-sm">〒110-0006 東京都台東区秋葉原5-9 明治安田生命秋葉原ビル5階</p></div></dd></div>
+                            <div class="px-6 py-4 grid grid-cols-1 sm:grid-cols-3 gap-4 bg-slate-50"><dt class="font-semibold text-slate-600">事業内容</dt><dd class="sm:col-span-2 text-slate-900"><ul class="space-y-2 text-sm"><li class="flex items-start"><span class="text-indigo-500 mr-2 mt-1">&#10148;</span>資格・検定試験のCBT化支援サービス</li><li class="flex items-start"><span class="text-indigo-500 mr-2 mt-1">&#10148;</span>受験サポートサイトの構築・運営サービス</li><li class="flex items-start"><span class="text-indigo-500 mr-2 mt-1">&#10148;</span>事務局代行・コールセンターサービス</li><li class="flex items-start"><span class="text-indigo-500 mr-2 mt-1">&#10148;</span>資格・検定ポータルサイト運営</li><li class="flex items-start"><span class="text-indigo-500 mr-2 mt-1">&#10148;</span>Webマーケティング支援サービス</li><li class="flex items-start"><span class="text-indigo-500 mr-2 mt-1">&#10148;</span>Webコンテンツ・動画の制作サービス</li></ul></dd></div>
                         </dl>
                     </div>
                 </div>
             </div>
             
-            <!-- Slide 4: 私たちの歩み (NEW) -->
             <div class="slide hidden" data-slide="4">
-                <h3 class="text-sm font-bold text-indigo-500 mb-2">製品開発ストーリー</h3>
-                <h2 class="text-4xl font-bold mb-6">HelpNAVi 誕生の背景</h2>
-                <div class="space-y-4">
-                    <!-- Step 1 -->
-                    <div class="p-4 bg-slate-100 rounded-lg">
-                        <h4 class="font-bold text-lg mb-1">【課題】年間300万人の声との格闘</h4>
-                        <p class="text-base">私たちも、皆様と同じように大量の問い合わせに追われる日々でした。業務効率化は常に最重要課題でした。</p>
+                <h3 class="text-sm font-bold text-indigo-500 mb-2 text-center">製品開発ストーリー</h3>
+                <h2 class="text-4xl font-bold mb-6 text-center">HelpNAVi 誕生の背景</h2>
+                <div class="flex justify-center items-center space-x-4">
+                    <div class="w-1/3 text-center">
+                        <div class="bg-slate-100 rounded-full w-32 h-32 flex items-center justify-center mx-auto mb-3"><span class="text-5xl">📞</span></div>
+                        <h4 class="font-bold text-lg mb-1">【課題】年間300万人の声</h4>
+                        <p class="text-base text-slate-600">大量の問い合わせ対応に追われ、業務効率化が最重要課題でした。</p>
                     </div>
-                    <!-- Step 2 -->
-                    <div class="p-4 bg-slate-100 rounded-lg">
-                        <h4 class="font-bold text-lg mb-1">【試行錯誤】市場製品の導入と新たな壁</h4>
-                        <p class="text-base">市場で一番と言われる製品を導入し、問い合わせは40%削減。しかし、その裏側では<strong class="text-red-500">管理工数が爆発的に増加</strong>し、ROIは厳しい結果に…</p>
+                    <div class="text-3xl text-slate-300">→</div>
+                    <div class="w-1/3 text-center">
+                         <div class="bg-slate-100 rounded-full w-32 h-32 flex items-center justify-center mx-auto mb-3"><span class="text-5xl">🤯</span></div>
+                        <h4 class="font-bold text-lg mb-1">【試行錯誤】新たな壁</h4>
+                        <p class="text-base text-slate-600">市場製品で問い合わせは40%減。しかし<strong class="text-red-500">管理工数が爆増</strong>しROIは厳しい結果に…</p>
                     </div>
-                    <!-- Step 3 -->
-                    <div class="p-4 bg-slate-100 rounded-lg">
+                    <div class="text-3xl text-slate-300">→</div>
+                    <div class="w-1/3 text-center">
+                         <div class="bg-slate-100 rounded-full w-32 h-32 flex items-center justify-center mx-auto mb-3"><span class="text-5xl">💡</span></div>
                         <h4 class="font-bold text-lg mb-1">【開発】現場のノウハウを結集</h4>
-                        <p class="text-base">本当に必要なのは「高機能」ではなく、「<strong class="text-indigo-600">簡単に使えて、しっかり成果が出る</strong>」ツールだ。そう確信し、2年の歳月をかけて自社開発を決意しました。</p>
+                        <p class="text-base text-slate-600">「<strong class="text-indigo-600">簡単で成果が出る</strong>」ツールを目指し、2年かけて自社開発を決意しました。</p>
                     </div>
                 </div>
-                <p class="text-center mt-6 p-4 bg-green-50 border border-green-200 rounded-lg font-semibold text-green-800 text-lg">この製品は、私たちの苦労と成功のノウハウから生まれました。</p>
+                <p class="text-center mt-8 p-4 bg-green-50 border border-green-200 rounded-lg font-semibold text-green-800 text-lg">この製品は、私たちの苦労と成功のノウハウから生まれました。</p>
             </div>
 
-            <!-- Slide 5: オープニング（ストーリー） -->
             <div class="slide hidden" data-slide="5">
                 <h3 class="text-sm font-bold text-indigo-500 mb-2">0:00～0:05：オープニング</h3>
                 <h2 class="text-4xl font-bold mb-6">こんな光景、ありませんか？</h2>
                 <div class="grid md:grid-cols-2 gap-6">
-                    <div class="bg-slate-100 p-6 rounded-lg">
-                        <h4 class="font-bold text-xl mb-3">運営事務局にて...</h4>
-                        <p class="text-base leading-relaxed">「締切最終日。鳴りやまない電話。質問は『申込方法を教えて』『受験資格は？』など、サイトを見ればわかることばかり...。本来やるべき業務が進まず、今日も残業だ...」</p>
+                    <div class="bg-slate-100 p-6 rounded-lg text-center flex flex-col">
+                        <div class="w-full h-40 flex items-center justify-center mb-4">
+                            <svg class="w-full h-full max-h-[160px] text-slate-500" viewBox="0 0 300 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="0" y="0" width="300" height="160" fill="none"/>
+                                <rect x="50" y="90" width="200" height="40" rx="5" fill="#CBD5E1"/>
+                                <rect x="110" y="40" width="80" height="50" rx="5" fill="#94A3B8"/>
+                                <circle cx="150" cy="30" r="20" fill="#FDE047"/>
+                                <path d="M140 35 L160 35 L150 5 C150 5 140 15 140 35 Z" fill="#FDE047"/>
+                                <path d="M150 50 L140 60 C130 70 130 80 140 90 L160 90 C170 80 170 70 160 60 L150 50 Z" fill="#FDE047"/>
+                                <circle cx="150" cy="65" r="15" fill="#FDE047"/>
+                                <rect x="60" y="80" width="30" height="20" rx="3" fill="#60A5FA"/>
+                                <circle cx="75" cy="85" r="5" fill="#BFDBFE"/>
+                                <path d="M60 70L65 65M70 60L75 55" stroke="#F87171" stroke-width="3" stroke-linecap="round"/>
+                                <rect x="210" y="80" width="30" height="20" rx="3" fill="#60A5FA"/>
+                                <circle cx="225" cy="85" r="5" fill="#BFDBFE"/>
+                                <path d="M210 70L215 65M220 60L225 55" stroke="#F87171" stroke-width="3" stroke-linecap="round"/>
+                                <rect x="10" y="140" width="280" height="20" rx="5" fill="#EF4444"/>
+                                <text x="150" y="153" font-family="Noto Sans JP" font-size="14" fill="#FFFFFF" text-anchor="middle">今日も残業...</text>
+                            </svg>
+                        </div>
+                        <h4 class="font-bold text-xl mb-3 mt-2">運営事務局にて...</h4>
+                        <p class="text-base leading-relaxed text-left">「締切最終日。鳴りやまない電話。質問は『申込方法を教えて』『受験資格は？』など、サイトを見ればわかることばかり...。本来やるべき業務が進まず、今日も残業だ...」</p>
                     </div>
-                    <div class="bg-slate-100 p-6 rounded-lg">
-                        <h4 class="font-bold text-xl mb-3">受験希望者の声...</h4>
-                        <p class="text-base leading-relaxed">「公式サイトは情報が多すぎて、自分に必要なページがどこにあるかわからない。問い合わせたいけど、平日の昼間は電話できないし...。今年の受験は、諦めようかな...」</p>
+                    <div class="bg-slate-100 p-6 rounded-lg text-center flex flex-col">
+                        <div class="w-full h-40 flex items-center justify-center mb-4">
+                             <svg class="w-full h-full max-h-[160px] text-slate-500" viewBox="0 0 300 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="0" y="0" width="300" height="160" fill="none"/>
+                                <path d="M220 130 C220 110 210 100 200 100 C190 100 180 110 180 130 V160 H220 V130 Z" fill="#FDE047"/>
+                                <circle cx="200" cy="70" r="20" fill="#FDE047"/>
+                                <path d="M190 75L210 65M190 65L210 75" stroke="#EF4444" stroke-width="4" stroke-linecap="round"/>
+                                <path d="M160 130L120 130" stroke="#F87171" stroke-width="8" stroke-linecap="round"/>
+                                <path d="M150 120L160 130L150 140" stroke="#F87171" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+                                <rect x="10" y="50" width="150" height="100" rx="8" fill="#FFFFFF"/>
+                                <rect x="20" y="60" width="130" height="10" rx="2" fill="#E2E8F0"/>
+                                <rect x="20" y="80" width="100" height="5" rx="1" fill="#CBD5E1"/>
+                                <rect x="20" y="90" width="110" height="5" rx="1" fill="#CBD5E1"/>
+                                <rect x="20" y="100" width="90" height="5" rx="1" fill="#CBD5E1"/>
+                                <rect x="20" y="110" width="120" height="5" rx="1" fill="#CBD5E1"/>
+                                <rect x="20" y="120" width="80" height="5" rx="1" fill="#CBD5E1"/>
+                                <path d="M100 30 Q105 20 115 20 H140 Q150 20 150 30 L140 40 L100 40 Q90 40 90 30 Z" fill="#FEF08A"/>
+                                <text x="110" y="35" font-family="Noto Sans JP" font-size="12" fill="#4B5563">どこ？</text>
+                            </svg>
+                        </div>
+                        <h4 class="font-bold text-xl mb-3 mt-2">受験希望者の声...</h4>
+                        <p class="text-base leading-relaxed text-left">「公式サイトは情報が多すぎて、自分に必要なページがどこにあるかわからない。問い合わせたいけど、平日の昼間は電話できないし...。今年の受験は、諦めようかな...」</p>
                     </div>
                 </div>
                 <p class="text-center mt-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg font-semibold text-yellow-800 text-lg">この「非効率」と「機会損失」を、テクノロジーで解決します。</p>
             </div>
-
-            <!-- Slide 6: 背景共有（課題の整理） -->
             <div class="slide hidden" data-slide="6">
                    <h3 class="text-sm font-bold text-indigo-500 mb-2">背景共有</h3>
                 <h2 class="text-4xl font-bold mb-6">資格試験業界が抱える共通の課題</h2>
-                <div class="space-y-4">
-                    <div class="bg-red-50 border border-red-200 p-4 rounded-lg mb-4">
-                        <p class="font-bold text-red-800 text-center text-lg">問題定義：「情報が“あるのに届かない”ことで起こる、受験者の不満と運営負担の増大」</p>
-                    </div>
-                    <ul class="list-disc list-inside space-y-3 text-base">
-                        <li><strong class="text-slate-700">問い合わせの集中化：</strong>申込期間や結果発表時に電話がパンク状態</li>
-                        <li><strong class="text-slate-700">同じ質問の反復：</strong>受験資格、申込方法など、同じ質問が毎日何十件も</li>
-                        <li><strong class="text-slate-700">季節的な業務負荷：</strong>繁忙期は残業続き、閑散期は人員が余る非効率</li>
-                        <li><strong class="text-slate-700">業務の属人化：</strong>ベテランスタッフがいないと回答できない質問が多い</li>
-                        <li><strong class="text-slate-700">機会損失：</strong>情報が見つからず、受験者が不安を抱え、申込を断念</li>
-                    </ul>
-                    <p class="text-center mt-4 p-3 bg-slate-100 rounded-lg text-base">これらの課題は、<strong class="text-indigo-600">受験者満足度の低下、スタッフの疲弊、本来業務への集中阻害</strong>に直結します。</p>
+                <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded-lg mb-6">
+                    <p class="font-bold text-red-800 text-lg">問題定義：「情報が“あるのに届かない”ことで起こる、受験者の不満と運営負担の増大」</p>
                 </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="flex items-center p-4 bg-slate-100 rounded-lg"><span class="text-3xl mr-4">📞</span><div><h4 class="font-semibold">問い合わせの集中化</h4><p class="text-sm text-slate-600">申込期間や結果発表時に電話がパンク状態</p></div></div>
+                    <div class="flex items-center p-4 bg-slate-100 rounded-lg"><span class="text-3xl mr-4">🔄</span><div><h4 class="font-semibold">同じ質問の反復</h4><p class="text-sm text-slate-600">受験資格、申込方法など、同じ質問が毎日何十件も</p></div></div>
+                    <div class="flex items-center p-4 bg-slate-100 rounded-lg"><span class="text-3xl mr-4">⏳</span><div><h4 class="font-semibold">季節的な業務負荷</h4><p class="text-sm text-slate-600">繁忙期は残業続き、閑散期は人員が余る非効率</p></div></div>
+                    <div class="flex items-center p-4 bg-slate-100 rounded-lg"><span class="text-3xl mr-4">👤</span><div><h4 class="font-semibold">業務の属人化</h4><p class="text-sm text-slate-600">ベテランスタッフ不在だと回答できない質問が多い</p></div></div>
+                </div>
+                 <div class="mt-4 flex items-center p-4 bg-yellow-50 rounded-lg"><span class="text-3xl mr-4">📉</span><div><h4 class="font-semibold">機会損失の発生</h4><p class="text-sm text-slate-600">情報が見つからず、受験者が不安を抱え、申込を断念</p></div></div>
+                <p class="text-center mt-4 p-3 bg-indigo-50 rounded-lg text-base font-medium">これらの課題は、<strong class="text-indigo-600">満足度低下、スタッフの疲弊、コア業務への集中阻害</strong>に直結します。</p>
             </div>
 
-            <!-- Slide 7: 課題の分解 -->
             <div class="slide hidden" data-slide="7">
                 <h3 class="text-sm font-bold text-indigo-500 mb-2">0:05～0:10：課題の分解</h3>
                 <h2 class="text-4xl font-bold mb-6">なぜ、問い合わせはなくならないのか？</h2>
                 <div class="space-y-6">
                     <div>
-                        <h4 class="font-bold text-xl mb-3">問い合わせの構造を理解する</h4>
-                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 text-sm">
-                            <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
-                                <h5 class="font-bold">人が対応すべき問い合わせ</h5>
-                                <p class="font-extrabold text-red-500 text-3xl my-1">10-20%</p>
-                                <p>複雑なクレーム、個別事情のヒアリングなど高度なスキルが必要。</p>
-                            </div>
-                            <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
-                                <h5 class="font-bold">一般的な手続き・質問</h5>
-                                <p class="font-extrabold text-yellow-500 text-3xl my-1">50-70%</p>
-                                <p>マニュアルで対応可能な定型業務。</p>
-                            </div>
-                            <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
-                                <h5 class="font-bold">自己解決可能な質問</h5>
-                                <p class="font-extrabold text-green-500 text-3xl my-1">20-30%</p>
-                                <p>FAQで解決可能な簡単な質問。</p>
-                            </div>
+                        <h4 class="font-bold text-xl mb-3 text-center">問い合わせの構造</h4>
+                         <div class="flex justify-center items-end gap-4 text-center">
+                             <div class="w-1/4">
+                                 <p class="font-bold text-red-500 text-4xl">20%</p>
+                                 <div class="h-24 bg-red-400 rounded-t-lg mt-2 flex items-center justify-center p-2"><p class="text-white font-bold text-sm">人が対応すべき問い合わせ</p></div>
+                             </div>
+                             <div class="w-1/4">
+                                 <p class="font-bold text-yellow-500 text-4xl">50%</p>
+                                 <div class="h-48 bg-yellow-400 rounded-t-lg mt-2 flex items-center justify-center p-2"><p class="text-white font-bold text-sm">一般的な手続き・質問</p></div>
+                             </div>
+                              <div class="w-1/4">
+                                 <p class="font-bold text-green-500 text-4xl">30%</p>
+                                 <div class="h-32 bg-green-400 rounded-t-lg mt-2 flex items-center justify-center p-2"><p class="text-white font-bold text-sm">自己解決可能な質問</p></div>
+                             </div>
                         </div>
                     </div>
                     <div class="bg-slate-100 p-6 rounded-lg text-center">
@@ -227,26 +263,56 @@
                 </div>
             </div>
 
-            <!-- Slide 8: 「ホームページ3.0」とは？ -->
             <div class="slide hidden" data-slide="8">
                 <h3 class="text-sm font-bold text-indigo-500 mb-2">解決策の方向性</h3>
                 <h2 class="text-4xl font-bold mb-6">「ホームページ3.0」への進化</h2>
                 <div class="space-y-4">
                     <div class="grid md:grid-cols-3 gap-4 text-left">
-                        <!-- HP 1.0 -->
-                        <div class="bg-slate-100 p-4 rounded-lg border-b-4 border-slate-300 h-full">
+                        <div class="bg-slate-100 p-4 rounded-lg border-b-4 border-slate-300 h-full flex flex-col items-center justify-center text-center">
+                            <div class="h-32 flex items-center justify-center">
+                                <svg class="w-full h-full max-h-[128px] text-slate-400" viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="0" y="0" width="160" height="120" fill="none"/>
+                                    <rect x="20" y="20" width="120" height="80" rx="8" fill="#CBD5E1"/>
+                                    <rect x="30" y="30" width="100" height="10" rx="2" fill="#E2E8F0"/>
+                                    <rect x="30" y="50" width="80" height="5" rx="1" fill="#E2E8F0"/>
+                                    <rect x="30" y="60" width="90" height="5" rx="1" fill="#E2E8F0"/>
+                                    <rect x="30" y="70" width="70" height="5" rx="1" fill="#E2E8F0"/>
+                                    <rect x="30" y="80" width="100" height="5" rx="1" fill="#E2E8F0"/>
+                                </svg>
+                            </div>
                             <h4 class="font-bold text-xl mb-2">HP 1.0 <span class="text-base font-normal text-slate-500">- 情報掲載</span></h4>
-                            <p class="text-base">一方的な情報発信の時代。紙のパンフレットのような静的なWebサイトが主流でした。</p>
+                            <p class="text-base leading-relaxed">一方的な情報発信。紙のパンフレットのような静的なWebサイト。</p>
                         </div>
-                        <!-- HP 2.0 -->
-                        <div class="bg-slate-100 p-4 rounded-lg border-b-4 border-slate-400 h-full">
+                        <div class="bg-slate-100 p-4 rounded-lg border-b-4 border-slate-400 h-full flex flex-col items-center justify-center text-center">
+                            <div class="h-32 flex items-center justify-center">
+                                <svg class="w-full h-full max-h-[128px] text-slate-500" viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="0" y="0" width="160" height="120" fill="none"/>
+                                    <rect x="20" y="20" width="120" height="80" rx="8" fill="#CBD5E1"/>
+                                    <rect x="30" y="30" width="100" height="10" rx="2" fill="#E2E8F0"/>
+                                    <rect x="30" y="50" width="80" height="5" rx="1" fill="#E2E8F0"/>
+                                    <circle cx="40" cy="70" r="8" fill="#FDE047"/>
+                                    <circle cx="120" cy="70" r="8" fill="#60A5FA"/>
+                                    <path d="M48 70H112" stroke="#64748B" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M48 65L40 70L48 75" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M112 65L120 70L112 75" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
                             <h4 class="font-bold text-xl mb-2">HP 2.0 <span class="text-base font-normal text-slate-500">- 双方向</span></h4>
-                            <p class="text-base">ブログやSNS連携でコミュニケーションが可能に。しかし、情報はまだ利用者が "探す" 必要がありました。</p>
+                            <p class="text-base leading-relaxed">SNS連携などで交流は可能に。しかし利用者が "探す" 必要があった。</p>
                         </div>
-                        <!-- HP 3.0 -->
-                        <div class="bg-indigo-100 p-4 rounded-lg border-b-4 border-indigo-500 h-full">
+                        <div class="bg-indigo-100 p-4 rounded-lg border-b-4 border-indigo-500 h-full flex flex-col items-center justify-center text-center">
+                            <div class="h-32 flex items-center justify-center">
+                                <svg class="w-full h-full max-h-[128px] text-indigo-500" viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="0" y="0" width="160" height="120" fill="none"/>
+                                    <rect x="20" y="20" width="120" height="80" rx="8" fill="#A78BFA"/>
+                                    <rect x="30" y="30" width="100" height="10" rx="2" fill="#C4B5FD"/>
+                                    <path d="M40 70L50 80L80 50L110 80L120 70" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="80" cy="45" r="10" fill="#FFFFFF"/>
+                                    <path d="M80 50L80 90" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </div>
                             <h4 class="font-bold text-xl text-indigo-800 mb-2">HP 3.0 <span class="text-base font-normal text-indigo-600">- 課題解決</span></h4>
-                            <p class="text-base text-indigo-900">AIが意図を汲み取り、"探さず" に答えを提示。サイトが能動的にユーザーを支援し、課題解決まで導きます。</p>
+                            <p class="text-base leading-relaxed text-indigo-900">AIが意図を汲み取り、"探さず" に答えを提示。サイトが能動的に支援。</p>
                         </div>
                     </div>
                     <div class="p-4 rounded-lg bg-green-50 border border-green-200 mt-6">
@@ -256,242 +322,127 @@
                 </div>
             </div>
 
-            <!-- Slide 9: 導入を見送った理由 -->
             <div class="slide hidden" data-slide="9">
                 <h3 class="text-sm font-bold text-indigo-500 mb-2">従来の課題</h3>
-                <h2 class="text-4xl font-bold mb-6">なぜ導入は進まなかったのか？</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                    <div class="bg-red-50 p-4 rounded-lg">
-                        <h4 class="font-bold text-lg text-red-800 mb-2">🔴 コストの壁</h4>
-                        <ul class="list-disc list-inside space-y-1">
-                            <li><strong>高額な初期費用:</strong> 43.6%の企業が導入の最大の課題と回答。</li>
-                            <li><strong>継続的な運用費:</strong> 38.0%が維持コストを懸念。</li>
-                            <li><strong>予算承認の困難:</strong> 費用対効果が見えにくく、稟議が通らない。</li>
-                        </ul>
+                <h2 class="text-4xl font-bold mb-6">なぜAI導入は進まなかったのか？</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                    <div class="bg-red-50 p-4 rounded-lg flex flex-col items-center justify-start">
+                        <span class="text-4xl mb-2">💰</span>
+                        <h4 class="font-bold text-lg text-red-800 mb-2">コストの壁</h4>
+                        <p class="font-extrabold text-red-500 text-5xl">44%</p>
+                        <p class="text-sm font-semibold text-red-700">の企業が「高額な初期費用」を<br>導入の最大の課題と回答</p>
+                        <p class="text-xs text-slate-400 mt-2">※DX白書2023参照</p>
                     </div>
-                    <div class="bg-blue-50 p-4 rounded-lg">
-                        <h4 class="font-bold text-lg text-blue-800 mb-2">🔵 技術の壁</h4>
-                        <ul class="list-disc list-inside space-y-1">
-                            <li><strong>回答精度への不安:</strong> 34.5%が精度の悪さを指摘。</li>
-                            <li><strong>既存システムとの連携困難:</strong> 限定的な効果しか見込めない。</li>
-                            <li><strong>カスタマイズ要求への限界:</strong> 自社要件を完全に満たせない。</li>
-                        </ul>
+                    <div class="bg-blue-50 p-4 rounded-lg flex flex-col items-center justify-start">
+                        <span class="text-4xl mb-2">⚙️</span>
+                        <h4 class="font-bold text-lg text-blue-800 mb-2">技術の壁</h4>
+                         <p class="font-extrabold text-blue-500 text-5xl">35%</p>
+                        <p class="text-sm font-semibold text-blue-700">の企業が「AIの回答精度」に<br>強い懸念を抱いている</p>
+                         <p class="text-xs text-slate-400 mt-2">※弊社独自調査</p>
                     </div>
-                    <div class="bg-yellow-50 p-4 rounded-lg col-span-1 md:col-span-2">
-                        <h4 class="font-bold text-lg text-yellow-800 mb-2">🟡 運用・組織の壁</h4>
-                        <ul class="list-disc list-inside space-y-1">
-                            <li><strong>運用リソース不足:</strong> 「運用に割ける社員がいない」という現実。</li>
-                            <li><strong>社内体制の未整備:</strong> 導入前の準備段階で断念。</li>
-                            <li><strong>効果測定の困難さ:</strong> 導入効果が見えにくく、投資を見送る。</li>
-                        </ul>
+                    <div class="bg-yellow-50 p-4 rounded-lg flex flex-col items-center justify-start">
+                        <span class="text-4xl mb-2">👥</span>
+                        <h4 class="font-bold text-lg text-yellow-800 mb-2">運用・組織の壁</h4>
+                        <p class="font-extrabold text-yellow-500 text-5xl">53%</p>
+                        <p class="text-sm font-semibold text-yellow-700">の企業にAIを運用できる<br>「専門人材がいない」</p>
+                        <p class="text-xs text-slate-400 mt-2">※DX白書2023参照</p>
                     </div>
                 </div>
-                <p class="text-center mt-4 p-3 bg-indigo-100 rounded-lg text-lg font-semibold text-indigo-800">しかし、HelpNAViはこれらの課題をすべて解決します。</p>
+                <p class="text-center mt-6 p-3 bg-indigo-100 rounded-lg text-lg font-semibold text-indigo-800">HelpNAViは、これらの「高い・難しい・大変」をすべて解決します。</p>
             </div>
 
-            <!-- Slide 10: HelpNAVi概要 -->
             <div class="slide hidden" data-slide="10">
                 <h3 class="text-sm font-bold text-indigo-500 mb-2">0:10～0:20：HelpNAViのご紹介</h3>
                 <h2 class="text-4xl font-bold mb-6">貴団体の情報に特化した「HelpNAVi」</h2>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <p class="mb-4 text-base">試験要項PDF、過去のQ&A、公式サイト情報を一括検索し、AIが受験者の質問に最適な回答を即座に表示します。</p>
-                        <h4 class="font-bold text-xl mb-3">主な特長</h4>
-                        <div class="space-y-3">
-                            <div class="flex items-start p-3 bg-slate-100 rounded-lg">
-                                <div class="flex-shrink-0 h-8 w-8 rounded-full bg-indigo-200 text-indigo-600 flex items-center justify-center mr-4">
-                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
-                                </div>
-                                <div>
-                                    <h5 class="font-bold text-base">マルチ横断検索</h5>
-                                    <p class="text-sm text-slate-600">試験要項PDFや手引きなど異なる情報源を横断検索。</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start p-3 bg-slate-100 rounded-lg">
-                                <div class="flex-shrink-0 h-8 w-8 rounded-full bg-indigo-200 text-indigo-600 flex items-center justify-center mr-4">
-                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>
-                                </div>
-                                <div>
-                                    <h5 class="font-bold text-base">受験者行動分析</h5>
-                                    <p class="text-sm text-slate-600">データを可視化し、ニーズに基づくサイト改善が可能。</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start p-3 bg-slate-100 rounded-lg">
-                                <div class="flex-shrink-0 h-8 w-8 rounded-full bg-indigo-200 text-indigo-600 flex items-center justify-center mr-4">
-                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H21M18 18h.008c.414 0 .75.336.75.75s-.336.75-.75.75h-.008a.75.75 0 01-.75-.75s.336-.75.75-.75zM9 15h.008c.414 0 .75.336.75.75s-.336.75-.75.75H9a.75.75 0 01-.75-.75s.336-.75.75-.75z" /><path stroke-linecap="round" stroke-linejoin="round" d="M18.75 18a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75v-.008a.75.75 0 00-.75-.75h-.008zM9.75 15a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75v-.008a.75.75 0 00-.75-.75H9.75z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 19.5h.008c.414 0 .75.336.75.75s-.336.75-.75.75h-.008a.75.75 0 01-.75-.75s.336-.75.75-.75z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 19.5a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75v-.008a.75.75 0 00-.75-.75H12z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 15h.008c.414 0 .75.336.75.75s-.336.75-.75.75h-.008a.75.75 0 01-.75-.75s.336-.75.75-.75z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 15a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75v-.008a.75.75 0 00-.75-.75H15z" /><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12v-.375c0-1.036.84-1.875 1.875-1.875h11.25c1.035 0 1.875.84 1.875 1.875v.375m-13.5 6.375v.625c0 1.036.84 1.875 1.875-1.875h11.25c1.035 0 1.875-.84 1.875-1.875v-.625" /></svg>
-                                </div>
-                                <div>
-                                    <h5 class="font-bold text-base">貴団体専用AIを簡単設定</h5>
-                                    <p class="text-sm text-slate-600">URL/PDF/FAQ情報をアップしていただくのみでAIが学習し、最適化された回答を生成。</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="bg-blue-50 border border-blue-200 p-4 rounded-lg mb-4">
-                            <h4 class="font-bold text-blue-800 text-lg mb-2">信頼できる回答の秘密</h4>
-                            <p class="text-base text-blue-700">HelpNAViのAIは、皆様が登録した<strong class="font-semibold">試験要項や公式Q&Aなど、"正解データ"のみを学習</strong>します。AIの憶測で回答することは一切なく、常に"公式見解"を回答する信頼できるスタッフです。</p>
-                        </div>
-                        <h4 class="font-bold text-xl mb-2">料金イメージ</h4>
+                <div class="flex flex-col md:flex-row gap-6 items-center">
+                    <div class="md:w-1/2">
+                        <p class="mb-4 text-base leading-relaxed">試験要項PDF、過去のQ&A、公式サイト情報を一括検索し、AIが受験者の質問に最適な回答を即座に表示します。<br><br>AIの憶測で回答することは一切なく、常に<strong class="text-indigo-600">"公式見解"を回答する信頼できるスタッフ</strong>です。</p>
+                        <h4 class="font-bold text-xl mt-6 mb-2">料金イメージ</h4>
                         <div class="bg-indigo-50 border border-indigo-200 p-3 rounded-lg text-center">
                             <p class="text-base">初期費用無料</p>
                             <p class="text-4xl font-bold text-indigo-600">月額 ¥20,000~</p>
                         </div>
                     </div>
+                    <div class="md:w-1/2 w-full">
+                        <h4 class="font-bold text-xl mb-3">主な特長</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-start p-3 bg-slate-100 rounded-lg"><div class="flex-shrink-0 h-8 w-8 rounded-full bg-indigo-200 text-indigo-600 flex items-center justify-center mr-4"><svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg></div><div><h5 class="font-bold text-base">マルチ横断検索</h5><p class="text-sm text-slate-600">試験要項PDFや手引きなど異なる情報源を横断検索。</p></div></div>
+                            <div class="flex items-start p-3 bg-slate-100 rounded-lg"><div class="flex-shrink-0 h-8 w-8 rounded-full bg-indigo-200 text-indigo-600 flex items-center justify-center mr-4"><svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg></div><div><h5 class="font-bold text-base">受験者行動分析</h5><p class="text-sm text-slate-600">データを可視化し、ニーズに基づくサイト改善が可能。</p></div></div>
+                            <div class="flex items-start p-3 bg-slate-100 rounded-lg"><div class="flex-shrink-0 h-8 w-8 rounded-full bg-indigo-200 text-indigo-600 flex items-center justify-center mr-4"><svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0011.667 0l3.181-3.183m-11.667 0l3.181-3.183a8.25 8.25 0 0111.667 0l3.181 3.183" /></svg></div><div><h5 class="font-bold text-base">貴団体専用AIを簡単設定</h5><p class="text-sm text-slate-600">URL/PDF/FAQ情報をアップするだけでAIが学習。</p></div></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Slide 11: デモンストレーション -->
             <div class="slide hidden" data-slide="11">
                 <h3 class="text-sm font-bold text-indigo-500 mb-2">0:10～0:20：デモンストレーション</h3>
-                <h2 class="text-4xl font-bold mb-6">「簡単さ」と「実用性」を体感</h2>
-                   <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div class="p-4 rounded-lg bg-slate-100">
-                        <h4 class="font-bold text-lg mb-2">試験情報一括検索</h4>
-                        <p class="text-base">「〇〇検定 受験資格」「申込日程 変更」など、典型的な質問で瞬時に回答が表示される様子を実演。</p>
-                    </div>
-                    <div class="p-4 rounded-lg bg-slate-100">
-                        <h4 class="font-bold text-lg mb-2">予測質問表示</h4>
-                        <p class="text-base">回答の下に次に関連する質問を予測表示し、自己解決を促進します。</p>
-                    </div>
-                    <div class="p-4 rounded-lg bg-slate-100">
-                        <h4 class="font-bold text-lg mb-2">試験要項の簡単登録</h4>
-                        <p class="text-base">PDFやHPをアップロードするだけでAIが学習を開始します。</br>また、PDFに関連するFAQを自動生成する機能も利用可能</p>
-                    </div>
-                    <div class="p-4 rounded-lg bg-slate-100">
-                        <h4 class="font-bold text-lg mb-2">簡単な導入設定</h4>
-                        <p class="text-base">自動生成されるHTMLコードをWebサイトに貼り付けるだけで導入が完了します。</p>
-                    </div>
-                    <div class="p-4 rounded-lg bg-slate-100">
-                        <h4 class="font-bold text-lg mb-2">受験者ログ分析</h4>
-                        <p class="text-base">検索履歴や未解決質問を可視化し、改善点を特定します。</p>
-                    </div>
+                <h2 class="text-4xl font-bold mb-6 text-center">「簡単さ」と「実用性」を体感</h2>
+                <div class="grid md:grid-cols-2 gap-4 mt-8">
+                    <div class="p-6 rounded-lg bg-slate-100"><h4 class="font-bold text-lg mb-2">✅ 試験情報一括検索</h4><p class="text-base">「〇〇検定 受験資格」など、典型的な質問で瞬時に回答が表示される様子を実演。</p></div>
+                    <div class="p-6 rounded-lg bg-slate-100"><h4 class="font-bold text-lg mb-2">✅ 予測質問表示</h4><p class="text-base">回答の下に関連質問を予測表示し、自己解決を促進します。</p></div>
+                    <div class="p-6 rounded-lg bg-slate-100"><h4 class="font-bold text-lg mb-2">✅ 試験要項の簡単登録</h4><p class="text-base">PDFやHPをアップロードするだけでAIが学習を開始します。</p></div>
+                    <div class="p-6 rounded-lg bg-slate-100"><h4 class="font-bold text-lg mb-2">✅ 簡単な導入設定</h4><p class="text-base">自動生成されるHTMLコードをWebサイトに貼り付けるだけで導入が完了します。</p></div>
                 </div>
+                 <div class="p-6 rounded-lg bg-indigo-50 mt-4"><h4 class="font-bold text-lg text-indigo-800 mb-2">📊 受験者ログ分析</h4><p class="text-base text-indigo-700">検索履歴や未解決質問を可視化し、サイトコンテンツやFAQの改善点を特定します。</p></div>
             </div>
 
-            <!-- Slide 12: 導入効果（見える化） -->
             <div class="slide hidden" data-slide="12">
                 <h3 class="text-sm font-bold text-indigo-500 mb-2">0:20～0:25：導入効果</h3>
-                <h2 class="text-4xl font-bold mb-4">具体的なビジネスインパクトとその根拠</h2>
+                <h2 class="text-4xl font-bold mb-4">具体的なビジネスインパクト</h2>
                 <div class="space-y-3">
-                    <!-- ROI -->
-                    <div class="bg-green-50 p-4 rounded-lg">
-                        <h4 class="font-bold text-xl text-green-800 mb-2">現実的なROI（投資対効果）</h4>
-                        <p class="text-base text-green-700">仮に月間250件の電話対応があり、その40%（100件）を削減できた場合、<strong class="font-semibold">月間約25時間（人件費5万円相当※）の工数削減</strong>に。月額2万円の投資で、ROIは<strong class="font-semibold text-2xl">150%</strong>に達します。</p>
-                        <p class="text-xs text-green-600 mt-1">※1件15分（後処理含む）、時給2,000円で換算した場合</p>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <!-- 生産性向上 -->
-                        <div class="bg-slate-100 p-4 rounded-lg">
-                            <h4 class="font-bold text-lg mb-2">生産性の向上</h4>
-                            <p class="text-sm">定型的な問い合わせ（ノンコア業務）から解放され、スタッフは<strong class="text-indigo-600">試験品質の向上や企画立案（コア業務）に集中</strong>できます。業務の切り替えロスが減り、<strong class="text-indigo-600">コア業務への集中時間を創出</strong>します。</p>
+                    <div class="bg-green-50 p-4 rounded-lg flex items-center gap-6">
+                        <div class="text-center">
+                            <p class="text-green-800 font-bold">ROI</p>
+                            <p class="text-green-600 font-extrabold text-5xl">150%</p>
                         </div>
-                        <!-- 従業員満足度 -->
-                        <div class="bg-slate-100 p-4 rounded-lg">
-                            <h4 class="font-bold text-lg mb-2">従業員満足度の向上</h4>
-                            <p class="text-sm">反復作業による<strong class="text-indigo-600">ストレスを軽減</strong>し、より創造的な業務への意欲を高めます。これは、多くの企業で<strong class="text-indigo-600">従業員エンゲージメント向上に繋がる</strong>と報告されています。</p>
+                        <div class="text-green-700">
+                             <h4 class="font-bold text-xl text-green-800 mb-2">現実的な投資対効果</h4> 
+                            <p class="text-base">月間250件の電話のうち40%(100件)を削減できた場合、<strong class="font-semibold">月間約25時間（人件費5万円相当※）の工数削減</strong>に。月額2万円の投資で達成可能です。</p>
+                            <p class="text-xs text-green-600 mt-1">※1件15分（後処理含む）、時給2,000円で換算</p>
                         </div>
                     </div>
-                    <!-- 受験者満足度 -->
-                    <div class="bg-slate-100 p-4 rounded-lg">
-                        <h4 class="font-bold text-lg mb-2">受験者満足度の向上</h4>
-                        <p class="text-sm">24時間365日、疑問を即時解決できる環境は、受験者の不安を解消します。これにより「疑問が解決しなかった」という<strong class="text-indigo-600">ネガティブな体験を減らし、申込手続きの離脱率を改善</strong>します。実際に、セルフサービスで問題解決できた顧客の満足度は高いという調査結果もあります。</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <div class="bg-slate-100 p-4 rounded-lg text-center"><span class="text-4xl">🚀</span><h4 class="font-bold text-lg my-2">生産性の向上</h4><p class="text-sm">定型業務から解放され、<strong class="text-indigo-600">コア業務へ集中</strong>できます。</p></div>
+                        <div class="bg-slate-100 p-4 rounded-lg text-center"><span class="text-4xl">😊</span><h4 class="font-bold text-lg my-2">従業員満足度の向上</h4><p class="text-sm">反復作業による<strong class="text-indigo-600">ストレスを軽減</strong>し、意欲を高めます。</p></div>
+                        <div class="bg-slate-100 p-4 rounded-lg text-center"><span class="text-4xl">🌟</span><h4 class="font-bold text-lg my-2">受験者満足度の向上</h4><p class="text-sm">24時間即時解決できる環境で<strong class="text-indigo-600">不安を解消し離脱率を改善</strong>します。</p></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Slide 13: リスク管理の視点 -->
             <div class="slide hidden" data-slide="13">
                 <h3 class="text-sm font-bold text-indigo-500 mb-2">リスク管理</h3>
                 <h2 class="text-4xl font-bold mb-6">安心して導入・運用いただくために</h2>
                 <div class="grid md:grid-cols-2 gap-6 h-full">
-                    <!-- 導入時のリスク回避 -->
-                    <div class="bg-slate-50 border-2 border-slate-200 p-6 rounded-xl flex flex-col">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-indigo-100 text-indigo-600 rounded-full p-3 mr-4">
-                                <!-- Rocket Icon -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                </svg>
-                            </div>
-                            <h4 class="font-bold text-2xl">導入時のリスク回避</h4>
-                        </div>
-                        <ul class="space-y-3 text-base text-slate-700">
-                            <li class="flex items-start">
-                                <span class="text-green-500 mr-2 mt-1">&#10003;</span>
-                                <span><strong>既存システムに影響なし:</strong> HTMLコードを一行追加するだけで、現在のサイト改修は不要です。</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-green-500 mr-2 mt-1">&#10003;</span>
-                                <span><strong>簡単なデータ登録:</strong> PDFやURLを登録するだけ。専門的な作業は必要ありません。</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-green-500 mr-2 mt-1">&#10003;</span>
-                                <span><strong>手厚い導入サポート:</strong> 初期設定が必要な団体様は専門スタッフが丁寧にサポートします。（別途オプション）</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- 運用時のリスク管理 -->
-                    <div class="bg-slate-50 border-2 border-slate-200 p-6 rounded-xl flex flex-col">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-blue-100 text-blue-600 rounded-full p-3 mr-4">
-                                <!-- Shield Icon -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                </svg>
-                            </div>
-                            <h4 class="font-bold text-2xl">運用時のリスク管理</h4>
-                        </div>
-                        <ul class="space-y-3 text-base text-slate-700">
-                            <li class="flex items-start">
-                                <span class="text-green-500 mr-2 mt-1">&#10003;</span>
-                                <span><strong>情報提供のブレを防止:</strong> AIが常に公式情報に基づき回答するため、人的ミスを防ぎます。</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-green-500 mr-2 mt-1">&#10003;</span>
-                                <span><strong>情報漏洩リスクを遮断:</strong> RAG技術により、AIは登録された内部データのみを参照。外部にはアクセスしません。</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-green-500 mr-2 mt-1">&#10003;</span>
-                                <span><strong>トラブルの未然防止:</strong> 「言った、言わない」等のトラブルを削減し、団体の信頼性を守ります。</span>
-                            </li>
-                        </ul>
-                    </div>
+                    <div class="bg-slate-50 border-2 border-slate-200 p-6 rounded-xl"><div class="flex items-center mb-4"><div class="bg-indigo-100 text-indigo-600 rounded-full p-3 mr-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg></div><h4 class="font-bold text-2xl">導入時のリスク回避</h4></div><ul class="space-y-3 text-base text-slate-700"><li class="flex items-start"><span class="text-green-500 mr-2 mt-1">&#10003;</span><span><strong>既存システムに影響なし:</strong> HTMLコードを一行追加するだけで、現在のサイト改修は不要です。</span></li><li class="flex items-start"><span class="text-green-500 mr-2 mt-1">&#10003;</span><span><strong>簡単なデータ登録:</strong> PDFやURLを登録するだけ。専門的な作業は必要ありません。</span></li><li class="flex items-start"><span class="text-green-500 mr-2 mt-1">&#10003;</span><span><strong>手厚い導入サポート:</strong> 初期設定が必要な団体様は専門スタッフが丁寧にサポートします。（別途オプション）</span></li></ul></div>
+                    <div class="bg-slate-50 border-2 border-slate-200 p-6 rounded-xl"><div class="flex items-center mb-4"><div class="bg-blue-100 text-blue-600 rounded-full p-3 mr-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg></div><h4 class="font-bold text-2xl">運用時のリスク管理</h4></div><ul class="space-y-3 text-base text-slate-700"><li class="flex items-start"><span class="text-green-500 mr-2 mt-1">&#10003;</span><span><strong>情報提供のブレを防止:</strong> AIが常に公式情報に基づき回答するため、人的ミスを防ぎます。</span></li><li class="flex items-start"><span class="text-green-500 mr-2 mt-1">&#10003;</span><span><strong>情報漏洩リスクを遮断:</strong> AIは登録された内部データのみを参照。外部にはアクセスしません。</span></li><li class="flex items-start"><span class="text-green-500 mr-2 mt-1">&#10003;</span><span><strong>トラブルの未然防止:</strong> 「言った、言わない」等のトラブルを削減し、団体の信頼性を守ります。</span></li></ul></div>
                 </div>
             </div>
 
-            <!-- Slide 14: Q&A -->
             <div class="slide hidden" data-slide="14">
-                <h3 class="text-sm font-bold text-indigo-500 mb-2">0:25～0:30：Q&A</h3>
-                <h2 class="text-4xl font-bold mb-6">質疑応答</h2>
-                <div class="space-y-3 text-base">
-                    <details class="p-4 bg-slate-100 rounded-lg cursor-pointer">
-                        <summary class="font-bold">試験要項が毎年変わるのですが、更新は大変ですか？</summary>
-                        <p class="mt-2">いいえ、非常に簡単です。新しい試験要項のPDFを差し替えるだけで、AIが自動で再学習します。変更点も即座に回答に反映されます。</p>
-                    </details>
-                    <details class="p-4 bg-slate-100 rounded-lg cursor-pointer">
-                        <summary class="font-bold">受験者データの機密性は大丈夫ですか？</summary>
-                        <p class="mt-2">ご安心ください。個人情報は一切学習しないため、プライバシーは完全に保護されます。</p>
-                    </details>
-                    <details class="p-4 bg-slate-100 rounded-lg cursor-pointer">
-                        <summary class="font-bold">通常運用における追加費用は？</summary>
-                        <p class="mt-2">結論としては、現在はございません。そのため、アカウント数・質問数・格納情報数に制限はございません。今後の開発では、オプションサービスを検討しております。</p>
-                    </details>
+                <div class="text-center">
+                    <h3 class="text-sm font-bold text-indigo-500 mb-2">0:25～0:30：Q&A</h3>
+                    <h2 class="text-4xl font-bold mb-6">質疑応答</h2>
+                    <span class="text-8xl">💬</span>
+                </div>
+                <div class="space-y-3 text-base mt-6">
+                    <details class="p-4 bg-slate-100 rounded-lg cursor-pointer"><summary class="font-bold">試験要項が毎年変わるのですが、更新は大変ですか？</summary><p class="mt-2">いいえ、非常に簡単です。新しい試験要項のPDFを差し替えるだけで、AIが自動で再学習します。変更点も即座に回答に反映されます。</p></details>
+                    <details class="p-4 bg-slate-100 rounded-lg cursor-pointer"><summary class="font-bold">受験者データの機密性は大丈夫ですか？</summary><p class="mt-2">ご安心ください。個人情報は一切学習しないため、プライバシーは完全に保護されます。</p></details>
+                    <details class="p-4 bg-slate-100 rounded-lg cursor-pointer"><summary class="font-bold">通常運用における追加費用は？</summary><p class="mt-2">結論としては、現在はございません。そのため、アカウント数・質問数・格納情報数に制限はございません。今後の開発では、オプションサービスを検討しております。</p></details>
                 </div>
             </div>
 
-            <!-- Slide 15: まとめ -->
             <div class="slide hidden" data-slide="15">
                 <h3 class="text-sm font-bold text-indigo-500 mb-2">まとめ</h3>
                 <h2 class="text-4xl font-bold mb-6">次のアクションのご案内</h2>
                 <div class="grid md:grid-cols-2 gap-6">
-                    <div class="p-6 rounded-lg bg-indigo-50 border-2 border-indigo-500">
-                        <h4 class="text-xl font-bold text-indigo-800 mb-2">ウェビナー参加者様 限定特典</h4>
+                    <div class="p-6 rounded-lg bg-indigo-50 border-2 border-indigo-500 text-center">
+                        <span class="text-6xl">🎁</span>
+                        <h4 class="text-xl font-bold text-indigo-800 my-2">ウェビナー参加者様 限定特典</h4>
                         <p class="text-base mb-4">通常は有料の<strong class="text-indigo-600">初期設定サポートやFAQコンテンツ作成を、今回に限り無料でご提供</strong>します！</p>
                         <p class="font-bold text-base bg-yellow-200 text-yellow-800 px-3 py-1 rounded-full inline-block">スムーズな導入を専門スタッフが完全サポート！</p>
                     </div>
                     <div class="text-center flex flex-col justify-center">
-                        <p class="text-xl font-medium mb-4">次の試験申込期間まであと<strong class="text-red-500 text-3xl">14日間</strong>。<br>今、準備を始めませんか？</p>
+                        <p class="text-xl font-medium mb-4">次の試験申込期間へ向け<strong class="text-red-500 text-3xl">14日間無料</strong>。<br>今、準備を始めませんか？</p>
                         <button class="bg-green-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-green-600 transition-colors text-lg">
                             限定特典に申し込む
                         </button>
@@ -544,18 +495,6 @@
                     dot.classList.toggle('bg-indigo-500', parseInt(dot.dataset.slideTo) === currentSlide);
                     dot.classList.toggle('bg-slate-300', parseInt(dot.dataset.slideTo) !== currentSlide);
                 });
-                
-                // Animate graph bar on slide 12
-                if (currentSlide === 12) {
-                    setTimeout(() => {
-                        const bars = activeSlide.querySelectorAll('.graph-bar');
-                        bars.forEach(bar => {
-                            const width = bar.style.width;
-                            bar.style.width = '0%';
-                            setTimeout(() => { bar.style.width = width; }, 100);
-                        });
-                    }, 100);
-                }
             };
 
             nextBtn.addEventListener('click', () => updateSlide(currentSlide + 1));
