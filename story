@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>資格試験業界向け提案資料</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', 'Noto Serif JP', serif;
+            background-color: #f8fafc; /* A very light gray, almost white */
+            color: #1e293b; /* Dark slate color for text */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        #presentation-container {
+            position: relative;
+            width: 100%;
+            max-width: 1280px;
+        }
+
+        .slide {
+            display: none;
+            padding: 4% 6%;
+            box-sizing: border-box;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+            background: #ffffff;
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Noto Serif JP', serif;
+            font-weight: 700;
+        }
+
+        /* Navy is the new accent color */
+        .title-text {
+            color: #1e3a8a; /* Navy Blue */
+        }
+        .bg-navy { background-color: #1e3a8a; }
+        .text-navy { color: #1e3a8a; }
+        .border-navy { border-color: #1e3a8a; }
+        
+        .bg-light-accent { background-color: #f1f5f9; }
+        .box-accent {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 2.5%;
+            right: 3%;
+            font-size: 1rem;
+            color: #94a3b8;
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #1e3a8a;
+            color: #ffffff;
+            border: none;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            z-index: 100;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .nav-button:hover {
+            background-color: #1e40af;
+            transform: translateY(-50%) scale(1.1);
+        }
+        #prevBtn { left: -70px; }
+        #nextBtn { right: -70px; }
+        
+        /* Font size adjustments for presentation feel */
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.2rem; line-height: 1.4; }
+        h3 { font-size: 1.4rem; }
+        p, div { font-size: 1rem; }
+        .text-lg { font-size: 1.125rem; }
+        .text-sm { font-size: 0.875rem; }
+        .text-xs { font-size: 0.75rem; }
+    </style>
+</head>
+<body>
+
+    <div id="presentation-container">
+        <!-- Slide 1: Title -->
+        <div id="slide1" class="slide active items-center text-center">
+            <h1 class="text-6xl mb-4 title-text leading-tight">資格の「価値」を再定義し、<br>未来を共創する</h1>
+            <p class="text-2xl text-gray-700 mt-6">資格試験業界専門プログラム『STORY』のご提案</p>
+            <div class="slide-number">1 / 10</div>
+        </div>
+
+        <!-- Slide 2: Introduction -->
+        <div id="slide2" class="slide items-center text-center">
+            <h2 class="text-5xl mb-8 leading-relaxed">「その資格は、未来の受験者に<br>届いていますか？」</h2>
+            <p class="text-xl max-w-4xl text-gray-700 leading-loose">
+                少子化、価値観の多様化、DXの遅れ…<br>
+                資格試験業界は今、大きな転換期を迎えています。<br>
+                従来の広報戦略だけでは、資格の真の価値は伝わりません。
+            </p>
+            <div class="slide-number">2 / 10</div>
+        </div>
+
+        <!-- Slide 3: 顕在課題 -->
+        <div id="slide3" class="slide">
+            <h2 class="text-4xl mb-10 text-center title-text">業界が直面する「5つの壁」</h2>
+            <div class="w-full max-w-full grid grid-cols-3 gap-6">
+                <div class="box-accent p-6 rounded-lg col-span-1">
+                    <h3 class="font-bold text-navy mb-3">受験者数の減少</h3>
+                    <p class="text-gray-700 text-sm">少子化や資格の多様化により、若年層の受験意欲が減退。</p>
+                    <p class="text-xs text-indigo-700 mt-2">※主要国家資格では、過去10年で20代の受験者が約15%減少したというデータも。</p>
+                </div>
+                <div class="box-accent p-6 rounded-lg">
+                    <h3 class="font-bold text-navy mb-3">運営コストの増加</h3>
+                    <p class="text-gray-700 text-sm">会場費、人件費などが増加。オンライン移行の遅れが負担に。</p>
+                </div>
+                <div class="box-accent p-6 rounded-lg">
+                    <h3 class="font-bold text-navy mb-3">認知度・信頼度の低下</h3>
+                    <p class="text-gray-700 text-sm">新しい民間資格や国際認定制度の台頭で、伝統ある資格も埋没。</p>
+                </div>
+                <div class="box-accent p-6 rounded-lg col-span-2">
+                    <h3 class="font-bold text-navy mb-3">若年層への訴求力不足</h3>
+                    <p class="text-gray-700 text-sm">古いウェブサイト、乏しいSNS活用。「誰がなぜ取るのか」という物語が不在。</p>
+                </div>
+                <div class="box-accent p-6 rounded-lg">
+                    <h3 class="font-bold text-navy mb-3">組織の硬直化</h3>
+                    <p class="text-gray-700 text-sm">運営人員の高齢化とDXの遅れが、変化への対応を阻害。</p>
+                </div>
+            </div>
+            <div class="slide-number">3 / 10</div>
+        </div>
+
+        <!-- Slide 4: 潜在課題 -->
+        <div id="slide4" class="slide">
+            <h2 class="text-4xl mb-4 text-center title-text">水面下の危機</h2>
+            <p class="text-lg text-center mb-8 text-gray-700">まだ自覚されていない、より深刻な課題</p>
+            <div class="w-full max-w-4xl mx-auto space-y-4">
+                <div class="bg-light-accent p-4 rounded-lg border-l-4 border-navy">
+                    <h3 class="text-lg font-semibold mb-1">「受験者の物語」の欠如</h3>
+                    <p class="text-gray-600 text-sm">資格が人生や仕事にどう活きるのか、リアルな物語が伝えられていない。</p>
+                </div>
+                <div class="bg-light-accent p-4 rounded-lg border-l-4 border-navy">
+                    <h3 class="text-lg font-semibold mb-1">資格ブランド力の低下</h3>
+                    <p class="text-gray-600 text-sm">「この資格を持つと、こう変わる」という独自の価値提案ができていない。</p>
+                </div>
+                <div class="bg-light-accent p-4 rounded-lg border-l-4 border-navy">
+                    <h3 class="text-lg font-semibold mb-1">デジタルコミュニケーションの遅れ</h3>
+                    <p class="text-gray-600 text-sm">動画・検索・SNS対応が不十分で、未来の受験者との接点を失っている。</p>
+                    <p class="text-xs text-indigo-700 mt-1">※10-20代の約8割がSNSで情報収集。しかし多くの団体公式アカウントは一方的な発信に留まっています。</p>
+                </div>
+                <div class="bg-light-accent p-4 rounded-lg border-l-4 border-navy">
+                    <h3 class="text-lg font-semibold mb-1">将来的な支援離れのリスク</h3>
+                    <p class="text-gray-600 text-sm">活動の価値が見えなければ、スポンサーや行政からの支援は先細る。</p>
+                </div>
+            </div>
+            <div class="slide-number">4 / 10</div>
+        </div>
+
+        <!-- Slide 5: 解決策の提示 -->
+        <div id="slide5" class="slide items-center text-center">
+            <h2 class="text-5xl mb-8 leading-relaxed">課題解決の鍵は<br>「物語 (STORY)」</h2>
+            <p class="text-xl max-w-4xl text-gray-700 leading-loose">
+                スペック（効能）だけでは、心は動かない。<br>
+                資格取得がもたらす「物語」を伝え、感情的なつながりを生み出すことが不可欠です。
+            </p>
+            <div class="border-t-2 border-navy w-32 my-8"></div>
+            <h3 class="text-4xl title-text">資格試験業界専門プログラム『STORY』</h3>
+            <div class="slide-number">5 / 10</div>
+        </div>
+        
+        <!-- Slide 6: STORYとは -->
+        <div id="slide6" class="slide">
+            <h2 class="text-4xl mb-4 text-center title-text">『STORY』とは？</h2>
+            <p class="text-lg text-center mb-6 text-gray-700">資格の魂を、社会へ。</p>
+            <div class="w-full max-w-full text-center box-accent rounded-lg p-8">
+                <p class="text-xl leading-loose">
+                    単なる資格紹介番組ではありません。<br>
+                    視聴者の心理を動かし、資格の社会的意義と未来への可能性を伝える<br><span class="text-navy font-bold text-3xl">「対話型ドキュメンタリー」</span>です。
+                </p>
+                <div class="mt-6 pt-6 border-t border-gray-200 grid grid-cols-4 justify-around gap-6 text-left">
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-navy">会話を"ストーリー"に</h3>
+                        <p class="text-gray-600 mt-2 text-sm">裏側VTR等に頼らず、対話を通じて団体の理念や熱量を引き出します。</p>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-navy">客観的データで構成</h3>
+                        <p class="text-gray-600 mt-2 text-sm">「数字」「トレンド」「受験者像」を基に、誰が聞いても納得できる構成。</p>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-navy">第三者視点の価値</h3>
+                        <p class="text-gray-600 mt-2 text-sm">MC野口氏が第三者の視点から、資格の独自性や強みを明確化します。</p>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-navy">データが示す視聴者層</h3>
+                        <p class="text-gray-600 mt-2 text-sm">受験者本人だけでなく、視聴データで証明された「子の進路を考える保護者層」へダイレクトに訴求します。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">6 / 10</div>
+        </div>
+        
+        <!-- Slide 7: メリット -->
+        <div id="slide7" class="slide">
+            <h2 class="text-4xl mb-10 text-center title-text">貴団体にもたらされる「5つの価値」</h2>
+            <div class="w-full max-w-full grid grid-cols-5 gap-6 text-center">
+                <div class="box-accent p-6 rounded-lg flex flex-col items-center justify-center">
+                    <h3 class="font-bold text-navy mb-3 h-16">社会的信頼性の強化</h3>
+                    <p class="text-gray-700 text-sm">資格の社会的意義を発信し、企業・教育機関からの信頼を向上。</p>
+                </div>
+                <div class="box-accent p-6 rounded-lg flex flex-col items-center justify-center">
+                    <h3 class="font-bold text-navy mb-3 h-16">受験者数増加への貢献</h3>
+                    <p class="text-gray-700 text-sm">資格の魅力やキャリア価値を伝え、受験意欲を喚起。</p>
+                </div>
+                <div class="box-accent p-6 rounded-lg flex flex-col items-center justify-center">
+                    <h3 class="font-bold text-navy mb-3 h-16">広報活動の効率化</h3>
+                    <p class="text-gray-700 text-sm">動画を二次利用し、HPやパンフレットのコンテンツを強化。</p>
+                </div>
+                <div class="box-accent p-6 rounded-lg flex flex-col items-center justify-center">
+                    <h3 class="font-bold text-navy mb-3 h-16">他資格との差別化</h3>
+                    <p class="text-gray-700 text-sm">インタビュー形式で、独自の強みや魅力を明確に言語化。</p>
+                </div>
+                <div class="box-accent p-6 rounded-lg flex flex-col items-center justify-center">
+                    <h3 class="font-bold text-navy mb-3 h-16">社会的価値のアピール</h3>
+                    <p class="text-gray-700 text-sm">人材育成、産業発展への寄与を伝え、存在意義を強化。</p>
+                </div>
+            </div>
+            <div class="slide-number">7 / 10</div>
+        </div>
+        
+        <!-- Slide 8: New Data Slide -->
+        <div id="slide8" class="slide">
+            <h2 class="text-4xl mb-4 text-center title-text">データが示す、新たなリーチの可能性</h2>
+            <p class="text-lg text-center mb-6 text-gray-700">貴団体のメッセージは、未来の受験者だけでなく、その保護者世代に深く届いています。</p>
+            <div class="w-full max-w-full grid grid-cols-3 gap-8 text-center">
+                <div class="box-accent p-6 rounded-lg flex flex-col items-center justify-center">
+                    <h3 class="font-bold text-navy mb-4">視聴者の年齢構成</h3>
+                    <div class="relative w-40 h-40 rounded-full flex items-center justify-center" style="background: conic-gradient(#1e3a8a 0% 55.5%, #e2e8f0 55.5% 100%);">
+                        <div class="absolute w-32 h-32 bg-[#ffffff] rounded-full flex items-center justify-center">
+                            <span class="text-3xl font-bold text-navy">55.5%</span>
+                        </div>
+                    </div>
+                    <p class="mt-4 font-semibold text-lg">35歳〜64歳の「保護者世代」</p>
+                    <p class="mt-1 text-gray-600 text-sm">子の進路やキャリアに最も関心を持つ世代へ、資格の価値を直接訴求できます。</p>
+                </div>
+                
+                <div class="box-accent p-6 rounded-lg flex flex-col items-center justify-center">
+                    <h3 class="font-bold text-navy mb-4">視聴者の性別比</h3>
+                    <div class="relative w-40 h-40 rounded-full flex items-center justify-center" style="background: conic-gradient(#1e3a8a 0% 78.9%, #e2e8f0 78.9% 100%);">
+                        <div class="absolute w-32 h-32 bg-[#ffffff] rounded-full flex items-center justify-center">
+                             <span class="text-3xl font-bold text-navy">78.9%</span>
+                        </div>
+                    </div>
+                    <p class="mt-4 font-semibold text-lg">男性視聴者</p>
+                    <p class="mt-1 text-gray-600 text-sm">家庭内の意思決定に影響力を持つ層へアプローチ可能です。</p>
+                </div>
+        
+                <div class="box-accent p-6 rounded-lg flex flex-col justify-center items-center">
+                    <h3 class="font-bold text-navy mb-4">多様な視聴者層</h3>
+                    <div class="w-full space-y-4 text-center">
+                        <div class="bg-light-accent p-3 rounded-lg">
+                             <p class="font-semibold text-lg"><span class="text-navy">23.9%</span> は25-34歳</p>
+                             <p class="text-gray-600 text-sm">キャリアを本格化させる若手社会人</p>
+                        </div>
+                        <div class="bg-light-accent p-3 rounded-lg">
+                            <p class="font-semibold text-lg"><span class="text-navy">14.5%</span> は65歳以上</p>
+                            <p class="text-gray-600 text-sm">生涯学習に関心を持つシニア層</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">8 / 10</div>
+        </div>
+
+        <!-- Slide 9: 番組構成 -->
+        <div id="slide9" class="slide">
+            <h2 class="text-4xl mb-8 text-center title-text">視聴者の心を動かす「物語の設計図」</h2>
+            <div class="w-full max-w-full grid grid-cols-2 gap-x-12 gap-y-6">
+                <!-- Column 1 -->
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <div class="bg-navy text-white rounded-full w-16 h-16 flex-shrink-0 flex items-center justify-center font-bold mr-5">OP</div>
+                        <div>
+                            <h3 class="font-semibold mb-1 text-navy">オープニング：社会との接続</h3>
+                            <p class="text-gray-700 text-sm">「この資格を持つ人が社会に〇万人います」という事実で視聴者を自分事に引き込み、興味の入口を創出します。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                         <div class="bg-navy text-white rounded-full w-16 h-16 flex-shrink-0 flex items-center justify-center font-bold mr-5">第一部</div>
+                        <div>
+                            <h3 class="font-semibold mb-1 text-navy">価値の提示：理念と実績</h3>
+                            <p class="text-gray-700 text-sm">設立背景や理念を語り、累計取得者数などの「数字」を用いて、資格が社会にもたらした客観的価値を伝えます。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                         <div class="bg-navy text-white rounded-full w-16 h-16 flex-shrink-0 flex items-center justify-center font-bold mr-5">第二部</div>
+                        <div>
+                            <h3 class="font-semibold mb-1 text-navy">共感の醸成：受験者像の変化</h3>
+                            <p class="text-gray-700 text-sm">年齢層や動機のトレンドを示し、「社会の縮図」として資格を捉え直すことで、無関心層にも興味を抱かせます。</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Column 2 -->
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <div class="bg-navy text-white rounded-full w-16 h-16 flex-shrink-0 flex items-center justify-center font-bold mr-5">第三部</div>
+                        <div>
+                            <h3 class="font-semibold mb-1 text-navy">可能性の具体化：取得後のキャリア</h3>
+                            <p class="text-gray-700 text-sm">活躍事例を通じて、資格取得がもたらすキャリアチェンジや成長の「可能性」を具体的に示します。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                         <div class="bg-navy text-white rounded-full w-16 h-16 flex-shrink-0 flex items-center justify-center font-bold mr-5">第四部</div>
+                        <div>
+                            <h3 class="font-semibold mb-1 text-navy">未来への共鳴：10年後の展望</h3>
+                            <p class="text-gray-700 text-sm">制度改革やリスキリング対応など、未来に向けたビジョンを語ることで、視聴者にワクワク感と将来性を感じさせます。</p>
+                            <p class="text-xs text-indigo-700 mt-1">※国内のリスキリング市場は2027年に1兆円規模へ拡大予測。資格の重要性は増しています。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                         <div class="bg-navy text-white rounded-full w-16 h-16 flex-shrink-0 flex items-center justify-center font-bold mr-5">ED</div>
+                        <div>
+                            <h3 class="font-semibold mb-1 text-navy">エンディング：メッセージと継続性</h3>
+                            <p class="text-gray-700 text-sm">社会や受験者への力強いメッセージで締めくくり、次回への期待感を抱かせてシリーズとしての価値を高めます。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">9 / 10</div>
+        </div>
+        
+        <!-- Slide 10: Schedule -->
+        <div id="slide10" class="slide">
+            <h2 class="text-4xl mb-10 text-center title-text">ご契約から公開までの流れ</h2>
+            <div class="w-full flex items-center justify-center space-x-2">
+                <!-- Step 1 -->
+                <div class="w-1/6 box-accent p-4 rounded-lg text-center h-48 flex flex-col justify-center">
+                    <div class="mx-auto border-2 border-navy text-navy rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mb-3">1</div>
+                    <h3 class="font-bold text-navy text-lg">商談</h3>
+                    <p class="mt-1 text-xs text-gray-600">企画・お見積り・ご契約</p>
+                </div>
+                <!-- Arrow -->
+                <div class="text-navy text-4xl font-thin px-2">&gt;</div>
+                <!-- Step 2 -->
+                <div class="w-1/6 box-accent p-4 rounded-lg text-center h-48 flex flex-col justify-center">
+                    <div class="mx-auto border-2 border-navy text-navy rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mb-3">2</div>
+                    <h3 class="font-bold text-navy text-lg">キックオフ</h3>
+                    <p class="mt-1 text-xs text-gray-600">テーマ、構成の摺合せ</p>
+                </div>
+                <!-- Arrow -->
+                <div class="text-navy text-4xl font-thin px-2">&gt;</div>
+                <!-- Step 3 -->
+                <div class="w-1/6 box-accent p-4 rounded-lg text-center h-48 flex flex-col justify-center">
+                    <div class="mx-auto border-2 border-navy text-navy rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mb-3">3</div>
+                    <h3 class="font-bold text-navy text-lg">撮影</h3>
+                    <p class="mt-1 text-xs text-gray-600">所要時間：約1時間</p>
+                </div>
+                <!-- Arrow -->
+                <div class="text-navy text-4xl font-thin px-2">&gt;</div>
+                <!-- Step 4 -->
+                <div class="w-1/6 box-accent p-4 rounded-lg text-center h-48 flex flex-col justify-center">
+                    <div class="mx-auto border-2 border-navy text-navy rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mb-3">4</div>
+                    <h3 class="font-bold text-navy text-lg">編集</h3>
+                    <p class="mt-1 text-xs text-gray-600">初稿チェック依頼</p>
+                </div>
+                <!-- Arrow -->
+                <div class="text-navy text-4xl font-thin px-2">&gt;</div>
+                <!-- Step 5 -->
+                <div class="w-1/6 box-accent p-4 rounded-lg text-center h-48 flex flex-col justify-center">
+                    <div class="mx-auto border-2 border-navy text-navy rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mb-3">5</div>
+                    <h3 class="font-bold text-navy text-lg">公開予告</h3>
+                    <p class="mt-1 text-xs text-gray-600">SNS・Youtubeにて</p>
+                </div>
+                <!-- Arrow -->
+                <div class="text-navy text-4xl font-thin px-2">&gt;</div>
+                <!-- Step 6 -->
+                <div class="w-1/6 box-accent p-4 rounded-lg text-center h-48 flex flex-col justify-center">
+                    <div class="mx-auto border-2 border-navy text-navy rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mb-3">6</div>
+                    <h3 class="font-bold text-navy text-lg">公開</h3>
+                    <p class="mt-1 text-xs text-gray-600">プレミア公開・日時伝達</p>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <h3 class="text-2xl title-text">共に、資格の新たな「物語」を。</h3>
+            </div>
+            <div class="slide-number">10 / 10</div>
+        </div>
+
+        <!-- Navigation -->
+        <button id="prevBtn" class="nav-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button id="nextBtn" class="nav-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('presentation-container');
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    // Re-assign IDs based on order in the DOM to keep logic simple
+                    slide.id = `slide${i + 1}`;
+                    slide.classList.remove('active');
+                });
+                
+                if (slides[index]) {
+                    slides[index].classList.add('active');
+                }
+                updateNavButtons();
+            }
+
+            function updateNavButtons() {
+                prevBtn.style.display = currentSlide === 0 ? 'none' : 'flex';
+                nextBtn.style.display = currentSlide === slides.length - 1 ? 'none' : 'flex';
+            }
+
+            prevBtn.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    showSlide(currentSlide);
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentSlide < slides.length - 1) {
+                    currentSlide++;
+                    showSlide(currentSlide);
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    prevBtn.click();
+                } else if (e.key === 'ArrowRight') {
+                    nextBtn.click();
+                }
+            });
+            
+            showSlide(currentSlide);
+        });
+    </script>
+</body>
+</html>
+
