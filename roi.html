@@ -223,7 +223,7 @@
         <div class="result-details">
             <h4>（2）投資の無駄</h4>
             <p>これは、成果に繋がっていないWeb投資です。多くのWebサイトは、単に存在しているだけで、効果的な運用や改善が行われていません。例えば、目的が不明確なまま支払われている広告費、誰も見ていない古いコンテンツ、ユーザーが使いにくいデザインなど、お金をかけているのに成果が出ていない部分が多数存在します。</p>
-            <p>過去のデータや経験則から、日本の多くの中小企業では、Web投資の約40%がこのような形で無駄になっていると推定しています。これは、Webサイトを改善すれば、これらの無駄なコストを削減し、収益へと転換できる大きな可能性を秘めていることを意味します。</p>
+            <p>私たちがWebコンサルティングや解析で見てきた多くの企業の共通課題として、投資された予算のうち、平均して**40%が効果を上げていない**という事実があります。これは、単なる推測ではなく、ユーザーがサイトのどこで離脱しているか、どの広告がクリックされていないかといった、具体的なデータに基づいた経験則です。言い換えれば、御社の投資の中には、効果が見込める施策に回せる**「隠れた予算」が40%ある**ということです。</p>
             <pre><code>
 計算ロジック:
 年間投資の無駄: 年間Web投資額 × 40%
@@ -336,18 +336,34 @@
         const recommendedSolutions = [];
         let reasoningText = '';
 
-        if (opportunityLoss > wastedInvestment) {
-            reasoningText = '診断結果から、御社のWebサイトは「機会損失」が最も大きな課題であることがわかります。訪問者は多くても、問い合わせに繋がっていない状況です。この問題を解決するために、CVR（問い合わせ率）を直接的に改善するソリューションを優先的に提案します。';
+        // Pattern 1: 機会損失 >> 投資の無駄
+        if (opportunityLoss > wastedInvestment * 2) {
+            reasoningText = '診断結果から、御社のWebサイトは**「機会損失」が最も大きな課題**であることがわかります。これは、多くの見込み客がサイトを訪れていても、問い合わせに繋がっていないことを意味します。この問題を解決するために、CVR（問い合わせ率）を直接的に改善するソリューションを優先的に提案します。';
             recommendedSolutions.push('LP制作');
             recommendedSolutions.push('AIチャットボット');
-        } else {
-            reasoningText = '診断結果から、御社のWebサイトは「投資の無駄」が最も大きな課題であることがわかります。これは、Webへの投資が効果的に機能していないことを示唆しています。この問題を解決するために、少ない費用で大きな認知効果を狙えるソリューションを優先的に提案します。';
+        }
+        // Pattern 2: 投資の無駄 >> 機会損失
+        else if (wastedInvestment > opportunityLoss * 2) {
+            reasoningText = '診断結果から、御社のWebサイトは**「投資の無駄」が最も大きな課題**であることがわかります。これは、Webへの投資が効果的に機能していないことを示唆しています。この問題を解決するために、少ない費用で大きな認知効果を狙えるソリューションを優先的に提案します。';
             recommendedSolutions.push('SNS切り取り');
             recommendedSolutions.push('ショート動画制作代行');
         }
-
-        if (opportunityLoss + wastedInvestment > 100) {
-            reasoningText += '<br><br>また、年間損失額が**100万円以上**と非常に大きいため、Webサイト全体の信頼性を高める抜本的な改善策も同時に推奨します。';
+        // Pattern 3: 機会損失 ≒ 投資の無駄
+        else if (Math.abs(opportunityLoss - wastedInvestment) < (opportunityLoss + wastedInvestment) * 0.2) {
+            reasoningText = '御社のWebサイトは、「機会損失」と「投資の無駄」の両方が大きな課題となっています。これは、集客力とサイトの質の両方に改善の余地があることを示唆しています。包括的なアプローチで、両方の課題を解決するソリューションを提案します。';
+            recommendedSolutions.push('LP制作');
+            recommendedSolutions.push('SNS切り取り');
+        }
+        // Pattern 4: 損失額が少ない場合
+        else if (opportunityLoss + wastedInvestment < 10) {
+            reasoningText = '診断結果から、御社のWebサイトの損失は比較的少ないことがわかります。このままの運用でも一定の成果が出ていますが、さらなる成長を目指すために、現状を維持しつつ、ブランド力を高める施策を提案します。';
+            recommendedSolutions.push('ホームページ制作');
+            recommendedSolutions.push('SNS切り取り');
+        }
+        // Pattern 5: 総合的な損失が非常に大きい場合
+        else {
+            reasoningText = '年間損失額が**100万円以上**と非常に大きいため、早急な対策が必要です。これは、Webサイトの根本的な構造や、投資方法に大きな課題があることを示唆しています。まずは、最も効果の高いソリューションを導入し、損失を止めることから始めることを強く推奨します。';
+            recommendedSolutions.push('LP制作');
             recommendedSolutions.push('ホームページ制作');
         }
         
