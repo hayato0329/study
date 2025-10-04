@@ -182,19 +182,6 @@
                 <option value="2.0" selected>その他</option>
             </select>
         </div>
-        <div class="section-title">推奨ソリューション (複数選択可)</div>
-        <div class="input-group">
-            <input type="checkbox" id="solution-sns" value="SNS切り取り">
-            <label for="solution-sns">SNS切り取り</label>
-            <input type="checkbox" id="solution-short" value="ショート動画制作代行">
-            <label for="solution-short">ショート動画制作代行</label>
-            <input type="checkbox" id="solution-ai" value="AIチャットボット">
-            <label for="solution-ai">AI活用チャットボット</label>
-            <input type="checkbox" id="solution-hp" value="HP制作">
-            <label for="solution-hp">ホームページ制作</label>
-            <input type="checkbox" id="solution-lp" value="LP制作" checked>
-            <label for="solution-lp">LP制作</label>
-        </div>
         <button onclick="calculateLoss()">診断する</button>
     </div>
 
@@ -209,15 +196,18 @@
         <div class="chart-container">
             <div class="chart-box">
                 <h3>CVR比較</h3>
+                <p>現在のCVRと、業界標準CVRのギャップがわかります。</p>
                 <canvas id="cvrBarChart"></canvas>
             </div>
             <div class="chart-box">
                 <h3>損失の内訳</h3>
+                <p>年間損失のほとんどが、機会損失（本来得られた売上）です。</p>
                 <canvas id="lossPieChart"></canvas>
             </div>
         </div>
 
         <div class="section-title">推奨ソリューション</div>
+        <p id="solution-intro">診断結果に基づき、御社に最適なソリューションを提案します。</p>
         <ul id="solutions-list" class="solutions-list"></ul>
     </div>
 </div>
@@ -226,11 +216,11 @@
     let cvrChart, lossChart;
 
     const solutionData = {
-        'SNS切り取り': { roi: 1500, cost: 5, effect: 'エンゲージメント向上、新規顧客獲得' },
-        'ショート動画制作代行': { roi: 2000, cost: 10, effect: '認知度拡大、潜在顧客へのリーチ' },
-        'AIチャットボット': { roi: 500, cost: 20, effect: '問い合わせ対応効率化、CVR改善' },
-        'HP制作': { roi: 400, cost: 60, effect: '信頼性向上、企業ブランディング強化' },
-        'LP制作': { roi: 21600, cost: 25, effect: 'CVR大幅改善、問い合わせ数増加' }
+        'LP制作': { cost: 25, roi: 21600, effect: 'CVRを大幅に改善し、問い合わせ数を増やします。' },
+        'AIチャットボット': { cost: 20, roi: 500, effect: '顧客対応を自動化し、取りこぼしを防ぎます。' },
+        'SNS切り取り': { cost: 5, roi: 1500, effect: 'SNSでのエンゲージメントを高め、新規顧客を獲得します。' },
+        'ショート動画制作代行': { cost: 10, roi: 2000, effect: '潜在顧客にリーチし、認知度を飛躍的に向上させます。' },
+        'ホームページ制作': { cost: 60, roi: 400, effect: '企業の信頼性を高め、長期的なブランディングを強化します。' }
     };
 
     function calculateLoss() {
@@ -256,11 +246,11 @@
         document.getElementById('total-loss').textContent = totalLoss.toLocaleString();
         document.getElementById('result-area').style.display = 'block';
         
-        // Render charts
+        // Render charts with data
         renderCharts(currentCVR, industryCVR, opportunityLoss, wastedInvestment);
         
-        // Render solutions
-        renderSolutions();
+        // Render solutions based on analysis
+        renderSolutions(opportunityLoss, wastedInvestment);
     }
 
     function renderCharts(currentCVR, industryCVR, opportunityLoss, wastedInvestment) {
@@ -279,7 +269,12 @@
             },
             options: {
                 responsive: true,
-                scales: { y: { beginAtZero: true } },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'CVR (%)' }
+                    }
+                },
                 plugins: { legend: { display: false } }
             }
         });
@@ -298,18 +293,40 @@
             },
             options: {
                 responsive: true,
-                plugins: { legend: { position: 'top' } }
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: { callbacks: { label: (context) => {
+                        const label = context.label;
+                        const value = context.parsed;
+                        const total = context.dataset.data.reduce((acc, curr) => acc + curr, 0);
+                        const percentage = ((value / total) * 100).toFixed(1) + '%';
+                        return `${label}: ${value.toLocaleString()}万円 (${percentage})`;
+                    }}}
+                }
             }
         });
     }
 
-    function renderSolutions() {
+    function renderSolutions(opportunityLoss, wastedInvestment) {
         const solutionsList = document.getElementById('solutions-list');
         solutionsList.innerHTML = ''; // Clear previous results
 
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-        checkboxes.forEach(checkbox => {
-            const solutionName = checkbox.value;
+        const recommendedSolutions = [];
+        if (opportunityLoss > wastedInvestment) {
+            // Opportunity loss is the bigger issue
+            recommendedSolutions.push('LP制作');
+            recommendedSolutions.push('AIチャットボット');
+        } else {
+            // Wasted investment is the bigger issue (or they are close)
+            recommendedSolutions.push('SNS切り取り');
+            recommendedSolutions.push('ショート動画制作代行');
+        }
+
+        // Add HP for overall brand
+        recommendedSolutions.push('ホームページ制作');
+
+        // Render the list
+        recommendedSolutions.forEach(solutionName => {
             const data = solutionData[solutionName];
             if (data) {
                 const li = document.createElement('li');
