@@ -210,6 +210,9 @@
         <div class="result-details">
             <h4>（1）機会損失</h4>
             <p>これは、Webサイトが本来獲得できていたはずの問い合わせ数を、売上に換算したものです。あなたのWebサイトを訪れた多くの人々が、適切な情報や導線がなかったために、問い合わせに至らずに離脱してしまっている状況を指します。</p>
+            <p style="font-weight: bold; color: #e74c3c;">
+                年間で、**<span id="lost-inquiries"></span>件分**の問い合わせを逃している可能性があります。
+            </p>
             <pre><code>
 計算ロジック:
 現在のCVR: (現在の月間問い合わせ数 ÷ 月間アクセス数) × 100
@@ -261,6 +264,7 @@
         const opportunityLoss = potentialInquiry > 0 ? (potentialInquiry * price * 12) : 0;
         const wastedInvestment = investment * 0.4;
         const totalLoss = opportunityLoss + wastedInvestment;
+        const lostInquiries = potentialInquiry * 12;
 
         document.getElementById('total-loss-summary').textContent = totalLoss.toLocaleString();
         document.getElementById('result-area').style.display = 'block';
@@ -269,6 +273,7 @@
         document.getElementById('industry-cvr-text').textContent = industryCVR.toFixed(1);
         document.getElementById('opportunity-loss-text').textContent = opportunityLoss.toLocaleString();
         document.getElementById('wasted-investment-text').textContent = wastedInvestment.toLocaleString();
+        document.getElementById('lost-inquiries').textContent = lostInquiries.toFixed(0);
 
         renderCharts(currentCVR, industryCVR, opportunityLoss, wastedInvestment);
         
