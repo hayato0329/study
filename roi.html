@@ -196,12 +196,12 @@
         <div class="chart-container">
             <div class="chart-box">
                 <h3>CVR比較</h3>
-                <p>御社の現在のCVRと、業界標準のギャップを示します。</p>
+                <p>御社の現在のCVRと、業界標準のギャップを示します。<br>（現在のCVR: <span id="current-cvr-text"></span>%, 業界標準CVR: <span id="industry-cvr-text"></span>%）</p>
                 <canvas id="cvrBarChart"></canvas>
             </div>
             <div class="chart-box">
                 <h3>損失の内訳</h3>
-                <p>年間損失のほとんどが、機会損失（本来得られた売上）です。</p>
+                <p>年間損失のほとんどが、機会損失（本来得られた売上）です。<br>（機会損失: <span id="opportunity-loss-text"></span>万円, 投資の無駄: <span id="wasted-investment-text"></span>万円）</p>
                 <canvas id="lossPieChart"></canvas>
             </div>
         </div>
@@ -265,6 +265,11 @@
         document.getElementById('total-loss-summary').textContent = totalLoss.toLocaleString();
         document.getElementById('result-area').style.display = 'block';
         
+        document.getElementById('current-cvr-text').textContent = currentCVR.toFixed(2);
+        document.getElementById('industry-cvr-text').textContent = industryCVR.toFixed(1);
+        document.getElementById('opportunity-loss-text').textContent = opportunityLoss.toLocaleString();
+        document.getElementById('wasted-investment-text').textContent = wastedInvestment.toLocaleString();
+
         renderCharts(currentCVR, industryCVR, opportunityLoss, wastedInvestment);
         
         renderSolutions(opportunityLoss, wastedInvestment);
@@ -330,7 +335,7 @@
             recommendedSolutions.push('ショート動画制作代行');
         }
 
-        if (opportunityLoss + wastedInvestment > 100) { // 総合的な損失が大きい場合
+        if (opportunityLoss + wastedInvestment > 100) {
             recommendedSolutions.push('ホームページ制作');
         }
 
