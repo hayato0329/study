@@ -228,7 +228,7 @@
         </div>
 
         <div class="section-title">推奨ソリューション</div>
-        <p id="solution-intro">診断結果に基づき、御社が抱える課題に最も効果的な解決策を提案します。この提案の目的は、**損失を回避するための具体的な行動**をお示しすることです。</p>
+        <div id="solution-reasoning"></div>
         <ul id="solutions-list" class="solutions-list"></ul>
     </div>
 </div>
@@ -325,19 +325,28 @@
     function renderSolutions(opportunityLoss, wastedInvestment) {
         const solutionsList = document.getElementById('solutions-list');
         solutionsList.innerHTML = '';
+        const reasoningContainer = document.getElementById('solution-reasoning');
+        reasoningContainer.innerHTML = '';
 
         const recommendedSolutions = [];
+        let reasoningText = '';
+
         if (opportunityLoss > wastedInvestment) {
+            reasoningText = '診断結果から、御社のWebサイトは「機会損失」が最も大きな課題であることがわかります。訪問者は多くても、問い合わせに繋がっていない状況です。この問題を解決するために、CVR（問い合わせ率）を直接的に改善するソリューションを優先的に提案します。';
             recommendedSolutions.push('LP制作');
             recommendedSolutions.push('AIチャットボット');
         } else {
+            reasoningText = '診断結果から、御社のWebサイトは「投資の無駄」が最も大きな課題であることがわかります。これは、Webへの投資が効果的に機能していないことを示唆しています。この問題を解決するために、少ない費用で大きな認知効果を狙えるソリューションを優先的に提案します。';
             recommendedSolutions.push('SNS切り取り');
             recommendedSolutions.push('ショート動画制作代行');
         }
 
         if (opportunityLoss + wastedInvestment > 100) {
+            reasoningText += '<br><br>また、年間損失額が**100万円以上**と非常に大きいため、Webサイト全体の信頼性を高める抜本的な改善策も同時に推奨します。';
             recommendedSolutions.push('ホームページ制作');
         }
+        
+        reasoningContainer.innerHTML = `<p>${reasoningText}</p>`;
 
         recommendedSolutions.forEach(solutionName => {
             const data = solutionData[solutionName];
