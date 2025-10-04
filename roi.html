@@ -86,324 +86,83 @@
             border-radius: 8px;
             margin-top: 30px;
         }
-
-        .result-item {
-            margin-bottom: 20px;
-            line-height: 1.6;
-            border-bottom: 1px dashed #c0c0c0;
-            padding-bottom: 15px;
-        }
         
-        .result-item:last-child {
-            border-bottom: none;
-        }
-
-        .result-item strong {
-            color: #e74c3c;
-            font-size: 1.2em;
-        }
-        
-        .loss-amount {
-            color: #c0392b;
-            font-weight: bold;
-            font-size: 1.5em;
-        }
-
-        .explanation {
-            font-size: 0.95em;
-            color: #555;
-            margin-top: 8px;
-        }
-
-        .calculation {
-            font-size: 0.9em;
-            color: #7f8c8d;
-            font-family: monospace;
-            background-color: #f9f9f9;
-            padding: 8px;
-            border-radius: 4px;
-            margin-top: 10px;
-            white-space: pre-wrap;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h1>WEB ROI 診断ツール</h1>
-    <p style="text-align: center; color: #555;">簡単な3つの質問に答えるだけで、WEBからの損失額を診断します。</p>
-
-    <div class="input-section">
-        <div class="section-title">診断に必要な情報</div>
-        <div class="input-group">
-            <label for="access">月間アクセス数 (人/月)</label>
-            <input type="number" id="access" placeholder="例: 1000">
-        </div>
-        <div class="input-group">
-            <label for="inquiry">月間問い合わせ数 (件/月)</label>
-            <input type="number" id="inquiry" placeholder="例: 5">
-        </div>
-        <div class="input-group">
-            <label for="investment">年間WEB投資額 (万円/年)</label>
-            <input type="number" id="investment" placeholder="例: 80">
-        </div>
-        <div class="section-title">補足情報 (任意)</div>
-        <div class="input-group">
-            <label for="price">平均受注単価 (万円/件)</label>
-            <input type="number" id="price" placeholder="例: 30">
-        </div>
-        <div class="input-group">
-            <label for="industry">業種</label>
-            <select id="industry">
-                <option value="2.5">BtoB (ソフトウェア/ITサービス)</option>
-                <option value="1.8">BtoB (コンサルティング)</option>
-                <option value="1.5">BtoB (専門サービス)</option>
-                <option value="1.5">BtoC (ECサイト)</option>
-                <option value="2.0">BtoC (食品/飲料)</option>
-                <option value="1.0">BtoC (不動産)</option>
-                <option value="2.5">BtoC (教育・スクール)</option>
-                <option value="3.0">BtoC (医療・美容)</option>
-                <option value="1.0">BtoC (旅行・レジャー)</option>
-                <option value="2.0" selected>その他</option>
-            </select>
-        </div>
-        <button onclick="calculateLoss()">診断する</button>
-    </div>
-
-    <div class="result-section" id="result-area" style="display:none;">
-        <div class="section-title">診断結果レポート</div>
-        <p style="text-align: center; font-weight: bold; font-size: 1.2em; color: #c0392b;">
-            御社のWebサイトは、年間で<span id="total-loss-summary"></span>万円の損失を出している可能性があります。
-        </p>
-        <p class="explanation" style="text-align: center;">
-            これは、ウェブサイトを通じて本来得られるはずだった売上や、効果的に使われていない投資が無駄になっていることを意味します。
-        </p>
-        
-        <div class="result-item">
-            <h4>1. 現在のCVR（問い合わせ率）: <span id="current-cvr"></span> %</h4>
-            <p class="explanation">
-                あなたのウェブサイトを訪れた人が、どれだけ問い合わせや購入などの行動を起こしてくれたかを示す割合です。この数字が高いほど、ウェブサイトが優秀だと判断できます。
-            </p>
-            <div class="calculation">計算方法： (月間問い合わせ数 ÷ 月間アクセス数) × 100</div>
-        </div>
-        
-        <div class="result-item">
-            <h4>2. 業界標準CVR: <span id="standard-cvr"></span> %</h4>
-            <p class="explanation">
-                あなたの業界における、ウェブサイトの平均的な問い合わせ率です。この数字は、あなたのウェブサイトが業界の競合と比べてどのくらいの成果を出しているかの目安となります。
-            </p>
-        </div>
-        
-        <div class="result-item">
-            <h4>3. 年間機会損失額: <span class="loss-amount" id="opportunity-loss"></span> 万円</h4>
-            <p class="explanation">
-                もしあなたのウェブサイトのCVRが「業界標準」に達していれば、本来得られていたはずの売上です。この金額は、あなたが知らず知らずのうちに逃してしまっている利益を意味します。
-            </p>
-            <div class="calculation">計算方法：
-(1) 業界標準の月間問い合わせ数: (月間アクセス数 × 業界標準CVR) ÷ 100
-(2) 逃している問い合わせ数: (上記1の数値) - 現在の月間問い合わせ数
-(3) 年間機会損失額: (上記2の数値) × 平均受注単価 × 12ヶ月</div>
-        </div>
-        
-        <div class="result-item">
-            <h4>4. 年間投資の無駄: <span class="loss-amount" id="wasted-investment"></span> 万円</h4>
-            <p class="explanation">
-                Webサイトや広告にかけた費用の中で、効果につながっていないと推定される金額です。多くのWebサイトは改善が行き届いておらず、投資の**40%が無駄**になっているという経験則に基づいています。この数字は、あなたの投資に潜むリスクを示すものです。
-            </p>
-            <div class="calculation">計算方法： 年間WEB投資額 × 40%</div>
-        </div>
-        
-        <div class="result-item">
-            <h4 style="font-size: 1.4em; font-weight: bold;">5. 合計損失額: <span class="loss-amount" id="total-loss"></span> 万円/年</h4>
-            <p class="explanation">
-                Webサイトの改善で取り戻せる可能性のある**総額**です。「機会損失」と「投資の無駄」を合わせた、年間の総合的な損失額を示します。
-            </p>
-        </div>
-    </div>
-</div>
-
-<script>
-    function calculateLoss() {
-        const access = parseFloat(document.getElementById('access').value);
-        const inquiry = parseFloat(document.getElementById('inquiry').value);
-        const investment = parseFloat(document.getElementById('investment').value);
-        const price = parseFloat(document.getElementById('price').value || 0);
-        const industryCVR = parseFloat(document.getElementById('industry').value);
-
-        if (isNaN(access) || isNaN(inquiry) || isNaN(investment)) {
-            alert('必須項目をすべて入力してください。');
-            return;
-        }
-
-        const currentCVR = (inquiry / access) * 100;
-        const standardCVR = industryCVR;
-        const potentialInquiry = (access * (standardCVR / 100)) - inquiry;
-        const opportunityLoss = potentialInquiry > 0 ? (potentialInquiry * price * 12) : 0;
-        const wastedInvestment = investment * 0.4;
-        const totalLoss = opportunityLoss + wastedInvestment;
-
-        document.getElementById('total-loss-summary').textContent = totalLoss.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});
-        document.getElementById('current-cvr').textContent = currentCVR.toFixed(2);
-        document.getElementById('standard-cvr').textContent = standardCVR.toFixed(1);
-        document.getElementById('opportunity-loss').textContent = opportunityLoss.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});
-        document.getElementById('wasted-investment').textContent = wastedInvestment.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});
-        document.getElementById('total-loss').textContent = totalLoss.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});
-
-        document.getElementById('result-area').style.display = 'block';
-    }
-</script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEB ROI 診断ツール</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 30px;
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            border-bottom: 2px solid #e0e0e0;
+        .result-section h3 {
+            margin-top: 0;
+            color: #34495e;
+            border-bottom: 1px solid #c0c0c0;
             padding-bottom: 10px;
-            margin-bottom: 30px;
         }
 
-        .section-title {
-            font-size: 1.2em;
-            color: #3498db;
-            border-left: 4px solid #3498db;
-            padding-left: 10px;
-            margin-top: 25px;
-            margin-bottom: 15px;
+        .chart-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
         }
-
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        .input-group input, .input-group select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-sizing: border-box;
-        }
-
-        .input-group input:focus, .input-group select:focus {
-            outline: none;
-            border-color: #3498db;
-            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
-        }
-        
-        button {
-            display: block;
-            width: 100%;
+        .chart-box {
+            width: 45%;
             padding: 15px;
-            font-size: 1.1em;
-            color: #fff;
-            background-color: #2ecc71;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #27ae60;
-        }
-
-        .result-section {
-            background-color: #ecf0f1;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 30px;
-        }
-
-        .result-item {
-            margin-bottom: 20px;
-            line-height: 1.6;
-            border-bottom: 1px dashed #c0c0c0;
-            padding-bottom: 15px;
-        }
-        
-        .result-item:last-child {
-            border-bottom: none;
-        }
-
-        .result-item strong {
-            color: #e74c3c;
-            font-size: 1.2em;
-        }
-        
-        .loss-amount {
-            color: #c0392b;
-            font-weight: bold;
-            font-size: 1.5em;
+            text-align: center;
         }
 
         .explanation {
-            font-size: 0.95em;
-            color: #555;
-            margin-top: 8px;
-        }
-
-        .calculation {
             font-size: 0.9em;
             color: #7f8c8d;
-            font-family: monospace;
-            background-color: #f9f9f9;
-            padding: 8px;
-            border-radius: 4px;
-            margin-top: 10px;
-            white-space: pre-wrap;
+            margin-top: 5px;
+        }
+
+        .total-loss {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .total-loss h3 {
+            color: #e74c3c;
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .total-loss p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        .solutions-list {
+            margin-top: 20px;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .solutions-list li {
+            background-color: #eaf2f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 5px solid #3498db;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
 <div class="container">
     <h1>WEB ROI 診断ツール</h1>
-    <p style="text-align: center; color: #555;">簡単な3つの質問に答えるだけで、WEBからの損失額を診断します。</p>
+    <p style="text-align: center; color: #555;">3つの質問に答えるだけで、WEBからの損失額と改善策を診断します。</p>
 
     <div class="input-section">
         <div class="section-title">診断に必要な情報</div>
         <div class="input-group">
             <label for="access">月間アクセス数 (人/月)</label>
-            <input type="number" id="access" placeholder="例: 1000">
+            <input type="number" id="access" placeholder="例: 1000" required>
         </div>
         <div class="input-group">
             <label for="inquiry">月間問い合わせ数 (件/月)</label>
-            <input type="number" id="inquiry" placeholder="例: 5">
+            <input type="number" id="inquiry" placeholder="例: 5" required>
         </div>
         <div class="input-group">
             <label for="investment">年間WEB投資額 (万円/年)</label>
-            <input type="number" id="investment" placeholder="例: 80">
+            <input type="number" id="investment" placeholder="例: 80" required>
         </div>
-        <div class="section-title">補足情報 (任意)</div>
         <div class="input-group">
             <label for="price">平均受注単価 (万円/件)</label>
             <input type="number" id="price" placeholder="例: 30">
@@ -423,62 +182,57 @@
                 <option value="2.0" selected>その他</option>
             </select>
         </div>
+        <div class="section-title">推奨ソリューション (複数選択可)</div>
+        <div class="input-group">
+            <input type="checkbox" id="solution-sns" value="SNS切り取り">
+            <label for="solution-sns">SNS切り取り</label>
+            <input type="checkbox" id="solution-short" value="ショート動画制作代行">
+            <label for="solution-short">ショート動画制作代行</label>
+            <input type="checkbox" id="solution-ai" value="AIチャットボット">
+            <label for="solution-ai">AI活用チャットボット</label>
+            <input type="checkbox" id="solution-hp" value="HP制作">
+            <label for="solution-hp">ホームページ制作</label>
+            <input type="checkbox" id="solution-lp" value="LP制作" checked>
+            <label for="solution-lp">LP制作</label>
+        </div>
         <button onclick="calculateLoss()">診断する</button>
     </div>
 
     <div class="result-section" id="result-area" style="display:none;">
         <div class="section-title">診断結果レポート</div>
-        <p style="text-align: center; font-weight: bold; font-size: 1.2em; color: #c0392b;">
-            御社のWebサイトは、年間で<span id="total-loss-summary"></span>万円の損失を出している可能性があります。
-        </p>
-        <p class="explanation" style="text-align: center;">
-            これは、ウェブサイトを通じて本来得られるはずだった売上や、効果的に使われていない投資が無駄になっていることを意味します。
-        </p>
-        
-        <div class="result-item">
-            <h4>1. 現在のCVR（問い合わせ率）: <span id="current-cvr"></span> %</h4>
-            <p class="explanation">
-                あなたのウェブサイトを訪れた人が、どれだけ問い合わせや購入などの行動を起こしてくれたかを示す割合です。この数字が高いほど、ウェブサイトが優秀だと判断できます。
-            </p>
-            <div class="calculation">計算方法： (月間問い合わせ数 ÷ 月間アクセス数) × 100</div>
+
+        <div class="total-loss">
+            <h3>年間合計損失額: <span id="total-loss"></span> 万円</h3>
+            <p>この損失は、Webサイトを改善することで取り戻せる可能性のある金額です。</p>
         </div>
         
-        <div class="result-item">
-            <h4>2. 業界標準CVR: <span id="standard-cvr"></span> %</h4>
-            <p class="explanation">
-                あなたの業界における、ウェブサイトの平均的な問い合わせ率です。この数字は、あなたのウェブサイトが業界の競合と比べてどのくらいの成果を出しているかの目安となります。
-            </p>
+        <div class="chart-container">
+            <div class="chart-box">
+                <h3>CVR比較</h3>
+                <canvas id="cvrBarChart"></canvas>
+            </div>
+            <div class="chart-box">
+                <h3>損失の内訳</h3>
+                <canvas id="lossPieChart"></canvas>
+            </div>
         </div>
-        
-        <div class="result-item">
-            <h4>3. 年間機会損失額: <span class="loss-amount" id="opportunity-loss"></span> 万円</h4>
-            <p class="explanation">
-                もしあなたのウェブサイトのCVRが「業界標準」に達していれば、本来得られていたはずの売上です。この金額は、あなたが知らず知らずのうちに逃してしまっている利益を意味します。
-            </p>
-            <div class="calculation">計算方法：
-(1) 業界標準の月間問い合わせ数: (月間アクセス数 × 業界標準CVR) ÷ 100
-(2) 逃している問い合わせ数: (上記1の数値) - 現在の月間問い合わせ数
-(3) 年間機会損失額: (上記2の数値) × 平均受注単価 × 12ヶ月</div>
-        </div>
-        
-        <div class="result-item">
-            <h4>4. 年間投資の無駄: <span class="loss-amount" id="wasted-investment"></span> 万円</h4>
-            <p class="explanation">
-                Webサイトや広告にかけた費用の中で、効果につながっていないと推定される金額です。多くのWebサイトは改善が行き届いておらず、投資の**40%が無駄**になっているという経験則に基づいています。この数字は、あなたの投資に潜むリスクを示すものです。
-            </p>
-            <div class="calculation">計算方法： 年間WEB投資額 × 40%</div>
-        </div>
-        
-        <div class="result-item">
-            <h4 style="font-size: 1.4em; font-weight: bold;">5. 合計損失額: <span class="loss-amount" id="total-loss"></span> 万円/年</h4>
-            <p class="explanation">
-                Webサイトの改善で取り戻せる可能性のある**総額**です。「機会損失」と「投資の無駄」を合わせた、年間の総合的な損失額を示します。
-            </p>
-        </div>
+
+        <div class="section-title">推奨ソリューション</div>
+        <ul id="solutions-list" class="solutions-list"></ul>
     </div>
 </div>
 
 <script>
+    let cvrChart, lossChart;
+
+    const solutionData = {
+        'SNS切り取り': { roi: 1500, cost: 5, effect: 'エンゲージメント向上、新規顧客獲得' },
+        'ショート動画制作代行': { roi: 2000, cost: 10, effect: '認知度拡大、潜在顧客へのリーチ' },
+        'AIチャットボット': { roi: 500, cost: 20, effect: '問い合わせ対応効率化、CVR改善' },
+        'HP制作': { roi: 400, cost: 60, effect: '信頼性向上、企業ブランディング強化' },
+        'LP制作': { roi: 21600, cost: 25, effect: 'CVR大幅改善、問い合わせ数増加' }
+    };
+
     function calculateLoss() {
         const access = parseFloat(document.getElementById('access').value);
         const inquiry = parseFloat(document.getElementById('inquiry').value);
@@ -491,21 +245,83 @@
             return;
         }
 
+        // Calculations
         const currentCVR = (inquiry / access) * 100;
-        const standardCVR = industryCVR;
-        const potentialInquiry = (access * (standardCVR / 100)) - inquiry;
+        const potentialInquiry = (access * (industryCVR / 100)) - inquiry;
         const opportunityLoss = potentialInquiry > 0 ? (potentialInquiry * price * 12) : 0;
         const wastedInvestment = investment * 0.4;
         const totalLoss = opportunityLoss + wastedInvestment;
 
-        document.getElementById('total-loss-summary').textContent = totalLoss.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});
-        document.getElementById('current-cvr').textContent = currentCVR.toFixed(2);
-        document.getElementById('standard-cvr').textContent = standardCVR.toFixed(1);
-        document.getElementById('opportunity-loss').textContent = opportunityLoss.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});
-        document.getElementById('wasted-investment').textContent = wastedInvestment.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});
-        document.getElementById('total-loss').textContent = totalLoss.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});
-
+        // Displaying results
+        document.getElementById('total-loss').textContent = totalLoss.toLocaleString();
         document.getElementById('result-area').style.display = 'block';
+        
+        // Render charts
+        renderCharts(currentCVR, industryCVR, opportunityLoss, wastedInvestment);
+        
+        // Render solutions
+        renderSolutions();
+    }
+
+    function renderCharts(currentCVR, industryCVR, opportunityLoss, wastedInvestment) {
+        // CVR Bar Chart
+        if (cvrChart) cvrChart.destroy();
+        const cvrCtx = document.getElementById('cvrBarChart').getContext('2d');
+        cvrChart = new Chart(cvrCtx, {
+            type: 'bar',
+            data: {
+                labels: ['現在のCVR', '業界標準CVR'],
+                datasets: [{
+                    label: 'CVR (%)',
+                    data: [currentCVR.toFixed(2), industryCVR.toFixed(1)],
+                    backgroundColor: ['#3498db', '#2ecc71'],
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { y: { beginAtZero: true } },
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        // Loss Pie Chart
+        if (lossChart) lossChart.destroy();
+        const lossCtx = document.getElementById('lossPieChart').getContext('2d');
+        lossChart = new Chart(lossCtx, {
+            type: 'pie',
+            data: {
+                labels: ['機会損失', '投資の無駄'],
+                datasets: [{
+                    data: [opportunityLoss, wastedInvestment],
+                    backgroundColor: ['#e74c3c', '#f39c12'],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'top' } }
+            }
+        });
+    }
+
+    function renderSolutions() {
+        const solutionsList = document.getElementById('solutions-list');
+        solutionsList.innerHTML = ''; // Clear previous results
+
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        checkboxes.forEach(checkbox => {
+            const solutionName = checkbox.value;
+            const data = solutionData[solutionName];
+            if (data) {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <strong>${solutionName}</strong>
+                    <br>期待効果: ${data.effect}
+                    <br>費用（目安）: ${data.cost}万円
+                    <br>投資対効果 (ROI): ${data.roi}%
+                `;
+                solutionsList.appendChild(li);
+            }
+        });
     }
 </script>
 
