@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【○○株式会社 様】WEB戦略診断レポート</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
+
+        :root {
+            --primary-color: #007BFF;
+            --secondary-color: #2c3e50;
+            --accent-color: #FFC107; /* Gold */
+            --opportunity-color: #fd7e14; /* Orange */
+            --success-color: #28a745; /* Green */
+            --text-color: #343a40;
+            --bg-color: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+
+        .presentation-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background-color: var(--white);
+        }
+
+        .slide {
+            padding: 60px 50px;
+            border-bottom: 1px solid #eee;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .slide.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Slide Specific Styles */
+        #slide-1 {
+            background: linear-gradient(135deg, #007bff, #82c4ff);
+            color: var(--white);
+            text-align: center;
+        }
+        #slide-1 h1 {
+            font-size: 3.5rem;
+            margin: 0.5em 0;
+            font-weight: 900;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        }
+        #slide-1 h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1em;
+        }
+        #slide-1 .highlight {
+            color: var(--accent-color);
+        }
+        #slide-1 .company-info {
+            margin-top: 2em;
+            font-size: 1.5rem;
+        }
+        #slide-1 .logo-mission {
+            margin-top: 3em;
+            text-align: right;
+        }
+         #slide-1 .logo-mission img {
+            width: 150px;
+            margin-bottom: 0.5em;
+        }
+        #slide-1 .logo-mission p {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            margin-top: 0;
+        }
+
+        .slide-title {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 1.5em;
+            padding-bottom: 0.5em;
+            border-bottom: 4px solid var(--primary-color);
+        }
+
+        /* General classes */
+        .text-center { text-align: center; }
+        .grid-2col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2em;
+        }
+        .card {
+            background: #fff;
+            padding: 1.5em;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--primary-color);
+        }
+        
+        /* Agenda */
+        .promise-box {
+            border: 2px solid var(--success-color);
+            background-color: #f2fdf7;
+            padding: 1.5em;
+            margin-top: 2em;
+            border-radius: 8px;
+        }
+
+        /* Pie Chart for opportunities */
+        .pie-chart-opportunity {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: conic-gradient(var(--opportunity-color) 0% 40%, var(--success-color) 40% 100%);
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2em 0;
+            font-size: 1rem;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        .comparison-table th {
+            background-color: var(--secondary-color);
+            color: var(--white);
+        }
+        .comparison-table .recommended { background-color: #e9f5ff; font-weight: bold; }
+        .comparison-table th.recommended {
+             background-color: var(--primary-color);
+        }
+
+        .comparison-table tr:nth-child(even) { background-color: #f9f9f9; }
+        .comparison-table .merit { color: var(--primary-color); font-weight: bold; }
+
+        /* Timeline */
+        .timeline-chart {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 3em 0;
+            padding: 0 20px;
+        }
+        .timeline-chart::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #ddd;
+            transform: translateY(-50%);
+        }
+        .timeline-point {
+            position: relative;
+            text-align: center;
+        }
+        .timeline-point::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: #ddd;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            border: 4px solid var(--white);
+        }
+        .timeline-point.now { font-weight: bold; }
+        .timeline-point.now::before { background: var(--success-color); }
+        .timeline-point span {
+            display: block;
+            margin-top: 30px;
+        }
+
+        /* Services */
+        .service-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 1.5em;
+            margin-bottom: 1em;
+            display: flex;
+            flex-direction: column;
+        }
+        .service-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5em;
+        }
+
+        /* Testimonials */
+        .testimonial {
+            background: #f8f9fa;
+            border-left: 5px solid var(--accent-color);
+            padding: 1.5em;
+            border-radius: 5px;
+            margin-bottom: 1.5em;
+        }
+        .testimonial p { margin: 0; }
+        .testimonial .author {
+            text-align: right;
+            margin-top: 1em;
+            font-weight: bold;
+        }
+        
+        /* Final choice */
+        .choice-box {
+            border: 2px solid;
+            padding: 1.5em;
+            margin-bottom: 1.5em;
+            border-radius: 8px;
+        }
+        .choice-box.good { border-color: var(--success-color); }
+        .choice-box.bad { border-color: #6c757d; }
+
+        @media (max-width: 768px) {
+            .slide { padding: 40px 20px; min-height: auto; }
+            #slide-1 h1 { font-size: 2.5rem; }
+            #slide-1 h2 { font-size: 1.5rem; }
+            .slide-title { font-size: 2rem; }
+            .grid-2col { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="presentation-container">
+
+        <!-- スライド1: 表紙 -->
+        <section class="slide visible" id="slide-1">
+            <h2>あなたのビジネスの<span class="highlight">可能性を、最大化する</span></h2>
+            <h1>WEB戦略診断レポート</h1>
+            <div class="company-info">
+                <p>企業名：○○株式会社 様</p>
+                <p>診断日：2025年10月5日</p>
+                <p>提案者：WEBコンサルタント △△</p>
+            </div>
+            <div class="logo-mission">
+                <img src="https://placehold.co/200x60/FFFFFF/007BFF?text=CBT-S+Logo" alt="CBT-S株式会社ロゴ">
+                <p>「チャレンジする人を応援し、共に成長する」</p>
+            </div>
+        </section>
+
+        <!-- スライド2: アジェンダ -->
+        <section class="slide" id="slide-2">
+            <h2 class="slide-title">本日のアジェンダ（30分）</h2>
+            <ol style="font-size: 1.2rem; list-style: none; padding-left: 0;">
+                <li style="margin-bottom: 1em;"><strong>1. なぜ今、WEB戦略が重要なのか（5分）</strong><br>→ ビジネス環境の変化と機会損失</li>
+                <li style="margin-bottom: 1em;"><strong>2. CBT-Sについて（5分）</strong><br>→ 私たちのミッション・強み・選ばれる理由</li>
+                <li style="margin-bottom: 1em;"><strong>3. 御社への最適ソリューション（10分）</strong><br>→ 5つのサービスから最適な提案</li>
+                <li style="margin-bottom: 1em;"><strong>4. 導入後の未来（5分）</strong><br>→ 成果イメージと具体的な変化</li>
+                <li style="margin-bottom: 1em;"><strong>5. 次のステップ（5分）</strong><br>→ 具体的な導入フローとご提案</li>
+            </ol>
+            <div class="promise-box">
+                <h3>本日お約束すること</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li>✅ 御社のビジネスの可能性を発見します</li>
+                    <li>✅ 最適なWEB戦略を明確にします</li>
+                    <li>✅ 成長への具体的な道筋をお見せします</li>
+                    <li>✅ 無理な営業は一切いたしません</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- スライド3: 衝撃的な事実 -->
+        <section class="slide" id="slide-3">
+            <h2 class="slide-title">ビジネスチャンスを逃していませんか？</h2>
+            <div class="text-center">
+                <p style="font-size: 1.2rem;">中小企業〇〇社のWEB活用を調査した結果...</p>
+                <p style="font-size: 2rem; font-weight: bold;">WEB投資の<span style="font-size: 2em; color: var(--opportunity-color);">40%</span>が<br>本来の効果を発揮していない</p>
+                <hr style="margin: 2em 0;">
+                <p style="font-size: 1.3rem; font-weight: bold;">しかし、裏を返せば...</p>
+                <div class="card" style="background-color: #e9f5ff; text-align: left;">
+                    <p>✨ 正しい戦略で、<strong>40%の成果を上乗せ</strong>できる</p>
+                    <p>✨ 同じ投資で、<strong>1.7倍の効果</strong>を実現できる</p>
+                    <p>✨ 競合より先に、<strong>市場を獲得</strong>できる</p>
+                </div>
+                <p style="font-size: 1.5rem; font-weight: bold; margin-top: 2em;">この40%が、あなたのチャンスです！</p>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 2em; margin-top: 1em;">
+                    <div class="pie-chart-opportunity"></div>
+                    <ul style="list-style: none; padding: 0; text-align: left;">
+                        <li><span style="color: var(--success-color);">■</span> 効果を発揮 60%</li>
+                        <li><span style="color: var(--opportunity-color);">■</span> 未活用の可能性 40%</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- スライド4: よくある機会損失 -->
+        <section class="slide" id="slide-4">
+            <h2 class="slide-title">よくある機会損失 TOP3</h2>
+            <div class="card" style="margin-bottom: 1.5em; border-color: var(--opportunity-color);">
+                <h3>【1位】潜在顧客との接点を逃している (23%)</h3>
+                <p>「HPを作ったが、誰も見ていない」→ 月間アクセス100人以下では、本来出会えるはずの顧客を逃しています。</p>
+                <p style="background: #fff8e1; padding: 10px; border-radius: 5px;"><strong>💡 改善策：</strong>ターゲットに的確に届くWEB戦略で、アクセス10倍も可能です！</p>
+            </div>
+            <div class="card" style="margin-bottom: 1.5em;">
+                <h3>【2位】広告費を最大活用できていない (9%)</h3>
+                <p>「広告は出しているが、成果が見えない」→ 広告とLPの連携が不十分だと、広告費の半分が無駄になることも。</p>
+                 <p style="background: #fff8e1; padding: 10px; border-radius: 5px;"><strong>💡 改善策：</strong>適切な受け皿（LP）を用意すれば、広告成果は2倍以上になります！</p>
+            </div>
+            <div class="card">
+                <h3>【3位】SNSの力を活かしきれていない (4%)</h3>
+                <p>「SNSをやっているが、売上に繋らない」→ 認知だけで終わってしまい、ビジネスチャンスを逃しています。</p>
+                 <p style="background: #fff8e1; padding: 10px; border-radius: 5px;"><strong>💡 改善策：</strong>SNSから成約までの導線を構築すれば、新たな顧客獲得チャネルになります！</p>
+            </div>
+            <div class="text-center" style="background: var(--secondary-color); color: white; padding: 2em; margin-top: 2em; border-radius: 8px;">
+                <h3 style="color: white;">重要なメッセージ</h3>
+                <p style="font-size: 1.2rem;">これらは「失敗」ではなく、<br><strong>「まだ活かせていない可能性」</strong>です。<br>正しい戦略で、すべてチャンスに変わります！</p>
+            </div>
+        </section>
+
+        <!-- スライド5: なぜ今、WEB戦略が重要なのか -->
+        <section class="slide" id="slide-5">
+            <h2 class="slide-title">なぜ今、WEB戦略が重要なのか</h2>
+            <h3>【ビジネス環境の3つの変化】</h3>
+            <ol style="font-size: 1.1rem;">
+                <li><strong>顧客行動の変化：</strong>購入前にWEBで情報収集するのが当たり前(87%)。WEB上にいない企業は、顧客にとって「存在しない」のと同じです。</li>
+                <li><strong>競合の台頭：</strong>中小企業のWEB活用が急増し、先行者が市場を獲得しています。今動かないと、取り残されるリスクがあります。</li>
+                <li><strong>技術の進化：</strong>AIツール等の普及で、少額投資でも大きな効果を出せる時代になりました。まさに今が最大のチャンスです！</li>
+            </ol>
+            <div class="card" style="margin: 2em 0;">
+                <h3>【今、行動すべき理由】</h3>
+                <ul style="font-weight: bold;">
+                    <li>✅ 市場はまだ成長中で、先行者利益が大きい（早い者勝ち）</li>
+                    <li>✅ 技術が整い、投資効率が過去最高になっている</li>
+                    <li>✅ 競合より一歩先に動けば、大きなアドバンテージを築ける</li>
+                </ul>
+            </div>
+            <h4 class="text-center">最後のチャンスかもしれません</h4>
+            <div class="timeline-chart">
+                <div class="timeline-point">早期導入<span>2020年</span></div>
+                <div class="timeline-point">標準化<span>2023年</span></div>
+                <div class="timeline-point now">最後のチャンス<span>2025年 (今)</span></div>
+                <div class="timeline-point">遅すぎる<span>2027年</span></div>
+            </div>
+        </section>
+
+        <!-- スライド6: 私たちのミッション・ビジョン -->
+        <section class="slide" id="slide-6">
+            <h2 class="slide-title">CBT-S株式会社について</h2>
+            <div class="text-center" style="margin-bottom: 2em;">
+                <h3>【ミッション】</h3>
+                <p style="font-size: 1.5rem; font-weight: bold; color: var(--primary-color);">「チャレンジする人を応援し、共に成長する」</p>
+                <p>私たちは、新しいことに挑戦するあなたのビジネスを全力でサポートするパートナーです。</p>
+            </div>
+            <div class="grid-2col">
+                <div class="card">
+                    <h3>【ビジョン】</h3>
+                    <p>中小企業が、大企業と対等に戦えるWEB戦略のパートナーになること。規模ではなく、戦略で勝つ。限られた予算で、最大の効果を出す。あなたのビジネスの可能性を最大化します。</p>
+                </div>
+                <div class="card">
+                    <h3>【私たちが大切にしていること】</h3>
+                    <ul style="padding-left: 1em;">
+                        <li><strong>顧客第一主義：</strong>顧客の成功が私たちの成功</li>
+                        <li><strong>長期的なパートナーシップ：</strong>一緒に成長する関係</li>
+                        <li><strong>正直・透明性：</strong>無理な提案はしない</li>
+                        <li><strong>チャレンジ精神：</strong>最適解を追求</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- スライド7: CBT-Sの強みと競合比較 -->
+        <section class="slide" id="slide-7">
+            <h2 class="slide-title">CBT-Sが選ばれる理由</h2>
+            <div style="overflow-x: auto;">
+            <table class="comparison-table">
+                <thead><tr><th class="recommended">項目</th><th>一般的なWEB会社</th><th>大手制作会社</th><th class="recommended">CBT-S</th></tr></thead>
+                <tbody>
+                    <tr><td class="recommended">提案スタイル</td><td>HP推奨</td><td>HP推奨</td><td class="recommended">最適解提案<br><span class="merit">★顧客視点</span></td></tr>
+                    <tr><td class="recommended">価格</td><td>中価格</td><td>高価格(100万円～)</td><td class="recommended">適正価格(25-50万)<br><span class="merit">★半額以下</span></td></tr>
+                    <tr><td class="recommended">納期</td><td>1-2ヶ月</td><td>2-3ヶ月</td><td class="recommended">3週間〜1ヶ月半</td></tr>
+                    <tr><td class="recommended">アフターサポート</td><td>有料</td><td>有料</td><td class="recommended">有料<br><span class="merit">※伴走型</span></td></tr>
+                    <tr><td class="recommended">ROI重視度</td><td>低い(見た目)</td><td>中程度(ブランド)</td><td class="recommended">最重視(成果)<br><span class="merit">★成果主義</span></td></tr>
+                    <tr><td class="recommended">柔軟性</td><td>低い(定型)</td><td>低い(定型)</td><td class="recommended">高い(オーダー)<br><span class="merit">★自由度</span></td></tr>
+                </tbody>
+            </table>
+            </div>
+             <div class="card" style="margin-top: 2em;">
+                <h3>【CBT-Sの5つの強み】</h3>
+                <ol>
+                    <li><strong>⭐ 顧客視点の提案：</strong>「今はHPより〇〇が必要です」と正直に言います。</li>
+                    <li><strong>⭐ 圧倒的なコストパフォーマンス：</strong>大手の半額以下で、同等以上の効果を出します。</li>
+                    <li><strong>⭐ 最速納品：</strong>3週間〜1ヶ月半で納品。早く始めるほど、効果が早く出ます。</li>
+                    <li><strong>⭐ 伴走型サポート：</strong>納品して終わりではありません。成果が出るまで一緒に走り続けます。</li>
+                    <li><strong>⭐ ROI最重視：</strong>見た目ではなく、成果にこだわります。</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- スライド8: お客様の声 -->
+        <section class="slide" id="slide-8">
+            <h2 class="slide-title">お客様がCBT-Sを選ぶ理由</h2>
+            <div class="testimonial">
+                <p>「他社は『HPを作りましょう』ばかりだったが、CBT-Sは『今はLPが最適』と正直に教えてくれた。結果、半額で期待以上の成果が出た」</p>
+                <p class="author">- 製造業A社 社長様</p>
+            </div>
+            <div class="testimonial">
+                <p>「大手見積100万円がCBT-Sでは25万円。不安だったが品質は同等以上。細かい要望にも柔軟に対応してくれた」</p>
+                <p class="author">- サービス業B社 マーケティング担当様</p>
+            </div>
+            <div class="testimonial">
+                <p>「納品後も親身にサポートしてくれる、まさに伴走型のパートナーだと感じた」</p>
+                <p class="author">- 小売業C社 経営者様</p>
+            </div>
+            <div class="text-center" style="margin-top: 2em;">
+                <h3>【選ばれる3つの理由】</h3>
+                <div class="grid-2col" style="gap: 1.5em; text-align: left;">
+                    <div class="card">
+                        <h4 style="font-size: 1.5rem; text-align: center;">🤝 正直さ</h4>
+                        <p>お客様の売上より、お客様の成功を最優先します。時には「それは不要です」と正直にお伝えする勇気を持ち、最適な提案だけをいたします。</p>
+                    </div>
+                    <div class="card">
+                        <h4 style="font-size: 1.5rem; text-align: center;">💪 実力</h4>
+                        <p>大手に負けない品質を、圧倒的なコストパフォーマンスでご提供します。見た目だけでなく、成果に直結する「実力」で選ばれています。</p>
+                    </div>
+                    <div class="card" style="grid-column: 1 / -1;">
+                        <h4 style="font-size: 1.5rem; text-align: center;">❤️ 伴走力</h4>
+                        <p>納品して終わり、ではありません。お客様のビジネスが成果を出し、成長するまで一緒に走り続ける。それが私たちの考える「伴走力」です。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- スライド9: 5つのサービス -->
+        <section class="slide" id="slide-9">
+            <h2 class="slide-title">CBT-Sの5つのソリューション</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5em;">
+                <div class="service-card"><h4>1. LP制作</h4><p>🎯広告からの問い合わせを最大化<br>💰月額5万円～<br>⏰納期:3週間</p></div>
+                <div class="service-card"><h4>2. HP制作</h4><p>🎯企業の信頼性向上とブランディング<br>💰月額30万円～<br>⏰納期:1.5ヶ月～</p></div>
+                <div class="service-card"><h4>3. SNS運用代行</h4><p>🎯認知拡大とファン育成<br>💰月額30万円～<br>⏰即日開始</p></div>
+                <div class="service-card"><h4>4. AIチャットボット導入</h4><p>🎯問い合わせ対応の自動化・効率化<br>💰月額2万円～<br>⏰即日導入</p></div>
+                <div class="service-card"><h4>5. 動画切り抜き・ショート作成</h4><p>🎯既存動画資産の有効活用と拡散<br>💰月額5万円～<br>⏰即日開始</p></div>
+            </div>
+        </section>
+
+        <!-- スライド10: サービス比較 -->
+        <section class="slide" id="slide-10">
+             <h2 class="slide-title">どのサービスが最適？徹底比較</h2>
+             <div style="overflow-x: auto;">
+             <table class="comparison-table">
+                <thead><tr><th>項目</th><th>LP制作</th><th>HP制作</th><th>SNS運用</th><th>AIチャット</th><th>動画切り抜き</th></tr></thead>
+                <tbody>
+                    <tr><td>月額費用</td><td class="merit">5万円～</td><td>30万円～</td><td>30万円～</td><td class="merit">2万円～</td><td class="merit">5万円～</td></tr>
+                    <tr><td>効果実感</td><td>1-2ヶ月</td><td>3-6ヶ月</td><td>2-3ヶ月</td><td class="merit">即時</td><td class="merit">即日-1ヶ月</td></tr>
+                    <tr><td>主な効果</td><td class="merit">問合せ増</td><td>信頼性向上</td><td>認知拡大</td><td class="merit">業務効率化</td><td>認知拡大</td></tr>
+                    <tr><td>投資回収</td><td>3-6ヶ月</td><td>6-12ヶ月</td><td>6-12ヶ月</td><td class="merit">3-6ヶ月</td><td class="merit">1-3ヶ月</td></tr>
+                    <tr><td>開始ハードル</td><td>中</td><td>高</td><td>中</td><td class="merit">低</td><td class="merit">低</td></tr>
+                </tbody>
+             </table>
+             </div>
+             <div class="card" style="margin-top: 2em; background-color: #e9f5ff;">
+                 <h3>【課題別・組み合わせ提案】</h3>
+                 <div style="margin-top: 1em;">
+                    <h4 style="color: var(--primary-color);">📈 パターンA：最速で問い合わせを増やしたい</h4>
+                    <p><strong>【LP制作】＋【SNS運用 or 動画切り抜き】</strong><br>まずLPで成果の出る受け皿を作り、SNSや動画で即座に集客を開始。短期的な成果を最大化する組み合わせです。</p>
+                 </div>
+                 <div style="margin-top: 1em;">
+                    <h4 style="color: var(--primary-color);">🏢 パターンB：信頼性も効率化も実現したい</h4>
+                    <p><strong>【HP制作】＋【AIチャットボット】</strong><br>企業の顔となるHPで信頼性を高めつつ、AIチャットで問い合わせ対応を効率化し、顧客満足度も向上させます。</p>
+                 </div>
+                 <p style="font-weight: bold; color: var(--success-color); margin-top: 1.5em;">セット割引： 2サービスで10% OFF！</p>
+             </div>
+        </section>
+
+        <!-- スライド11: 最適ソリューション【LP制作】 -->
+        <section class="slide" id="slide-11">
+            <h2 class="slide-title">最適ソリューション①【LP制作】</h2>
+            <div class="text-center" style="margin-bottom: 2em;">
+                <p style="font-size: 1.3rem;"><strong>まず最初に取り組むべき最優先施策です。</strong></p>
+                <p>御社の課題である「広告の受け皿がない」状態を解消し、WEBからの問い合わせを最大化します。</p>
+            </div>
+            <div class="card">
+                <h3>なぜLPが最適か？</h3>
+                <ul>
+                    <li><strong>目的特化で高成約率:</strong> HPと違い、訪問者を迷わせず「問い合わせ」という1つのゴールに集中させるため、成約率が4倍になることもあります。</li>
+                    <li><strong>最高の投資効率:</strong> 少ない投資で、直接的な成果（問い合わせ増）が期待できます。</li>
+                    <li><strong>迅速な効果測定:</strong> 3週間で公開、1ヶ月後には効果を実感。スピーディに事業を加速できます。</li>
+                </ul>
+            </div>
+            <div class="grid-2col" style="margin-top: 2em;">
+                <div><h4>Before (現状)</h4><p>月間問合せ: 5件<br>CVR: 0.5%</p></div>
+                <div><h4>After (LP導入後)</h4><p>月間問合せ: <strong>20件 (4倍！)</strong><br>CVR: <strong>2.0% (4倍！)</strong></p></div>
+            </div>
+        </section>
+
+        <!-- スライド12: 最適ソリューション【HP制作】 -->
+        <section class="slide" id="slide-12">
+            <h2 class="slide-title">最適ソリューション②【HP制作】</h2>
+            <div class="text-center" style="margin-bottom: 2em;">
+                <p style="font-size: 1.3rem;"><strong>ビジネスの「信頼」と「顔」を創る、中長期的な資産です。</strong></p>
+                <p>LPで短期的な成果を出した後、企業の信頼性向上や採用強化のために取り組むべき施策です。</p>
+            </div>
+            <div class="card">
+                <h3>HP制作で実現できること</h3>
+                <ul>
+                    <li><strong>社会的信用の獲得:</strong> 充実したHPは、顧客や取引先、求職者からの信頼に直結します。</li>
+                    <li><strong>ブランディング強化:</strong> 企業の理念やビジョンを伝え、ブランド価値を高めます。</li>
+                    <li><strong>情報発信の拠点:</strong> 全てのWEB活動のハブとなり、長期的な資産として機能します。</li>
+                </ul>
+            </div>
+            <div class="card" style="margin-top: 2em;">
+                <h4>【プラン詳細】</h4>
+                <p><strong>価格：</strong>月額30万円～ / <strong>納期：</strong>1.5ヶ月～</p>
+                <p>企業の顔としてふさわしい、オーダーメイドのデザインと機能をご提案します。</p>
+            </div>
+        </section>
+
+        <!-- スライド13: 最適ソリューション【SNS運用代行】 -->
+        <section class="slide" id="slide-13">
+            <h2 class="slide-title">最適ソリューション③【SNS運用代行】</h2>
+            <div class="text-center" style="margin-bottom: 2em;">
+                <p style="font-size: 1.3rem;"><strong>未来の顧客を育て、ファンを作るための施策です。</strong></p>
+                <p>LPやHPへの集客力を高め、顧客との継続的な関係を構築します。</p>
+            </div>
+            <div class="card">
+                <h3>SNS運用で実現できること</h3>
+                <ul>
+                    <li><strong>潜在顧客へのリーチ:</strong> まだ御社を知らない層へアプローチし、認知を拡大します。</li>
+                    <li><strong>顧客エンゲージメント向上:</strong> 双方向のコミュニケーションで、企業のファンを育成します。</li>
+                    <li><strong>LP/HPへの送客:</strong> SNSからLPへ誘導し、問い合わせに繋げる導線を構築します。</li>
+                </ul>
+            </div>
+             <div class="card" style="margin-top: 2em;">
+                <h4>【プラン詳細】</h4>
+                <p><strong>価格：</strong>月額30万円～ / <strong>開始：</strong>即日可能</p>
+                <p>戦略立案から投稿作成、効果測定まで一貫してサポートします。</p>
+            </div>
+        </section>
+
+        <!-- スライド14: 最適ソリューション【AIチャットボット導入】 -->
+        <section class="slide" id="slide-14">
+            <h2 class="slide-title">最適ソリューション④【AIチャットボット導入】</h2>
+             <div class="text-center" style="margin-bottom: 2em;">
+                <p style="font-size: 1.3rem;"><strong>業務効率化と顧客満足度を劇的に向上させます。</strong></p>
+                <p>24時間365日対応の自動応答で、問い合わせ対応の工数を削減し、機会損失を防ぎます。</p>
+            </div>
+            <div class="card">
+                <h3>AIチャットボットで実現できること</h3>
+                <ul>
+                    <li><strong>問い合わせ対応の自動化:</strong> 人件費を削減し、担当者はコア業務に集中できます。</li>
+                    <li><strong>機会損失の防止:</strong> 営業時間外の問い合わせも逃さずキャッチします。</li>
+                    <li><strong>顧客満足度の向上:</strong> 待ち時間ゼロの即時回答で、顧客体験を向上させます。</li>
+                </ul>
+            </div>
+            <div class="card" style="margin-top: 2em;">
+                <h4>【プラン詳細】</h4>
+                <p><strong>価格：</strong>月額2万円～ / <strong>開始：</strong>即日導入可能</p>
+                <p>シナリオ設計から導入支援、運用サポートまで一貫してご提供します。</p>
+            </div>
+        </section>
+
+        <!-- スライド15: 最適ソリューション【動画切り抜き・ショート作成】 -->
+        <section class="slide" id="slide-15">
+            <h2 class="slide-title">最適ソリューション⑤【動画切り抜き・ショート作成】</h2>
+            <div class="text-center" style="margin-bottom: 2em;">
+                <p style="font-size: 1.3rem;"><strong>既存の動画資産を、新たな集客チャネルに変えます。</strong></p>
+                <p>セミナー等の長尺動画から魅力的な部分を切り抜き、SNSで拡散されやすいショート動画を制作します。</p>
+            </div>
+            <div class="card">
+                <h3>本サービスで実現できること</h3>
+                <ul>
+                    <li><strong>コンテンツの再活用:</strong> 一つの動画から複数のコンテンツを生み出し、コストパフォーマンスを最大化します。</li>
+                    <li><strong>認知度の大幅拡大:</strong> TikTokやYouTubeショートで新規顧客にリーチします。</li>
+                    <li><strong>採用・ブランディング強化:</strong> 専門性や会社の雰囲気を伝え、ブランドイメージ向上に貢献します。</li>
+                </ul>
+            </div>
+            <div class="card" style="margin-top: 2em;">
+                <h4>【プラン詳細】</h4>
+                <p><strong>価格：</strong>月額5万円～ / <strong>開始：</strong>即日可能</p>
+                <p>動画の切り抜き、テロップ・BGM挿入、SNS投稿サポートまで行います。</p>
+            </div>
+        </section>
+
+        <!-- スライド16: 導入フロー -->
+        <section class="slide" id="slide-16">
+            <h2 class="slide-title">導入から成果までの流れ</h2>
+            <ul style="font-size: 1.2rem;">
+                <li><strong>【Week 1】戦略設計・ヒアリング：</strong>ゴール設定、LP/HP構成、デザイン案をご提示します。</li>
+                <li><strong>【Week 2】制作・開発：</strong>デザイン制作、コーディング、機能実装を行います。</li>
+                <li><strong>【Week 3〜】テスト・納品：</strong>最終確認後、本番環境へ公開。運用方法もレクチャーします。（※HP制作の場合は1.5ヶ月〜）</li>
+                <li><strong>【納品後】継続サポート：</strong>効果測定レポートをご提出し、成果が出るまで伴走します。</li>
+            </ul>
+        </section>
+        
+        <!-- スライド17: 導入後の未来 -->
+        <section class="slide" id="slide-17">
+            <h2 class="slide-title">3ヶ月後、あなたのビジネスはどう変わる？</h2>
+            <div class="card">
+                <h3>【未来のあなたの1日】</h3>
+                <p>朝、出社すると問い合わせメールが5件。以前は週に5件だったのに、今は毎日。「HPを見て」という新規顧客からの電話も鳴り、商談予定はびっしり。営業チームからは嬉しい悲鳴が聞こえます。</p>
+            </div>
+            <div class="card" style="margin-top: 2em;">
+                <h3>【チームの変化】</h3>
+                <p>営業は「質の高い見込み客が増えた」と喜び、マーケ担当は「次は何をしようかワクワクする」と語ります。経営者であるあなたは「売上が安定して伸び、新規事業も検討できる」と確かな手応えを感じるでしょう。</p>
+            </div>
+            <p class="text-center" style="font-size: 1.5rem; font-weight: bold; margin-top: 2em;">この未来、一緒に実現しませんか？</p>
+        </section>
+
+        <!-- スライド18: 次のステップ -->
+        <section class="slide" id="slide-18">
+            <h2 class="slide-title">さあ、一緒に始めましょう！</h2>
+            <div class="grid-2col">
+                <div class="choice-box good">
+                    <h3>✅ 選択肢A：今すぐ行動する</h3>
+                    <p>3週間後にLP公開、1ヶ月後に効果を実感。1年後にはビジネスが大きく成長し、新しい未来が始まります。</p>
+                </div>
+                <div class="choice-box bad">
+                    <h3>⏸️ 選択肢B：今は見送る</h3>
+                    <p>現状維持となり、機会損失が続きます。しかしご安心ください。3ヶ月後でも、私たちはあなたをお待ちしています。</p>
+                </div>
+            </div>
+             <div class="card" style="margin-top: 2em; background: #fff8e1;">
+                <h3>【本日ご決断の特典】</h3>
+                <p>🎁 納品優先確約、来週のキックオフ設定、効果測定レポート無料など、5大特典をご用意しています！</p>
+            </div>
+            <div class="text-center" style="margin-top: 2em;">
+                <h3>【最後のメッセージ】</h3>
+                <p>私たちCBT-Sは、「チャレンジする人を応援し、共に成長する」パートナーです。あなたの新しい一歩を、私たちが全力でサポートします。一緒に、新しい未来を創りましょう。</p>
+                <hr>
+                <p><strong>CBT-S株式会社 WEBコンサルタント △△</strong></p>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+        slides.forEach(slide => {
+            observer.observe(slide);
+        });
+    </script>
+
+</body>
+</html>
+
