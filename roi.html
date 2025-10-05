@@ -223,7 +223,7 @@
         <div class="result-details">
             <h4>（2）投資の無駄</h4>
             <p>これは、成果に繋がっていないWeb投資です。多くのWebサイトは、単に存在しているだけで、効果的な運用や改善が行われていません。例えば、目的が不明確なまま支払われている広告費、誰も見ていない古いコンテンツ、ユーザーが使いにくいデザインなど、お金をかけているのに成果が出ていない部分が多数存在します。</p>
-            <p>私たちがWebコンサルティングや解析で見てきた多くの企業の共通課題として、投資された予算のうち、平均して**40%が効果を上げていない**という事実があります。これは、単なる推測ではなく、ユーザーがサイトのどこで離脱しているか、どの広告がクリックされていないかといった、具体的なデータに基づいた経験則です。言い換えれば、御社の投資の中には、効果が見込める施策に回せる**「隠れた予算」が40%ある**ということです。</p>
+            <p>私たちがWebコンサルティングや解析で見てきた多くの企業の共通課題として、投資された予算のうち、平均して約40%が効果を上げていないという事実があります。これは、単なる推測ではなく、ユーザーがサイトのどこで離脱しているか、どの広告がクリックされていないかといった、具体的なデータに基づいた経験則です。言い換えれば、御社の投資の中には、効果が見込める施策に回せる「隠れた予算」が40%あるということです。</p>
             <pre><code>
 計算ロジック:
 年間投資の無駄: 年間Web投資額 × 40%
@@ -240,11 +240,11 @@
     let cvrChart, lossChart;
 
     const solutionData = {
-        'LP制作': { cost: 25, roi: 21600, effect: 'CVRを大幅に改善し、問い合わせ数を増やします。' },
-        'AIチャットボット': { cost: 20, roi: 500, effect: '顧客対応を自動化し、取りこぼしを防ぎます。' },
-        'SNS切り取り': { cost: 5, roi: 1500, effect: 'SNSでのエンゲージメントを高め、新規顧客を獲得します。' },
-        'ショート動画制作代行': { cost: 10, roi: 2000, effect: '潜在顧客にリーチし、認知度を飛躍的に向上させます。' },
-        'ホームページ制作': { cost: 60, roi: 400, effect: '企業の信頼性を高め、長期的なブランディングを強化します。' }
+        'LP制作': { cost: 25, roi: 21600, effect: 'CVRを大幅に改善し、問い合わせ数を増やします。', increase: 180 },
+        'AIチャットボット': { cost: 20, roi: 500, effect: '顧客対応を自動化し、取りこぼしを防ぎます。', increase: 20 },
+        'SNS切り取り': { cost: 5, roi: 1500, effect: 'SNSでのエンゲージメントを高め、新規顧客を獲得します。', increase: 10 },
+        'ショート動画制作代行': { cost: 10, roi: 2000, effect: '潜在顧客にリーチし、認知度を飛躍的に向上させます。', increase: 15 },
+        'ホームページ制作': { cost: 60, roi: 400, effect: '企業の信頼性を高め、長期的なブランディングを強化します。', increase: 50 }
     };
 
     function calculateLoss() {
@@ -273,7 +273,7 @@
         document.getElementById('industry-cvr-text').textContent = industryCVR.toFixed(1);
         document.getElementById('opportunity-loss-text').textContent = opportunityLoss.toLocaleString();
         document.getElementById('wasted-investment-text').textContent = wastedInvestment.toLocaleString();
-        document.getElementById('lost-inquiries').textContent = lostInquiries.toFixed(0);
+        document.getElementById('lost-inquiries').textContent = Math.round(lostInquiries);
 
         renderCharts(currentCVR, industryCVR, opportunityLoss, wastedInvestment);
         
@@ -376,6 +376,7 @@
                 li.innerHTML = `
                     <strong>${solutionName}</strong>
                     <br>期待効果: ${data.effect}
+                    <br>増加見込み件数: <span style="font-weight: bold; color: #2ecc71;">${data.increase}件/年</span>
                     <br>費用（目安）: ${data.cost}万円
                     <br>投資対効果 (ROI): ${data.roi}%
                 `;
