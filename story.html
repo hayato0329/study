@@ -3,806 +3,628 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>【○○株式会社 様】WEB戦略診断レポート</title>
+    <title>資格試験業界向け提案資料</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
-
-        :root {
-            --primary-color: #007BFF;
-            --secondary-color: #2c3e50;
-            --accent-color: #FFC107; /* Gold */
-            --opportunity-color: #fd7e14; /* Orange */
-            --success-color: #28a745; /* Green */
-            --text-color: #343a40;
-            --bg-color: #f8f9fa;
-            --white: #ffffff;
-        }
-
         body {
-            font-family: 'Noto Sans JP', sans-serif;
-            margin: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.8;
+            font-family: 'Roboto', 'Noto Serif JP', serif;
+            background-color: #f8fafc; /* A very light gray, almost white */
+            color: #1e293b; /* Dark slate color for text */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+            box-sizing: border-box;
         }
 
-        .presentation-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            background-color: var(--white);
+        #presentation-container {
+            position: relative;
+            width: 100%;
+            max-width: 1280px;
         }
 
         .slide {
-            padding: 50px 50px;
-            border-bottom: 1px solid #eee;
-            min-height: 98vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            display: none;
+            padding: 4% 6%;
             box-sizing: border-box;
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition: opacity 0.6s ease-in-out;
+            background: #ffffff;
+            position: relative;
+            width: 100%;
+            aspect-ratio: 297 / 210; /* A4 Landscape aspect ratio */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        .slide.visible {
+        .slide.active {
+            display: flex;
             opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Slide Specific Styles */
-        #slide-1 {
-            background: linear-gradient(135deg, #007bff, #82c4ff);
-            color: var(--white);
-            text-align: center;
-        }
-        #slide-1 h1 {
-            font-size: 3.2rem;
-            margin: 0.5em 0;
-            font-weight: 900;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-        }
-        #slide-1 h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1em;
-        }
-        #slide-1 .highlight {
-            color: var(--accent-color);
-        }
-        #slide-1 .company-info {
-            margin-top: 2em;
-            font-size: 1.4rem;
-        }
-        #slide-1 .logo-mission {
-            margin-top: 3em;
-            text-align: right;
-        }
-         #slide-1 .logo-mission img {
-            width: 150px;
-            margin-bottom: 0.5em;
-        }
-        #slide-1 .logo-mission p {
-            font-size: 1rem;
-            font-weight: bold;
         }
 
         h1, h2, h3, h4 {
+            font-family: 'Noto Serif JP', serif;
             font-weight: 700;
-            margin-top: 0;
         }
 
-        .slide-title {
-            font-size: 2.2rem;
-            color: var(--secondary-color);
-            text-align: center;
-            margin-bottom: 1.5em;
-            padding-bottom: 0.5em;
-            border-bottom: 4px solid var(--primary-color);
+        /* Navy is the new accent color */
+        .title-text {
+            color: #1e3a8a; /* Navy Blue */
         }
-
-        /* General classes */
-        .text-center { text-align: center; }
-        .grid-2col {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5em;
-        }
-        .card {
-            background: #fff;
-            padding: 1.5em;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--primary-color);
-        }
+        .bg-navy { background-color: #1e3a8a; }
+        .text-navy { color: #1e3a8a; }
+        .border-navy { border-color: #1e3a8a; }
         
-        /* Agenda */
-        .promise-box {
-            border: 2px solid var(--success-color);
-            background-color: #f2fdf7;
-            padding: 1.5em;
-            margin-top: 2em;
-            border-radius: 8px;
+        .bg-light-accent { background-color: #f1f5f9; }
+        .box-accent {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
         }
 
-        /* Comparison Table */
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 2em 0;
-            font-size: 0.9rem;
+        .slide-number {
+            position: absolute;
+            bottom: 2.5%;
+            right: 3%;
+            font-size: 1rem;
+            color: #94a3b8;
         }
-        .comparison-table th, .comparison-table td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-        }
-        .comparison-table th {
-            background-color: var(--secondary-color);
-            color: var(--white);
-        }
-        .comparison-table td {
-            color: var(--text-color);
-            font-weight: normal;
-        }
-        .comparison-table .merit { font-weight: bold; }
 
-        /* Timeline */
-        .timeline-chart {
-            display: flex;
-            justify-content: space-between;
-            position: relative;
-            margin: 3em 0;
-            padding: 0 20px;
-        }
-        .timeline-chart::before {
-            content: '';
+        .nav-button {
             position: absolute;
             top: 50%;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: #ddd;
             transform: translateY(-50%);
-        }
-        .timeline-point {
-            position: relative;
-            text-align: center;
-        }
-        .timeline-point::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 20px;
-            height: 20px;
-            background: #ddd;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            border: 4px solid var(--white);
-        }
-        .timeline-point.now { font-weight: bold; }
-        .timeline-point.now::before { background: var(--success-color); }
-        .timeline-point span {
-            display: block;
-            margin-top: 30px;
-        }
-
-        /* Services */
-        .service-card {
-            border: 1px solid #eee;
-            border-radius: 8px;
-            padding: 1.5em;
-            margin-bottom: 1em;
-            display: flex;
-            flex-direction: column;
-        }
-        .service-card h4 {
-            color: var(--primary-color);
-            margin-bottom: 0.5em;
-        }
-        .service-card.standard {
-            border-color: var(--success-color);
-            background-color: #f2fdf7;
-        }
-
-        /* Testimonials */
-        .testimonial {
-            background: #f8f9fa;
-            border-left: 5px solid var(--accent-color);
-            padding: 1.5em;
-            border-radius: 5px;
-            margin-bottom: 1.5em;
-        }
-        
-        /* Final choice */
-        .choice-box {
-            border: 2px solid;
-            padding: 1.5em;
-            margin-bottom: 1.5em;
-            border-radius: 8px;
-        }
-        .choice-box.good { border-color: var(--success-color); }
-        .choice-box.bad { border-color: #6c757d; }
-
-        /* Flow Chart */
-        .flow-chart {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 1em;
-        }
-        .flow-step {
-            text-align: center;
-            padding: 1em;
-            flex: 1;
-            min-width: 120px;
-            max-width: 150px;
-        }
-        .flow-step .icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-        }
-        .flow-arrow {
-            font-size: 2rem;
-            color: #ccc;
-            align-self: center;
-            margin-top: 2rem;
-        }
-
-        /* Growth Chart */
-        .growth-chart {
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-end;
-            height: 250px;
-            border-left: 2px solid #ccc;
-            border-bottom: 2px solid #ccc;
-            padding: 1em;
-        }
-        .bar {
+            background-color: #1e3a8a;
+            color: #ffffff;
+            border: none;
             width: 50px;
-            background-color: var(--primary-color);
-            text-align: center;
-            color: white;
-            padding-top: 5px;
-            box-sizing: border-box;
-            position: relative;
+            height: 50px;
+            cursor: pointer;
+            z-index: 100;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
-        .bar-label {
-            position: absolute;
-            bottom: -30px;
-            width: 100%;
-            left: 0;
-            font-weight: bold;
+        .nav-button:hover {
+            background-color: #1e40af;
+            transform: translateY(-50%) scale(1.1);
         }
+        #prevBtn { left: -70px; }
+        #nextBtn { right: -70px; }
+        
+        /* Font size adjustments for presentation feel */
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; line-height: 1.4; }
+        h3 { font-size: 1.6rem; }
+        p, div { font-size: 1.125rem; } /* Increased base font size */
+        .text-lg { font-size: 1.25rem; }
+        .text-sm { font-size: 1rem; }
+        .text-xs { font-size: 0.875rem; }
 
-        @media (max-width: 768px) {
-            .slide { padding: 40px 20px; min-height: auto; }
-            #slide-1 h1 { font-size: 2.5rem; }
-            #slide-1 h2 { font-size: 1.5rem; }
-            .slide-title { font-size: 2rem; }
-            .grid-2col { grid-template-columns: 1fr; }
-            .flow-arrow { display: none; }
-            .flow-step { width: 100%; margin-bottom: 1em; }
-        }
-
-        /* A4 Print Styles */
+        /* Print-specific styles */
         @media print {
             body {
-                background-color: var(--white) !important;
-                color: black !important;
-                font-size: 11pt;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
+                background-color: #ffffff;
+                padding: 0;
+                margin: 0;
+                -webkit-print-color-adjust: exact; /* Chrome, Safari */
+                print-color-adjust: exact; /* Firefox */
             }
-            .presentation-container {
-                box-shadow: none !important;
+
+            #presentation-container {
+                position: static;
+                width: 100%;
+                max-width: none;
+                box-shadow: none;
             }
+
             .slide {
-                min-height: auto;
-                height: 250mm; /* A4 height is 297mm, give some margin */
-                padding: 1cm;
-                page-break-after: always;
+                display: flex !important;
                 opacity: 1 !important;
-                transform: none !important;
-                border: none !important;
-                box-shadow: none !important;
+                page-break-after: always;
+                box-shadow: none;
+                border: 1px solid #e2e8f0;
+                margin: 0;
+                width: 100%;
+                height: 100vh;
+                aspect-ratio: auto;
+                border-radius: 0;
             }
+
             .slide:last-of-type {
                 page-break-after: auto;
             }
-            .slide-title { font-size: 18pt; margin-bottom: 1em; }
-            h1 { font-size: 24pt; }
-            h2 { font-size: 20pt; }
-            h3 { font-size: 16pt; }
-            h4 { font-size: 13pt; }
-            p, li, td { font-size: 11pt; }
-            #slide-1 {
-                background: none !important;
-                color: black !important;
+
+            .nav-button {
+                display: none !important;
             }
-            #slide-1 .highlight, .service-card h4 {
-                color: black !important;
-            }
-            .card, .promise-box, .service-card.standard, .testimonial, .choice-box {
-                background-color: #f5f5f5 !important;
-                border: 1px solid #ccc;
-            }
-            .text-center[style*="background: var(--secondary-color)"] {
-                background: none !important;
-                color: black !important;
-                border: 2px solid black;
-            }
-             .text-center[style*="background: var(--secondary-color)"] h3 {
-                color: black !important;
-            }
-            img {
-                display: none; /* Hide placeholder images for printing */
-            }
-            .flow-chart, .growth-chart {
-                page-break-inside: avoid;
-            }
-            .flow-arrow { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <div class="presentation-container">
+    <div id="presentation-container">
+        <!-- Slide 1: Title -->
+        <div id="slide1" class="slide active items-center text-center">
+            <h1 class="text-7xl mb-4 title-text leading-tight">資格の「価値」を再定義し、<br>未来を共創する</h1>
+            <p class="text-3xl text-gray-700 mt-6">資格試験業界専門プログラム『STORY』のご提案</p>
+            <div class="slide-number">1 / 12</div>
+        </div>
 
-        <!-- スライド1: 表紙 -->
-        <section class="slide visible" id="slide-1">
-            <h2>あなたのビジネスの<span class="highlight">可能性を、最大化する</span></h2>
-            <h1>WEB戦略診断レポート</h1>
-            <div class="company-info">
-                <p>企業名：○○株式会社 様</p>
-                <p>診断日：2025年10月7日</p>
-                <p>提案者：WEBコンサルタント △△</p>
-            </div>
-            <div class="logo-mission">
-                <img src="https://placehold.co/200x60/FFFFFF/007BFF?text=CBT-S+Logo" alt="CBT-S株式会社ロゴ">
-                <p>「チャレンジする人を応援し、共に成長する」</p>
-            </div>
-        </section>
+        <!-- Slide 2: Introduction -->
+        <div id="slide2" class="slide items-center text-center">
+            <h2 class="text-6xl mb-8 leading-relaxed">「その資格は、未来の受験者に<br>届いていますか？」</h2>
+            <p class="text-2xl max-w-4xl text-gray-700 leading-loose">
+                少子化、価値観の多様化、DXの遅れ…<br>
+                資格試験業界は今、大きな転換期を迎えています。<br>
+                従来の広報戦略だけでは、資格の真の価値は伝わりません。
+            </p>
+            <div class="slide-number">2 / 12</div>
+        </div>
 
-        <!-- スライド2: アジェンダ -->
-        <section class="slide" id="slide-2">
-            <h2 class="slide-title">本日のアジェンダ（30分）</h2>
-            <ol style="font-size: 1.2rem; list-style: none; padding-left: 0;">
-                <li style="margin-bottom: 1em;"><strong>1. なぜ今、WEB戦略が重要なのか（5分）</strong><br>→ 多くの企業が直面する課題と、そこに眠る可能性</li>
-                <li style="margin-bottom: 1em;"><strong>2. CBT-Sについて（5分）</strong><br>→ 私たちのミッション・強み・選ばれる理由</li>
-                <li style="margin-bottom: 1em;"><strong>3. 御社への最適ソリューション（10分）</strong><br>→ 私たちのサービスから最適な提案</li>
-                <li style="margin-bottom: 1em;"><strong>4. 導入後の未来（5分）</strong><br>→ 成果イメージと具体的な変化</li>
-                <li style="margin-bottom: 1em;"><strong>5. 次のステップ（5分）</strong><br>→ 具体的な導入フローとご提案</li>
-            </ol>
-            <div class="promise-box">
-                <h3>本日お約束すること</h3>
-                <ul style="list-style: none; padding: 0;">
-                    <li>✅ 御社のビジネスの可能性を発見します</li>
-                    <li>✅ 最適なWEB戦略を明確にします</li>
-                    <li>✅ 成長への具体的な道筋をお見せします</li>
-                    <li>✅ 無理な営業は一切いたしません</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- スライド3: 多くの企業が直面する課題 -->
-        <section class="slide" id="slide-3">
-            <h2 class="slide-title">多くの企業が直面する"見えない壁"</h2>
-            <div class="text-center">
-                <p style="font-size: 1.3rem;">多くの企業様がWEB活用に取り組まれていますが、<br>その可能性を<strong>最大限に引き出せているケースは稀</strong>です。</p>
-                <div class="card" style="margin: 2em 0;">
-                    <h3>なぜ、可能性を活かしきれないのか？</h3>
-                    <ul style="text-align: left;">
-                        <li>WEBの世界は変化が激しく、常に最新情報を追う必要がある。</li>
-                        <li>社内に専門家がおらず、何が最適解か判断が難しい。</li>
-                        <li>日々の業務に追われ、戦略的なWEB活用まで手が回らない。</li>
-                    </ul>
-                    <p>これらは決して特別なことではなく、多くの挑戦する企業が直面する共通の課題です。</p>
+        <!-- Slide 3: 顕在課題 -->
+        <div id="slide3" class="slide">
+            <h2 class="text-5xl mb-10 text-center title-text">業界が直面する「5つの壁」</h2>
+            <div class="w-full max-w-full grid grid-cols-3 gap-6">
+                <div class="box-accent p-6 rounded-lg col-span-1">
+                    <h3 class="font-bold text-navy mb-3 text-xl">受験者数の減少</h3>
+                    <p class="text-gray-700 text-base">少子化や資格の多様化により、若年層の受験意欲が減退。</p>
+                    <p class="text-sm text-indigo-700 mt-2">※主要国家資格では、過去10年で20代の受験者が約15%減少したというデータも。</p>
                 </div>
-                <div class="card" style="background-color: #e9f5ff;">
-                     <h3>だからこそ、私たちCBT-Sがいます。</h3>
-                     <p>私たちは常に最新のWEBトレンドを研究し（<strong>投資学習</strong>）、その知見（<strong>ナレッジ</strong>）をお客様に還元しています。<br>専門家である私たちが伴走することで、御社の "見えない壁" を乗り越え、ビジネスの可能性を最大化します。</p>
+                <div class="box-accent p-6 rounded-lg">
+                    <h3 class="font-bold text-navy mb-3 text-xl">運営コストの増加</h3>
+                    <p class="text-gray-700 text-base">会場費、人件費などが増加。オンライン移行の遅れが負担に。</p>
+                </div>
+                <div class="box-accent p-6 rounded-lg">
+                    <h3 class="font-bold text-navy mb-3 text-xl">認知度・信頼度の低下</h3>
+                    <p class="text-gray-700 text-base">新しい民間資格や国際認定制度の台頭で、伝統ある資格も埋没。</p>
+                </div>
+                <div class="box-accent p-6 rounded-lg col-span-2">
+                    <h3 class="font-bold text-navy mb-3 text-xl">若年層への訴求力不足</h3>
+                    <p class="text-gray-700 text-base">古いウェブサイト、乏しいSNS活用。「誰がなぜ取るのか」という物語が不在。</p>
+                </div>
+                <div class="box-accent p-6 rounded-lg">
+                    <h3 class="font-bold text-navy mb-3 text-xl">組織の硬直化</h3>
+                    <p class="text-gray-700 text-base">運営人員の高齢化とDXの遅れが、変化への対応を阻害。</p>
                 </div>
             </div>
-        </section>
+            <div class="slide-number">3 / 12</div>
+        </div>
 
-        <!-- スライド4: よくある機会損失 -->
-        <section class="slide" id="slide-4">
-            <h2 class="slide-title">よくある機会損失 TOP3</h2>
-            <div class="card" style="margin-bottom: 1.5em; border-color: var(--opportunity-color);">
-                <h3>【1位】潜在顧客との接点を逃している</h3>
-                <p>「HPを作ったが、誰も見ていない」→ 本来出会えるはずの顧客を逃しています。</p>
-                <p style="background: #fff8e1; padding: 10px; border-radius: 5px;"><strong>💡 改善策：</strong>ターゲットに的確に届くWEB戦略で、アクセス10倍も可能です！</p>
-            </div>
-            <div class="card" style="margin-bottom: 1.5em;">
-                <h3>【2位】広告費を最大活用できていない</h3>
-                <p>「広告は出しているが、成果が見えない」→ 広告費の半分が無駄になることも。</p>
-                 <p style="background: #fff8e1; padding: 10px; border-radius: 5px;"><strong>💡 改善策：</strong>適切な受け皿（LP）を用意すれば、広告成果は2倍以上になります！</p>
-            </div>
-            <div class="card">
-                <h3>【3位】SNSの力を活かしきれていない</h3>
-                <p>「SNSをやっているが、売上に繋らない」→ ビジネスチャンスを逃しています。</p>
-                 <p style="background: #fff8e1; padding: 10px; border-radius: 5px;"><strong>💡 改善策：</strong>SNSから成約までの導線を構築すれば、新たな顧客獲得チャネルになります！</p>
-            </div>
-            <div class="text-center" style="background: var(--secondary-color); color: white; padding: 2em; margin-top: 2em; border-radius: 8px;">
-                <h3 style="color: white;">重要なメッセージ</h3>
-                <p style="font-size: 1.2rem;">これらは「失敗」ではなく、<br><strong>「まだ活かせていない可能性」</strong>です。<br>正しい知識と戦略で、すべてチャンスに変わります！</p>
-            </div>
-        </section>
-
-        <!-- スライド5: なぜ今、WEB戦略が重要なのか -->
-        <section class="slide" id="slide-5">
-            <h2 class="slide-title">なぜ今、WEB戦略が重要なのか</h2>
-            <h3>【ビジネス環境の3つの変化】</h3>
-            <div class="grid-2col">
-                <div class="card">
-                    <h4>1. 顧客行動の「超」多様化</h4>
-                    <p>従来の検索だけでなく、SNSでの「#タグ検索」や口コミ確認が当たり前に。さらにAIエージェントに「おすすめは？」と質問する新しい情報収集も始まっています。</p>
+        <!-- Slide 4: 潜在課題 -->
+        <div id="slide4" class="slide">
+            <h2 class="text-5xl mb-4 text-center title-text">水面下の危機</h2>
+            <p class="text-xl text-center mb-8 text-gray-700">まだ自覚されていない、より深刻な課題</p>
+            <div class="w-full max-w-4xl mx-auto space-y-4">
+                <div class="bg-light-accent p-4 rounded-lg border-l-4 border-navy">
+                    <h3 class="text-xl font-semibold mb-1">「受験者の物語」の欠如</h3>
+                    <p class="text-gray-600 text-base">資格が人生や仕事にどう活きるのか、リアルな物語が伝えられていない。</p>
                 </div>
-                <div class="card">
-                    <h4>2. 競合の戦略高度化</h4>
-                    <p>多くの中小企業がWEB活用を始め、SNSや動画で積極的に発信しています。差別化するには、より専門的で効果的な戦略が不可欠です。</p>
+                <div class="bg-light-accent p-4 rounded-lg border-l-4 border-navy">
+                    <h3 class="text-xl font-semibold mb-1">資格ブランド力の低下</h3>
+                    <p class="text-gray-600 text-base">「この資格を持つと、こう変わる」という独自の価値提案ができていない。</p>
                 </div>
-                <div class="card" style="grid-column: 1 / -1;">
-                    <h4>3. AIによる「情報革命」</h4>
-                    <p>AIツールの普及で、コンテンツ制作や顧客対応のハードルは劇的に下がりました。AIを使いこなし、味方につけることが、今、大きなアドバンテージになります。</p>
+                <div class="bg-light-accent p-4 rounded-lg border-l-4 border-navy">
+                    <h3 class="text-xl font-semibold mb-1">デジタルコミュニケーションの遅れ</h3>
+                    <p class="text-gray-600 text-base">動画・検索・SNS対応が不十分で、未来の受験者との接点を失っている。</p>
+                    <p class="text-sm text-indigo-700 mt-1">※10-20代の約8割がSNSで情報収集。しかし多くの団体公式アカウントは一方的な発信に留まっています。</p>
+                </div>
+                <div class="bg-light-accent p-4 rounded-lg border-l-4 border-navy">
+                    <h3 class="text-xl font-semibold mb-1">将来的な支援離れのリスク</h3>
+                    <p class="text-gray-600 text-base">活動の価値が見えなければ、スポンサーや行政からの支援は先細る。</p>
                 </div>
             </div>
-            <div class="card" style="margin: 2em 0;">
-                <h3>【今、行動すべき理由】</h3>
-                <ul style="font-weight: bold;">
-                    <li>✅ 市場はまだ成長中で、先行者利益が大きい（早い者勝ち）</li>
-                    <li>✅ 技術が整い、投資効率が過去最高になっている</li>
-                    <li>✅ 競合より一歩先に動けば、大きなアドバンテージを築ける</li>
-                </ul>
-            </div>
-            <h4 class="text-center">最後のチャンスかもしれません</h4>
-            <div class="timeline-chart">
-                <div class="timeline-point">早期導入<span>2020年</span></div>
-                <div class="timeline-point">標準化<span>2023年</span></div>
-                <div class="timeline-point now">最後のチャンス<span>2025年 (今)</span></div>
-                <div class="timeline-point">遅すぎる<span>2027年</span></div>
-            </div>
-        </section>
+            <div class="slide-number">4 / 12</div>
+        </div>
 
-        <!-- スライド6: 私たちのミッション・ビジョン -->
-        <section class="slide" id="slide-6">
-            <h2 class="slide-title">CBT-S株式会社について</h2>
-            <div class="text-center" style="margin-bottom: 2em;">
-                <h3>【ミッション】</h3>
-                <p style="font-size: 1.5rem; font-weight: bold; color: var(--primary-color);">「チャレンジする人を応援し、共に成長する」</p>
-                <p>私たちは、新しいことに挑戦するあなたのビジネスを全力でサポートするパートナーです。</p>
-            </div>
-            <div class="grid-2col">
-                <div class="card">
-                    <h3>【ビジョン】</h3>
-                    <p>中小企業が、大企業と対等に戦えるWEB戦略のパートナーになること。規模ではなく、戦略で勝つ。限られた予算で、最大の効果を出す。あなたのビジネスの可能性を最大化します。</p>
-                </div>
-                <div class="card">
-                    <h3>【私たちが大切にしていること】</h3>
-                    <ul style="padding-left: 1em;">
-                        <li><strong>顧客第一主義：</strong>顧客の成功が私たちの成功</li>
-                        <li><strong>伴走型パートナーシップ：</strong>信頼を積み上げ、共に成長する関係</li>
-                        <li><strong>一気通貫サポート：</strong>戦略から実行まで全てを提供</li>
-                        <li><strong>正直・透明性：</strong>無理な提案はしない</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- スライド7: CBT-Sの強みと競合比較 -->
-        <section class="slide" id="slide-7">
-            <h2 class="slide-title">CBT-Sが選ばれる理由</h2>
-            <div style="overflow-x: auto;">
-            <table class="comparison-table">
-                <thead><tr><th class="recommended">項目</th><th>一般的なWEB会社</th><th>大手制作会社</th><th class="recommended">CBT-S</th></tr></thead>
-                <tbody>
-                    <tr><td class="recommended">提案スタイル</td><td>HP推奨</td><td>HP推奨</td><td class="recommended">最適解提案<br><span class="merit">★顧客視点</span></td></tr>
-                    <tr><td class="recommended">価格</td><td>中価格</td><td>高価格(100万円～)</td><td class="recommended">適正価格<br><span class="merit">★圧倒的コスパ</span></td></tr>
-                    <tr><td class="recommended">納期</td><td>1-2ヶ月</td><td>2-3ヶ月</td><td class="recommended">3週間〜1ヶ月半</td></tr>
-                    <tr><td class="recommended">アフターサポート</td><td>有料</td><td>有料</td><td class="recommended">有料<br><span class="merit">※伴走型</span></td></tr>
-                    <tr><td class="recommended">柔軟性</td><td>低い(定型)</td><td>低い(定型)</td><td class="recommended">高い(オーダー)<br><span class="merit">★自由度</span></td></tr>
-                </tbody>
-            </table>
-            </div>
-             <div class="card" style="margin-top: 2em;">
-                <h3>【CBT-Sの5つの強み】</h3>
-                <ol>
-                    <li><strong>⭐ 顧客視点の提案：</strong>「今はHPより〇〇が必要です」と正直に言います。</li>
-                    <li><strong>⭐ 一気通貫サポート：</strong>全てのサービスを組み合わせ、戦略から実行までワンストップで全体最適を実現します。</li>
-                    <li><strong>⭐ 圧倒的なコストパフォーマンス：</strong>大手の半額以下で、同等以上の効果を出します。</li>
-                    <li><strong>⭐ 最速納品：</strong>3週間〜1ヶ月半で納品。早く始めるほど、効果が早く出ます。</li>
-                    <li><strong>⭐ 伴走型サポート：</strong>納品して終わりではありません。信頼を積み上げ、成果が出るまで一緒に走り続けます。</li>
-                </ol>
-            </div>
-        </section>
-
-        <!-- スライド8: お客様の声 -->
-        <section class="slide" id="slide-8">
-            <h2 class="slide-title">お客様がCBT-Sを選ぶ理由</h2>
-            <div class="testimonial">
-                <p>「他社は『HPを作りましょう』ばかりだったが、CBT-Sは『今はLPが最適』と正直に教えてくれた。結果、半額で期待以上の成果が出た」</p>
-                <p class="author">- 製造業A社 社長様</p>
-            </div>
-            <div class="testimonial">
-                <p>「大手見積100万円がCBT-Sでは25万円。不安だったが品質は同等以上。細かい要望にも柔軟に対応してくれた」</p>
-                <p class="author">- サービス業B社 マーケティング担当様</p>
-            </div>
-            
-            <div class="text-center" style="margin-top: 2em;">
-                <h3>【選ばれる4つの理由】</h3>
-                <div class="grid-2col" style="gap: 1.5em; text-align: left;">
-                    <div class="card">
-                        <h4 style="font-size: 1.5rem; text-align: center;">📈 投資学習</h4>
-                        <p>他社には真似できない強みです。私たちは常に最新のWEBトレンドを研究・投資し、その知見をお客様に惜しみなく還元します。</p>
-                    </div>
-                    <div class="card">
-                        <h4 style="font-size: 1.5rem; text-align: center;">🤝 正直さ</h4>
-                        <p>お客様の売上より、お客様の成功を最優先します。最適な提案だけをいたします。</p>
-                    </div>
-                    <div class="card">
-                        <h4 style="font-size: 1.5rem; text-align: center;">💪 実力</h4>
-                        <p>大手に負けない品質を、圧倒的なコストパフォーマンスでご提供します。</p>
-                    </div>
-                    <div class="card">
-                        <h4 style="font-size: 1.5rem; text-align: center;">❤️ 伴走力</h4>
-                        <p>納品して終わり、ではありません。成果が出るまで一緒に走り続けます。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- スライド9: サービスラインナップ -->
-        <section class="slide" id="slide-9">
-            <h2 class="slide-title">CBT-Sのソリューション</h2>
-            <div style="display: grid; grid-template-columns: 1fr; gap: 1.5em;">
-                <div class="service-card standard">
-                    <h4>【標準装備】WEB戦略コンサルティング</h4>
-                    <p>🎯全ての土台となる戦略設計。初回から目的や課題を整理し、最適な道筋を立てるために、<strong>無料でご提供</strong>します。</p>
-                </div>
-            </div>
-            <hr style="margin: 2em 0;">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5em;">
-                <div class="service-card"><h4>LP制作</h4><p>🎯広告からの問い合わせを最大化<br>💰月額5万円～</p></div>
-                <div class="service-card"><h4>HP制作</h4><p>🎯企業の信頼性向上とブランディング<br>💰月額30万円～</p></div>
-                <div class="service-card"><h4>SNS運用代行</h4><p>🎯認知拡大とファン育成<br>💰月額30万円～</p></div>
-                <div class="service-card"><h4>AIチャットボット導入</h4><p>🎯問い合わせ対応の自動化<br>💰月額2万円～</p></div>
-                <div class="service-card"><h4>動画切り抜き・ショート作成</h4><p>🎯既存動画資産の有効活用と拡散<br>💰月額5万円～</p></div>
-            </div>
-        </section>
-
-        <!-- スライド10: サービス比較 -->
-        <section class="slide" id="slide-10">
-             <h2 class="slide-title">どのサービスが最適？徹底比較</h2>
-             <div style="overflow-x: auto;">
-             <table class="comparison-table">
-                <thead><tr><th>項目</th><th>LP制作</th><th>HP制作</th><th>SNS運用</th><th>AIチャット</th><th>動画切り抜き</th></tr></thead>
-                <tbody>
-                    <tr><td>費用</td><td>単発/5万円～</td><td>単発/30万円～</td><td>30万円～</td><td>2万円～</td><td>5万円～</td></tr>
-                    <tr><td>効果実感</td><td>1-2ヶ月</td><td>3-6ヶ月</td><td>2-3ヶ月</td><td>即時</td><td>即日-1ヶ月</td></tr>
-                    <tr><td>主な効果</td><td>問合せ増</td><td>信頼性向上</td><td>認知拡大</td><td>業務効率化</td><td>認知拡大</td></tr>
-                    <tr><td>投資回収</td><td>3-6ヶ月</td><td>6-12ヶ月</td><td>6-12ヶ月</td><td>3-6ヶ月</td><td>1-3ヶ月</td></tr>
-                    <tr><td>開始ハードル</td><td>中</td><td>高</td><td>中</td><td>低</td><td>低</td></tr>
-                </tbody>
-             </table>
-             </div>
-             <div class="card" style="margin-top: 2em; background-color: #e9f5ff;">
-                 <h3>【課題別・組み合わせ提案】</h3>
-                 <div style="margin-top: 1em;">
-                    <h4 style="color: var(--primary-color);">📈 パターンA：最速で問い合わせを増やしたい</h4>
-                    <p><strong>【LP制作】＋【SNS運用 or 動画切り抜き】</strong><br>まずLPで成果の出る受け皿を作り、SNSや動画で即座に集客を開始。短期的な成果を最大化する組み合わせです。</p>
-                 </div>
-                 <div style="margin-top: 1em;">
-                    <h4 style="color: var(--primary-color);">🏢 パターンB：信頼性も効率化も実現したい</h4>
-                    <p><strong>【HP制作】＋【AIチャットボット】</strong><br>企業の顔となるHPで信頼性を高めつつ、AIチャットで問い合わせ対応を効率化し、顧客満足度も向上させます。</p>
-                 </div>
-                 <p style="font-weight: bold; color: var(--success-color); margin-top: 1.5em;">セット割引： 2サービスで10% OFF！</p>
-             </div>
-        </section>
-
-        <!-- スライド11: 最適ソリューション【LP制作】 -->
-        <section class="slide" id="slide-11">
-            <h2 class="slide-title">最適ソリューション①【LP制作】</h2>
-            <div class="text-center" style="margin-bottom: 2em;">
-                <p style="font-size: 1.3rem;"><strong>WEBからの直接的な成果（問い合わせ）を最大化する、一点突破型の施策です。</strong></p>
-                <p>広告やSNSからの訪問者を、迷わせることなく「問い合わせ」というゴールへ導くことに特化したページを作成します。</p>
-            </div>
-            <div class="card">
-                <h3>LP制作で実現できること</h3>
-                <ul>
-                    <li><strong>目的特化で高成約率:</strong> 「問い合わせ」という1つのゴールに集中させるため、成約率が4倍になることもあります。</li>
-                    <li><strong>最高の投資効率:</strong> 少ない投資で、直接的な成果（問い合わせ増）が期待できます。</li>
-                    <li><strong>迅速な効果測定:</strong> 3週間で公開、1ヶ月後には効果を実感。スピーディに事業を加速できます。</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- スライド12: 最適ソリューション【HP制作】 -->
-        <section class="slide" id="slide-12">
-            <h2 class="slide-title">最適ソリューション②【HP制作】</h2>
-            <div class="text-center" style="margin-bottom: 2em;">
-                <p style="font-size: 1.3rem;"><strong>ビジネスの「信頼」と「顔」を創る、中長期的な資産です。</strong></p>
-                <p>LPで短期的な成果を出した後、企業の信頼性向上や採用強化のために取り組むべき施策です。</p>
-            </div>
-            <div class="card">
-                <h3>HP制作で実現できること</h3>
-                <ul>
-                    <li><strong>社会的信用の獲得:</strong> 充実したHPは、顧客や取引先、求職者からの信頼に直結します。</li>
-                    <li><strong>ブランディング強化:</strong> 企業の理念やビジョンを伝え、ブランド価値を高めます。</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- スライド13: 最適ソリューション【SNS運用代行】 -->
-        <section class="slide" id="slide-13">
-            <h2 class="slide-title">最適ソリューション③【SNS運用代行】</h2>
-            <div class="text-center" style="margin-bottom: 2em;">
-                <p style="font-size: 1.3rem;"><strong>未来の顧客を育て、ファンを作るための施策です。</strong></p>
-                <p>LPやHPへの集客力を高め、顧客との継続的な関係を構築します。</p>
-            </div>
-            <div class="card">
-                <h3>SNS運用で実現できること</h3>
-                <ul>
-                    <li><strong>潜在顧客へのリーチ:</strong> まだ御社を知らない層へアプローチし、認知を拡大します。</li>
-                    <li><strong>顧客エンゲージメント向上:</strong> 双方向のコミュニケーションで、企業のファンを育成します。</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- スライド14: 最適ソリューション【AIチャットボット導入】 -->
-        <section class="slide" id="slide-14">
-            <h2 class="slide-title">最適ソリューション④【AIチャットボット導入】</h2>
-             <div class="text-center" style="margin-bottom: 2em;">
-                <p style="font-size: 1.3rem;"><strong>業務効率化と顧客満足度を劇的に向上させます。</strong></p>
-                <p>24時間365日対応の自動応答で、問い合わせ対応の工数を削減し、機会損失を防ぎます。</p>
-            </div>
-            <div class="card">
-                <h3>AIチャットボットで実現できること</h3>
-                <ul>
-                    <li><strong>問い合わせ対応の自動化:</strong> 人件費を削減し、担当者はコア業務に集中できます。</li>
-                    <li><strong>顧客満足度の向上:</strong> 待ち時間ゼロの即時回答で、顧客体験を向上させます。</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- スライド15: 最適ソリューション【動画切り抜き・ショート作成】 -->
-        <section class="slide" id="slide-15">
-            <h2 class="slide-title">最適ソリューション⑤【動画切り抜き・ショート作成】</h2>
-            <div class="text-center" style="margin-bottom: 2em;">
-                <p style="font-size: 1.3rem;"><strong>既存の動画資産を、新たな集客チャネルに変えます。</strong></p>
-                <p>セミナー等の長尺動画から魅力的な部分を切り抜き、SNSで拡散されやすいショート動画を制作します。</p>
-            </div>
-            <div class="card">
-                <h3>本サービスで実現できること</h3>
-                <ul>
-                    <li><strong>コンテンツの再活用:</strong> 一つの動画から複数のコンテンツを生み出し、コストパフォーマンスを最大化します。</li>
-                    <li><strong>認知度の大幅拡大:</strong> TikTokやYouTubeショートで新規顧客にリーチします。</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- スライド16: 最適ソリューション【WEB戦略コンサルティング】 -->
-        <section class="slide" id="slide-16">
-            <h2 class="slide-title">【初回標準】WEB戦略コンサルティング</h2>
-            <div class="text-center" style="margin-bottom: 2em;">
-                <p style="font-size: 1.3rem;"><strong>全てのWEB戦略の土台となる、最も重要なステップです。</strong></p>
-                <p>私たちはまず、お客様のビジネスの現状、目的、課題を深く理解することから始めます。<br>これは、その後の全ての施策を成功に導くための羅針盤であり、<strong style="color:var(--success-color);">初回に無料でご提供</strong>しています。</p>
-            </div>
-            <div class="card">
-                <h3>本サービスで実現できること</h3>
-                <ul>
-                    <li><strong>現状分析と課題の明確化:</strong> 専門家の視点で、御社のWEB活用の現状を分析し、真の課題を特定します。</li>
-                    <li><strong>最適な戦略立案:</strong> 貴社の状況、目的、予算に合わせ、無理なく最大の効果を生むためのロードマップを作成します。</li>
-                    <li><strong>施策の優先順位付け:</strong> 何から手をつけるべきかを明確にし、無駄のない投資計画を立てます。</li>
-                </ul>
-            </div>
-        </section>
+        <!-- Slide 5: 解決策の提示 -->
+        <div id="slide5" class="slide items-center text-center">
+            <h2 class="text-6xl mb-8 leading-relaxed">課題解決の鍵は<br>「物語 (STORY)」</h2>
+            <p class="text-2xl max-w-4xl text-gray-700 leading-loose">
+                スペック（効能）だけでは、心は動かない。<br>
+                資格取得がもたらす「物語」を伝え、感情的なつながりを生み出すことが不可欠です。
+            </p>
+            <div class="border-t-2 border-navy w-32 my-8"></div>
+            <h3 class="text-5xl title-text">資格試験業界専門プログラム『STORY』</h3>
+            <div class="slide-number">5 / 12</div>
+        </div>
         
-        <!-- スライド17: 導入フロー -->
-        <section class="slide" id="slide-17">
-            <h2 class="slide-title">導入から成果までの流れ</h2>
-            <div class="flow-chart">
-                <div class="flow-step">
-                    <div class="icon">🤝</div>
-                    <h4>本日～ご契約</h4>
-                    <p>提案内容にご納得いただけましたらご契約</p>
-                </div>
-                <div class="flow-arrow">➡️</div>
-                <div class="flow-step">
-                    <div class="icon">🚀</div>
-                    <h4>キックオフ</h4>
-                    <p>プロジェクトの目的・ゴールを共有</p>
-                </div>
-                <div class="flow-arrow">➡️</div>
-                <div class="flow-step">
-                    <div class="icon">🔍</div>
-                    <h4>戦略設計・制作</h4>
-                    <p>(Week 1~)</p>
-                </div>
-                <div class="flow-arrow">➡️</div>
-                <div class="flow-step">
-                    <div class="icon">✅</div>
-                    <h4>納品</h4>
-                    <p>(Week 3~)</p>
-                </div>
-                <div class="flow-arrow">➡️</div>
-                <div class="flow-step">
-                    <div class="icon">📈</div>
-                    <h4>伴走サポート</h4>
-                    <p>(納品後)</p>
+        <!-- Slide 6: STORYとは -->
+        <div id="slide6" class="slide">
+            <h2 class="text-5xl mb-4 text-center title-text">『STORY』とは？</h2>
+            <p class="text-xl text-center mb-6 text-gray-700">資格の魂を、社会へ。</p>
+            <div class="w-full max-w-full text-center box-accent rounded-lg p-8">
+                <p class="text-2xl leading-loose">
+                    単なる資格紹介番組ではありません。<br>
+                    視聴者の心理を動かし、資格の社会的意義と未来への可能性を伝える<br><span class="text-navy font-bold text-4xl">「対話型ドキュメンタリー」</span>です。
+                </p>
+                <div class="mt-6 pt-6 border-t border-gray-200 grid grid-cols-4 justify-around gap-6 text-left">
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-navy text-xl">会話を"ストーリー"に</h3>
+                        <p class="text-gray-600 mt-2 text-base">裏側VTR等に頼らず、対話を通じて団体の理念や熱量を引き出します。</p>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-navy text-xl">客観的データで構成</h3>
+                        <p class="text-gray-600 mt-2 text-base">「数字」「トレンド」「受験者像」を基に、誰が聞いても納得できる構成。</p>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-navy text-xl">第三者視点の価値</h3>
+                        <p class="text-gray-600 mt-2 text-base">MC野口氏が第三者の視点から、資格の独自性や強みを明確化します。</p>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-navy text-xl">データが示す視聴者層</h3>
+                        <p class="text-gray-600 mt-2 text-base">受験者本人だけでなく、視聴データで証明された「子の進路を考える保護者層」へダイレクトに訴求します。</p>
+                    </div>
                 </div>
             </div>
-        </section>
+            <div class="slide-number">6 / 12</div>
+        </div>
         
-        <!-- スライド18: 導入後の未来 -->
-        <section class="slide" id="slide-18">
-            <h2 class="slide-title">3ヶ月後、あなたのビジネスはどう変わる？</h2>
-            <div class="card">
-                <h3>【未来のあなたの1日】</h3>
-                <p>朝、出社すると問い合わせメールが5件。以前は週に5件だったのに、今は毎日。「HPを見て」という新規顧客からの電話も鳴り、商談予定はびっしり。営業チームからは嬉しい悲鳴が聞こえます。</p>
-            </div>
-            
-            <h4 class="text-center" style="margin-top: 2em;">月間問い合わせ数の変化（イメージ）</h4>
-            <div class="growth-chart">
-                <div class="bar" style="height: 20%;">
-                    5件
-                    <div class="bar-label">現在</div>
+        <!-- Slide 7: メリット (Original 8) -->
+        <div id="slide7" class="slide">
+            <h2 class="text-5xl mb-10 text-center title-text">貴団体にもたらされる「5つの価値」</h2>
+            <div class="w-full max-w-full grid grid-cols-5 gap-6 text-center">
+                <div class="box-accent p-6 rounded-lg flex flex-col items-center justify-center">
+                    <h3 class="font-bold text-navy mb-3 h-16 text-xl">社会的信頼性の強化</h3>
+                    <p class="text-gray-700 text-base">資格の社会的意義を発信し、企業・教育機関からの信頼を向上。</p>
                 </div>
-                <div class="bar" style="height: 80%; background-color: var(--success-color);">
-                    20件
-                    <div class="bar-label">3ヶ月後</div>
+                <div class="box-accent p-6 rounded-lg flex flex-col items-center justify-center">
+                    <h3 class="font-bold text-navy mb-3 h-16 text-xl">受験者数増加への貢献</h3>
+                    <p class="text-gray-700 text-base">資格の魅力やキャリア価値を伝え、受験意欲を喚起。</p>
+                </div>
+                <div class="box-accent p-6 rounded-lg flex flex-col items-center justify-center">
+                    <h3 class="font-bold text-navy mb-3 h-16 text-xl">広報活動の効率化</h3>
+                    <p class="text-gray-700 text-base">動画を二次利用し、HPやパンフレットのコンテンツを強化。</p>
+                </div>
+                <div class="box-accent p-6 rounded-lg flex flex-col items-center justify-center">
+                    <h3 class="font-bold text-navy mb-3 h-16 text-xl">他資格との差別化</h3>
+                    <p class="text-gray-700 text-base">インタビュー形式で、独自の強みや魅力を明確に言語化。</p>
+                </div>
+                <div class="box-accent p-6 rounded-lg flex flex-col items-center justify-center">
+                    <h3 class="font-bold text-navy mb-3 h-16 text-xl">社会的価値のアピール</h3>
+                    <p class="text-gray-700 text-base">人材育成、産業発展への寄与を伝え、存在意義を強化。</p>
                 </div>
             </div>
-        </section>
+            <div class="slide-number">7 / 12</div>
+        </div>
 
-        <!-- スライド19: 次のステップ -->
-        <section class="slide" id="slide-19">
-            <h2 class="slide-title">さあ、一緒に始めましょう！</h2>
-            <div class="grid-2col">
-                <div class="choice-box good">
-                    <h3>✅ 選択肢A：今すぐ行動する</h3>
-                    <p>3週間後にLP公開、1ヶ月後に効果を実感。1年後にはビジネスが大きく成長し、新しい未来が始まります。</p>
+        <!-- Slide 8: Platform & Copyright (Original 9) -->
+        <div id="slide8" class="slide">
+            <h2 class="text-5xl mb-8 text-center title-text">信頼あるプラットフォームと自由な活用</h2>
+            <div class="w-full max-w-full grid grid-cols-2 gap-12 items-center">
+                <div class="text-center">
+                     <h3 class="text-2xl font-bold text-navy mb-4">発信の舞台</h3>
+                     <div class="flex gap-4 items-start">
+                        <div class="flex-1">
+                            <h4 class="text-base font-semibold text-gray-700 mb-2">日本の資格検定【オウンドメディア】</h4>
+                            <a href="https://ibb.co/MDm9fWZT" target="_blank" rel="noopener noreferrer">
+                               <img src="https://i.ibb.co/Rpq7NZYn/screencapture-jpsk-jp-2025-09-17-09-06-00.png" alt="日本の資格検定 LPイメージ" class="w-full rounded-lg shadow-lg border">
+                            </a>
+                        </div>
+                        <div class="flex-1">
+                             <h4 class="text-base font-semibold text-gray-700 mb-2">CEOSTORY'S【Youtube】</h4>
+                             <a href="https://ibb.co/2YF50jv" target="_blank" rel="noopener noreferrer">
+                                <img src="https://i.ibb.co/sJgtpFKf/screencapture-youtube-CBTS-ch-featured-2025-09-12-18-18-27.png" alt="YouTubeチャンネルのスクリーンショット" class="w-full rounded-lg shadow-lg border">
+                             </a>
+                        </div>
+                     </div>
                 </div>
-                <div class="choice-box bad">
-                    <h3>⏸️ 選択肢B：今は見送る</h3>
-                    <p>現状維持となり、機会損失が続きます。しかしご安心ください。3ヶ月後でも、私たちはあなたをお待ちしています。</p>
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold text-navy mb-4">映像の二次利用について</h3>
+                    <div class="box-accent p-8 rounded-lg h-full flex flex-col justify-center">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-navy mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 100-2.186m0 2.186c-.18-.324-.283-.696-.283-1.093s.103-.77.283 1.093m0 2.186l-9.566-5.314" />
+                         </svg>
+                        <h4 class="text-xl font-semibold mb-3">広報活動に自由にご活用ください</h4>
+                        <p class="text-gray-700 text-base leading-relaxed">公開されたYouTube動画は、貴団体の広報活動に自由にご活用いただけます。HPやSNSでの共有、イベントでの上映など、資格の魅力発信にお役立てください。<br><span class="text-xs text-gray-500 mt-2 block">※動画の著作権は弊社に帰属します。撮影素材そのもののご提供はございません。</span></p>
+                    </div>
                 </div>
             </div>
-             <div class="card" style="margin-top: 2em; background: #fff8e1;">
-                <h3>【本日ご決断の特典】</h3>
-                <p>🎁 納品優先確約、来週のキックオフ設定、効果測定レポート無料など、5大特典をご用意しています！</p>
+            <div class="slide-number">8 / 12</div>
+        </div>
+        
+        <!-- Slide 9: Dedicated LP (Original 7) -->
+        <div id="slide9" class="slide">
+            <h2 class="text-5xl mb-4 text-center title-text">プレミアムな価値を届ける「専用LP」</h2>
+            <p class="text-xl text-center mb-6 text-gray-700">資格試験業界の権威性を高めるための特別な舞台をご提供します。</p>
+            <div class="w-full max-w-full flex items-center gap-12">
+                <!-- Left: LP Mockup -->
+                <div class="w-2/3">
+                    <div class="bg-gray-200 p-2 rounded-xl shadow-2xl transform rotate-[-2deg]">
+                        <div class="bg-white rounded-lg overflow-hidden border">
+                            <!-- LP Header -->
+                            <div class="bg-navy text-white p-3 text-center">
+                                <h1 class="text-xl font-bold tracking-wider">資格試験専門『STORY』</h1>
+                            </div>
+                             <!-- LP Main Visual -->
+                            <div class="bg-gray-50">
+                                <div class="aspect-video bg-navy flex items-center justify-center text-white relative overflow-hidden">
+                                    <img src="https://placehold.co/1024x576/1e3a8a/f8fafc?text=Your+Story+Starts+Here" alt="資格取得を通じてキャリアを築く人々のイメージ" class="w-full h-full object-cover opacity-30">
+                                    <div class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-20 p-4">
+                                        <h2 class="text-2xl font-bold text-center leading-tight">あなたの「物語」が、<br>次の誰かの道しるべになる。</h2>
+                                        <p class="mt-2 text-center text-md">資格の価値を、未来へ繋ぐ。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Video Thumbnails Section -->
+                            <div class="p-4">
+                                <h2 class="text-lg font-bold mb-3 text-gray-800">公開動画一覧</h2>
+                                <div class="grid grid-cols-3 gap-4">
+                                    <!-- Video 1 -->
+                                    <a href="https://ibb.co/vWtm1sr" target="_blank" rel="noopener noreferrer" class="aspect-video rounded overflow-hidden relative shadow-md">
+                                        <img src="https://i.ibb.co/8wh2MzR/02.jpg" class="w-full h-full object-cover" alt="乙武洋匡氏対談サムネイル">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                            <svg class="w-10 h-10 text-white opacity-80" fill="currentColor" viewBox="0 0 20 20"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"></path></svg>
+                                        </div>
+                                    </a>
+                                    <!-- Video 2 -->
+                                    <a href="https://ibb.co/G4xMN2G6" target="_blank" rel="noopener noreferrer" class="aspect-video rounded overflow-hidden relative shadow-md">
+                                        <img src="https://i.ibb.co/Mx21QVKv/image.jpg" class="w-full h-full object-cover" alt="阪西社長対談サムネイル">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                            <svg class="w-10 h-10 text-white opacity-80" fill="currentColor" viewBox="0 0 20 20"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"></path></svg>
+                                        </div>
+                                    </a>
+                                    <!-- Video 3 -->
+                                    <a href="https://ibb.co/d0NH89FV" target="_blank" rel="noopener noreferrer" class="aspect-video rounded overflow-hidden relative shadow-md">
+                                        <img src="https://i.ibb.co/bg4GchTC/image.jpg" class="w-full h-full object-cover" alt="市岡元気先生対談サムネイル">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                            <svg class="w-10 h-10 text-white opacity-80" fill="currentColor" viewBox="0 0 20 20"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"></path></svg>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right: Explanation -->
+                <div class="w-1/3 space-y-6">
+                    <div>
+                        <h3 class="font-bold text-navy text-2xl mb-2">差別化と権威性</h3>
+                        <p class="text-gray-700 text-base leading-relaxed">既存の経営者インタビューとは一線を画し、資格の「STORY」だけを掲載。業界の権威性を際立たせます。</p>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-navy text-2xl mb-2">ブランド価値向上</h3>
+                        <p class="text-gray-700 text-base leading-relaxed">洗練されたデザインで、視聴者にプレミアムな印象を与え、貴団体のブランドイメージと信頼性を高めます。</p>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-navy text-2xl mb-2">情報ハブ機能</h3>
+                        <p class="text-gray-700 text-base leading-relaxed">動画シリーズを一覧化し、受験希望者が求める情報へ容易にアクセスできる、資格の魅力が詰まったハブを構築します。</p>
+                    </div>
+                </div>
             </div>
-            <div class="text-center" style="margin-top: 2em;">
-                <h3>【最後のメッセージ】</h3>
-                <p>私たちCBT-Sは、「チャレンジする人を応援し、共に成長する」パートナーです。あなたの新しい一歩を、私たちが全力でサポートします。<br>信頼を一つ一つ積み上げながら、<strong>共に頑張りましょう。</strong>一緒に、新しい未来を創りましょう。</p>
-                <hr>
-                <p><strong>CBT-S株式会社 WEBコンサルタント △△</strong></p>
-            </div>
-        </section>
+            <div class="slide-number">9 / 12</div>
+        </div>
 
+        <!-- Slide 10: New Data Slide -->
+        <div id="slide10" class="slide">
+            <h2 class="text-5xl mb-4 text-center title-text">データが示す、新たなリーチの可能性</h2>
+            <div class="w-full max-w-full grid grid-cols-3 gap-8 text-center">
+                <div class="box-accent p-6 rounded-lg flex flex-col items-center justify-center">
+                    <h3 class="font-bold text-navy mb-4 text-xl">視聴者の年齢構成</h3>
+                    <div class="relative w-40 h-40 rounded-full flex items-center justify-center" style="background: conic-gradient(#1e3a8a 0% 55.5%, #e2e8f0 55.5% 100%);">
+                        <div class="absolute w-32 h-32 bg-[#ffffff] rounded-full flex items-center justify-center">
+                            <span class="text-4xl font-bold text-navy">55.5%</span>
+                        </div>
+                    </div>
+                    <p class="mt-4 font-semibold text-xl">35歳〜64歳の「保護者世代」</p>
+                    <p class="mt-1 text-gray-600 text-base">子の進路やキャリアに最も関心を持つ世代へ、資格の価値を直接訴求できます。</p>
+                </div>
+                
+                <div class="box-accent p-6 rounded-lg flex flex-col items-center justify-center">
+                    <h3 class="font-bold text-navy mb-4 text-xl">視聴者の性別比</h3>
+                    <div class="relative w-40 h-40 rounded-full flex items-center justify-center" style="background: conic-gradient(#1e3a8a 0% 78.9%, #e2e8f0 78.9% 100%);">
+                        <div class="absolute w-32 h-32 bg-[#ffffff] rounded-full flex items-center justify-center">
+                             <span class="text-4xl font-bold text-navy">78.9%</span>
+                        </div>
+                    </div>
+                    <p class="mt-4 font-semibold text-xl">男性視聴者</p>
+                    <p class="mt-1 text-gray-600 text-base">家庭内の意思決定に影響力を持つ層へアプローチ可能です。</p>
+                </div>
+        
+                <div class="box-accent p-6 rounded-lg flex flex-col justify-center items-center">
+                    <h3 class="font-bold text-navy mb-4 text-xl">多様な視聴者層</h3>
+                    <div class="w-full space-y-4 text-center">
+                        <div class="bg-light-accent p-3 rounded-lg">
+                             <p class="font-semibold text-xl"><span class="text-navy">23.9%</span> は25-34歳</p>
+                             <p class="text-gray-600 text-base">キャリアを本格化させる若手社会人</p>
+                        </div>
+                        <div class="bg-light-accent p-3 rounded-lg">
+                            <p class="font-semibold text-xl"><span class="text-navy">14.5%</span> は65歳以上</p>
+                            <p class="text-gray-600 text-base">生涯学習に関心を持つシニア層</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">10 / 12</div>
+        </div>
+
+        <!-- Slide 11: 番組構成 -->
+        <div id="slide11" class="slide">
+            <h2 class="text-5xl mb-8 text-center title-text">視聴者の心を動かす「物語の設計図」</h2>
+            <div class="w-full max-w-full grid grid-cols-2 gap-x-12 gap-y-6">
+                <!-- Column 1 -->
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <div class="bg-navy text-white rounded-full w-16 h-16 flex-shrink-0 flex items-center justify-center font-bold mr-5">OP</div>
+                        <div>
+                            <h3 class="font-semibold mb-1 text-navy text-xl">オープニング：社会との接続</h3>
+                            <p class="text-gray-700 text-base">「この資格を持つ人が社会に〇万人います」という事実で視聴者を自分事に引き込み、興味の入口を創出します。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                         <div class="bg-navy text-white rounded-full w-16 h-16 flex-shrink-0 flex items-center justify-center font-bold mr-5">第一部</div>
+                        <div>
+                            <h3 class="font-semibold mb-1 text-navy text-xl">価値の提示：理念と実績</h3>
+                            <p class="text-gray-700 text-base">設立背景や理念を語り、累計取得者数などの「数字」を用いて、資格が社会にもたらした客観的価値を伝えます。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                         <div class="bg-navy text-white rounded-full w-16 h-16 flex-shrink-0 flex items-center justify-center font-bold mr-5">第二部</div>
+                        <div>
+                            <h3 class="font-semibold mb-1 text-navy text-xl">共感の醸成：受験者像の変化</h3>
+                            <p class="text-gray-700 text-base">年齢層や動機のトレンドを示し、「社会の縮図」として資格を捉え直すことで、無関心層にも興味を抱かせます。</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Column 2 -->
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <div class="bg-navy text-white rounded-full w-16 h-16 flex-shrink-0 flex items-center justify-center font-bold mr-5">第三部</div>
+                        <div>
+                            <h3 class="font-semibold mb-1 text-navy text-xl">可能性の具体化：取得後のキャリア</h3>
+                            <p class="text-gray-700 text-base">活躍事例を通じて、資格取得がもたらすキャリアチェンジや成長の「可能性」を具体的に示します。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                         <div class="bg-navy text-white rounded-full w-16 h-16 flex-shrink-0 flex items-center justify-center font-bold mr-5">第四部</div>
+                        <div>
+                            <h3 class="font-semibold mb-1 text-navy text-xl">未来への共鳴：10年後の展望</h3>
+                            <p class="text-gray-700 text-base">制度改革やリスキリング対応など、未来に向けたビジョンを語ることで、視聴者にワクワク感と将来性を感じさせます。</p>
+                            <p class="text-sm text-indigo-700 mt-1">※国内のリスキリング市場は2027年に1兆円規模へ拡大予測。資格の重要性は増しています。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                         <div class="bg-navy text-white rounded-full w-16 h-16 flex-shrink-0 flex items-center justify-center font-bold mr-5">ED</div>
+                        <div>
+                            <h3 class="font-semibold mb-1 text-navy text-xl">エンディング：メッセージと継続性</h3>
+                            <p class="text-gray-700 text-base">社会や受験者への力強いメッセージで締めくくり、次回への期待感を抱かせてシリーズとしての価値を高めます。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">11 / 12</div>
+        </div>
+        
+        <!-- Slide 12: Schedule -->
+        <div id="slide12" class="slide">
+            <h2 class="text-5xl mb-10 text-center title-text">ご契約から公開までの流れ</h2>
+            <div class="w-full flex items-center justify-center space-x-2">
+                <!-- Step 1 -->
+                <div class="w-1/6 box-accent p-4 rounded-lg text-center h-48 flex flex-col justify-center">
+                    <div class="mx-auto border-2 border-navy text-navy rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mb-3">1</div>
+                    <h3 class="font-bold text-navy text-xl">商談</h3>
+                    <p class="mt-1 text-sm text-gray-600">企画・お見積り・ご契約</p>
+                </div>
+                <!-- Arrow -->
+                <div class="text-navy text-4xl font-thin px-2">&gt;</div>
+                <!-- Step 2 -->
+                <div class="w-1/6 box-accent p-4 rounded-lg text-center h-48 flex flex-col justify-center">
+                    <div class="mx-auto border-2 border-navy text-navy rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mb-3">2</div>
+                    <h3 class="font-bold text-navy text-xl">キックオフ</h3>
+                    <p class="mt-1 text-sm text-gray-600">テーマ、構成の摺合せ</p>
+                </div>
+                <!-- Arrow -->
+                <div class="text-navy text-4xl font-thin px-2">&gt;</div>
+                <!-- Step 3 -->
+                <div class="w-1/6 box-accent p-4 rounded-lg text-center h-48 flex flex-col justify-center">
+                    <div class="mx-auto border-2 border-navy text-navy rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mb-3">3</div>
+                    <h3 class="font-bold text-navy text-xl">撮影</h3>
+                    <p class="mt-1 text-sm text-gray-600">所要時間：約1時間</p>
+                </div>
+                <!-- Arrow -->
+                <div class="text-navy text-4xl font-thin px-2">&gt;</div>
+                <!-- Step 4 -->
+                <div class="w-1/6 box-accent p-4 rounded-lg text-center h-48 flex flex-col justify-center">
+                    <div class="mx-auto border-2 border-navy text-navy rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mb-3">4</div>
+                    <h3 class="font-bold text-navy text-xl">編集</h3>
+                    <p class="mt-1 text-sm text-gray-600">初稿チェック依頼</p>
+                </div>
+                <!-- Arrow -->
+                <div class="text-navy text-4xl font-thin px-2">&gt;</div>
+                <!-- Step 5 -->
+                <div class="w-1/6 box-accent p-4 rounded-lg text-center h-48 flex flex-col justify-center">
+                    <div class="mx-auto border-2 border-navy text-navy rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mb-3">5</div>
+                    <h3 class="font-bold text-navy text-xl">公開予告</h3>
+                    <p class="mt-1 text-sm text-gray-600">SNS・Youtubeにて</p>
+                </div>
+                <!-- Arrow -->
+                <div class="text-navy text-4xl font-thin px-2">&gt;</div>
+                <!-- Step 6 -->
+                <div class="w-1/6 box-accent p-4 rounded-lg text-center h-48 flex flex-col justify-center">
+                    <div class="mx-auto border-2 border-navy text-navy rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mb-3">6</div>
+                    <h3 class="font-bold text-navy text-xl">公開</h3>
+                    <p class="mt-1 text-sm text-gray-600">プレミア公開・日時伝伝達</p>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <h3 class="text-3xl title-text">共に、資格の新たな「物語」を。</h3>
+                <p class="text-xl text-gray-600 mt-2">まずはお気軽にご相談ください。</p>
+            </div>
+            <div class="slide-number">12 / 12</div>
+        </div>
+
+        <!-- Navigation -->
+        <button id="prevBtn" class="nav-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button id="nextBtn" class="nav-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
     </div>
 
     <script>
-        const slides = document.querySelectorAll('.slide');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('presentation-container');
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    // Re-assign IDs based on order in the DOM to keep logic simple
+                    slide.id = `slide${i + 1}`;
+                    slide.classList.remove('active');
+                });
+                
+                if (slides[index]) {
+                    slides[index].classList.add('active');
+                }
+                updateNavButtons();
+            }
+
+            function updateNavButtons() {
+                prevBtn.style.display = currentSlide === 0 ? 'none' : 'flex';
+                nextBtn.style.display = currentSlide === slides.length - 1 ? 'none' : 'flex';
+            }
+
+            prevBtn.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    showSlide(currentSlide);
                 }
             });
-        }, {
-            threshold: 0.2
-        });
-        slides.forEach(slide => {
-            observer.observe(slide);
+
+            nextBtn.addEventListener('click', () => {
+                if (currentSlide < slides.length - 1) {
+                    currentSlide++;
+                    showSlide(currentSlide);
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    prevBtn.click();
+                } else if (e.key === 'ArrowRight') {
+                    nextBtn.click();
+                }
+            });
+            
+            showSlide(currentSlide);
         });
     </script>
-
 </body>
 </html>
-
 
