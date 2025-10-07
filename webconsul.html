@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEB consulting　資料</title>
+    <title>WEB戦略のご提案</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
 
@@ -147,6 +147,35 @@
             font-weight: normal;
         }
         .comparison-table .merit { font-weight: bold; }
+
+        /* Customer Journey Map */
+        .journey-map {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1em;
+            font-size: 0.85rem;
+        }
+        .journey-map th, .journey-map td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .journey-map thead th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 8px;
+        }
+        .journey-map tbody th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            width: 100px;
+        }
+        .journey-map .check {
+            font-size: 1.5rem;
+            color: var(--success-color);
+            line-height: 1;
+        }
 
         /* Timeline */
         .timeline-chart {
@@ -318,7 +347,7 @@
             #slide-1 .highlight, .service-card h4 {
                 color: black !important;
             }
-            .card, .promise-box, .service-card.standard, .choice-box {
+            .card, .promise-box, .service-card.standard, .choice-box, .journey-map th, .journey-map td {
                 background-color: #f5f5f5 !important;
                 border: 1px solid #ccc;
             }
@@ -346,10 +375,10 @@
 
         <!-- スライド1: 表紙 -->
         <section class="slide visible" id="slide-1">
-            <h2>あなたのビジネスの<span class="highlight">可能性を、最大化する</span></h2>
-            <h1>WEB戦略診断レポート</h1>
+            <h2>ビジネスの<span class="highlight">可能性を、最大化する</span></h2>
+            <h1>WEBメディア戦略のご提案</h1>
             <div class="company-info">
-            <p>提案者：CBTS　WEBコンサルタント</p>
+               <p>提案者：CBTS　WEBコンサルタント</p>
             </div>
             <div class="logo-mission">
                 <img src="https://placehold.co/200x60/FFFFFF/007BFF?text=CBT-S+Logo" alt="CBT-S株式会社ロゴ">
@@ -363,14 +392,14 @@
             <ol style="font-size: 1.2rem; list-style: none; padding-left: 0;">
                 <li style="margin-bottom: 1em;"><strong>1. なぜ今、WEB戦略が重要なのか（5分）</strong><br>→ 多くの企業が直面する課題と、そこに眠る可能性</li>
                 <li style="margin-bottom: 1em;"><strong>2. CBT-Sについて（5分）</strong><br>→ 私たちのミッション・強み・選ばれる理由</li>
-                <li style="margin-bottom: 1em;"><strong>3. 御社への最適ソリューション（10分）</strong><br>→ 私たちのサービスから最適な提案</li>
+                <li style="margin-bottom: 1em;"><strong>3. 貴社への最適ソリューション（10分）</strong><br>→ 私たちのサービスから最適な提案</li>
                 <li style="margin-bottom: 1em;"><strong>4. 導入後の未来（5分）</strong><br>→ 成果イメージと具体的な変化</li>
                 <li style="margin-bottom: 1em;"><strong>5. 次のステップ（5分）</strong><br>→ 具体的な導入フローとご提案</li>
             </ol>
             <div class="promise-box">
                 <h3>本日お約束すること</h3>
                 <ul style="list-style: none; padding: 0;">
-                    <li>✅ 御社のビジネスの可能性を発見します</li>
+                    <li>✅ 貴社のビジネスの可能性を発見します</li>
                     <li>✅ 最適なWEB戦略を明確にします</li>
                     <li>✅ 成長への具体的な道筋をお見せします</li>
                     <li>✅ 無理な営業は一切いたしません</li>
@@ -394,7 +423,7 @@
                 </div>
                 <div class="card" style="background-color: #e9f5ff;">
                      <h3>だからこそ、私たちCBT-Sがいます。</h3>
-                     <p>私たちは常に最新のWEBトレンドを研究し（<strong>投資学習</strong>）、その知見（<strong>ナレッジ</strong>）をお客様に還元しています。<br>専門家である私たちが伴走することで、御社の "見えない壁" を乗り越え、ビジネスの可能性を最大化します。</p>
+                     <p>私たちは常に最新のWEBトレンドを研究し（<strong>投資学習</strong>）、その知見（<strong>ナレッジ</strong>）をお客様に還元しています。<br>専門家である私たちが伴走することで、貴社の "見えない壁" を乗り越え、ビジネスの可能性を最大化します。</p>
                 </div>
             </div>
         </section>
@@ -599,7 +628,72 @@
              </div>
         </section>
 
-        <!-- スライド11: 最適ソリューション【LP制作】 -->
+        <!-- NEW スライド11: 顧客獲得フェーズと最適ソリューション -->
+        <section class="slide" id="slide-10b">
+            <h2 class="slide-title">顧客獲得フェーズと最適ソリューション</h2>
+            <p class="text-center">貴社の現在の課題はどのフェーズにありますか？<br>顧客の購買プロセスに合わせて、最適な一手をご提案します。</p>
+            <div style="overflow-x: auto;">
+                <table class="journey-map">
+                    <thead>
+                        <tr>
+                            <th>サービス</th>
+                            <th>① 認知拡大<br><small>まだ知らない人へ</small></th>
+                            <th>② 興味・関心<br><small>少し知っている人へ</small></th>
+                            <th>③ 比較・検討<br><small>他社と比べている人へ</small></th>
+                            <th>④ リード獲得・訴求<br><small>問い合わせを促す</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>SNS運用</th>
+                            <td class="check">◎</td>
+                            <td class="check">○</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>動画切り抜き</th>
+                            <td class="check">◎</td>
+                            <td class="check">○</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>HP制作</th>
+                            <td></td>
+                            <td class="check">○</td>
+                            <td class="check">◎</td>
+                            <td class="check">○</td>
+                        </tr>
+                        <tr>
+                            <th>LP制作</th>
+                            <td></td>
+                            <td></td>
+                            <td class="check">○</td>
+                            <td class="check">◎</td>
+                        </tr>
+                        <tr>
+                            <th>AIチャット</th>
+                            <td></td>
+                            <td></td>
+                            <td class="check">○</td>
+                            <td class="check">◎</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="text-center" style="font-size: 0.9rem; margin-top: 0.5em;">◎：最適　○：有効</p>
+            </div>
+            <div class="card" style="margin-top: 1.5em;">
+                <h4>自社のフェーズを診断しましょう</h4>
+                <ul>
+                    <li><strong>「アクセス数が少ない」「会社名が知られていない」</strong><br>→ まずは<strong>フェーズ①</strong>の「SNS運用」「動画切り抜き」で認知を広げましょう。</li>
+                    <li><strong>「アクセスはあるが、すぐ離脱される」「商品に興味を持ってもらえない」</strong><br>→ <strong>フェーズ②,③</strong>の「HP制作」で、企業の魅力や信頼性を伝えましょう。</li>
+                    <li><strong>「広告を出しているが、問い合わせに繋がらない」</strong><br>→ <strong>フェーズ④</strong>の「LP制作」で、確実にリードを獲得できる受け皿を作りましょう。</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- スライド12: 最適ソリューション【LP制作】 -->
         <section class="slide" id="slide-11">
             <h2 class="slide-title">最適ソリューション①【LP制作】</h2>
             <div class="text-center" style="margin-bottom: 2em;">
@@ -616,7 +710,7 @@
             </div>
         </section>
 
-        <!-- スライド12: 最適ソリューション【HP制作】 -->
+        <!-- スライド13: 最適ソリューション【HP制作】 -->
         <section class="slide" id="slide-12">
             <h2 class="slide-title">最適ソリューション②【HP制作】</h2>
             <div class="text-center" style="margin-bottom: 2em;">
@@ -632,7 +726,7 @@
             </div>
         </section>
 
-        <!-- スライド13: 最適ソリューション【SNS運用代行】 -->
+        <!-- スライド14: 最適ソリューション【SNS運用代行】 -->
         <section class="slide" id="slide-13">
             <h2 class="slide-title">最適ソリューション③【SNS運用代行】</h2>
             <div class="text-center" style="margin-bottom: 2em;">
@@ -642,13 +736,13 @@
             <div class="card">
                 <h3>SNS運用で実現できること</h3>
                 <ul>
-                    <li><strong>潜在顧客へのリーチ:</strong> まだ御社を知らない層へアプローチし、認知を拡大します。</li>
+                    <li><strong>潜在顧客へのリーチ:</strong> まだ貴社を知らない層へアプローチし、認知を拡大します。</li>
                     <li><strong>顧客エンゲージメント向上:</strong> 双方向のコミュニケーションで、企業のファンを育成します。</li>
                 </ul>
             </div>
         </section>
 
-        <!-- スライド14: 最適ソリューション【AIチャットボット導入】 -->
+        <!-- スライド15: 最適ソリューション【AIチャットボット導入】 -->
         <section class="slide" id="slide-14">
             <h2 class="slide-title">最適ソリューション④【AIチャットボット導入】</h2>
              <div class="text-center" style="margin-bottom: 2em;">
@@ -664,7 +758,7 @@
             </div>
         </section>
 
-        <!-- スライド15: 最適ソリューション【動画切り抜き・ショート作成】 -->
+        <!-- スライド16: 最適ソリューション【動画切り抜き・ショート作成】 -->
         <section class="slide" id="slide-15">
             <h2 class="slide-title">最適ソリューション⑤【動画切り抜き・ショート作成】</h2>
             <div class="text-center" style="margin-bottom: 2em;">
@@ -680,7 +774,7 @@
             </div>
         </section>
 
-        <!-- スライド16: 最適ソリューション【WEB戦略コンサルティング】 -->
+        <!-- スライド17: 最適ソリューション【WEB戦略コンサルティング】 -->
         <section class="slide" id="slide-16">
             <h2 class="slide-title">【初回標準】WEB戦略コンサルティング</h2>
             <div class="text-center" style="margin-bottom: 2em;">
@@ -690,14 +784,14 @@
             <div class="card">
                 <h3>本サービスで実現できること</h3>
                 <ul>
-                    <li><strong>現状分析と課題の明確化:</strong> 専門家の視点で、御社のWEB活用の現状を分析し、真の課題を特定します。</li>
+                    <li><strong>現状分析と課題の明確化:</strong> 専門家の視点で、貴社のWEB活用の現状を分析し、真の課題を特定します。</li>
                     <li><strong>最適な戦略立案:</strong> 貴社の状況、目的、予算に合わせ、無理なく最大の効果を生むためのロードマップを作成します。</li>
                     <li><strong>施策の優先順位付け:</strong> 何から手をつけるべきかを明確にし、無駄のない投資計画を立てます。</li>
                 </ul>
             </div>
         </section>
         
-        <!-- スライド17: 導入フロー -->
+        <!-- スライド18: 導入フロー -->
         <section class="slide" id="slide-17">
             <h2 class="slide-title">導入から成果までの流れ</h2>
             <div class="flow-chart">
@@ -733,7 +827,7 @@
             </div>
         </section>
         
-        <!-- スライド18: 導入後の未来 -->
+        <!-- スライド19: 導入後の未来 -->
         <section class="slide" id="slide-18">
             <h2 class="slide-title">3ヶ月後、あなたのビジネスはどう変わる？</h2>
             <div class="card">
@@ -754,7 +848,7 @@
             </div>
         </section>
 
-        <!-- スライド19: 次のステップ -->
+        <!-- スライド20: 次のステップ -->
         <section class="slide" id="slide-19">
             <h2 class="slide-title">さあ、一緒に始めましょう！</h2>
             <div class="grid-2col">
