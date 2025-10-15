@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBT-S | 99%が知らない戦略的動画切り取りサービス</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://placehold.co/1200x800/1a237e/ffffff?text=Video+Assets') center center / cover no-repeat;
+        }
+        .section-title {
+            font-weight: 900;
+            font-size: 2.25rem; /* 36px */
+            line-height: 1.4;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #FF9800;
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+        .cta-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.1);
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+        }
+        .fact-card, .reason-card, .diff-card, .action-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .fact-card:hover, .reason-card:hover, .diff-card:hover, .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .highlight {
+            color: #FF9800;
+            font-weight: 700;
+        }
+        .table-custom th, .table-custom td {
+            border: 1px solid #e2e8f0;
+            padding: 1rem;
+        }
+        .table-custom th {
+            background-color: #1A237E;
+            color: white;
+        }
+        .before-after-arrow {
+            font-size: 2.5rem;
+            color: #FF9800;
+        }
+        .positioning-map {
+            border: 2px solid #e2e8f0;
+            position: relative;
+        }
+        .positioning-map::before, .positioning-map::after {
+            content: '';
+            position: absolute;
+            background-color: #9ca3af;
+        }
+        .positioning-map::before { /* Vertical line */
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            transform: translateX(-50%);
+        }
+        .positioning-map::after { /* Horizontal line */
+            top: 50%;
+            height: 2px;
+            width: 100%;
+            transform: translateY(-50%);
+        }
+        .axis-label {
+            position: absolute;
+            font-weight: 700;
+            color: #4a5568;
+            background-color: #f8f9fa;
+            padding: 0 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Hero Section -->
+    <header class="hero-bg text-white py-20 md:py-32">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-3xl md:text-5xl font-black leading-tight mb-4">
+                その90分動画、<br class="md:hidden">実は<span class="text-[#FF9800]">「年収分」</span>の資産が眠っています。
+            </h1>
+            <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto">
+                でも、99%の企業が<span class="font-bold text-red-400 text-2xl">"切り取り方"</span>を間違えています。
+            </p>
+
+            <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 max-w-4xl mx-auto mb-12">
+                <p class="text-xl md:text-2xl font-bold mb-4">
+                    <span class="text-sm">📊 2024年、縦型ショート動画広告市場は</span><br>900億円<span class="text-lg"> (前年比171.1%の爆発的成長)</span>
+                </p>
+                <p class="text-base md:text-lg">
+                    しかし、YouTube Shortsの収益単価は通常動画の<span class="text-red-400 font-bold text-xl">「1/10以下」</span><br>
+                    つまり、「ただ切り取るだけ」ではもう稼げない時代です。
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                <a href="#warm" class="cta-button bg-orange-500 text-white font-bold py-4 px-6 rounded-lg text-lg">
+                    <span class="block text-sm">今すぐ知りたい</span>
+                    [無料] 貴社の動画、どこを切り取るべきか診断 (3分)
+                </a>
+                <a href="#cold" class="cta-button bg-gray-700 text-white font-bold py-4 px-6 rounded-lg text-lg">
+                    <span class="block text-sm">まずは勉強したい</span>
+                    [無料DL] 「99%が知らない切り取り戦略」完全ガイド
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Facts Section -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-3 gap-8 text-center max-w-5xl mx-auto">
+                    <div class="fact-card bg-red-50 p-6 rounded-lg border border-red-200">
+                        <p class="text-5xl mb-2">⚠️</p>
+                        <h3 class="font-bold text-xl mb-2">事実1: 注意持続時間は8秒</h3>
+                        <p class="text-gray-600">視聴者の注意持続時間は金魚以下。冒頭の数秒が全てを決めます。</p>
+                    </div>
+                    <div class="fact-card bg-red-50 p-6 rounded-lg border border-red-200">
+                        <p class="text-5xl mb-2">⚠️</p>
+                        <h3 class="font-bold text-xl mb-2">事実2: 1日平均58分視聴</h3>
+                        <p class="text-gray-600">TikTokユーザーはドーパミンの中毒的ループにはまっています。</p>
+                    </div>
+                    <div class="fact-card bg-red-50 p-6 rounded-lg border border-red-200">
+                        <p class="text-5xl mb-2">⚠️</p>
+                        <h3 class="font-bold text-xl mb-2">事実3: 冒頭3秒で85%が離脱</h3>
+                        <p class="text-gray-600">「自分ごと化」できない動画は、即座にスワイプされます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Market Change -->
+        <section id="market" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">知らないと損する<br>「市場の構造変化」</h2>
+                <p class="text-center text-lg max-w-3xl mx-auto mb-12">
+                    多くの企業が「動画を作れば見てもらえる」と勘違いしていますが、それは2020年までの話です。2024年、構造が根本的に変わりました。
+                </p>
+                
+                <div class="bg-white rounded-lg shadow-xl p-8 mb-12">
+                    <h3 class="text-2xl font-bold text-center mb-6 text-[#1A237E]">📊 データで見る市場の真実</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-center table-custom">
+                            <thead>
+                                <tr>
+                                    <th>変化</th>
+                                    <th>2020年</th>
+                                    <th>2024年</th>
+                                    <th>影響</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-bold">動画広告市場</td>
+                                    <td>2,954億円</td>
+                                    <td><strong class="text-red-600">7,249億円</strong></td>
+                                    <td class="highlight">2.45倍</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-bold">ショート動画市場</td>
+                                    <td>-</td>
+                                    <td><strong class="text-red-600">900億円</strong></td>
+                                    <td class="highlight">新カテゴリー誕生</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-bold">平均注意持続時間</td>
+                                    <td>12秒</td>
+                                    <td><strong class="text-red-600">8秒</strong></td>
+                                    <td class="highlight">金魚以下に</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-bold">YouTube Shorts再生</td>
+                                    <td>-</td>
+                                    <td><strong class="text-red-600">1日700億回</strong></td>
+                                    <td class="highlight">巨大市場化</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-right text-sm mt-2 text-gray-500">出典：サイバーエージェント「2024年国内動画広告市場調査」</p>
+                </div>
+
+                 <div class="bg-white rounded-lg shadow-xl p-8">
+                    <h3 class="text-2xl font-bold text-center mb-6 text-[#1A237E]">💡 つまり、こういうことです</h3>
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-md text-lg md:text-xl text-center font-bold">
+                        <p>「良い動画を作る」だけでは勝てません。<br>
+                        <span class="text-blue-800">「ドーパミンループに乗せる設計」</span>が必須です。</p>
+                        <p class="mt-2">そして、その設計の99%は<br>
+                        <span class="text-red-600">「最初の3秒と切り取り方」</span>で決まります。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Failure Reasons -->
+        <section id="reasons" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">あなたの施策が失敗する<br>本当の理由</h2>
+                <p class="text-center text-lg max-w-3xl mx-auto mb-12">
+                    多くの企業が見落としている3つの構造的課題があります。原因は「動画の質」ではなく、<span class="highlight">「切り取りのバリエーション不足」</span>かもしれません。
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Failure Pattern 1 -->
+                    <div class="reason-card border rounded-lg overflow-hidden">
+                        <div class="bg-red-600 text-white p-4">
+                            <h3 class="font-bold text-xl">❌ 失敗パターン① 広告費が無駄になる社長の勘違い</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="font-bold mb-2">よくある間違い:</p>
+                            <p class="bg-gray-100 p-4 rounded-md mb-4 text-gray-700">「Meta広告のCPAが高騰...もっと良い動画を作ろう!」 → 30万円で新しい動画を撮影・編集 → CPA変わらず、さらに50万円投入...</p>
+                            <p class="font-bold mb-2">知らないと損する真実:</p>
+                            <p class="bg-green-50 p-4 rounded-md text-green-800">問題は<span class="font-bold">動画の質</span>ではなく<span class="font-bold text-red-600">「切り取りのバリエーション不足」</span>。競合との差別化は「月に何パターンの切り取りでA/Bテストできるか」です。</p>
+                            <div class="mt-4 pt-4 border-t">
+                                <h4 class="font-bold text-[#1A237E]">💡 CBT-Sの解決策:</h4>
+                                <p>1本の動画から<span class="highlight">合計10パターン</span>の戦略的切り取り設計が可能。A/Bテストで勝ちパターンを発見し、<span class="highlight">CPAを40-60%削減</span>します。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Failure Pattern 2 -->
+                    <div class="reason-card border rounded-lg overflow-hidden">
+                        <div class="bg-red-600 text-white p-4">
+                            <h3 class="font-bold text-xl">❌ 失敗パターン② 採用できない人事担当の盲点</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="font-bold mb-2">よくある間違い:</p>
+                            <p class="bg-gray-100 p-4 rounded-md mb-4 text-gray-700">「Indeedに200万使っても応募3件...魅力的な会社紹介動画が必要だ!」 → 100万円で5分の動画制作 → 最後まで見る人0.8%...</p>
+                            <p class="font-bold mb-2">知らないと損する真実:</p>
+                            <p class="bg-green-50 p-4 rounded-md text-green-800">Z世代は5分の丁寧な説明動画を見ません。<span class="font-bold text-red-600">15秒×10本の「刺さる瞬間」</span>の方が記憶に残ります。</p>
+                             <div class="mt-4 pt-4 border-t">
+                                <h4 class="font-bold text-[#1A237E]">💡 CBT-Sの解決策:</h4>
+                                <p>100万円の会社紹介動画を「採用特化15秒×10パターン」に再設計。感情訴求・共感・信頼を喚起し、<span class="highlight">Instagram経由の応募が5.3倍</span>になった実績があります。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 3: Differentiation -->
+        <section id="difference" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">なぜCBT-Sなのか？<br>5つの差別化ポイント</h2>
+                <p class="text-center text-lg max-w-3xl mx-auto mb-12">
+                   他社が絶対にマネできない、私たちの構造的優位性をご紹介します。
+                </p>
+                <div class="space-y-8">
+                    <!-- Point 1 -->
+                    <div class="diff-card md:flex bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="md:w-1/3 bg-cover bg-center" style="background-image: url('https://placehold.co/400x300/e8eaf6/3f51b5?text=戦略設計')"></div>
+                        <div class="md:w-2/3 p-8">
+                            <h3 class="text-2xl font-bold mb-3 text-[#1A237E]">① 「戦略的切り取り設計」という独自メソッド</h3>
+                            <p>「どこをカットしますか？」と聞くのは素人。私たちは<span class="highlight">24の投稿パターンマトリクス</span>から、ターゲット×目的×プラットフォームで最適な切り取りを「提案」します。</p>
+                        </div>
+                    </div>
+                     <!-- Point 2 -->
+                    <div class="diff-card md:flex bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="md:w-2/3 p-8">
+                            <h3 class="text-2xl font-bold mb-3 text-[#1A237E]">② 競合の「価格の罠」を回避する構造</h3>
+                            <p>AIツールで編集時間を90%削減し、効率化できる部分は徹底的に自動化。人間にしかできない<span class="highlight">戦略設計やPDCA</span>にリソースを集中。<span class="highlight">「AIの効率」×「人間の戦略性」</span>で最高品質を実現します。</p>
+                        </div>
+                        <div class="md:w-1/3 bg-cover bg-center" style="background-image: url('https://placehold.co/400x300/fff3e0/ff9800?text=AI+x+人間')"></div>
+                    </div>
+                    <!-- Point 3 -->
+                    <div class="diff-card md:flex bg-white rounded-lg shadow-lg overflow-hidden">
+                         <div class="md:w-1/3 bg-cover bg-center" style="background-image: url('https://placehold.co/400x300/e0f2f1/009688?text=CV獲得特化')"></div>
+                        <div class="md:w-2/3 p-8">
+                            <h3 class="text-2xl font-bold mb-3 text-[#1A237E]">③ 「CV獲得」に特化した唯一の設計</h3>
+                            <p>再生数やいいねは追いかけません。100万再生でも収益は1万円以下。私たちが追うのは<span class="highlight">「問い合わせ」「応募」「売上」</span>のみ。<span class="highlight">CVから逆算した6ステップの設計フロー</span>で成果にコミットします。</p>
+                        </div>
+                    </div>
+                     <!-- Point 4 -->
+                    <div class="diff-card md:flex bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="md:w-2/3 p-8">
+                            <h3 class="text-2xl font-bold mb-3 text-[#1A237E]">④ 「1本から10本」を生み出す資産活用術</h3>
+                            <p>90分のセミナー動画をYouTubeに1本アップして終わりでは資産の無駄遣い。私たちはその1本から<span class="highlight">最低10パターンの戦略的コンテンツ</span>を生み出し、あなたの<span class="highlight">動画資産価値を10倍</span>にします。</p>
+                        </div>
+                        <div class="md:w-1/3 bg-cover bg-center" style="background-image: url('https://placehold.co/400x300/f3e5f5/9c27b0?text=資産価値10倍')"></div>
+                    </div>
+                     <!-- Point 5 -->
+                    <div class="diff-card md:flex bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="md:w-1/3 bg-cover bg-center" style="background-image: url('https://placehold.co/400x300/e3f2fd/2196f3?text=学習サポート')"></div>
+                        <div class="md:w-2/3 p-8">
+                            <h3 class="text-2xl font-bold mb-3 text-[#1A237E]">⑤ 検討段階別の「学習サポート」</h3>
+                            <p>「まだ発注できない」という方にこそ価値を提供します。なぜなら<span class="highlight">知識が高まれば、自然と当社を選んでいただける</span>と確信しているから。完全ガイドや無料診断など、<span class="highlight">検討段階に合わせた無料コンテンツ</span>を多数ご用意しています。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Achievements -->
+        <section id="results" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">唯一の実績だからこそ、<br>詳細に公開します</h2>
+                <p class="text-center text-lg max-w-3xl mx-auto mb-4">
+                    当社は創業間もないため、実績は「自社運用」のみです。ただし、この実績こそが当社の<span class="highlight">「再現性」</span>を証明しています。
+                </p>
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-md text-center font-bold text-lg text-blue-800 mb-12">
+                    💡 この手法、あなたの動画でも再現できます。
+                </div>
+
+                <div class="grid lg:grid-cols-5 items-center gap-8">
+                    <div class="lg:col-span-2 text-center bg-gray-100 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-2">BEFORE</h3>
+                        <p class="text-gray-500 text-sm">2024年1月</p>
+                        <ul class="space-y-3 mt-4 text-left">
+                            <li><strong>フォロワー数:</strong> 120</li>
+                            <li><strong>平均再生数:</strong> 80回/投稿</li>
+                            <li><strong>保存数:</strong> 0</li>
+                            <li><strong>問い合わせ:</strong> 0件/月</li>
+                        </ul>
+                    </div>
+
+                    <div class="text-center hidden lg:block">
+                        <p class="before-after-arrow">➔</p>
+                    </div>
+
+                    <div class="lg:col-span-2 text-center bg-green-100 p-6 rounded-lg border-2 border-green-500">
+                         <h3 class="text-xl font-bold mb-2 text-green-800">AFTER</h3>
+                        <p class="text-gray-500 text-sm">2024年10月</p>
+                         <ul class="space-y-3 mt-4 text-left">
+                            <li><strong>フォロワー数:</strong> <span class="highlight">3,420 (+2,750%)</span></li>
+                            <li><strong>平均再生数:</strong> <span class="highlight">8,400回 (+10,400%)</span></li>
+                            <li><strong>保存数:</strong> <span class="highlight">平均120/投稿</span></li>
+                            <li><strong>問い合わせ:</strong> <span class="highlight">12件/月 (広告費ゼロ)</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                 <div class="mt-12 bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold text-center mb-6">何をしたのか？ (再現可能な5ステップ)</h3>
+                    <ol class="list-decimal list-inside space-y-4 text-lg">
+                        <li><strong class="text-[#1A237E]">分析:</strong> 既存の90分動画を24パターンマトリクスで分析し「刺さるポイント」を特定。</li>
+                        <li><strong class="text-[#1A237E]">切り取り:</strong> 冒頭3秒で「衝撃データ」を提示し、3パターンの尺で制作。</li>
+                        <li><strong class="text-[#1A237E]">最適化:</strong> エンゲージメントが最高の時間帯に投稿し、ハッシュタグを戦略的に設計。</li>
+                        <li><strong class="text-[#1A237E]">A/Bテスト:</strong> サムネイル2パターン、コピー3パターンでテストし、勝ちパターンを横展開。</li>
+                        <li><strong class="text-[#1A237E]">CTA最適化:</strong> プロフィールに「無料診断」を設置し、ストーリーズやハイライトで誘導。</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Action Plan -->
+        <section id="action" class="py-20">
+            <div class="container mx-auto px-6">
+                 <h2 class="section-title">あなたの「今の温度感」に<br>合わせて選んでください</h2>
+                 <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Cold -->
+                    <div id="cold" class="action-card bg-white p-8 rounded-lg shadow-lg text-center border-t-4 border-blue-500">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-2">🧊 Cold</h3>
+                        <p class="text-lg font-bold mb-4">まだ情報収集中の方</p>
+                        <p class="mb-6">「勉強してから決めたい」を大歓迎！まずは無料で知識を深めてください。</p>
+                        <a href="#" class="cta-button bg-blue-600 text-white font-bold py-3 px-6 rounded-lg w-full block">
+                           完全ガイドを無料ダウンロード
+                        </a>
+                        <p class="text-sm mt-2">市場データ・事例・チェックシート付(24P)</p>
+                    </div>
+                    <!-- Warm -->
+                    <div id="warm" class="action-card bg-white p-8 rounded-lg shadow-lg text-center border-t-4 border-orange-500">
+                        <h3 class="text-2xl font-bold text-orange-800 mb-2">🌡️ Warm</h3>
+                        <p class="text-lg font-bold mb-4">興味はあるが、迷っている方</p>
+                        <p class="mb-6">「うちの動画で本当に成果は出るの？」その疑問に無料診断でお答えします。</p>
+                        <a href="#" class="cta-button bg-orange-500 text-white font-bold py-3 px-6 rounded-lg w-full block">
+                            無料動画診断を申し込む (3分)
+                        </a>
+                        <p class="text-sm mt-2">24時間以内に診断レポートを送付</p>
+                    </div>
+                    <!-- Hot -->
+                    <div id="hot" class="action-card bg-white p-8 rounded-lg shadow-lg text-center border-t-4 border-red-500">
+                        <h3 class="text-2xl font-bold text-red-800 mb-2">🔥 Hot</h3>
+                        <p class="text-lg font-bold mb-4">今すぐ始めたい方</p>
+                        <p class="mb-6">「早く成果を出したい」という熱意に応えます。まずは事業の深掘りから始めましょう。</p>
+                        <a href="#" class="cta-button bg-red-600 text-white font-bold py-3 px-6 rounded-lg w-full block">
+                            初回ヒアリングを予約する
+                        </a>
+                        <p class="text-sm mt-2">最適なプランとお見積もりを提示</p>
+                    </div>
+                 </div>
+            </div>
+        </section>
+        
+        <!-- Final CTA -->
+        <footer class="bg-[#1A237E] text-white py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-black mb-6">あなたの次の一歩を決めてください</h2>
+                <div class="bg-white/10 p-6 rounded-lg max-w-3xl mx-auto mb-10">
+                    <p class="text-xl md:text-2xl font-bold">💡 最後に、1つだけ質問させてください:</p>
+                    <p class="mt-4 text-lg">
+                        その90分の動画、このまま埋もれさせますか？<br>
+                        それとも、<span class="text-[#FF9800]">月12件の問い合わせを生む資産</span>に変えますか？
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
+                     <a href="#cold" class="cta-button bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-5 rounded-lg">
+                        <span class="block text-sm">まだ勉強したい</span>
+                        完全ガイドを無料ダウンロード
+                    </a>
+                    <a href="#warm" class="cta-button bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-5 rounded-lg">
+                         <span class="block text-sm">成果が出るか知りたい</span>
+                        無料動画診断に申し込む
+                    </a>
+                     <a href="#hot" class="cta-button bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-5 rounded-lg">
+                         <span class="block text-sm">今すぐ始めたい</span>
+                        初回ヒアリングを予約
+                    </a>
+                </div>
+                
+                <div class="border-t border-white/20 pt-8 max-w-3xl mx-auto">
+                    <p class="font-bold mb-4">追伸:</p>
+                    <p class="text-gray-300">
+                        私たちは「発注してもらうこと」が目的ではありません。「あなたの動画資産の価値を最大化すること」が目的です。だから、もし当社以外の選択肢があなたにとって最適なら、それを正直にお伝えします。まずは、無料の情報だけでも受け取ってみてください。
+                    </p>
+                    <div class="mt-8">
+                        <p>お問い合わせ: info@cbt-s.com | 03-XXXX-XXXX (平日10-18時)</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+</body>
+</html>
