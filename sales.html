@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【CBT-S】WEB戦略でビジネスの可能性を最大化しませんか？</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
+
+        :root {
+            --primary-color: #007BFF;
+            --secondary-color: #2c3e50;
+            --accent-color: #FFC107; /* Gold */
+            --success-color: #28a745; /* Green */
+            --danger-color: #dc3545;
+            --text-color: #343a40;
+            --bg-color: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7; /* 少し行間を詰める */
+        }
+
+        .presentation-container {
+            max-width: 800px; /* A4印刷向けに幅を調整 */
+            margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background-color: var(--white);
+        }
+
+        .slide {
+            padding: 40px 40px; /* パディング調整 */
+            border-bottom: 1px solid #eee;
+            min-height: 250mm; /* A4印刷時の高さを意識 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+        .slide:last-child {
+            border-bottom: none;
+        }
+        
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            margin-top: 0;
+        }
+
+        .slide-title {
+            font-size: 1.8rem; /* 少し小さく */
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 1.2em;
+            padding-bottom: 0.5em;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .text-center { text-align: center; }
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 固定2列 */
+            gap: 1.5em;
+        }
+        .card {
+            background: #fff;
+            padding: 1em; /* 少し小さく */
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary-color);
+        }
+        .card h4 { font-size: 1.1rem; margin-bottom: 0.5em;}
+        .card p { font-size: 0.9rem; }
+
+        /* Title Slide */
+        #slide-1 {
+            background: linear-gradient(135deg, var(--primary-color), #004a99);
+            color: var(--white);
+            text-align: center;
+        }
+        #slide-1 h1 { font-size: 2.5rem; }
+        #slide-1 h2 { font-size: 1.5rem; color: var(--accent-color); }
+        #slide-1 .company-logo {
+            margin-top: 2em;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--success-color);
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            margin-top: 1.5em;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #218838;
+        }
+
+        /* Services List */
+        .service-list {
+             display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+             gap: 1em;
+             margin-top: 1.5em;
+        }
+        .service-item {
+            padding: 1em;
+            background: #f8f9fa;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .service-item h4 {
+            font-size: 1rem;
+            color: var(--primary-color);
+            margin-bottom: 0.3em;
+        }
+        .service-item p {
+            font-size: 0.8rem;
+            margin: 0;
+        }
+
+
+        @media print {
+            body { background-color: var(--white) !important; color: black !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; font-size: 10pt; }
+            .presentation-container { box-shadow: none !important; max-width: 100%; }
+            .slide { height: 277mm; /* A4マイナス余白 */ padding: 10mm; page-break-after: always; opacity: 1 !important; transform: none !important; border: none !important; box-shadow: none !important; }
+            .slide:last-of-type { page-break-after: auto; }
+            .slide-title { font-size: 16pt; }
+            h1 { font-size: 22pt; } h2 { font-size: 18pt; } h3 { font-size: 14pt; } h4 { font-size: 12pt; }
+            p, li { font-size: 10pt; }
+            #slide-1 { background: none !important; color: black !important; }
+            .card, .promise-box { background-color: #f5f5f5 !important; border: 1px solid #ccc; }
+            .cta-button { background-color: #ccc !important; color: black !important; padding: 10px 20px; font-size: 1rem; border: 1px solid black; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="presentation-container">
+
+        <!-- スライド1: 表紙 -->
+        <section class="slide" id="slide-1">
+            <h2>そのWEB戦略、本当に<br><span style="color: var(--accent-color); font-size: 1.5em;">成果</span>に繋がっていますか？</h2>
+            <h1>ビジネスの可能性を最大化する<br>WEB戦略のパートナー</h1>
+            <div class="company-logo" style="margin-top: 5em;">
+                CBT-S株式会社
+            </div>
+        </section>
+
+        <!-- スライド2: 問題提起 -->
+        <section class="slide">
+            <h2 class="slide-title">「WEB活用」多くの企業が抱える悩み</h2>
+            <p class="text-center">一生懸命取り組んでいるはずなのに、なぜか成果が出ない…</p>
+            <div class="grid-2col" style="margin-top: 2em;">
+                <div class="card">
+                    <h4>広告費が無駄になっている気がする…</h4>
+                    <p>クリックされても、問い合わせが増えない。費用対効果が見合わない。</p>
+                </div>
+                <div class="card">
+                    <h4>HPが機能していないのでは…</h4>
+                    <p>アクセスはあるのに、お客様の行動に繋がっていないようだ。</p>
+                </div>
+                <div class="card">
+                    <h4>SNS運用が大変な割に…</h4>
+                    <p>「いいね」は付くけれど、実際の売上には貢献していない。</p>
+                </div>
+                <div class="card">
+                    <h4>何から手をつければいいのか…</h4>
+                    <p>情報が多すぎて、自社に最適な施策が何なのか分からない。</p>
+                </div>
+            </div>
+            <p class="text-center" style="margin-top: 3em; font-size: 1.2rem; font-weight: bold;">その原因は、<span style="color:var(--danger-color); font-size: 1.3em;">「目的」と「手段」のズレ</span>かもしれません。</p>
+        </section>
+
+        <!-- スライド3: CBT-Sの独自性 -->
+        <section class="slide">
+            <h2 class="slide-title">私たちCBT-Sが選ばれる理由</h2>
+            <div class="card" style="border-color: var(--accent-color); background-color: #fffaf0; margin-bottom: 2em;">
+                <h3>【実績】自社を100億円企業へ成長させたWEB戦略</h3>
+                <p>私たちは、机上の空論ではない、<strong>実践に裏付けられたノウハウ</strong>を持っています。LP、HP、SNS、YouTubeなど、あらゆる施策を実行し、自社を年間3,300万PV、売上100億円規模へと成長させました。<br><strong>この成功体験こそが、お客様に価値を提供できる何よりの証拠です。</strong></p>
+            </div>
+            <div class="grid-3col">
+                <div class="card">
+                    <h4>📈 投資学習</h4>
+                    <p>常に最新のWEBトレンドを研究・投資し、その知見をお客様に惜しみなく還元します。</p>
+                </div>
+                <div class="card">
+                    <h4>🤝 正直さ</h4>
+                    <p>お客様の成功を最優先。目的達成に不要な施策は提案しません。</p>
+                </div>
+                <div class="card">
+                    <h4>❤️ 伴走力</h4>
+                    <p>作って終わりではありません。成果が出るまで共に走り続けます。</p>
+                </div>
+            </div>
+            <p class="text-center" style="margin-top: 3em; font-size: 1.2rem; font-weight: bold;">「チャレンジする人を応援し、共に成長する」<br>それが私たちのミッションです。</p>
+        </section>
+
+        <!-- スライド4: ソリューション概要 -->
+        <section class="slide">
+            <h2 class="slide-title">CBT-Sのソリューション</h2>
+            <p class="text-center">お客様の課題と目的に合わせて、最適な解決策をご提案します。</p>
+            <div class="service-list">
+                <div class="service-item">
+                    <h4>LP制作</h4>
+                    <p>問い合わせを最大化</p>
+                </div>
+                <div class="service-item">
+                    <h4>HP制作</h4>
+                    <p>信頼性向上・ブランディング</p>
+                </div>
+                <div class="service-item">
+                    <h4>SNS運用代行</h4>
+                    <p>認知拡大・ファン育成</p>
+                </div>
+                 <div class="service-item">
+                    <h4>HelpNAVi導入</h4>
+                    <p>問い合わせ対応の自動化</p>
+                </div>
+                <div class="service-item">
+                    <h4>動画切り抜き</h4>
+                    <p>動画資産の活用・拡散</p>
+                </div>
+                 <div class="service-item" style="background-color: #e9f5ff;">
+                    <h4>WEB戦略コンサル</h4>
+                    <p><strong>【初回無料】</strong>課題発見と戦略立案</p>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 3em;">
+                <h4>まず「自社の現在地」を知ることから始めませんか？</h4>
+                <p>WEB戦略で失敗する多くの企業は、「目的」と「現在地」が曖昧なまま施策を進めています。私たちはまず、無料コンサルティングを通じて御社の課題を正確に診断し、成功への最短ルートを描きます。</p>
+            </div>
+        </section>
+
+        <!-- スライド5: 次のステップ -->
+        <section class="slide">
+            <h2 class="slide-title">次のステップ：まずは無料相談へ</h2>
+            <div class="text-center">
+                <p style="font-size: 1.3rem;">「何から相談すればいいかわからない」という方も、ご安心ください。</p>
+                
+                <div class="card" style="margin-top: 2em; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    <h3>無料コンサルティング（60分）でできること</h3>
+                    <ul style="text-align: left; padding-left: 1.5em; list-style: '✅ '; margin-bottom: 0;">
+                        <li>現状のWEB活用の課題ヒアリング・整理</li>
+                        <li>ビジネスの目的達成に向けた方向性の明確化</li>
+                        <li>推奨される具体的な施策のご提案（要点メモ付き）</li>
+                    </ul>
+                </div>
+                
+                <p style="margin-top: 3em;">無理な営業は一切いたしません。<br>御社のビジネスを次のステージに進めるためのヒントが、きっと見つかります。</p>
+                
+                <a href="#" class="cta-button">今すぐ無料相談を申し込む</a> 
+                
+                <p style="margin-top: 3em; font-weight: bold;">CBT-S株式会社<br>WEBコンサルタント △△</p>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
