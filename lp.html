@@ -3,19 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>【CBT-S】成果を出すLP制作サービスのご案内</title>
+    <title>【CBT-S】「成果を育てる」LP戦略のご提案</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
 
+        /* --- カラーパレットと基本設定 --- */
         :root {
             --primary-color: #007BFF;
+            --primary-dark: #0056b3;
             --secondary-color: #2c3e50;
-            --accent-color: #FFC107; /* Gold */
-            --success-color: #28a745; /* Green */
-            --danger-color: #dc3545;
+            --accent-color: #FFC107; /* オプション・注目 */
+            --success-color: #28a745; /* SEO/ストック型の色 */
+            --danger-color: #dc3545;  /* 広告/フロー型の色 */
+            --pr-color: #6f42c1; /* プレスリリース用の色 */
             --text-color: #343a40;
+            --text-color-light: #555;
             --bg-color: #f8f9fa;
             --white: #ffffff;
+            --border-color: #dee2e6;
         }
 
         body {
@@ -24,371 +29,879 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        .presentation-container {
-            max-width: 1000px;
+        /* --- スクロールをスムーズに --- */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 960px;
             margin: 0 auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+
+        /* --- ヘッダー（表紙） --- */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--white);
+            padding: 70px 40px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 123, 255, 0.2);
+        }
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin: 0 0 10px 0;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        header p.subtitle {
+            font-size: 1.3rem;
+            margin: 0;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+        header .client-name {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.4);
+            padding-top: 25px;
+            display: inline-block;
+        }
+
+        /* --- セクション共通 --- */
+        section {
             background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+            margin-bottom: 35px;
+            padding: 35px 45px;
         }
 
-        .slide {
-            padding: 50px 50px;
-            border-bottom: 1px solid #eee;
-            min-height: 98vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            box-sizing: border-box;
-        }
-        
-        h1, h2, h3, h4 {
+        h2.section-title {
+            font-size: 2rem;
             font-weight: 700;
-            margin-top: 0;
-        }
-
-        .slide-title {
-            font-size: 2.2rem;
             color: var(--secondary-color);
             text-align: center;
-            margin-bottom: 1.5em;
-            padding-bottom: 0.5em;
-            border-bottom: 4px solid var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 35px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary-color);
+            display: block;
         }
         
-        .text-center { text-align: center; }
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            border-left: 5px solid var(--primary-color);
+            padding-left: 12px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        p, ul, li {
+            font-size: 1rem;
+            color: var(--text-color-light);
+        }
+        strong {
+            color: var(--text-color);
+        }
+
+        /* --- カード --- */
         .grid-2col {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5em;
+            gap: 25px;
         }
         .grid-3col {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1em;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
         }
         .card {
-            background: #fff;
-            padding: 1.5em;
+            background: var(--white);
+            padding: 20px 25px;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--primary-color);
+            border: 1px solid var(--border-color);
+            border-top: 4px solid var(--primary-color);
+        }
+        .card h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-top: 0;
+            margin-bottom: 10px;
         }
 
-        /* Title Slide */
-        #slide-1 {
-            background: linear-gradient(135deg, var(--primary-color), #004a99);
-            color: var(--white);
+        /* --- 強調ボックス --- */
+        .highlight-box {
+            background-color: #f0f7ff;
+            border: 1px solid #b3d7ff;
+            border-left: 5px solid var(--primary-color);
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+        .highlight-box strong {
+            color: var(--primary-dark);
+            font-size: 1.15rem;
+            display: block;
             text-align: center;
         }
-        #slide-1 h1 {
-            font-size: 3.2rem;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        
+        .caution-box {
+            background-color: #fff8f8;
+            border: 1px solid #f5c6cb;
+            border-left: 5px solid var(--danger-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
         }
-        #slide-1 h2 {
-            font-size: 1.8rem;
-            color: var(--accent-color);
+        .caution-box h4 {
+            color: var(--danger-color);
+            margin-top: 0;
         }
 
-        /* Comparison Table */
+        /* --- 比較テーブル --- */
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 2em 0;
+            margin: 25px 0;
+            font-size: 0.95rem;
         }
         .comparison-table th, .comparison-table td {
-            border: 1px solid #ddd;
-            padding: 12px;
+            border: 1px solid var(--border-color);
+            padding: 15px;
             text-align: center;
+            vertical-align: middle;
         }
         .comparison-table th {
             background-color: var(--secondary-color);
             color: var(--white);
+            font-weight: 700;
         }
-        .comparison-table .icon {
-            font-size: 2rem;
+        .comparison-table td.feature-name {
+            text-align: left;
+            font-weight: 700;
+            background-color: #f9f9f9;
         }
         .comparison-table .highlight {
             background-color: #e9f5ff;
+        }
+        .comparison-table .icon-check {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        .comparison-table .icon-cross {
+            color: #aaa;
+            font-size: 1.2rem;
+        }
+        
+        /* --- フロー --- */
+        .flow-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 30px;
+            position: relative;
+        }
+        .flow-list::before {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 10px;
+            bottom: 10px;
+            width: 4px;
+            background-color: var(--primary-color);
+            opacity: 0.2;
+            border-radius: 2px;
+        }
+        .flow-list li {
+            padding-left: 70px;
+            position: relative;
+            margin-bottom: 25px;
+            min-height: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .flow-list .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.3rem;
+            text-align: center;
+            line-height: 50px;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+        }
+        .flow-list strong {
+            font-size: 1.15rem;
+            display: block;
+            color: var(--text-color);
+            font-weight: 700;
+        }
+        .flow-list p {
+            margin: 3px 0 0 0;
+            color: var(--text-color-light);
+        }
+
+        /* --- フッター --- */
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 30px;
+            color: #888;
+            font-size: 0.9rem;
+            background-color: var(--white);
+            border-radius: 12px 12px 0 0;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+        }
+        footer p {
+            margin: 5px 0;
+            color: #888;
+        }
+
+        /* --- テキストユーティリティ --- */
+        .text-center { text-align: center; }
+        .text-large { font-size: 1.15rem; }
+        .text-bold { font-weight: 700; }
+        .text-danger { color: var(--danger-color); }
+        .text-success { color: var(--success-color); }
+        .text-primary { color: var(--primary-dark); }
+        .text-pr { color: var(--pr-color); }
+
+        /* --- プラン・オプション関連のスタイル --- */
+        .basic-plan-card {
+            background: #f0f7ff;
+            border: 2px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 123, 255, 0.1);
+        }
+        .basic-plan-card h3 {
+            font-size: 1.6rem;
+            color: var(--primary-dark);
+            border: none;
+            padding: 0;
+            margin: 0 0 15px 0;
+        }
+        .basic-plan-price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary-dark);
+            margin: 10px 0;
+        }
+        .basic-plan-price span {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-color-light);
+        }
+        .basic-plan-card ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0 0 0;
+            display: inline-block;
+            text-align: left;
+        }
+        .basic-plan-card li {
+            position: relative;
+            padding-left: 30px;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .basic-plan-card li::before {
+            content: '✔';
+            color: var(--success-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .option-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .option-card:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+        .option-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .option-card h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+        }
+        .option-card p {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        .option-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--white);
+            background-color: var(--primary-color);
+            border-radius: 50px;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+        .btn.btn-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+        .btn.btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .option-detail {
+            background-color: #fdfdfd;
+            border-top: 5px solid;
+            padding-bottom: 40px;
+        }
+        .option-detail-price-box {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .option-detail-price-box .label {
+            font-size: 0.9rem;
+            color: var(--text-color-light);
+            margin: 0;
+        }
+        .option-detail-price-box .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin: 5px 0;
+        }
+        .option-detail-price-box .price span {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        #press-option { border-top-color: var(--pr-color); }
+        #press-option h3 { border-left-color: var(--pr-color); color: var(--pr-color); }
+        #seo-option { border-top-color: var(--success-color); }
+        #seo-option h3 { border-left-color: var(--success-color); color: var(--success-color); }
+        #ad-option { border-top-color: var(--danger-color); }
+        #ad-option h3 { border-left-color: var(--danger-color); color: var(--danger-color); }
+
+        /* --- 集客アプローチ比較カード --- */
+        .approach-card {
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background-color: var(--white);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .approach-card h4 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 0 15px 0;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            padding: 0;
+        }
+        .approach-card h4 .icon {
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+        
+        .approach-card .subtitle {
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-align: center;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+
+        .approach-card ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 20px;
+        }
+        .approach-card ul li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+        .approach-card ul li::before {
+            position: absolute;
+            left: 0;
+            top: -2px;
+            font-size: 1.5rem;
             font-weight: bold;
         }
 
-        /* Flow Chart */
-        .flow-chart {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 1em;
-            margin-top: 2em;
+        /* メリット */
+        .approach-card ul.merit li::before {
+            content: '✔';
+            color: var(--success-color);
         }
-        .flow-step {
-            text-align: center;
-            padding: 1em;
-            flex: 1;
-            min-width: 120px;
-            max-width: 150px;
-        }
-        .flow-step .icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-        }
-        .flow-arrow {
-            font-size: 2rem;
-            color: #ccc;
-            align-self: center;
-            margin-top: 2rem;
+        /* デメリット */
+        .approach-card ul.demerit li::before {
+            content: '⚠️';
+            color: var(--accent-color);
         }
 
-        @media print {
-            body { background-color: var(--white) !important; color: black !important; -webkit-print-color-adjust: exact; print-color-adjust: exact;}
-            .presentation-container { box-shadow: none !important; }
-            .slide { height: 250mm; padding: 1cm; page-break-after: always; opacity: 1 !important; transform: none !important; border: none !important; box-shadow: none !important; }
-            #slide-1 { background: none !important; color: black !important; }
+        .recommend-box {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
         }
+        .recommend-box .label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+        .recommend-box .text {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin: 5px 0 0 0;
+        }
+        
+        /* --- ▼▼▼ 「施策選択の罠」カード（追加） ▼▼▼ --- */
+        .trap-card {
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--danger-color);
+            background-color: #fffaf8;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .trap-card h4 {
+            color: var(--danger-color);
+            margin-top: 0;
+            border: none;
+            padding: 0;
+        }
+        .trap-card .result {
+            background: #fbe9e7; 
+            padding: 10px; 
+            border-radius: 5px;
+            font-size: 0.95rem;
+        }
+        /* --- ▲▲▲ 「施策選択の罠」カード（追加） ▲▲▲ --- */
 
     </style>
 </head>
 <body>
 
-    <div class="presentation-container">
+    <div class="container">
 
-        <!-- スライド1: 表紙 -->
-        <section class="slide" id="slide-1">
-            <h2>広告効果を最大化する、ただ一つの答え</h2>
-            <h1>成果を出すLP制作サービス</h1>
-            <div class="company-info" style="margin-top: 3em;">
-                <p>提案者：株式会社CBT-S</p>
-            </div>
-        </section>
+        <header>
+            <p class="subtitle">広告効果を最大化し、成果を「育てる」戦略のご提案</p>
+            <h1>LP制作・運用サービス</h1>
+        </header>
 
-        <!-- スライド2: 問題提起 -->
-        <section class="slide">
-            <h2 class="slide-title">こんなお悩み、ありませんか？</h2>
-            <div class="grid-2col">
-                <div class="card">
-                    <h4>広告費をかけているのに…</h4>
-                    <p>クリックはされるが、一向に問い合わせや購入に繋がらない。</p>
+        <main>
+            <section id="problem">
+                <h2 class="section-title">こんなお悩み、ありませんか？</h2>
+                <div class="grid-2col">
+                    <div class="card" style="border-top-color: var(--danger-color);">
+                        <h4>広告費をかけているのに…</h4>
+                        <p>クリックはされるが、一向に問い合わせや購入に繋がらない。</p>
+                    </div>
+                    <div class="card" style="border-top-color: var(--danger-color);">
+                        <h4>ウェブサイトはあるけれど…</h4>
+                        <p>アクセスはあるものの、どこを改善すれば成果が出るのか分からない。</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <h4>ウェブサイトはあるけれど…</h4>
-                    <p>アクセスはあるものの、どこを改善すれば成果が出るのか分からない。</p>
+            </section>
+            
+            <section id="trap">
+                <h2 class="section-title">多くの企業が陥る「施策選択の罠」</h2>
+                 <p class="text-center text-large">WEBで成果が出ない時、多くの企業が陥るのが、<br><strong>「目的と手段がずれてしまう」</strong>という罠です。</p>
+                 
+                <div class="grid-3col" style="margin-top: 2em;">
+                    <div class="trap-card">
+                        <h4>目的：広告から問合せを増やしたい</h4>
+                        <p><strong>❌ 間違った選択：</strong><br>既存のHP（情報が多い）に広告を流す。</p>
+                        <p class="result"><strong>結果：</strong>訪問者が情報に迷い、問合せ前に離脱してしまう。（穴の空いたバケツ）</p>
+                    </div>
+                    <div class="trap-card">
+                        <h4>目的：企業の信頼性を上げたい</h4>
+                        <p><strong>❌ 間違った選択：</strong><br>広告用のLP（一枚ページ）だけを作る。</p>
+                        <p class="result"><strong>結果：</strong>会社の全体像や理念が伝わらず、長期的なファンは育たない。</p>
+                    </div>
+                    <div class="trap-card">
+                        <h4>目的：とにかく知名度を上げたい</h4>
+                        <p><strong>❌ 間違った選択：</strong><br>問合せボタンだらけのHPを作る。</p>
+                        <p class="result"><strong>結果：</strong>売り込み感が強く、情報を知りたいだけの訪問者が離脱してしまう。</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <h4>CVR（転換率）が…</h4>
-                    <p>ずっと1%未満のままで、改善の糸口が見つからない。</p>
+                <div class="highlight-box" style="margin-top: 2em;">
+                    <strong>HP、LP、SNS…それぞれ得意な役割があります。<br>
+                    この選択を間違えることが、時間とコストが無駄になる最大の原因なのです。</strong>
                 </div>
-                <div class="card">
-                    <h4>新商品をPRしたいが…</h4>
-                    <p>ウェブサイトのどこで紹介すれば最も効果的なのか判断できない。</p>
+            </section>
+            <section id="solution1">
+                <h2 class="section-title">解決策：広告専用の「受け皿」を作る</h2>
+                <p class="text-center text-large">特に「広告の成果が出ない」という課題の解決策は、<br>
+                    広告からの訪問者を「たった一つのゴール」に導く、<strong>専用の受け皿 ＝ LP（ランディングページ）</strong>を用意することです。</p>
+                
+                <h3>ウェブサイト(HP)とLPの決定的な違い</h3>
+                <p class="text-center">例えるなら、ウェブサイトは<strong>「総合デパート」</strong>、LPは<strong>「専門店」</strong>です。</p>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>ウェブサイト（総合デパート）</th>
+                            <th class="highlight">LP（専門店）</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="feature-name"><strong>目的</strong></td>
+                            <td>多くの情報を伝え、回遊させる</td>
+                            <td class="highlight"><strong>一つの行動（CV）を促す</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name"><strong>構成</strong></td>
+                            <td>複数ページ、多くのリンク（穴）</td>
+                            <td class="highlight"><strong>1ページ完結、CVボタン以外のリンクなし</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name"><strong>ゴール</strong></td>
+                            <td>認知向上、理解促進</td>
+                            <td class="highlight"><strong>問い合わせ、購入、資料請求</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="highlight-box">
+                    <strong>広告からの訪問者をデパートに案内してはいけません。<br>
+                        探している商品がすぐに見つかる専門店（LP）にご案内すべきです。</strong>
                 </div>
-            </div>
-            <div class="card text-center" style="margin-top: 2em; background-color: #fffaf0; border-color: var(--danger-color);">
-                <h3>これらはすべて、多くの企業が直面する共通の課題です。</h3>
-            </div>
-        </section>
+            </section>
 
-        <!-- スライド3: 施策選択の罠 -->
-        <section class="slide">
-            <h2 class="slide-title">多くの企業が陥る「施策選択の罠」</h2>
-            <div class="text-center">
-                <p style="font-size: 1.2rem;">WEBで成果が出ない時、多くの企業が陥るのが、<br><strong>「目的と手段がずれてしまう」</strong>という罠です。</p>
-            </div>
-            <div class="grid-3col" style="margin-top: 2em;">
-                <div class="card" style="border-color: var(--danger-color);">
-                    <h4>目的：問い合わせを増やしたい</h4>
-                    <p><strong>❌ 間違った選択：</strong>とりあえずSNS運用を強化する。</p>
-                    <p style="background: #fbe9e7; padding: 10px; border-radius: 5px;"><strong>結果：</strong>「いいね」は増えるが、直接的な問い合わせには繋がりにくい。</p>
+            <section id="simulation">
+                <h2 class="section-title">LP導入がもたらす変化 (シミュレーション)</h2>
+                <p class="text-center">同じ広告費でも、受け皿が違うだけでこれだけの差が生まれます。</p>
+                <div class="grid-2col">
+                    <div>
+                        <h3 style="color: var(--danger-color); border-color: var(--danger-color);">Before：ウェブサイトに誘導</h3>
+                        <table class="comparison-table">
+                            <tr><td class="feature-name">広告費</td><td>100,000円</td></tr>
+                            <tr><td class="feature-name">クリック数</td><td>1,000回</td></tr>
+                            <tr><td class="feature-name">CVR (転換率)</td><td class="text-danger text-bold">0.5%</td></tr>
+                            <tr><td class="feature-name">問い合わせ数</td><td class="text-danger text-bold" style="font-size: 1.3rem;">5件</td></tr>
+                            <tr><td class="feature-name">獲得単価</td><td class="text-danger text-bold">20,000円</td></tr>
+                        </table>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--success-color); border-color: var(--success-color);">After：専用LPに誘導</h3>
+                         <table class="comparison-table">
+                            <tr><td class="feature-name">広告費</td><td>100,000円</td></tr>
+                            <tr><td class="feature-name">クリック数</td><td>1,000回</td></tr>
+                            <tr><td class="feature-name">CVR (転換率)</td><td class="text-success text-bold">3.0%</td></tr>
+                            <tr><td class="feature-name">問い合わせ数</td><td class="text-success text-bold" style="font-size: 1.3rem;">30件</td></tr>
+                            <tr><td class="feature-name">獲得単価</td><td class="text-success text-bold">約 3,333円</td></tr>
+                        </table>
+                    </div>
                 </div>
-                <div class="card" style="border-color: var(--danger-color);">
-                    <h4>目的：企業の信頼性を上げたい</h4>
-                    <p><strong>❌ 間違った選択：</strong>広告用のLP（一枚ページ）だけを作る。</p>
-                    <p style="background: #fbe9e7; padding: 10px; border-radius: 5px;"><strong>結果：</strong>会社の全体像や理念が伝わらず、長期的なファンは育たない。</p>
+                <div class="highlight-box" style="margin-top: 25px; border-color: var(--success-color); background-color: #f2fdf7;">
+                    <strong style="color: var(--success-color);">広告費は同じでも、成果は<span style="font-size: 1.5rem;">6倍</span>に。<br>
+                        1件あたりの獲得コストは<span style="font-size: 1.5rem;">1/6</span>に削減可能です。</strong>
                 </div>
-                <div class="card" style="border-color: var(--danger-color);">
-                    <h4>目的：とにかく知名度を上げたい</h4>
-                    <p><strong>❌ 間違った選択：</strong>問い合わせボタンだらけのHPを作る。</p>
-                    <p style="background: #fbe9e7; padding: 10px; border-radius: 5px;"><strong>結果：</strong>売り込み感が強く、情報を知りたいだけの訪問者が離脱してしまう。</p>
+            </section>
+            
+            <section id="challenge2">
+                <h2 class="section-title">LP完成後に「必ず訪れる」課題</h2>
+                <p class="text-center text-large">しかし、高性能なLP（受け皿）を「作っただけ」で満足してはいませんか？</p>
+                <div class="caution-box">
+                    <h4 class="text-center">「LPを作ったのに、誰にも見てもらえない」</h4>
+                    <p>LPは、あくまで「専門店」です。<br>
+                    お店を作っても、そこへ「お客様を呼び込む活動（＝集客）」をしなければ、誰にも気づかれず、成果はゼロのままです。</p>
                 </div>
-            </div>
-             <div class="card text-center" style="margin-top: 2em; background-color: #e9f5ff;">
-                <h3>それぞれのツールに、得意な役割があります。</h3>
-                <p>HP、LP、SNS…どれも優れたツールですが、目的によって使い分ける必要があります。<br>この選択を間違えることが、時間とコストが無駄になる最大の原因なのです。</p>
-            </div>
-        </section>
+                
+                <h3>成果を出すための「2つの集客アプローチ」</h3>
+                <p class="text-center">LPの成果を最大化するために、貴社が「どちらを選ぶべきか」を判断できるよう、2つの集客アプローチの特長を比較します。</p>
+                
+                <div class="grid-2col" style="margin-top: 25px;">
+                    <div class="approach-card">
+                        <h4 style="color: var(--danger-color);"><span class="icon">⚡️</span>A. フロー型 (Web広告)</h4>
+                        <p class="subtitle">短期決戦・即効性重視</p>
 
-        <!-- スライド4: 本当の問題 -->
-        <section class="slide">
-            <h2 class="slide-title">本当の問題：広告費が垂れ流される「穴の空いたバケツ」</h2>
-            <div class="text-center">
-                <p style="font-size: 1.2rem;">広告費をかけて集めた大切なお客様（水）を、<br>たくさんの情報（穴）があるウェブサイト（バケツ）に注いでいる状態です。</p>
-
-                <div style="margin: 2em 0;">
+                        <ul class="merit">
+                            <li><strong>LP公開と同時に</strong>成果が出る</li>
+                            <li><strong>購買意欲の高い「今すぐ客」</strong>に届く</li>
+                            <li>予算に応じて露出量を調整できる</li>
+                        </ul>
+                        <ul class="demerit">
+                            <li>広告を止めると集客も止まる</li>
+                            <li>継続的にコスト（広告費）がかかる</li>
+                            <li>競合が多いと獲得単価が高騰する</li>
+                        </ul>
+                        <div class="recommend-box">
+                            <div class="label">こんな企業におすすめ</div>
+                            <p class="text">「すぐに問合せ・売上が欲しい」<br>「短期間で認知を広げたい」</p>
+                        </div>
+                    </div>
                     
-                </div>
+                    <div class="approach-card">
+                        <h4 style="color: var(--success-color);"><span class="icon">🏦</span>B. ストック型 (SEO)</h4>
+                        <p class="subtitle">中長期・資産化重視</p>
 
-                <p>訪問者は「会社概要」「ブログ」「採用情報」など、多くの選択肢に気を取られ、本来の目的である「問い合わせ」や「購入」に至る前に離脱してしまいます。<br><br>これが、<strong>広告費をかけても成果が出ない最大の原因</strong>です。</p>
-            </div>
-        </section>
+                        <ul class="merit">
+                            <li>一度上位表示されると<strong>低コストで集客</strong>し続ける</li>
+                            <li>会社の<strong>「Web上の資産」</strong>になる</li>
+                            <li>情報収集中の「潜在客」にも届く</li>
+                        </ul>
+                        <ul class="demerit">
+                            <li>成果が出るまで時間がかかる (数ヶ月〜)</li>
+                            <li>継続的なコンテンツ作成が必要</li>
+                            <li>アルゴリズム変動で順位が変わるリスク</li>
+                        </ul>
+                        <div class="recommend-box">
+                            <div class="label">こんな企業におすすめ</div>
+                            <p class="text">「中長期で安定した集客基盤を作りたい」<br>「広告費に頼らず集客したい」</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-        <!-- スライド5: 解決策 -->
-        <section class="slide">
-            <h2 class="slide-title">解決策：穴のない「専用の受け皿」を作る</h2>
-            <p class="text-center" style="font-size: 1.3rem;">必要なのは、穴の空いたバケツ（ウェブサイト）を修理することではありません。<br>広告からの訪問者のためだけに作られた、穴のない**「専用の受け皿」＝LP（ランディングページ）**を用意することです。</p>
-            <div class="card" style="margin-top: 2em;">
-                <h3>LP（ランディングページ）とは？</h3>
-                <p>LPは、広告をクリックした訪問者を「問い合わせ」「購入」といった<strong>たった一つのゴール</strong>に導くことだけを目的として作られた、1枚の縦長のページです。</p>
-                <ul style="font-weight: bold;">
-                    <li><strong>1つの商品・サービス</strong>に特化</li>
-                    <li><strong>1つの明確なゴール</strong>（例：問い合わせ）</li>
-                    <li><strong>余計なリンク（穴）は一切なし</strong></li>
-                </ul>
-            </div>
-        </section>
-        
-        <!-- スライド6: HP vs LP -->
-        <section class="slide">
-            <h2 class="slide-title">ウェブサイト(HP)とLPの決定的な違い</h2>
-            <p class="text-center">例えるなら、ウェブサイトは**「デパート」**、LPは**「専門店」**です。</p>
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>ウェブサイト（デパート）</th>
-                        <th class="highlight">LP（専門店）</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>目的</strong></td>
-                        <td>多くの情報を伝え、回遊させる</td>
-                        <td class="highlight">一つの行動（CV）を促す</td>
-                    </tr>
-                    <tr>
-                        <td><strong>訪問者</strong></td>
-                        <td>様々な目的を持つ（情報収集、会社概要確認など）</td>
-                        <td class="highlight">特定の目的に興味がある（購入検討など）</td>
-                    </tr>
-                    <tr>
-                        <td><strong>構成</strong></td>
-                        <td>複数ページ、多くのリンク</td>
-                        <td class="highlight">1ページ完結、リンクはCVボタンのみ</td>
-                    </tr>
-                    <tr>
-                        <td><strong>ゴール</strong></td>
-                        <td>認知向上、理解促進</td>
-                        <td class="highlight">問い合わせ、購入、資料請求</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="card text-center" style="background-color: #e9f5ff;">
-                <h3>広告からの訪問者をデパートに案内してはいけません。<br>探している商品がすぐに見つかる専門店（LP）にご案内すべきです。</h3>
-            </div>
-        </section>
 
-        <!-- スライド7: なぜCBT-Sか -->
-        <section class="slide">
-            <h2 class="slide-title">なぜCBT-Sが選ばれるのか</h2>
-            <div class="grid-3col">
-                <div class="card">
-                    <h4>① 実践に裏付けられたノウハウ</h4>
-                    <p>私たちは、自社を年間売上100億円企業に成長させたWEB戦略、特にLPを活用したリード獲得のノウハウをすべてお客様に提供します。</p>
+            <section id="strength">
+                <h2 class="section-title">なぜCBT-Sが「成果」を出せるのか</h2>
+                <div class="grid-3col">
+                    <div class="card">
+                        <h4>① 実践に裏付けられたノハウ</h4>
+                        <p>私たちは、自社を年間売上100億円企業に成長させたWeb戦略、特にLPを活用したリード獲得のノウハウをすべてお客様に提供します。</p>
+                    </div>
+                    <div class="card">
+                        <h4>② 成果を科学する設計力</h4>
+                        <p>人の購買心理に基づいたストーリー構成、ターゲットの目的に合ったデザイン、データ分析に基づく改善提案で、成果を科学的に追求します。</p>
+                    </div>
+                    <div class="card">
+                        <h4>③ 集客まで見据えた伴走型支援</h4>
+                        <p>「作って終わり」ではありません。LP公開後の集客・PR（SEO・広告・プレス）までを一気通貫でサポートし、成果を最大化する伴走型パートナーです。</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <h4>② 成果を科学する設計力</h4>
-                    <p>人の購買心理に基づいたストーリー構成、ABテストを前提としたデザイン、データ分析に基づく改善提案で、成果を科学的に追求します。</p>
-                </div>
-                <div class="card">
-                    <h4>③ 伴走型パートナーシップ</h4>
-                    <p>「作って終わり」ではありません。LP公開後の効果測定を行い、どうすれば更に成果を高められるかを、お客様と一緒になって考え続けます。</p>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- スライド8: 導入効果シミュレーション -->
-        <section class="slide">
-            <h2 class="slide-title">CBT-SのLPがもたらす変化</h2>
-            <p class="text-center">同じ広告費でも、受け皿が違うだけでこれだけの差が生まれます。</p>
-            <div class="grid-2col">
-                <div>
-                    <h4>Before：ウェブサイトに誘導</h4>
-                    <table class="comparison-table">
-                        <tr><th>広告費</th><td>100,000円</td></tr>
-                        <tr><th>クリック数</th><td>1,000回</td></tr>
-                        <tr><th>CVR</th><td style="color:var(--danger-color);">0.5%</td></tr>
-                        <tr><th>問い合わせ数</th><td style="color:var(--danger-color); font-weight:bold;">5件</td></tr>
-                        <tr><th>1件あたりの獲得単価</th><td style="color:var(--danger-color);">20,000円</td></tr>
-                    </table>
-                </div>
-                <div>
-                    <h4>After：LPに誘導</h4>
-                     <table class="comparison-table">
-                        <tr><th>広告費</th><td>100,000円</td></tr>
-                        <tr><th>クリック数</th><td>1,000回</td></tr>
-                        <tr><th>CVR</th><td style="color:var(--success-color);">2.0%</td></tr>
-                        <tr><th>問い合わせ数</th><td style="color:var(--success-color); font-weight:bold;">20件</td></tr>
-                        <tr><th>1件あたりの獲得単価</th><td style="color:var(--success-color);">5,000円</td></tr>
-                    </table>
-                </div>
-            </div>
-            <div class="card text-center" style="margin-top: 1em; background-color: #f2fdf7; border-color: var(--success-color);">
-                <h3>広告費は同じでも、成果は<strong>4倍</strong>に。<br>1件あたりの獲得コストは<strong>1/4</strong>に削減。</h3>
-            </div>
-        </section>
-        
-        <!-- スライド9: 制作プロセス -->
-        <section class="slide">
-            <h2 class="slide-title">制作プロセス</h2>
-            <div class="flow-chart">
-                <div class="flow-step"><div class="icon">💬</div><h4>1. 無料コンサル</h4><p>目的と課題を明確化</p></div>
-                <div class="flow-arrow">➡️</div>
-                <div class="flow-step"><div class="icon">🗺️</div><h4>2. 戦略設計</h4><p>ターゲットと訴求軸を決定</p></div>
-                <div class="flow-arrow">➡️</div>
-                <div class="flow-step"><div class="icon">✍️</div><h4>3. 構成・ライティング</h4><p>成果の出るストーリーを作成</p></div>
-                <div class="flow-arrow">➡️</div>
-                <div class="flow-step"><div class="icon">🎨</div><h4>4. デザイン</h4><p>訴求力の高いデザインを制作</p></div>
-                <div class="flow-arrow">➡️</div>
-                <div class="flow-step"><div class="icon">💻</div><h4>5. 構築・公開</h4><p>LPを構築し、公開</p></div>
-            </div>
-        </section>
-        
-        <!-- スライド10: 料金 -->
-        <section class="slide">
-            <h2 class="slide-title">料金プラン</h2>
-            <div class="card text-center" style="max-width: 500px; margin: 0 auto;">
-                <h3>LP制作プラン</h3>
-                <p style="font-size: 2.5rem; font-weight: bold; color: var(--primary-color); margin: 0.5em 0;">初期費用 15<small>万円～</small></p>
-                <div style="text-align: left; max-width: 400px; margin: 1em auto;">
-                    <strong>サービス内容:</strong>
-                    <ul style="padding-left: 1.5em;">
-                        <li>初回コンサルティング</li>
-                        <li>戦略設計・構成案作成</li>
+            <section id="plans">
+                <h2 class="section-title">サービスプランとオプション</h2>
+                
+                <div class="basic-plan-card">
+                    <h3>基本LP制作プラン</h3>
+                    <p>成果を出すための「受け皿」を戦略的に設計・構築します。</p>
+                    <div class="basic-plan-price">300,000円 <span>(税別)</span></div>
+                    <ul>
+                        <li>LP戦略設計・コンサルティング</li>
+                        <li>ターゲット別デザイン設計</li>
                         <li>コピーライティング</li>
-                        <li>デザイン制作</li>
-                        <li>コーディング・フォーム設置</li>
-                        <li>公開後1ヶ月の効果測定サポート</li>
+                        <li>コーディング・スマートフォン対応</li>
+                        <li>簡易SEO対策（内部施策）</li>
                     </ul>
                 </div>
-                 <small>※オプションで、公開後の継続的な分析・改善サポート（月額）も承ります。</small>
-            </div>
-        </section>
 
-        <!-- スライド11: 次のステップ -->
-        <section class="slide">
-            <h2 class="slide-title">さあ、一緒に始めましょう！</h2>
-            <div class="text-center">
-                <p style="font-size: 1.3rem;">広告費の垂れ流しは、もう終わりにしませんか？</p>
-                <div class="card" style="margin-top: 2em;">
-                    <h3>まずは無料コンサルティングから</h3>
-                    <p>御社のビジネスと現在のWEB活用状況を拝見し、<br>どのようなLPを制作すれば成果が最大化するか、具体的なご提案をさせていただきます。</p>
-                    <p style="font-weight: bold; font-size: 1.2rem;">株式会社CBT-S<br>WEBコンサルタント</p>
+                <h3 style="text-align: center; margin-top: 40px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px;">選べる集客・PRオプション</h3>
+                <p class="text-center">LP公開後の「集客」と「信頼性向上」を強力にサポートします。</p>
+
+                <div class="grid-3col" style="margin-top: 20px;">
+                    <div class="option-card">
+                        <div class="icon" style="color: var(--pr-color);">📣</div>
+                        <h4 class="text-pr">プレスリリース オプション</h4>
+                        <p>LPや新サービスの「信頼性」を<br>第三者メディアの力で高めます。</p>
+                        <div class="option-price text-pr">100,000円 / 1本</div>
+                        <a href="#press-option" class="btn btn-outline" style="color: var(--pr-color); border-color: var(--pr-color);">詳細を見る</a>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="icon" style="color: var(--success-color);">📈</div>
+                        <h4 class="text-success">SEO対策 オプション</h4>
+                        <p>広告費に頼らない「資産」を構築。<br>中長期的な集客を実現します。</p>
+                        <div class="option-price text-success">月額 50,000円～</div>
+                        <a href="#seo-option" class="btn btn-outline" style="color: var(--success-color); border-color: var(--success-color);">詳細を見る</a>
+                    </div>
+                    
+                    <div class="option-card">
+                        <div class="icon" style="color: var(--danger-color);">🎯</div>
+                        <h4 class="text-danger">Web広告 オプション</h4>
+                        <p>LP公開と同時に「即効性」を追求。<br>最短で成果を獲得します。</p>
+                        <div class="option-price text-danger">予算の25%～</div>
+                        <a href="#ad-option" class="btn btn-outline" style="color: var(--danger-color); border-color: var(--danger-color);">詳細を見る</a>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+
+            <section id="press-option" class="option-detail">
+                <h2 class="section-title">【オプションA】プレスリリース原稿作成</h2>
+                <p class="text-center text-large">広告ではない、「第三者の視点」で信頼を獲得する戦略的PR</p>
+
+                <h3>なぜLP公開時にプレスリリースが有効か？</h3>
+                <p>LPや広告は、どうしても「企業からの一方的な宣伝」と見られがちです。しかし、<strong>「PRTimes」のような権威あるニュースメディア</strong>が貴社の新サービス（LP）を「ニュース」として取り上げることで、訪問者はどう感じるでしょうか？</p>
+                <div class="highlight-box">
+                    <strong>「広告」ではなく「ニュース」として扱われることで、<br>サービスの「信頼性」と「権威性」が飛躍的に高まります。</strong>
+                </div>
+
+                <div class="grid-2col">
+                    <div>
+                        <h3>サービス内容</h3>
+                        <ul>
+                            <li>戦略的PRコンサルティング</li>
+                            <li>プレスリリース原稿作成（1本）</li>
+                            <li>配信タイミング・カテゴリの選定アドバイス</li>
+                            <li><strong>【保証】PRTimes 上位Top10（旬＋カテゴリ）</strong></li>
+                        </ul>
+                        <p><small>※配信（出稿）作業自体は貴社にて実施いただきます。</small></p>
+                    </div>
+                    <div class="option-detail-price-box">
+                        <p class="label">オプション価格（1本）</p>
+                        <p class="price text-pr">100,000円 <span>(税別)</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="seo-option" class="option-detail">
+                <h2 class="section-title">【オプションB】SEO対策・資産構築</h2>
+                <p class="text-center text-large">広告費をかけずに集客し続ける「Web上の資産」を構築</p>
+
+                <h3>なぜSEO（記事作成）が必要か？</h3>
+                <p>LPは「今すぐ客」を獲得するのには最適ですが、まだ課題が明確でない「そのうち客」や、情報収集段階の潜在層には届きません。<br>
+                SEO対策（関連記事作成）を行うことで、<strong>貴社のサービスに関連する様々な「お悩みキーワード」で検索する未来のお客様</strong>と接点を持つことができます。</p>
+                <div class="highlight-box" style="border-color: var(--success-color); background-color: #f2fdf7;">
+                    <strong style="color: var(--success-color);">SEOで作成した記事は、24時間365日働き続ける「営業マン」となり、<br>長期的に低コストで集客し続ける「資産」となります。</strong>
+                </div>
+
+                <div class="grid-2col">
+                    <div>
+                        <h3>サービス内容</h3>
+                        <ul>
+                            <li>SEO戦略・キーワード設計</li>
+                            <li>SEO対策記事作成（月4本）</li>
+                            <li>LPへの内部誘導の最適化</li>
+                            <li>月次レポーティングと改善提案</li>
+                        </ul>
+                        <p><small>※6ヶ月からのご契約となります。</small></p>
+                    </div>
+                    <div class="option-detail-price-box">
+                        <p class="label">オプション価格（月額）</p>
+                        <p class="price text-success">50,000円～ <span>(税別)</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ad-option" class="option-detail">
+                <h2 class="section-title">【オプションC】Web広告・即効集客</h2>
+                <p class="text-center text-large">LPの成果を最短で刈り取る、即効性の高い集客戦略</p>
+
+                <h3>なぜ広告運用が必要か？</h3>
+                <p>どれだけ素晴らしいLP（専門店）を作っても、SEOやPRで成果が出るには時間がかかります。LPを公開したその日から、<strong>最も購買意欲の高い「今すぐ客」</strong>にアプローチできる唯一の手段がWeb広告です。</p>
+                <div class="highlight-box" style="border-color: var(--danger-color); background-color: #fff8f8;">
+                    <strong style="color: var(--danger-color);">LP公開と同時に広告を配信することで、<br>即座にトラフィックを生み出し、最短ルートで成果（問合せ・売上）を獲得します。</strong>
+                </div>
+
+                <div class="grid-2col">
+                    <div class="option-detail-price-box">
+                        <p class="label">リスティング広告代行</p>
+                        <p class="price text-danger">広告予算の25%</p>
+                    </div>
+                    <div class="option-detail-price-box">
+                        <p class="label">バナー制作（複数枚）</p>
+                        <p class="price text-danger">20,000円～ <span>(税別)</span></p>
+                    </div>
+                </div>
+                <h3 style="font-size: 1.2rem; text-align: center; margin-top: 30px;">サービス内容</h3>
+                <ul style="max-width: 600px; margin: 0 auto;">
+                    <li>広告戦略（媒体・ターゲット）設計</li>
+                    <li>リスティング広告運用代行（キーワード選定、入札調整、改善）</li>
+                    <li>ディスプレイ広告用バナー制作（複数パターン）</li>
+                    <li>月次レポーティングと改善提案</li>
+                </ul>
+            </section>
+            
+            
+            <section id="flow">
+                <h2 class="section-title">成果創出までのロードマップ</h2>
+                <ol class="flow-list">
+                    <li>
+                        <div class="step-number">1</div>
+                        <strong>ヒアリング・戦略策定</strong>
+                        <p>貴社のビジネス目的、ターゲット（顧客像）、競合状況を徹底的に分析し、成果への最短ルートを設計します。</p>
+                    </li>
+                    <li>
+                        <div class="step-number">2</div>
+                        <strong>構成・デザイン</strong>
+                        <p>戦略に基づき、ターゲットの心理を動かすストーリー構成と、行動を促す「目的志向のデザイン」を作成します。</p>
+                    </li>
+                    <li>
+                        <div class="step-number">3</div>
+                        <strong>構築・公開</strong>
+                        <p>デザインをコーディングし、Web上に公開します。フォーム設置や簡易SEO設定もこの段階で実施します。</p>
+                    </li>
+                    <li>
+                        <div class="step-number">4</div>
+                        <strong>運用・集客 (オプション)</strong>
+                        <p>公開がスタートです。ご選択いただいたオプション（SEO・広告・PR）を実行し、データを分析しながら継続的に成果の最大化を図ります。</p>
+                    </li>
+                </ol>
+            </section>
+
+            <section id="next-step" style="background-color: #f0f7ff;">
+                <h2 class="section-title">さあ、一緒に始めましょう！</h2>
+                <div class="text-center">
+                    <p class="text-large">広告費の垂れ流しは、もう終わりにしませんか？</smap>
+                    <div class="card" style="max-width: 600px; margin: 30px auto; border-top-color: var(--accent-color);">
+                        <h4>まずは無料コンサルティングから</h4>
+                        <p>御社のビジネスと現在のWeb活用状況を拝見し、<br>
+                           どのような戦略を描けば成果が最大化するか、具体的なご提案をさせていただきます。</p>
+                        <p style="font-weight: bold; font-size: 1.2rem; margin-top: 20px;">株式会社CBT-S<br>WEBコンサルティング事業部</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            <p>[東京都千代田区神田練塀町3-6F]</p>
+            <p>&copy; [株式会社シー・ビー・ティ・ソリューションズ] All RightsReserved.</p>
+        </footer>
 
     </div>
 
 </body>
 </html>
-
