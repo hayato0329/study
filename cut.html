@@ -10,8 +10,8 @@
         :root {
             --primary-color: #007BFF;
             --secondary-color: #2c3e50;
-            --accent-color: #FFC107; / Gold /
-            --success-color: #28a745; / Green /
+            --accent-color: #FFC107; /* Gold */
+            --success-color: #28a745; /* Green */
             --danger-color: #dc3545;
             --text-color: #343a40;
             --bg-color: #f8f9fa;
@@ -94,11 +94,11 @@
         .card h3, .card h4 {
             color: var(--primary-color);
         }
-        .card > :last-child {
+        .card > *:last-child {
             margin-bottom: 0;
         }
 
-        / Title Slide /
+        /* Title Slide */
         #slide-1 {
             background: linear-gradient(135deg, #434343, #000000);
             color: var(--white);
@@ -117,7 +117,7 @@
             font-size: 1.2rem;
         }
         
-        / Flow Chart /
+        /* Flow Chart */
         .flow-chart {
             display: flex;
             justify-content: center;
@@ -143,7 +143,7 @@
             margin-top: 2rem;
         }
 
-        / Pricing /
+        /* Pricing */
         .pricing-card {
             border: 1px solid #ddd;
             border-radius: 10px;
@@ -156,7 +156,7 @@
         .pricing-card h3 {
             font-size: 1.5rem;
             color: var(--primary-color);
-            min-height: 3em; / to align headers /
+            min-height: 3em; /* to align headers */
         }
         .pricing-card .price {
             font-size: 2.5rem;
@@ -172,7 +172,7 @@
             list-style: '✅ ';
             padding-left: 1.5em;
             text-align: left;
-            flex-grow: 1; / Pushes the footer text down /
+            flex-grow: 1; /* Pushes the footer text down */
             margin-top: 1em;
             margin-bottom: 1em;
         }
@@ -202,7 +202,7 @@
             font-weight: bold;
         }
         
-        / Buzz Definition /
+        /* Buzz Definition */
         .buzz-table {
             width: 100%;
             border-collapse: collapse;
@@ -219,7 +219,7 @@
             color: white;
         }
         
-        / Pattern List (★修正箇所) /
+        /* Pattern List (★修正箇所) */
         .pattern-card {
              padding: 1.5em;
              border-radius: 8px;
@@ -235,7 +235,7 @@
              font-size: 1.2rem;
          }
 
-        / Case Study /
+        /* Case Study */
         .case-study-card {
              text-align: center;
          }
@@ -324,7 +324,7 @@
 
         <section class="slide" id="slide-4">
             <h2 class="slide-title">“バズ”の科学 1/4：よくある誤解</h2>
-            <p class="text-center" style="font-size: 1.2rem;">多くの企業が陥る“バズ”の罠。それは、「再生数」だけを追いかけてしまうことです。</p>
+            <p class="text-center" style="font-size: 1.2rem;">多くの企業が陥る“バズ”の罠。それは、**「再生数」だけを追いかけてしまうこと**です。</p>
             <div class="grid-2col">
                 <div class="card" style="border-color: var(--danger-color);">
                     <h4 style="color: var(--danger-color);">誤解①：再生数が多い＝成功</h4>
@@ -343,7 +343,7 @@
         
         <section class="slide" id="slide-5">
             <h2 class="slide-title">“バズ”の科学 2/4：CBT-Sの定義</h2>
-            <p class="text-center">私たちは“バズ”を、結果（再生・拡散）と速度（伸び方）の掛け算で定義し、<br>お客様の事業フェーズに合わせて4つの層で成果を可視化します。</p>
+            <p class="text-center">私たちは“バズ”を、**結果（再生・拡散）と速度（伸び方）**の掛け算で定義し、<br>お客様の事業フェーズに合わせて4つの層で成果を可視化します。</p>
             <div class="card text-center" style="margin-bottom: 1.5em; background-color: #e9f5ff;">
                 <p style="font-size: 1.1rem; font-weight: bold;">私たちの定義する“バズ”＝ Velocity(速さ)と相対倍率(基準比)を満たし、保存/共有(行動)が厚く、目的(CV)に資する状態。</p>
             </div>
@@ -399,7 +399,7 @@
              </div>
              <div class="card" style="margin-top: 2em; background-color: #e9f5ff;">
                 <h3>社内公式の策定をご支援します</h3>
-                <p>最終的に、これらの指標から最適なものを組み合わせ、「技術基準・絶対基準・事業基準のうち2つ以上を満たせば“バズ”」といった、御社独自の“社内公式”を策定します。これにより、誰が見ても同じ基準で成果を判断できる体制を構築します。</p>
+                <p>最終的に、これらの指標から最適なものを組み合わせ、「**技術基準・絶対基準・事業基準のうち2つ以上を満たせば“バズ”**」といった、御社独自の“社内公式”を策定します。これにより、誰が見ても同じ基準で成果を判断できる体制を構築します。</p>
              </div>
         </section>
 
@@ -545,7 +545,7 @@
                 </div>
             </div>
             <div class="card" style="margin-top: 2em; background-color: #e9f5ff;">
-                <h3>私たちのサービスは、単なる「動画制作代行」ではありません。<br>データに基づき、共に学び、成果を追求する「マーケティングパートナー」です。</h3>
+                <h3>私たちのサービスは、単なる「動画制作代行」ではありません。<br>データに基づき、共に学び、成果を追求する**「マーケティングパートナー」**です。</h3>
             </div>
         </section>
 
