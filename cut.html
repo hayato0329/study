@@ -62,6 +62,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5em;
+            align-items: stretch;
         }
         .grid-3col {
             display: grid;
@@ -72,7 +73,8 @@
         .grid-4col {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1em;
+            gap: 1.5em;
+            align-items: stretch;
         }
         .grid-5col {
             display: grid;
@@ -86,6 +88,14 @@
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             border-left: 5px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+        }
+        .card h3, .card h4 {
+            color: var(--primary-color);
+        }
+        .card > *:last-child {
+            margin-bottom: 0;
         }
 
         /* Title Slide */
@@ -163,6 +173,8 @@
             padding-left: 1.5em;
             text-align: left;
             flex-grow: 1; /* Pushes the footer text down */
+            margin-top: 1em;
+            margin-bottom: 1em;
         }
         .pricing-card .target {
             display: block;
@@ -207,58 +219,49 @@
             color: white;
         }
         
-        /* Pattern List */
+        /* Pattern List (★修正箇所) */
         .pattern-card {
-             padding: 1em;
+             padding: 1.5em;
              border-radius: 8px;
              background: #f8f9fa;
-        }
+             text-align: center;
+             border-left: 5px solid var(--secondary-color);
+         }
         .pattern-card h4 {
-            color: var(--secondary-color);
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 0.3em;
-            margin-bottom: 0.5em;
-        }
-        .pattern-card ul {
-            font-size: 0.8rem;
-            padding-left: 1em;
-            list-style-type: none;
-        }
-        .pattern-card li {
-            margin-bottom: 0.5em;
-        }
-        .pattern-card li strong {
-            display: block;
-            font-size: 0.9rem;
-        }
+             color: var(--secondary-color);
+             border-bottom: 2px solid var(--secondary-color);
+             padding-bottom: 0.3em;
+             margin-bottom: 0.5em;
+             font-size: 1.2rem;
+         }
 
         /* Case Study */
         .case-study-card {
-            text-align: center;
-        }
+             text-align: center;
+         }
         .case-study-card img {
-            width: 100%;
-            aspect-ratio: 9 / 16;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 0.5em;
-            background-color: #e9ecef;
-        }
+             width: 100%;
+             aspect-ratio: 9 / 16;
+             object-fit: cover;
+             border-radius: 8px;
+             margin-bottom: 0.5em;
+             background-color: #e9ecef;
+         }
         .case-study-card h4 {
-            font-size: 1rem;
-            margin-bottom: 0.2em;
-        }
+             font-size: 1rem;
+             margin-bottom: 0.2em;
+         }
          .case-study-card p {
-            font-size: 0.9rem;
-            color: #6c757d;
-        }
+             font-size: 0.9rem;
+             color: #6c757d;
+         }
 
 
         @media print {
-            body { background-color: var(--white) !important; color: black !important; -webkit-print-color-adjust: exact; print-color-adjust: exact;}
-            .presentation-container { box-shadow: none !important; }
-            .slide { height: 250mm; padding: 1cm; page-break-after: always; opacity: 1 !important; transform: none !important; border: none !important; box-shadow: none !important; }
-            #slide-1 { background: none !important; color: black !important; }
+             body { background-color: var(--white) !important; color: black !important; -webkit-print-color-adjust: exact; print-color-adjust: exact;}
+             .presentation-container { box-shadow: none !important; }
+             .slide { height: 250mm; padding: 1cm; page-break-after: always; opacity: 1 !important; transform: none !important; border: none !important; box-shadow: none !important; }
+             #slide-1 { background: none !important; color: black !important; }
         }
 
     </style>
@@ -267,7 +270,6 @@
 
     <div class="presentation-container">
 
-        <!-- スライド1: 表紙 -->
         <section class="slide" id="slide-1">
             <h2>1本の動画資産から、無限のバズを生み出す。</h2>
             <h1>動画切り抜き・<br>ショート作成サービス</h1>
@@ -276,8 +278,7 @@
             </div>
         </section>
 
-        <!-- スライド2: 問題提起 -->
-        <section class="slide">
+        <section class="slide" id="slide-2">
             <h2 class="slide-title">その動画、"宝の持ち腐れ"になっていませんか？</h2>
             <div class="grid-2col">
                 <div class="card">
@@ -297,40 +298,40 @@
                     <p>内容は良いはずなのに、長くて最後まで見てもらえない。</p>
                 </div>
             </div>
-            <div class="card text-center" style="margin-top: 2em; background-color: #fffaf0; border-color: var(--opportunity-color);">
+            <div class="card text-center" style="margin-top: 2em; background-color: #fffaf0; border-color: var(--accent-color);">
                 <h3>視聴者の8割は「最初の1分」で離脱します</h3>
                 <p>現代の視聴者は非常に忙しく、短い時間で要点を知りたがっています。<br>せっかくの価値ある情報も、<strong>長尺というだけで、その価値が伝わる前に閉じられてしまう</strong>のです。</p>
             </div>
         </section>
 
-        <!-- スライド3: 解決策 -->
-        <section class="slide">
-            <h2 class="slide-title">眠っている動画を「バズる」コンテンツへ</h2>
-            <div class="text-center">
-                <p style="font-size: 1.3rem;">CBT-Sの「動画切り抜き・ショート作成サービス」は、<br><strong>御社の既存の動画資産を、現代の視聴者に響く短尺コンテンツへと再編集</strong>し、<br>その価値を最大化します。</p>
-                
-                <div style="margin: 2em 0;" class="text-center">
-                    
-                </div>
-
+        <section class="slide" id="slide-3">
+            <h2 class="slide-title">動画資産の再活用も、ゼロからの企画も</h2>
+            <p class="text-center" style="font-size: 1.2rem; margin-bottom: 2em;">CBT-Sは、御社の状況に合わせて2つのアプローチで「バズる」コンテンツを制作します。</p>
+            
+            <div class="grid-2col">
                 <div class="card" style="background-color: #e9f5ff;">
-                    <h3>1本の動画から、10本以上のショート動画を制作可能</h3>
-                    <p>私たちが、動画の中に眠る「核心部分」「面白い部分」「共感を呼ぶ部分」を発掘し、TikTokやYouTubeショート、Instagramリールで拡散されやすい、魅力的な縦型ショート動画を制作します。</p>
+                    <h3>① 既存動画の「切り抜き」</h3>
+                    <p>眠っている長尺動画（セミナー、YouTube、インタビュー等）から「核心部分」「共感を呼ぶ部分」を発掘。</p>
+                    <p>TikTokやYouTubeショートで拡散されやすい、魅力的な縦型ショート動画を低コストで大量に制作します。</p>
+                </div>
+                <div class="card" style="background-color: #f0fff4; border-color: var(--success-color);">
+                    <h3 style="color: var(--success-color);">② 新規「ショート企画・撮影」</h3>
+                    <p>動画資産がない場合でも問題ありません。最新のトレンドや時事ネタをキャッチし、ゼロから企画を立案。</p>
+                    <p>弊社の「演技指導」や「撮影場所提供」のリソースも活用し、御社の魅力を引き出すオリジナルショート動画を制作します。</p>
                 </div>
             </div>
         </section>
 
-        <!-- スライド4: バズの定義 1/4 -->
-        <section class="slide">
+        <section class="slide" id="slide-4">
             <h2 class="slide-title">“バズ”の科学 1/4：よくある誤解</h2>
             <p class="text-center" style="font-size: 1.2rem;">多くの企業が陥る“バズ”の罠。それは、**「再生数」だけを追いかけてしまうこと**です。</p>
             <div class="grid-2col">
                 <div class="card" style="border-color: var(--danger-color);">
-                    <h4>誤解①：再生数が多い＝成功</h4>
+                    <h4 style="color: var(--danger-color);">誤解①：再生数が多い＝成功</h4>
                     <p>速度と行動（保存/共有）が伴わない再生は、ただの「流入の偶然」。事業成果には繋がりません。</p>
                 </div>
                 <div class="card" style="border-color: var(--danger-color);">
-                    <h4>誤解②：炎上コメントで伸びた＝成功</h4>
+                    <h4 style="color: var(--danger-color);">誤解②：炎上コメントで伸びた＝成功</h4>
                     <p>ネガティブな反応による拡散は、ブランドを毀損するだけです。</p>
                 </div>
             </div>
@@ -340,8 +341,7 @@
             </div>
         </section>
         
-        <!-- スライド5: バズの定義 2/4 -->
-        <section class="slide">
+        <section class="slide" id="slide-5">
             <h2 class="slide-title">“バズ”の科学 2/4：CBT-Sの定義</h2>
             <p class="text-center">私たちは“バズ”を、**結果（再生・拡散）と速度（伸び方）**の掛け算で定義し、<br>お客様の事業フェーズに合わせて4つの層で成果を可視化します。</p>
             <div class="card text-center" style="margin-bottom: 1.5em; background-color: #e9f5ff;">
@@ -355,8 +355,7 @@
             </div>
         </section>
 
-        <!-- スライド6: バズの定義 3/4 -->
-        <section class="slide">
+        <section class="slide" id="slide-6">
             <h2 class="slide-title">“バズ”の科学 3/4：4層の指標解説</h2>
             <div class="grid-2col">
                  <div class="card">
@@ -378,8 +377,7 @@
             </div>
         </section>
 
-        <!-- スライド7: バズの定義 4/4 -->
-        <section class="slide">
+        <section class="slide" id="slide-7">
              <h2 class="slide-title">“バズ”の科学 4/4：目的別のバズ定義</h2>
              <p class="text-center">最も重要なのは、御社の事業目的（フェーズ）に合わせて、どの指標を重視するかを決定することです。</p>
              <div class="grid-3col">
@@ -405,83 +403,64 @@
              </div>
         </section>
 
-        <!-- スライド8: 24の投稿パターン -->
-        <section class="slide">
-            <h2 class="slide-title">バズを生み出す24の投稿パターン</h2>
-            <p class="text-center">私たちは、成果を最大化するために体系化された24種類の投稿パターンを駆使します。</p>
-            <div class="grid-2col">
+        <section class="slide" id="slide-8">
+            <h2 class="slide-title">バズを生み出す体系化されたパターン</h2>
+            <p class="text-center">私たちは、感覚に頼るのではなく、成果を最大化するために体系化された<br><strong>独自の「勝利パターン」</strong>を駆使します。</p>
+            <div class="grid-4col" style="margin-top: 2em;">
                 <div class="pattern-card">
-                    <h4>A. 王道 (止める・わかる・役立つ)</h4>
-                    <ul>
-                        <li><strong>1. 即時価値:</strong>「〇〇3選」など、得られる価値を0.8秒で提示。</li>
-                        <li><strong>2. 3ミス→1解:</strong> 3つの失敗例から、1つの最短解を提示。</li>
-                        <li><strong>3. 手順固定:</strong>「5ステップ」など、保存したくなる手順を提示。</li>
-                        <li><strong>4. 比較最適化:</strong> A/B/Cの結論を先出しし、理由を最短解説。</li>
-                        <li><strong>5. 結果→手順(2画面):</strong> 完成形を先に見せ、プロセスを後追い。</li>
-                        <li><strong>6. 価格・時間ベンチ:</strong> 目安表を出しっぱなしにし、判断を補助。</li>
-                    </ul>
+                    <h4>A. 王道パターン</h4>
+                    <p style="font-size: 0.9rem;">「3選」「5ステップ」など、視聴者に役立つ即時価値を提示し、保存を促す型です。</p>
                 </div>
                 <div class="pattern-card">
-                    <h4>B. 期待違反 (注意資源を奪う)</h4>
-                    <ul>
-                        <li><strong>7. 逆説コピー:</strong>「毎日より“週1”」など、常識を覆す。</li>
-                        <li><strong>8. やらない宣言:</strong>「〇〇はやりません」とあえて否定。</li>
-                        <li><strong>9. 空白埋めクイズ:</strong>「〇〇に入る言葉は？」と問いかける。</li>
-                        <li><strong>10. 反論先取り:</strong>「〜と思うが、実は…」と先に反論を潰す。</li>
-                        <li><strong>11. テレコ編集:</strong> Before/Afterを1秒ごと交互に見せる。</li>
-                        <li><strong>12. アンチCTA:</strong>「プロフは見ないで」と逆に注意を引く。</li>
-                    </ul>
+                    <h4>B. 期待違反パターン</h4>
+                    <p style="font-size: 0.9rem;">「〇〇はやるな」といった逆説や常識を覆すコピーで、視聴者の注意を強く惹きつける型です。</p>
                 </div>
                 <div class="pattern-card">
-                    <h4>C. 社会性・参加型 (共有を生む)</h4>
-                    <ul>
-                        <li><strong>13. コメント再演:</strong> 実際のコメントを映して動画で回答。</li>
-                        <li><strong>14. 二項選択:</strong>「A派？B派？」と視聴者に選択を促す。</li>
-                        <li><strong>15. 連番ミニ連ドラ:</strong> #1/5のようにシリーズ化し、継続視聴を促す。</li>
-                        <li><strong>16. 診断IF-THEN:</strong>「もし〇なら△」と自分事化させる。</li>
-                        <li><strong>17. ケース×条件表:</strong> マトリクス表で自分に合うものを探させる。</li>
-                        <li><strong>18. 社会的証明:</strong> 実績やお客様の声を短秒で見せ、信頼性を付与。</li>
-                    </ul>
+                    <h4>C. 参加型パターン</h4>
+                    <p style="font-size: 0.9rem;">「A派？B派？」と問いかけたり、コメントを再演したりすることで、エンゲージメントを最大化する型です。</p>
                 </div>
                 <div class="pattern-card">
-                    <h4>D. 奇怪 (安全配慮しつつ刺す)</h4>
-                    <ul>
-                        <li><strong>19. リミナル・ループ:</strong> 最初と最後を繋げ、無限ループさせる。</li>
-                        <li><strong>20. サイレント支配:</strong> 無音→効果音→BGMで音に注目させる。</li>
-                        <li><strong>21. ネガティブスペース:</strong> 画面の一部を空白にし、視線誘導。</li>
-                        <li><strong>22. オフビートカット:</strong> BGMのリズムから少しずらしてカット。</li>
-                        <li><strong>23. 遅延ネタばらし:</strong> 結論を先に見せ、根拠を最後に一瞬で明かす。</li>
-                        <li><strong>24. 反転UI:</strong> テロップを右寄せにするなど、通常の逆のデザイン。</li>
-                    </ul>
+                    <h4>D. 独自性パターン</h4>
+                    <p style="font-size: 0.9rem;">演出や構成に「違和感」を持たせ、ループ視聴やブランドの記憶定着を狙う高度な型です。</p>
                 </div>
+            </div>
+            <div class="card" style="margin-top: 2em; background-color: #e9f5ff;">
+                <h3>「どのパターンを選ぶか」がプロの腕の見せ所です</h3>
+                <p>これらの無数のパターンから、御社の「商材」と「目的」に最も適した企画・編集の型を選定・実行し、成功確率を最大化します。</p>
             </div>
         </section>
 
-        <!-- スライド9: サービスのメリット -->
-        <section class="slide">
-            <h2 class="slide-title">なぜ「切り抜き」が今、最強の武器なのか</h2>
-            <div class="grid-2col">
+        <section class="slide" id="slide-9">
+            <h2 class="slide-title">CBT-Sが選ばれる理由</h2>
+            <div class="grid-3col">
                 <div class="card">
                     <h4>✅ 圧倒的なコストパフォーマンス</h4>
-                    <p>新規撮影は不要。既存の動画を再利用するため、低コストで大量のコンテンツを制作できます。</p>
+                    <p>（切り抜きの場合）新規撮影不要。既存動画の再利用で、低コストで大量のコンテンツを制作できます。</p>
                 </div>
                 <div class="card">
                     <h4>✅ 爆発的な拡散力</h4>
-                    <p>ショート動画はアルゴリズムに乗りやすく、まだ御社を知らない潜在顧客層へ爆発的にリーチできる可能性があります。</p>
+                    <p>ショート動画はアルゴリズムに乗りやすく、まだ御社を知らない潜在顧客層へ爆発的にリーチします。</p>
                 </div>
                 <div class="card">
                     <h4>✅ 顧客エンゲージメント向上</h4>
-                    <p>短く、分かりやすい動画は「いいね」や「コメント」が付きやすく、顧客とのコミュニケーションを活性化させます。</p>
+                    <p>短く分かりやすい動画は「いいね」や「コメント」が付きやすく、顧客とのコミュニケーションを活性化させます。</p>
                 </div>
                 <div class="card">
                     <h4>✅ ブランディング強化</h4>
                     <p>専門的な内容を分かりやすく発信することで、業界の第一人者としてのブランドイメージを確立できます。</p>
                 </div>
+                <div class="card" style="background-color: #e9f5ff;">
+                    <h4>✅ 企画・選定も丸投げOK</h4>
+                    <p>（切り抜きの場合）どこを切り抜くべきか？私たちは「バズる箇所」を選定するプロです。追加費用なしでお任せいただけます。</p>
+                </div>
+                <div class="card" style="background-color: #e9f5ff;">
+                    <h4>✅ 安心の法人パートナー</h4>
+                    <p>個人事業主ではなく、取引実績の豊富な「法人」として契約。コンプライアンスや情報管理も安定・安心です。</p>
+                </div>
             </div>
         </section>
 
-        <!-- スライド10: 制作事例 -->
-        <section class="slide">
+        <section class="slide" id="slide-10">
             <h2 class="slide-title">制作事例のご紹介</h2>
             <p class="text-center">様々な業種・用途でご活用いただいております。</p>
             <div class="grid-5col">
@@ -513,9 +492,8 @@
             </div>
         </section>
 
-        <!-- スライド11: 導入フロー -->
-        <section class="slide">
-            <h2 class="slide-title">導入は驚くほど簡単</h2>
+        <section class="slide" id="slide-11">
+            <h2 class="slide-title">導入は驚くほど簡単（切り抜きプランの場合）</h2>
             <div class="flow-chart">
                 <div class="flow-step">
                     <div class="icon">💻</div>
@@ -546,8 +524,7 @@
             </div>
         </section>
 
-        <!-- NEW スライド12: パートナーシップの約束 -->
-        <section class="slide">
+        <section class="slide" id="slide-12">
             <h2 class="slide-title">成功に向けたパートナーシップ：私たちの約束</h2>
             <div class="text-center">
                 <p style="font-size: 1.1rem;">SNSのアルゴリズムは常に変動し、100%の成功を保証することは誰にもできません。</p>
@@ -556,11 +533,11 @@
             <div class="grid-3col" style="margin-top: 2em;">
                 <div class="card">
                     <h4>① 科学的アプローチ</h4>
-                    <p>感覚に頼るのではなく、ご提案した「バズの定義」と「24の投稿パターン」を駆使し、データに基づいて成功の確率を最大化します。</p>
+                    <p>感覚に頼るのではなく、ご提案した「バズの定義」と「投稿パターン」を駆使し、データに基づいて成功の確率を最大化します。</p>
                 </div>
                 <div class="card">
                     <h4>② 伴走型の改善サイクル</h4>
-                    <p>一度きりの納品で終わるのではなく、投稿後の数値を分析し、次の施策を共に考え、改善を続けます。</p>
+                    <p>一度きりの納品で終わるのではなく、投稿後の数値を分析し、次の施策を共に考え、改善を続けます。（→詳細は次スライド）</p>
                 </div>
                 <div class="card">
                     <h4>③ ノウハウの蓄積</h4>
@@ -572,9 +549,44 @@
             </div>
         </section>
 
-        <!-- スライド13: 料金プラン -->
-        <section class="slide">
-            <h2 class="slide-title">料金プラン</h2>
+        <section class="slide" id="slide-12b">
+            <h2 class="slide-title">データに基づく改善サイクル</h2>
+            <p class="text-center">私たちは「② 伴走型の改善サイクル」を、具体的な分析フレームワークに基づいて実行します。</p>
+            <div class="grid-2col" style="margin-top: 2em;">
+                <div class="card">
+                    <h4>① 主要KPIの監視</h4>
+                    <p>まず、動画の「健康状態」を3つの主要指標で診断します。感覚論ではなく、数値で現状を把握します。</p>
+                    <ul style="padding-left: 1.2em; font-size: 0.9rem;">
+                        <li><strong>視聴維持率</strong><br>
+                            視聴者がどこで離脱しているかを秒単位で特定します。
+                        </li>
+                        <li><strong>おすすめ率</strong><br>
+                            フォロワー外の新しい層に、どれだけ動画が届いているかを評価します。
+                        </li>
+                        <li><strong>エンゲージメント（いいね・コメント・保存）</strong><br>
+                            特に「コメント」と「保存」を重視。アルゴリズムに評価される動画の鍵となります。
+                        </li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>② 具体的な改善ロジック</h4>
+                    <p>数値が低い場合、その原因を特定し、具体的な改善策を実行します。</p>
+                    <ul style="padding-left: 1.2em; font-size: 0.9rem;">
+                        <li><strong>視聴維持率が低い場合</strong><br>
+                            離脱箇所の原因（テンポ、画変わり、テロップ等）を分析し、次回の編集・構成に反映します。
+                        </li>
+                        <li><strong>おすすめ率が低い場合</strong><br>
+                            動画全体の質に課題あり。他の成功動画と比較し、不足要素（冒頭の掴み、企画の強度等）を特定。次の企画会議で改善案を提示します。
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide" id="slide-13">
+            <h2 class="slide-title">サービス・料金プラン</h2>
+            
+            <h3 class="text-center" style="color: var(--primary-color);">プランA：動画切り抜きプラン（既存動画の再編集）</h3>
             <div class="grid-3col">
                 <div class="pricing-card">
                     <h3>お試しプラン<br>【4本パック】</h3>
@@ -592,6 +604,7 @@
                     <ul>
                         <li>切り取り動画 <strong>月8本</strong></li>
                         <li>テロップ・BGM・カット編集</li>
+                        <li><strong>切り抜き箇所選定おまかせ</strong></li>
                         <li>修正1回まで無料</li>
                     </ul>
                     <span class="target">対象: 週2投稿ペースの方</span>
@@ -603,24 +616,40 @@
                     <ul>
                         <li>切り取り動画 <strong>月16本</strong></li>
                         <li>テロップ・BGM・カット編集</li>
+                        <li><strong>切り抜き箇所選定おまかせ</strong></li>
                         <li><strong>サムネイル制作付き</strong></li>
                         <li>修正2回まで無料</li>
                     </ul>
                     <span class="target">対象: 毎日投稿ペース（平日）の方</span>
                 </div>
             </div>
-            <small class="text-center" style="margin-top: 2em;">※元動画の長さや、ご要望によって料金は変動します。まずはお気軽にご相談ください。</small>
+            
+            <h3 class="text-center" style="color: var(--success-color); margin-top: 2.5em; border-top: 2px dashed #ccc; padding-top: 1.5em;">プランB：新規ショート制作プラン（企画・撮影から）</h3>
+            <div class="card" style="border-color: var(--success-color); background-color: #f0fff4;">
+                <p class="text-center" style="font-size: 1.2rem; font-weight: bold; color: var(--success-color);">価格：別途お見積り</p>
+                <p>御社の目的やブランドに合わせて、ゼロからショート動画を企画・撮影・編集します。プランA（切り抜き）との併用も可能です。</p>
+                <ul style="padding-left: 1.2em; columns: 2; gap: 1em;">
+                    <li>企画・構成（トレンド・時事ネタ反映）</li>
+                    <li>撮影（半日〜）</li>
+                    <li><strong>プロによる演技指導</strong></li>
+                    <li><strong>撮影場所提供（弊社オフィス/ラウンジ）</strong></li>
+                    <li>編集・テロップ・BGM</li>
+                    <li><strong>キャスティング支援（野口氏人脈等 ※応相談）</strong></li>
+                    <li><strong>野口氏とのコラボ企画（※応相談）</strong></li>
+                    <li><strong>特典（日本未来会議への出演等 ※応相談）</strong></li>
+                </ul>
+            </div>
+            <small class="text-center" style="margin-top: 1em;">※上記は一例です。ご要望に応じて柔軟にカスタマイズします。まずはお気軽にご相談ください。</small>
         </section>
 
-        <!-- スライド14: 次のステップ -->
-        <section class="slide">
+        <section class="slide" id="slide-14">
             <h2 class="slide-title">さあ、一緒に始めましょう！</h2>
             <div class="text-center">
                 <p style="font-size: 1.3rem;">眠っている動画は、未来の顧客と出会うための「金の卵」です。</p>
                 <p>私たちが、その卵を孵化させるお手伝いをします。</p>
-                <div class="card" style="margin-top: 2em;">
+                <div class="card" style="margin-top: 2em; background-color: #f8f9fa;">
                     <h3>まずは無料相談から</h3>
-                    <p>御社の動画を拝見し、どのようなショート動画が制作可能か、<br>また、それによってどのような効果が期待できるかを具体的にご提案します。</p>
+                    <p>御社の動画を拝見し、どのようなショート動画が制作可能か、<br>また、<strong>ゼロから企画・撮影する場合のプランや期待効果</strong>を具体的にご提案します。</p>
                     <p style="font-weight: bold; font-size: 1.2rem;">株式会社CBT-S<br>WEBコンサルタント</p>
                 </div>
             </div>
@@ -630,4 +659,3 @@
 
 </body>
 </html>
-
