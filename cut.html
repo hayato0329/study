@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>【CBT-S】動画切り抜き・ショート作成サービスのご案内</title>
+    <title>【CBT-S】動画資産活用・運用代行サービス統合提案書</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
 
         :root {
-            --primary-color: #007BFF;
-            --secondary-color: #2c3e50;
+            --primary-color: #0056b3; /* 深めの信頼感ある青 */
+            --secondary-color: #1a252f;
             --accent-color: #FFC107; /* Gold */
-            --success-color: #28a745; /* Green */
-            --danger-color: #dc3545;
-            --text-color: #343a40;
-            --bg-color: #f8f9fa;
+            --highlight-pink: #E91E63; /* TikTok accent (控えめに) */
+            --success-color: #28a745;
+            --text-color: #333333;
+            --bg-color: #f4f6f8;
             --white: #ffffff;
         }
 
@@ -29,23 +29,35 @@
         .presentation-container {
             max-width: 1000px;
             margin: 0 auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
             background-color: var(--white);
         }
 
         .slide {
-            padding: 50px 50px;
-            border-bottom: 1px solid #eee;
-            min-height: 98vh;
+            padding: 60px 60px;
+            border-bottom: 1px solid #e0e0e0;
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             box-sizing: border-box;
+            position: relative;
         }
         
+        /* ページ番号 */
+        .slide::after {
+            content: attr(data-page);
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
         h1, h2, h3, h4 {
             font-weight: 700;
             margin-top: 0;
+            line-height: 1.4;
         }
 
         .slide-title {
@@ -55,13 +67,16 @@
             margin-bottom: 1.5em;
             padding-bottom: 0.5em;
             border-bottom: 4px solid var(--primary-color);
+            display: inline-block;
+            width: 100%;
         }
         
         .text-center { text-align: center; }
+        
         .grid-2col {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5em;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2em;
             align-items: stretch;
         }
         .grid-3col {
@@ -70,773 +85,644 @@
             gap: 1.5em;
             align-items: stretch;
         }
-        .grid-4col {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5em;
-            align-items: stretch;
-        }
-        .grid-5col {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1.5em;
-            align-items: stretch;
-        }
+
+        /* Card Designs */
         .card {
             background: #fff;
-            padding: 1.5em;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--primary-color);
+            padding: 1.8em;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border-left: 6px solid var(--primary-color);
             display: flex;
             flex-direction: column;
+            transition: transform 0.2s ease;
         }
+        
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
         .card h3, .card h4 {
             color: var(--primary-color);
+            margin-bottom: 0.8em;
         }
-        .card > *:last-child {
-            margin-bottom: 0;
+        
+        .card p {
+            font-size: 0.95rem;
+            margin-bottom: 0.5em;
         }
-        /* カード内のリストスタイル */
+
+        /* Lists in Cards */
         .card ul {
             padding-left: 1.2em;
-            margin-top: 0;
-            margin-bottom: 0;
+            margin: 0;
         }
         .card ul li {
             margin-bottom: 0.5em;
-        }
-        .card ul li strong {
-            display: block;
-            color: #333;
+            font-size: 0.95rem;
         }
 
-
-        /* Title Slide */
+        /* Slide 1: Hero */
         #slide-1 {
-            background: linear-gradient(135deg, #434343, #000000);
+            background: linear-gradient(135deg, #004a99, #002a55);
             color: var(--white);
             text-align: center;
         }
         #slide-1 h1 {
-            font-size: 3.2rem;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            font-size: 3.5rem;
+            margin-bottom: 0.5em;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
         #slide-1 h2 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: var(--accent-color);
+            font-weight: 500;
         }
-        #slide-1 .company-info {
+        #slide-1 .sub-text {
             margin-top: 3em;
-            font-size: 1.2rem;
-        }
-        
-        /* Flow Chart */
-        .flow-chart {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 1em;
-        }
-        .flow-step {
-            text-align: center;
-            padding: 1em;
-            flex: 1;
-            min-width: 120px;
-            max-width: 150px;
-        }
-        .flow-step .icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-        }
-        .flow-arrow {
-            font-size: 2rem;
-            color: #ccc;
-            align-self: center;
-            margin-top: 2rem;
+            font-size: 1.1rem;
+            opacity: 0.8;
         }
 
-        /* Pricing (★修正箇所) */
-        .pricing-card {
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 1.5em;
+        /* Slide 2: Market Data */
+        .market-stat {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 1.2em;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 10px;
+        }
+        .market-stat:last-child { border-bottom: none; }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            line-height: 1;
+            white-space: nowrap;
+            min-width: 120px;
+        }
+        .stat-label { font-size: 0.9rem; color: #666; }
+        .stat-source { font-size: 0.7rem; color: #999; display: block; margin-top: 4px; }
+
+        /* Slide 3: B2B/B2C */
+        .target-box {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            height: 100%;
+        }
+        .target-title {
             text-align: center;
-            background-color: #f8f9fa;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+        }
+        .b2b-color { color: var(--primary-color); border-color: var(--primary-color) !important; }
+        .b2c-color { color: var(--highlight-pink); border-color: var(--highlight-pink) !important; }
+
+        /* Method Section Styles */
+        .method-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 1.5em;
+            border-radius: 8px;
+            margin-bottom: 1em;
+        }
+        .method-title {
+            font-weight: bold;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 0.5em;
+        }
+        .icon-lg { font-size: 1.5rem; }
+
+        /* Pricing Table Unified */
+        .pricing-container {
+            display: flex;
+            gap: 1.5em;
+            align-items: stretch;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .plan-column {
+            flex: 1;
+            min-width: 280px;
+            max-width: 320px;
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-        }
-        .pricing-card h3 {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            min-height: 2em; /* to align headers */
-        }
-        .pricing-card.plan-b h3 {
-             color: var(--success-color);
-        }
-        .pricing-card .price {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--secondary-color);
-            margin: 0.5em 0;
-        }
-        .pricing-card .price small {
-            font-size: 1.2rem;
-            font-weight: 400;
-        }
-        /* (ulを削除) */
-        .pricing-card.popular {
-            border: 3px solid var(--primary-color);
-            transform: scale(1.05);
             position: relative;
         }
-        .pricing-card.plan-b.popular {
-             border-color: var(--success-color);
+
+        .plan-column.recommended {
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0, 86, 179, 0.15);
+            transform: scale(1.03);
+            z-index: 2;
         }
-        .pricing-card.popular::before {
-            content: 'おすすめ';
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
+        
+        .plan-column.premium {
+            border: 2px solid var(--secondary-color);
+        }
+
+        .plan-header {
+            padding: 20px;
+            text-align: center;
+            background: #f8f9fa;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .plan-column.recommended .plan-header {
             background: var(--primary-color);
             color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
         }
-        .pricing-card.plan-b.popular::before {
-             background: var(--success-color);
+        .plan-column.premium .plan-header {
+            background: var(--secondary-color);
+            color: white;
         }
-        /* (共通サービス内容のUI) */
-        .plan-notes {
-            font-size: 0.9rem;
-            text-align: left;
-            padding: 1em 1.5em;
-            background-color: #f8f9fa;
-            border-radius: 5px;
-            margin-top: 1.5em;
-        }
-        .plan-notes ul {
-            list-style: '✅ ';
-            padding-left: 1.5em;
-            text-align: left;
-            font-size: 1rem; /* 0.9remから変更 */
-            margin-top: 0.5em;
-            margin-bottom: 0.5em;
-        }
-        /* (オプションのUI) */
-        .option-notes {
-            font-size: 0.9rem;
-            text-align: left;
-            padding: 1em 1.5em;
-            background-color: #fffaf0; /* 色を変更 */
-            border: 1px dashed var(--accent-color);
-            border-radius: 5px;
-            margin-top: 1em;
-        }
-        .option-notes ul {
-            list-style: '💡 ';
-            padding-left: 1.5em;
-            font-size: 0.9rem;
-            margin-top: 0.5em;
-            margin-bottom: 0.5em;
-        }
+
+        .plan-name { font-size: 1.4rem; font-weight: bold; }
+        .plan-price { font-size: 2rem; font-weight: 900; margin: 10px 0; }
+        .plan-price span { font-size: 1rem; font-weight: normal; }
         
-        /* Buzz Definition */
-        .buzz-table {
+        .plan-body {
+            padding: 20px;
+            flex-grow: 1;
+        }
+        .plan-feature {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #eee;
+            font-size: 0.9rem;
+            list-style: none;
+        }
+        .plan-feature:last-child { border-bottom: none; }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .badge-rec { background: var(--accent-color); color: #000; }
+
+        /* Comparison Table */
+        .comp-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 1em 0;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
-        .buzz-table th, .buzz-table td {
+        .comp-table th, .comp-table td {
             border: 1px solid #ddd;
-            padding: 12px 8px;
-            text-align: left;
+            padding: 15px;
+            text-align: center;
+            vertical-align: middle;
         }
-        .buzz-table th {
-            background-color: var(--secondary-color);
+        .comp-table th {
+            background: var(--secondary-color);
             color: white;
-            text-align: center;
         }
-        .buzz-table td:first-child {
+        .comp-table .highlight-cell {
+            background: #e3f2fd;
             font-weight: bold;
-            width: 25%;
-            text-align: center;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
         }
-        
-        /* Pattern List */
-        .pattern-card {
-             padding: 1.5em;
-             border-radius: 8px;
-             background: #f8f9fa;
-             text-align: center;
-             border-left: 5px solid var(--secondary-color);
-         }
-        .pattern-card h4 {
-             color: var(--secondary-color);
-             border-bottom: 2px solid var(--secondary-color);
-             padding-bottom: 0.3em;
-             margin-bottom: 0.5em;
-             font-size: 1.2rem;
-         }
-
-        /* Case Study */
-        .case-study-card {
-             text-align: center;
-         }
-        .case-study-card img {
-             width: 100%;
-             aspect-ratio: 9 / 16;
-             object-fit: cover;
-             border-radius: 8px;
-             margin-bottom: 0.5em;
-             background-color: #e9ecef;
-         }
-        .case-study-card h4 {
-             font-size: 1rem;
-             margin-bottom: 0.2em;
-         }
-         .case-study-card p {
-             font-size: 0.9rem;
-             color: #6c757d;
-         }
-
+        .comp-table .header-tiktok {
+            background: var(--primary-color);
+            position: relative;
+        }
+        .comp-table .header-tiktok::after {
+            content: "推奨";
+            position: absolute;
+            top: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            background: var(--accent-color);
+            color: #000;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
 
         @media print {
-             body { background-color: var(--white) !important; color: black !important; -webkit-print-color-adjust: exact; print-color-adjust: exact;}
-             .presentation-container { box-shadow: none !important; }
-             .slide { height: 250mm; padding: 1cm; page-break-after: always; opacity: 1 !important; transform: none !important; border: none !important; box-shadow: none !important; }
-             #slide-1 { background: none !important; color: black !important; }
+            .slide { page-break-after: always; height: 100vh; }
+            .presentation-container { box-shadow: none; width: 100%; }
+            body { background: white; }
         }
-
     </style>
 </head>
 <body>
 
     <div class="presentation-container">
 
-        <section class="slide" id="slide-1">
-            <h2>1本の動画資産から、無限のバズを生み出す。</h2>
-            <h1>動画切り抜き・<br>ショート作成サービス</h1>
-            <div class="company-info">
-                <p>提案者：株式会社CBT-S</p>
+        <!-- Slide 1: 表紙 -->
+        <section class="slide" id="slide-1" data-page="1">
+            <h2>動画資産の最大化 × ビジネス直結型運用</h2>
+            <h1>CBT-S 動画マーケティング<br>統合ソリューション</h1>
+            <div class="sub-text">
+                <p>「眠っている動画の切り抜き」から「顔出し不要の新規制作」まで。<br>
+                御社のフェーズに合わせた最適な動画戦略をご提案します。</p>
+                <p style="margin-top: 2em; font-weight: bold;">提案者：株式会社CBT-S</p>
             </div>
         </section>
 
-        <section class="slide" id="slide-2">
-            <h2 class="slide-title">その動画、"宝の持ち腐れ"になっていませんか？</h2>
+        <!-- Slide 2: 市場背景とTikTokの優位性 (Why Now) -->
+        <section class="slide" data-page="2">
+            <h2 class="slide-title">なぜ今、ビジネスで「TikTok」なのか？</h2>
+            <p class="text-center" style="margin-bottom: 2em;">「若者の暇つぶし」という認識は過去のものです。<br>現在は<strong>「購買意欲の高い大人」が集まる情報インフラ</strong>へと変貌しています。</p>
+            
+            <!-- 比較セクション -->
+            <div style="background: #f0f4f8; padding: 25px; border-radius: 12px; margin-bottom: 30px;">
+                <h3 style="color: var(--secondary-color); text-align: center; margin-bottom: 20px;">📊 決定的な違い：資産なしでも勝てる理由</h3>
+                <table class="comp-table" style="background: white;">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">比較項目</th>
+                            <th class="header-tiktok" style="width: 35%;">TikTok (ショート動画)</th>
+                            <th style="background: #C13584; width: 20%;">Instagram</th>
+                            <th style="background: #000; width: 20%;">X (Twitter)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>リーチの決まり方</strong></td>
+                            <td class="highlight-cell">動画の面白さ<br><small>※フォロワー数は無関係</small></td>
+                            <td>フォロワーとの関係値<br><small>(既存ファン向け)</small></td>
+                            <td>リツイートの連鎖<br><small>(他力本願)</small></td>
+                        </tr>
+                        <tr>
+                            <td><strong>参入のハードル</strong></td>
+                            <td class="highlight-cell">極めて低い<br><small>初投稿で100万再生も可能</small></td>
+                            <td>高い<br><small>フォロワーを貯めるのに年単位</small></td>
+                            <td>高い<br><small>影響力を持つまで時間がかかる</small></td>
+                        </tr>
+                        <tr>
+                            <td><strong>情報の届き方</strong></td>
+                            <td class="highlight-cell">受動的発見 (フロー型)<br><small>「知らなかった良品」に出会う</small></td>
+                            <td>能動的確認 (ストック型)<br><small>「好きな人」の動向を見る</small></td>
+                            <td>フロー型<br><small>「今」の情報を追う</small></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="text-align: center; font-size: 0.9rem; margin-top: 10px; color: #0056b3; font-weight: bold;">
+                    ➡ TikTokは「フォロワー資産」がゼロの企業でも、コンテンツの質だけで初月から成果が出せる唯一の媒体です。
+                </p>
+            </div>
+
+            <!-- 数字セクション -->
             <div class="grid-2col">
                 <div class="card">
-                    <h4>セミナーやイベントの録画</h4>
-                    <p>開催した当時は価値があったが、今はサーバーの肥やしになっている。</p>
+                    <h4>📈 数字で見る「質」の変化</h4>
+                    <div class="market-stat">
+                        <div class="stat-value">3,300万人</div>
+                        <div class="stat-label">国内月間アクティブユーザー数<br><small>日本の人口の約4人に1人が利用。</small><span class="stat-source">※2024年11月時点（公式ウェビナー等より）</span></div>
+                    </div>
+                    <div class="market-stat">
+                        <div class="stat-value">39.2歳</div>
+                        <div class="stat-label">ユーザー平均年齢の上昇<br><small>30〜50代の利用者が急増中。</small><span class="stat-source">※博報堂「コンテンツファン消費行動調査」他より推計</span></div>
+                    </div>
                 </div>
-                <div class="card">
-                    <h4>過去のYouTube動画</h4>
-                    <p>数十分ある長い動画のため、今となってはほとんど再生されていない。</p>
+
+                <div class="card" style="border-left-color: var(--highlight-pink);">
+                    <h4 style="color: var(--highlight-pink);">💰 圧倒的な「消費意欲」</h4>
+                    <div class="market-stat">
+                        <div class="stat-value">11.6万円</div>
+                        <div class="stat-label">年間コンテンツ支出額 (主要SNS No.1)<br><small>他SNSと比較し、情報にお金を払うユーザーが多い。</small><span class="stat-source">※博報堂「コンテンツファン消費行動調査 2024」</span></div>
+                    </div>
+                    <div class="market-stat">
+                        <div class="stat-value">検索行動</div>
+                        <div class="stat-label">第4の検索エンジン化<br><small>「ググる」より「動画でリアルな口コミを見る」行動が定着。</small></div>
+                    </div>
                 </div>
-                <div class="card">
-                    <h4>社員インタビュー動画</h4>
-                    <p>採用サイトには掲載しているが、SNSなどでは活用できていない。</p>
-                </div>
-                <div class="card">
-                    <h4>製品・サービス説明動画</h4>
-                    <p>内容は良いはずなのに、長くて最後まで見てもらえない。</p>
-                </div>
-            </div>
-            <div class="card text-center" style="margin-top: 2em; background-color: #fffaf0; border-color: var(--accent-color);">
-                <h3>視聴者の8割は「最初の1分」で離脱します</h3>
-                <p>現代の視聴者は非常に忙しく、短い時間で要点を知りたがっています。<br>せっかくの価値ある情報も、<strong>長尺というだけで、その価値が伝わる前に閉じられてしまう</strong>のです。</p>
             </div>
         </section>
 
-        <section class="slide" id="slide-3">
-            <h2 class="slide-title">施策の前に、まず「目的」の整理を</h2>
-            <p class="text-center" style="font-size: 1.2rem; margin-bottom: 2em;">「なぜショート動画をやるのか？」<br>目的が曖昧なまま施策を進めると、必ず失敗します。</p>
-            <div class="grid-2col">
-                <div class="card" style="border-color: var(--danger-color);">
-                    <h4 style="color: var(--danger-color);">よくある失敗：目的と施策のズレ</h4>
-                    <ul>
-                        <li><strong>目的：</strong> 採用（中途）を強化したい</li>
-                        <li><strong>施策：</strong> とにかくバズる「ノウハウ系」動画を投稿してしまう。<br><small>（結果：学生や同業者の認知は取れるが、肝心な転職希望者には響かない）</small></li>
-                    </ul>
-                </div>
-                <div class="card" style="border-color: var(--success-color);">
-                    <h4 style="color: var(--success-color);">私たちのアプローチ：目的から企画を逆算</h4>
-                    <ul>
-                        <li><strong>目的：</strong> 採用（中途）を強化したい</li>
-                        <li><strong>施策：</strong> バズよりも「共感」を生む企画を選定。<br><small>（例：「上司と部下のリアルな会話」「入社3年目の本音」など、ターゲットに刺さる企画を実行）</small></li>
-                    </ul>
-                </div>
-            </div>
-             <div class="card" style="margin-top: 2em; background-color: #e9f5ff;">
-                <h3>私たちは「目的」に最適な「企画手法」を選択します</h3>
-                <p>CBT-Sは、動画制作の前にまず「事業目的（採用か、認知か、リード獲得か）」を明確にし、その目的に最短で到達するための企画とKPI設計を行います。</p>
-             </div>
-        </section>
-
-        <section class="slide" id="slide-4">
-            <h2 class="slide-title">動画資産の再活用も、ゼロからの企画も</h2>
-            <p class="text-center" style="font-size: 1.2rem; margin-bottom: 2em;">CBT-Sは、御社の「目的」に合わせて2つのアプローチで「バズる」コンテンツを制作します。</p>
+        <!-- Slide 3: 課題提起 (Problem) -->
+        <section class="slide" data-page="3">
+            <h2 class="slide-title">動画活用における「2つの壁」</h2>
+            <p class="text-center" style="margin-bottom: 2em; font-size: 1.1rem;">
+                しかし、多くの企業が動画マーケティングで躓くポイントがあります。
+            </p>
             
             <div class="grid-2col">
-                <div class="card" style="background-color: #e9f5ff;">
-                    <h3>① 既存動画の「切り抜き」</h3>
-                    <p>眠っている長尺動画（セミナー、YouTube、インタビュー等）から「核心部分」「共感を呼ぶ部分」を発掘。</p>
-                    <p>TikTokやYouTubeショートで拡散されやすい、魅力的な縦型ショート動画を低コストで大量に制作します。</p>
+                <div class="card" style="border-left-color: var(--secondary-color);">
+                    <h3 style="color: var(--secondary-color);">① 資産の死蔵（あるのに使えない）</h3>
+                    <p><strong>状況：</strong>セミナー録画、YouTubeの長尺動画、採用インタビューなどがHDDに眠っている。</p>
+                    <p><strong>課題：</strong>「長すぎて見られない」。現代の視聴者は1分以上の動画をほとんど見ません。</p>
+                    <hr style="border:0; border-top:1px dashed #ccc; margin: 15px 0;">
+                    <p style="color: var(--primary-color); font-weight: bold;">➡ 解決策：プロによる「切り抜き」</p>
                 </div>
-                <div class="card" style="background-color: #f0fff4; border-color: var(--success-color);">
-                    <h3 style="color: var(--success-color);">② 新規「ショート企画・撮影」</h3>
-                    <p>動画資産がない場合でも問題ありません。目的とターゲットに合わせ、ゼロから企画・台本を作成。</p>
-                    <p>弊社のリソースも活用し、御社の魅力を引き出すオリジナルショート動画をワンストップで制作します。</p>
+
+                <div class="card" style="border-left-color: var(--highlight-pink);">
+                    <h3 style="color: var(--highlight-pink);">② 制作のハードル（作りたいが作れない）</h3>
+                    <p><strong>状況：</strong>これからTikTok等を始めたいが、リソースがない。</p>
+                    <p><strong>課題：</strong>「顔出しできる社員がいない」「企画・撮影の手間が重い」「何が正解かわからない」。</p>
+                    <hr style="border:0; border-top:1px dashed #ccc; margin: 15px 0;">
+                    <p style="color: var(--primary-color); font-weight: bold;">➡ 解決策：顔出し不要の「新規制作」</p>
                 </div>
+            </div>
+
+            <div class="text-center" style="margin-top: 3em; background: #e9f5ff; padding: 1.5em; border-radius: 8px;">
+                <h4 style="margin:0; color: var(--primary-color);">CBT-Sなら、この両方の課題をワンストップで解決できます。</h4>
             </div>
         </section>
 
-        <section class="slide" id="slide-5">
-            <h2 class="slide-title">よくある誤解</h2>
-            <p class="text-center" style="font-size: 1.2rem;">多くの企業が陥る“バズ”の罠。それは、**「再生数」だけを追いかけてしまうこと**です。</p>
-            <div class="grid-3col">
-                <div class="card" style="border-color: var(--danger-color);">
-                    <h4 style="color: var(--danger-color);">誤解①：再生数が多い＝成功</h4>
-                    <p><strong>事例：</strong>「時事ネタ」で100万再生を達成。しかし、集まったのは事業と無関係なユーザーばかりで、売上や採用には一切繋がらなかった。</p>
-                </div>
-                <div class="card" style="border-color: var(--danger-color);">
-                    <h4 style="color: var(--danger-color);">誤解②：炎上コメントで伸びた＝成功</h4>
-                    <p><strong>事例：</strong> 賛否両論あるテーマでコメント欄が活性化。再生数は伸びたが、ネガティブな反応がブランドを毀損し、既存顧客の信頼も失った。</p>
-                </div>
-                <div class="card" style="border-color: var(--danger-color);">
-                    <h4 style="color: var(--danger-color);">誤解③：流行の型＝成功</h4>
-                    <p><strong>事例：</strong> 流行のダンスやフォーマットを真似て投稿。しかし、自社のブランドイメージと合わず、「便乗感が寒い」と逆効果になった。</p>
-                </div>
-            </div>
-            <div class="card" style="margin-top: 2em; background-color: #e9f5ff;">
-                <h3>私たちのゴールは「バズ」ではなく「事業に貢献する情報の発信」です</h3>
-                <p>単なる再生数稼ぎではなく、御社のビジネス目標（認知度向上、リード獲得、採用強化など）に直結する、<strong>質の高い情報発信</strong>を意図的に行うこと。それが私たちの専門性です。</p>
-            </div>
-        </section>
-        
-        <section class="slide" id="slide-6">
-            <h2 class="slide-title">CBT-Sの定義：事業フェーズと指標</h2>
-            <p class="text-center">私たちは、やみくもに再生数を追うのではなく、<br>御社の**事業フェーズ（目的）に合わせた指標**を最重要視します。</p>
-            
-            <div class="grid-3col">
-                <div class="card">
-                    <h4>フェーズ①：認知拡大</h4>
-                    <p><strong>目的：</strong>まず、新しい層に知ってもらいたい。</p>
-                    <p><strong>最重要指標：</strong><br>
-                        ・おすすめ率（フォロワー外へのリーチ）<br>
-                        ・視聴維持率（アルゴリズム評価）</p>
-                    <p><strong>価値：</strong>低コストで潜在顧客層への露出を最大化します。</p>
-                </div>
-                <div class="card" style="border-color: var(--accent-color);">
-                    <h4 style="color: var(--accent-color);">フェーズ②：興味・理解</h4>
-                    <p><strong>目的：</strong>ブランドや製品への理解を深めてほしい。</p>
-                    <p><strong>最重要指標：</strong><br>
-                        ・視聴完了率（最後まで見たか）<br>
-                        ・プロフィール遷移率</p>
-                    <p><strong>価値：</strong>「なんとなく知っている」から「興味がある」状態へ引き上げます。</p>
-                </div>
-                <div class="card" style="border-color: var(--success-color);">
-                    <h4 style="color: var(--success-color);">フェーズ③：行動・比較検討</h4>
-                    <p><strong>目的：</strong>採用応募や、資料請求に繋げたい。</p>
-                    <p><strong>最重要指標：</strong><br>
-                        ・保存率（後で見返す）<br>
-                        ・コメント数（疑問・共感）</p>
-                    <p><strong>価値：</strong>最も熱量の高い「見込み顧客」を可視化し、行動を後押しします。</p>
-                </div>
-            </div>
-        </section>
+        <!-- Slide 4: ターゲット別活用価値 (Value) -->
+        <section class="slide" data-page="4">
+            <h2 class="slide-title">業態別の勝ち筋：御社にとっての価値</h2>
+            <p class="text-center" style="margin-bottom: 2em;">BtoB（企業向け）とBtoC（一般消費者向け）で、狙うべき価値と傾向は異なります。</p>
 
-        <section class="slide" id="slide-7">
-            <h2 class="slide-title">主要指標の解説</h2>
-            <p class="text-center">私たちは、一般的に見落とされがちな「視聴者の本気度」を示す指標を重視して分析・改善を行います。</p>
-            <div class="grid-3col">
-                <div class="card">
-                    <h4>① 視聴維持率</h4>
-                    <p>「どこで離脱されたか」を秒単位で分析します。<br><strong>良い動画の基準：</strong><br>・最初の6秒時点で50%以上<br>・平均視聴維持率30%以上</p>
-                    <p><strong>改善：</strong>離脱箇所を特定し、「カット数を増やす」「テロップの表現を変える」等の改善を行います。</p>
-                </div>
-                <div class="card">
-                    <h4>② おすすめ率</h4>
-                    <p>フォロワー以外にどれだけ届いたかを示す、最も重要な拡散指標です。<br><strong>良い動画の基準：</strong><br>・90%以上</p>
-                    <p><strong>改善：</strong>率が低い場合、動画全体の企画がターゲットに刺さっていない可能性あり。過去の成功動画と比較し、不足要素（パワーワード等）を分析します。</p>
-                </div>
-                <div class="card" style="border-color: var(--accent-color);">
-                    <h4 style="color: var(--accent-color);">③ 保存率（vs いいね率）</h4>
-                    <p>「いいね」は“一瞬の共感”ですが、<strong>「保存」は“後から何度も見返したい”という強いニーズの表れ</strong>です。</p>
-                    <p><strong>狙い：</strong>あえて情報を詰め込み、「保存しないと損」な動画を設計することで、事業貢献（比較検討）に繋がりやすい熱量の高いユーザーを特定します。</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="slide" id="slide-8">
-             <h2 class="slide-title">目的別の戦略設計</h2>
-             <p class="text-center">御社の事業目的に合わせ、私たちがどのように指標を設計し、施策を実行するかをご紹介します。</p>
-             
-             <table class="buzz-table">
-                <thead>
-                    <tr>
-                        <th>事業目的</th>
-                        <th>最重要指標（KPI）</th>
-                        <th>施策（企画）の狙い</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>認知拡大</strong><br>（例：新サービスを知ってほしい）</td>
-                        <td><strong>おすすめ率 90%以上</strong><br>（新規リーチの最大化）</td>
-                        <td>業界の「あるあるネタ」や「時事ネタ」など、ターゲット層が共感・拡散しやすい企画を選定。まずは接点を広く持つことを狙います。</td>
-                    </tr>
-                    <tr>
-                        <td><strong>見込客獲得</strong><br>（例：資料請求・セミナー申込）</td>
-                        <td><strong>保存率 10%以上</strong><br>（比較検討リスト入り）</td>
-                        <td>「〇〇3選」「5つのステップ」など、後から見返したい「ノウハウ系」コンテンツを設計。あえて情報を凝縮し、保存を促します。</td>
-                    </tr>
-                    <tr>
-                        <td><strong>採用・ブランディング</strong><br>（例：自社のファンを増やしたい）</td>
-                        <td><strong>コメント数・共有率</strong><br>（熱量の高い共感）</td>
-                        <td>再生数よりも「共感」を重視。「社員の日常」や「創業ストーリー」など、人間味や理念が伝わる企画で、エンゲージメントの高いファンを育てます。</td>
-                    </tr>
-                </tbody>
-             </table>
-        </section>
-
-        <section class="slide" id="slide-9">
-            <h2 class="slide-title">成果へつなげるための体系化されたパターン</h2>
-            <p class="text-center">私たちは、感覚に頼るのではなく、成果を最大化するために体系化された<br><strong>独自の「勝利パターン」</strong>を駆使します。</p>
-            <div class="grid-4col" style="margin-top: 2em;">
-                <div class="pattern-card">
-                    <h4>A. 王道パターン</h4>
-                    <p style="font-size: 0.9rem;">「3選」「5ステップ」など、視聴者に役立つ即時価値を提示し、保存を促す型です。</p>
-                </div>
-                <div class="pattern-card">
-                    <h4>B. 期待違反パターン</h4>
-                    <p style="font-size: 0.9rem;">「〇〇はやるな」といった逆説や常識を覆すコピーで、視聴者の注意を強く惹きつける型です。</p>
-                </div>
-                <div class="pattern-card">
-                    <h4>C. 参加型パターン</h4>
-                    <p style="font-size: 0.9rem;">「A派？B派？」と問いかけたり、コメントを再演したりすることで、エンゲージメントを最大化する型です。</p>
-                </div>
-                <div class="pattern-card">
-                    <h4>D. 共感型パターン</h4>
-                    <p style="font-size: 0.9rem;">「社員のあるある」や「リアルな会話」など、人間味や理念を伝え、採用やブランディングに繋げる型です。</p>
-                </div>
-            </div>
-            <div class="card" style="margin-top: 2em; background-color: #e9f5ff;">
-                <h3>「どのパターンを選ぶか」がプロの腕の見せ所です</h3>
-                <p>これらの無数のパターンから、御社の「商材」と「目的」に最も適した企画・編集の型を選定・実行し、成功確率を最大化します。</p>
-            </div>
-        </section>
-
-        <section class="slide" id="slide-10">
-            <h2 class="slide-title">CBT-Sが選ばれる理由</h2>
-            <div class="grid-3col">
-                <div class="card">
-                    <h4>✅ 圧倒的なコストパフォーマンス</h4>
-                    <p>（切り抜きの場合）新規撮影不要。既存動画の再利用で、低コストで大量のコンテンツを制作できます。</p>
-                </div>
-                <div class="card">
-                    <h4>✅ 目的起点の企画力</h4>
-                    <p>単なるバズ狙いではなく、「採用」「認知」など御社の事業目的に直結する企画をゼロから設計します。</p>
-                </div>
-                <div class="card">
-                    <h4>✅ ワンストップサポート</h4>
-                    <p>（新規作成の場合）企画・台本・撮影・編集・改善会まで、すべてをワンストップでご支援します。</p>
-                </div>
-                <div class="card">
-                    <h4>✅ 充実のリソース提供</h4>
-                    <p>「演者がいない」「場所がない」といった課題も、弊社のタレント支援や撮影場所提供で解決可能です。</p>
-                </div>
-                <div class="card" style="background-color: #e9f5ff;">
-                    <h4>✅ 企画・選定も丸投げOK</h4>
-                    <p>（切り抜きの場合）どこを切り抜くべきか？私たちは「バズる箇所」を選定するプロです。追加費用なしでお任せいただけます。</p>
-                </div>
-                <div class="card" style="background-color: #e9f5ff;">
-                    <h4>✅ 安心の法人パートナー</h4>
-                    <p>個人事業主ではなく、取引実績の豊富な「法人」として契約。コンプライアンスや情報管理も安定・安心です。</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="slide" id="slide-11">
-            <h2 class="slide-title">制作事例のご紹介</h2>
-            <p class="text-center">様々な業種・用途でご活用いただいております。</p>
-            <div class="grid-5col">
-                <div class="case-study-card">
-                    <img src="https://placehold.co/270x480/2c3e50/ffffff?text=Case+1" alt="制作事例1">
-                    <h4>製造業A社様</h4>
-                    <p>製品紹介動画</p>
-                </div>
-                <div class="case-study-card">
-                     <img src="https://placehold.co/270x480/007BFF/ffffff?text=Case+2" alt="制作事例2">
-                    <h4>IT企業B社様</h4>
-                    <p>セミナー切り抜き</p>
-                </div>
-                <div class="case-study-card">
-                     <img src="https://placehold.co/270x480/28a745/ffffff?text=Case+3" alt="制作事例3">
-                    <h4>コンサルC社様</h4>
-                    <p>ノウハウ解説</p>
-                </div>
-                <div class="case-study-card">
-                     <img src="https://placehold.co/270x480/fd7e14/ffffff?text=Case+4" alt="制作事例4">
-                    <h4>小売店D様</h4>
-                    <p>お客様の声</p>
-                </div>
-                <div class="case-study-card">
-                     <img src="https://placehold.co/270x480/6c757d/ffffff?text=Case+5" alt="制作事例5">
-                    <h4>不動産E社様</h4>
-                    <p>ルームツアー</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="slide" id="slide-12">
-            <h2 class="slide-title">なぜ「6ヶ月契約」なのか？</h2>
-            <p class="text-center" style="font-size: 1.2rem; margin-bottom: 2em;">私たちは、単発の動画制作では「事業貢献」という目的は<br>達成できないと考えているからです。</p>
             <div class="grid-2col">
-                <div class="card" style="border-color: var(--danger-color);">
-                    <h4 style="color: var(--danger-color);">単発・短期契約の罠</h4>
-                    <p>最初の1〜2ヶ月は、御社のアカウントにとっての「勝ちパターン」を模索する重要な時期です。</p>
-                    <p>この時期に成果が出ないからと止めてしまうと、分析データも蓄積されず、投資が無駄になってしまいます。</p>
+                <!-- BtoB -->
+                <div class="target-box">
+                    <div class="target-title b2b-color">To B (対企業・採用)</div>
+                    <div style="margin-bottom: 15px;">
+                        <strong class="b2b-color">■ 主な価値</strong>
+                        <ul style="padding-left: 20px; font-size: 0.95rem;">
+                            <li><strong>採用ブランディング：</strong><br>「どんな社員がいるか」「会社の雰囲気」を可視化し、ミスマッチのない応募者を増やす。</li>
+                            <li><strong>信頼醸成・認知：</strong><br>決裁者に対し「この分野の専門家」として認知させ、リード獲得（指名検索）に繋げる。</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong class="b2b-color">■ 勝ちパターンの傾向</strong>
+                        <ul style="padding-left: 20px; font-size: 0.95rem;">
+                            <li>ノウハウ解説（〇〇の裏技、業界の闇など）</li>
+                            <li>社長・社員のリアルなQ&A</li>
+                            <li>オフィスツアー・密着ドキュメンタリー</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="card" style="border-color: var(--success-color);">
-                    <h4 style="color: var(--success-color);">6ヶ月で積み上げる価値</h4>
-                    <p>継続的な運用（Plan→Do→Check→Action）を通じて、御社独自の「勝ちパターン」を確立します。</p>
+
+                <!-- BtoC -->
+                <div class="target-box">
+                    <div class="target-title b2c-color">To C (対消費者)</div>
+                    <div style="margin-bottom: 15px;">
+                        <strong class="b2c-color">■ 主な価値</strong>
+                        <ul style="padding-left: 20px; font-size: 0.95rem;">
+                            <li><strong>TikTok売れ（直接購買）：</strong><br>使用感やベネフィットを直感的に伝え、衝動買いやECサイトへの遷移を促す。</li>
+                            <li><strong>ファン化・UGC発生：</strong><br>親近感を醸成し、ユーザーが自発的に商品を投稿する（口コミ拡散）流れを作る。</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong class="b2c-color">■ 勝ちパターンの傾向</strong>
+                        <ul style="padding-left: 20px; font-size: 0.95rem;">
+                            <li>Before/After（劇的変化）</li>
+                            <li>検証・実験系（本当に〇〇なのか？）</li>
+                            <li>ASMR・シズル感（視覚・聴覚への刺激）</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: 独自メソッド (Solution/Method) -->
+        <section class="slide" data-page="5">
+            <h2 class="slide-title">なぜ、CBT-Sの動画は「最後まで」見られるのか？</h2>
+            <p class="text-center" style="margin-bottom: 2em;">切り抜きでも新規制作でも、共通して適用する<strong>「視聴維持（Retention）の独自メソッド」</strong>があります。</p>
+
+            <div class="grid-3col">
+                <div class="method-box">
+                    <div class="method-title"><span class="icon-lg">✂️</span> ジェットカット</div>
+                    <p>「えー」「あの」といったフィラーや、0.2秒以上の無音を徹底的に削除。息継ぎの間すら許さないテンポ感で、視聴者の離脱ポイントを物理的に消滅させます。</p>
+                </div>
+                <div class="method-box">
+                    <div class="method-title"><span class="icon-lg">👁️</span> 3秒ルール</div>
+                    <p>人間は同じ映像を3秒見ると飽きます。ズーム、テロップ移動、画像の挿入など、最低でも3秒に1回は「画面上の変化」を起こし、脳を飽きさせません。</p>
+                </div>
+                <div class="method-box">
+                    <div class="method-title"><span class="icon-lg">📝</span> POV（主観）脚本</div>
+                    <p>「企業側の伝えたいこと」ではなく「視聴者の自分事」に変換する台本構成（POV）。自分に関係があると思わせ、冒頭2秒で指を止めさせます。</p>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 1.5em; border-left: 5px solid var(--success-color);">
+                <h4 style="color: var(--success-color); margin-bottom: 0.5em;">顔出しNGでも問題ありません</h4>
+                <p>これらの技術を使えば、実写（顔出し）がなくても、<strong>「画面収録」「資料スライド」「手元撮影」「後ろ姿」</strong>だけで、十分にエンゲージメントの高い動画を作ることが可能です。</p>
+            </div>
+        </section>
+
+        <!-- Slide 6: 6ヶ月ロードマップ (Process/Trust) -->
+        <section class="slide" data-page="6">
+            <h2 class="slide-title">成功への6ヶ月ロードマップ</h2>
+            <p class="text-center" style="margin-bottom: 2em;">単発のバズではなく、「事業貢献（採用・集客）」し続けるアカウント資産を構築します。</p>
+
+            <div style="position: relative; max-width: 800px; margin: 0 auto;">
+                <!-- Timeline Line -->
+                <div style="position: absolute; left: 20px; top: 0; bottom: 0; width: 4px; background: #ddd;"></div>
+
+                <!-- Month 1-2 -->
+                <div style="position: relative; padding-left: 50px; margin-bottom: 30px;">
+                    <div style="position: absolute; left: 6px; top: 0; width: 32px; height: 32px; background: var(--primary-color); color: white; border-radius: 50%; text-align: center; line-height: 32px; font-weight: bold;">1</div>
+                    <h4 style="color: var(--primary-color);">Month 1-2：仮説検証・土台構築</h4>
+                    <div class="card" style="padding: 1em;">
+                        <ul style="padding-left: 1.2em;">
+                            <li><strong>KPI設計：</strong>「再生数」ではなく「保存率」「プロフ遷移率」を指標に設定。</li>
+                            <li><strong>テスト投稿：</strong>A/Bテスト（時間帯、訴求軸）を実施。</li>
+                            <li><strong>Plan Aの場合：</strong>過去動画から反応の良いトピックを発掘。</li>
+                            <li><strong>Plan B/Cの場合：</strong>複数の台本パターンを試し、勝ち筋を探る。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Month 3-4 -->
+                <div style="position: relative; padding-left: 50px; margin-bottom: 30px;">
+                    <div style="position: absolute; left: 6px; top: 0; width: 32px; height: 32px; background: var(--secondary-color); color: white; border-radius: 50%; text-align: center; line-height: 32px; font-weight: bold;">3</div>
+                    <h4 style="color: var(--secondary-color);">Month 3-4：勝ちパターンの確立</h4>
+                    <div class="card" style="padding: 1em; border-left-color: var(--secondary-color);">
+                        <ul style="padding-left: 1.2em;">
+                            <li><strong>フォーマット固定：</strong>数字が出た「型」にリソースを集中投下。</li>
+                            <li><strong>導線強化：</strong>固定コメントやリンク誘導の最適化を行い、CV（問い合わせ）を狙う。</li>
+                            <li><strong>広告連携（任意）：</strong>反応の良い投稿をSpark Adsでブーストし、さらに成果を拡大。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Month 5-6 -->
+                <div style="position: relative; padding-left: 50px;">
+                    <div style="position: absolute; left: 6px; top: 0; width: 32px; height: 32px; background: var(--success-color); color: white; border-radius: 50%; text-align: center; line-height: 32px; font-weight: bold;">5</div>
+                    <h4 style="color: var(--success-color);">Month 5-6：資産化・自走準備</h4>
+                    <div class="card" style="padding: 1em; border-left-color: var(--success-color);">
+                        <ul style="padding-left: 1.2em;">
+                            <li><strong>検索対策（VSEO）：</strong>ハッシュタグとキーワード戦略で、検索流入を確保。</li>
+                            <li><strong>ノウハウ移管：</strong>社内担当者でも運用できるよう、知見を共有。</li>
+                            <li><strong>結果：</strong>フロー情報ではなく、ストック資産としてのアカウント完成。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: 競合比較 (Validation) -->
+        <section class="slide" data-page="7">
+            <h2 class="slide-title">なぜ、CBT-Sなのか（競合比較）</h2>
+            <div style="overflow-x: auto;">
+                <table class="comp-table">
+                    <thead>
+                        <tr>
+                            <th>比較項目</th>
+                            <th>一般的な編集代行</th>
+                            <th>大手広告代理店</th>
+                            <th class="our-col">CBT-S (当社)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>得意領域</strong></td>
+                            <td>指示通りの編集作業</td>
+                            <td>広告運用（予算消化）</td>
+                            <td class="our-col"><strong>ビジネス貢献・資産活用</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>動画活用</strong></td>
+                            <td>× (新規素材が必要)</td>
+                            <td>△ (TVCM等の流用)</td>
+                            <td class="our-col"><strong>◎ (既存/新規 どちらも可)</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>顔出し対応</strong></td>
+                            <td>依存 (クライアント次第)</td>
+                            <td>依存 (タレント起用で高額)</td>
+                            <td class="our-col"><strong>◎ (不要設計 or プロ派遣)</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>編集ロジック</strong></td>
+                            <td>センス任せ</td>
+                            <td>クリエイティブ重視</td>
+                            <td class="our-col"><strong>視聴維持率重視 (分析ベース)</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>費用感</strong></td>
+                            <td>安価だが成果不明</td>
+                            <td>高額 (100万〜/月)</td>
+                            <td class="our-col"><strong>適正 (3.6万〜58万)</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="grid-2col" style="margin-top: 3em;">
+                <div class="card" style="background: #fffaf0; border-left-color: var(--accent-color);">
+                    <h4>🏅 CBT-Sを選ぶメリット</h4>
                     <ul>
-                        <li><strong>1〜2ヶ月目：</strong>仮説検証・データ収集</li>
-                        <li><strong>3〜4ヶ月目：</strong>勝ちパターンの発見・横展開</li>
-                        <li><strong>5〜6ヶ月目：</strong>成果の安定化・ノウハウ蓄積</li>
+                        <li><strong>柔軟性：</strong>予算に合わせて「切り抜き」からスモールスタートが可能。</li>
+                        <li><strong>一貫性：</strong>企画・編集・投稿・分析までワンストップ対応。</li>
+                        <li><strong>信頼性：</strong>個人事業主ではなく法人契約。情報管理も安心。</li>
                     </ul>
                 </div>
             </div>
-             <div class="card" style="margin-top: 2em; background-color: #e9f5ff;">
-                <h3>「運用資産」を共に築き上げます</h3>
-                <p>6ヶ月間、伴走型で改善を続けることで、短期的なバズではなく、継続的に成果を生み出す「アカウント」という名の運用資産を構築します。そのプロセスで得られたノウハウは、すべて御社の資産となります。</p>
-             </div>
         </section>
 
-        <section class="slide" id="slide-13">
-            <h2 class="slide-title">導入は驚くほど簡単（切り抜きプランの場合）</h2>
-            <div class="flow-chart">
-                <div class="flow-step">
-                    <div class="icon">💻</div>
-                    <h4>Step 1<br>素材動画のご提供</h4>
-                    <p>過去の動画ファイルやYouTubeリンクをお送りいただくだけ</p>
+        <!-- Slide 8: 統合料金プラン (Offer) -->
+        <section class="slide" data-page="8">
+            <h2 class="slide-title">統合料金プラン</h2>
+            <p class="text-center" style="margin-bottom: 2em;">御社の状況（素材の有無・予算）に合わせて最適なプランをお選びいただけます。</p>
+
+            <div class="pricing-container">
+                
+                <!-- Plan A: Clipping -->
+                <div class="plan-column">
+                    <div class="plan-header">
+                        <div class="badge">素材活用</div>
+                        <div class="plan-name">Plan A<br>切り抜きプラン</div>
+                        <div class="plan-price">3.6<span>万円/月</span></div>
+                        <small>8本制作 (単価4,500円)</small>
+                    </div>
+                    <div class="plan-body">
+                        <ul>
+                            <li class="plan-feature"><strong>対象：</strong>既存動画がある企業様</li>
+                            <li class="plan-feature">✅ 素材動画の選定・構成</li>
+                            <li class="plan-feature">✅ ジェットカット編集</li>
+                            <li class="plan-feature">✅ フルテロップ・BGM</li>
+                            <li class="plan-feature">✅ サムネイル作成</li>
+                            <li class="plan-feature">※修正1回まで無料</li>
+                        </ul>
+                        <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">眠っているセミナー動画やYouTube動画を、TikTok/Shorts用に最適化して蘇らせます。</p>
+                    </div>
                 </div>
-                <div class="flow-arrow">➡️</div>
-                <div class="flow-step">
-                    <div class="icon">✍️</div>
-                    <h4>Step 2<br>弊社で企画・構成</h4>
-                    <p>目的に合わせ、最も魅力的な部分を私たちが発掘・選定します</p>
+
+                <!-- Plan B: Standard Creation (Recommended) -->
+                <div class="plan-column recommended">
+                    <div class="plan-header">
+                        <div class="badge badge-rec">推奨</div>
+                        <div class="plan-name">Plan B<br>新規制作プラン</div>
+                        <div class="plan-price">36<span>万円/月</span></div>
+                        <small>8本制作 (単価4.5万円)</small>
+                    </div>
+                    <div class="plan-body">
+                        <ul>
+                            <li class="plan-feature"><strong>対象：</strong>ゼロから作りたい企業様</li>
+                            <li class="plan-feature">✅ <strong>企画・POV台本作成</strong></li>
+                            <li class="plan-feature">✅ <strong>顔出し不要フォーマット</strong></li>
+                            <li class="plan-feature">✅ 撮影ディレクション(月1回)</li>
+                            <li class="plan-feature">✅ 高品質編集・運用代行</li>
+                            <li class="plan-feature">✅ 週次レポート・改善会議</li>
+                        </ul>
+                        <p style="font-size: 0.8rem; margin-top: 10px;">顔出し不要でも成果が出るロジックで運用。企画から投稿、分析までワンストップで実施。</p>
+                    </div>
                 </div>
-                <div class="flow-arrow">➡️</div>
-                <div class="flow-step">
-                    <div class="icon">✂️</div>
-                    <h4>Step 3<br>プロが編集・制作</h4>
-                    <p>テロップや効果音を加え、視聴者を惹きつける動画を制作</p>
+
+                <!-- Plan C: Premium (Cast Option) -->
+                <div class="plan-column premium">
+                    <div class="plan-header">
+                        <div class="badge">出演オプション付</div>
+                        <div class="plan-name">Plan C<br>キャスティング</div>
+                        <div class="plan-price">58<span>万円/月</span></div>
+                        <small>8本制作 + 出演</small>
+                    </div>
+                    <div class="plan-body">
+                        <ul>
+                            <li class="plan-feature"><strong>対象：</strong>演者不在・ブランド強化</li>
+                            <li class="plan-feature">✅ <strong>Plan Bの全内容</strong></li>
+                            <li class="plan-feature">✅ <strong>専属MC/ナレーター手配</strong></li>
+                            <li class="plan-feature" style="color: var(--highlight-pink); font-weight:bold;">★ 今田 愛美（Konta Manami）<br><span style="font-size:0.8rem; font-weight:normal;">(SNS売上寄与 月200万の実績)</span></li>
+                            <li class="plan-feature">✅ コメント24時間監視体制</li>
+                        </ul>
+                        <p style="font-size: 0.8rem; margin-top: 10px;">プロの演者を起用し、信頼性と親近感を最大化。元アイドル・実力派タレントのアサインが可能。</p>
+                    </div>
                 </div>
-                <div class="flow-arrow">➡️</div>
-                <div class="flow-step">
-                    <div class="icon">📈</div>
-                    <h4>Step 4<br>納品・分析</h4>
-                    <p>完成した動画を納品。投稿後の数値を分析し、改善に繋げます</p>
-                </div>
+
             </div>
-            <div class="text-center" style="margin-top: 2em;">
-                <p style="font-size: 1.2rem;"><strong>お客様に行っていただくのはStep1のみ。丸投げでOKです！</strong></p>
-            </div>
+            <p class="text-center" style="margin-top: 1em; font-size: 0.9rem;">※全プラン共通：6ヶ月契約推奨（PDCAサイクル確立のため）／広告運用は別途ご相談</p>
         </section>
 
-        <section class="slide" id="slide-14">
-            <h2 class="slide-title">ワンストップ体制（新規ショート作成プランの場合）</h2>
-            <div class="flow-chart">
-                <div class="flow-step">
-                    <div class="icon">🎯</div>
-                    <h4>Step 1<br>上流設計・企画</h4>
-                    <p>御社の事業目的をヒアリングし、ターゲットと企画・台本を設計</p>
-                </div>
-                <div class="flow-arrow">➡️</div>
-                <div class="flow-step">
-                    <div class="icon">🎬</div>
-                    <h4>Step 2<br>撮影・演者支援</h4>
-                    <p>月1回の撮影会を実施。弊社タレントの支援や場所提供も可能</p>
-                </div>
-                <div class="flow-arrow">➡️</div>
-                <div class="flow-step">
-                    <div class="icon">✂️</div>
-                    <h4>Step 3<br>編集・納品</h4>
-                    <p>目的に合わせた最適な編集を行い、初稿（約3週間）を経て納品</p>
-                </div>
-                <div class="flow-arrow">➡️</div>
-                <div class="flow-step">
-                    <div class="icon">📊</div>
-                    <h4>Step 4<br>分析・改善会</h4>
-                    <p>投稿結果を分析し、次回の撮影日に改善提案ミーティングを実施</p>
-                </div>
-            </div>
-            <div class="text-center" style="margin-top: 2em;">
-                <p style="font-size: 1.2rem;"><strong>戦略設計から改善まで、すべてワンストップでサポートします！</strong></p>
-            </div>
-        </section>
-
-        <section class="slide" id="slide-15">
-            <h2 class="slide-title">成功に向けたパートナーシップ：私たちの約束</h2>
+        <!-- Slide 9: CTA (Action) -->
+        <section class="slide" data-page="9" style="background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
+            <h2 class="slide-title">まずは「診断」から始めませんか？</h2>
             <div class="text-center">
-                <p style="font-size: 1.1rem;">SNSのアルゴリズムは常に変動し、100%の成功を保証することは誰にもできません。</p>
-                <p style="font-size: 1.2rem; font-weight: bold;">しかし、私たちは成功の確率を最大化するために、<br>以下の3つをお約束します。</p>
-            </div>
-            <div class="grid-3col" style="margin-top: 2em;">
-                <div class="card">
-                    <h4>① 目的起点の戦略</h4>
-                    <p>感覚に頼るのではなく、「目的」から逆算した「指標定義」と「投稿パターン」を駆使し、データに基づいて成功確率を最大化します。</p>
+                <p style="font-size: 1.3rem; margin-bottom: 2em;">
+                    「手持ちの動画が使えるか知りたい」<br>
+                    「顔出しなしで、どの程度成果が出るかシミュレーションしたい」
+                </p>
+                
+                <div class="card" style="max-width: 600px; margin: 0 auto; border-left: 8px solid var(--primary-color);">
+                    <h3 style="margin-bottom: 0.5em;">無料コンサルティング実施中</h3>
+                    <p style="text-align: left; margin-bottom: 1.5em;">
+                        1時間のオンラインMTGにて、御社の現状（素材の有無、目的）をヒアリングし、
+                        <strong>「Plan A（切り抜き）」でいけるか、「Plan B（新規）」が良いか</strong>、
+                        忖度なしで最適なプランと構成案をご提示します。
+                    </p>
+                    <div style="background: var(--primary-color); color: white; padding: 15px 30px; border-radius: 50px; font-weight: bold; font-size: 1.2rem; display: inline-block; cursor: pointer;">
+                        無料相談を申し込む
+                    </div>
                 </div>
-                <div class="card">
-                    <h4>② 伴走型の改善サイクル</h4>
-                    <p>一度きりの納品で終わるのではなく、投稿後の数値を分析し、次の施策を共に考え、改善を続けます。（→詳細は次スライド）</p>
-                </div>
-                <div class="card">
-                    <h4>③ ノウハウの蓄積</h4>
-                    <p>うまくいった要因、いかなかった要因を正直に共有し、お客様の社内にノウハウが蓄積されることを目指します。</p>
-                </div>
-            </div>
-            <div class="card" style="margin-top: 2em; background-color: #e9f5ff;">
-                <h3>私たちのサービスは、単なる「動画制作代行」ではありません。<br>データに基づき、共に学び、成果を追求する**「マーケティングパートナー」**です。</h3>
-            </div>
-        </section>
 
-        <section class="slide" id="slide-16">
-            <h2 class="slide-title">データに基づく改善サイクル</h2>
-            <p class="text-center">私たちは「② 伴走型の改善サイクル」を、具体的な分析フレームワークに基づいて実行します。</p>
-            <div class="grid-2col" style="margin-top: 2em;">
-                <div class="card">
-                    <h4>① 主要KPIの監視</h4>
-                    <p>まず、動画の「健康状態」を3つの主要指標で診断します。感覚論ではなく、数値で現状を把握します。</p>
-                    <ul style="padding-left: 1.2em; font-size: 0.9rem;">
-                        <li><strong>視聴維持率</strong><br>
-                            視聴者がどこで離脱しているかを秒単位で特定します。
-                        </li>
-                        <li><strong>おすすめ率</strong><br>
-                            フォロワー外の新しい層に、どれだけ動画が届いているかを評価します。
-                        </li>
-                        <li><strong>エンゲージメント（いいね・コメント・保存）</strong><br>
-                            特に「コメント」と「保存」を重視。アルゴリズムに評価される動画の鍵となります。
-                        </li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h4>② 具体的な改善ロジック</h4>
-                    <p>数値が低い場合、その原因を特定し、具体的な改善策を実行します。</p>
-                    <ul style="padding-left: 1.2em; font-size: 0.9rem;">
-                        <li><strong>視聴維持率が低い場合</strong><br>
-                            離脱箇所の原因（テンポ、画変わり、テロップ等）を分析し、次回の編集・構成に反映します。
-                        </li>
-                        <li><strong>おすすめ率が低い場合</strong><br>
-                            動画全体の質に課題あり。他の成功動画と比較し、不足要素（冒頭の掴み、企画の強度等）を特定。次の企画会議で改善案を提示します。
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section class="slide" id="slide-17">
-            <h2 class="slide-title">サービス・料金プラン</h2>
-            
-            <h3 class="text-center" style="color: var(--primary-color);">プランA：動画切り抜きプラン（既存動画の再編集）</h3>
-            <div class="grid-3col">
-                <div class="pricing-card">
-                    <h3>4本プラン (元動画60分)</h3>
-                    <p class="price">20,000<small>円/月</small></p>
-                    <p style="font-weight: bold;">(1本あたり5,000円)</p>
-                    <p style="font-size: 0.9rem; margin-top: auto; padding-top: 1em;">編集元の動画総時間 <strong>60分</strong>まで</p>
-                </div>
-                <div class="pricing-card popular">
-                    <h3>8本プラン (元動画120分)</h3>
-                    <p class="price">36,000<small>円/月</small></p>
-                    <p style="font-weight: bold;">(1本あたり4,500円)</p>
-                    <p style="font-size: 0.9rem; margin-top: auto; padding-top: 1em;">編集元の動画総時間 <strong>120分</strong>まで</p>
-                </div>
-                <div class="pricing-card">
-                    <h3>16本プラン (元動画180分)</h3>
-                    <p class="price">64,000<small>円/月</small></p>
-                    <p style="font-weight: bold;">(1本あたり4,000円)</p>
-                    <p style="font-size: 0.9rem; margin-top: auto; padding-top: 1em;">編集元の動画総時間 <strong>180分</strong>まで</p>
-                </div>
-            </div>
-            <div class="plan-notes">
-                <strong>【プランA 共通サービス内容】</strong>
-                <ul>
-                    <li>事前打ち合わせ（企画設計・切り抜きポイント協議）</li>
-                    <li>カット箇所の提示</li>
-                    <li>テロップ・BGM・カット編集</li>
-                    <li>修正1回まで（2回目以降は別途費用）</li>
-                </ul>
-                ・動画尺：30～90秒 / 納期：素材受領から約2週間（完成品から順次納品）
-            </div>
-            
-            <h3 class="text-center" style="color: var(--success-color); margin-top: 1.5em; border-top: 2px dashed #ccc; padding-top: 1em;">プランB：新規ショート制作プラン（企画・撮影から）</h3>
-            <div class="grid-3col">
-                <div class="pricing-card plan-b">
-                    <h3>4本プラン</h3>
-                    <p class="price">200,000<small>円/月</small></p>
-                    <p style="font-weight: bold; min-height: 1.8em;">(1本あたり50,000円)</p>
-                </div>
-                <div class="pricing-card plan-b popular">
-                    <h3>8本プラン</h3>
-                    <p class="price">360,000<small>円/月</small></p>
-                    <p style="font-weight: bold; min-height: 1.8em;">(1本あたり45,000円)</p>
-                </div>
-                <div class="pricing-card plan-b">
-                    <h3>16本プラン</h3>
-                    <p class="price">ASK</p>
-                    <p style="font-weight: bold; margin-top: 1em; min-height: 1.8em;">（別途お見積り）</p>
-                </div>
-            </div>
-             <div class="plan-notes" style="background-color: #f0fff4;">
-                <strong>【プランB 共通サービス内容】</strong>
-                <ul>
-                    <li>上流設計（目的・ターゲット・ブランドカラー設計）</li>
-                    <li>企画・構成・台本</li>
-                    <li>撮影（月1回・改善会 ※総時間 5～6時間を想定）</li>
-                    <li>編集（テロップ・BGM）</li>
-                    <li>タレント支援（当社より演者支援）</li>
-                    <li>修正2回まで（3回目以降は別途費用）</li>
-                </ul>
-                ・納期：企画決定から約1ヶ月（初稿確認は3週間）
-            </div>
-            <div class="option-notes">
-                <strong>【プランB その他オプション（価格：ASK）】</strong>
-                <ul>
-                    <li>プロによる演技指導</li>
-                    <li>撮影単体（編集なし）</li>
-                    <li>撮影場所提供（弊社オフィス/ラウンジ）</li>
-                    <li>キャスティング支援（野口氏人脈等 ※応相談）</li>
-                    <li>野口氏とのコラボ企画（※応相談）</li>
-                    <li>特典（日本未来会議への出演等 ※応相談）</li>
-                </ul>
-            </div>
-
-            <h3 class="text-center" style="color: var(--secondary-color); margin-top: 1.5em; border-top: 2px dashed #ccc; padding-top: 1em;">プランC：SNSアカウント運用代行</h3>
-            <div class="card" style="border-color: var(--secondary-color);">
-                <p class="text-center" style="font-size: 1.2rem; font-weight: bold; color: var(--secondary-color);">価格：別途ご相談</p>
-                <p class="text-center" style="margin-bottom: 0;">投稿作業、コメント対応、日々の詳細な分析など、アカウント運用全体をワンストップで代行します。<br>お客様の工数を最小限に抑え、成果を最大化します。</p>
-            </div>
-
-            <small class="text-center" style="margin-top: 1em;">※プランA、Bは6ヶ月契約となります。 ※納期短縮は別途費用にて承ります。</small>
-        </section>
-
-        <section class="slide" id="slide-18">
-            <h2 class="slide-title">さあ、一緒に始めましょう！</h2>
-            <div class="text-center">
-                <p style="font-size: 1.3rem;">眠っている動画は、未来の顧客と出会うための「金の卵」です。</p>
-                <p>私たちが、その卵を孵化させるお手伝いをします。</p>
-                <div class="card" style="margin-top: 2em; background-color: #f8f9fa;">
-                    <h3>まずは無料相談から</h3>
-                    <p>御社の動画を拝見し、どのようなショート動画が制作可能か、<br>また、<strong>ゼロから企画・撮影する場合のプランや期待効果</strong>を具体的にご提案します。</p>
-                    <p style="font-weight: bold; font-size: 1.2rem;">株式会社CBT-S<br>WEBコンサルタント</p>
-                </div>
+                <p style="margin-top: 3em; font-size: 0.9rem; color: #666;">
+                    株式会社CBT-S<br>
+                    動画マーケティング事業部
+                </p>
             </div>
         </section>
 
