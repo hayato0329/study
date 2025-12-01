@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NorthHwan POPUP開催のご提案</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+
+        :root {
+            --primary: #003366; /* 信頼のネイビー */
+            --accent: #d97706; /* 活力のオレンジ */
+            --alert: #dc2626; /* 強調の赤 */
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --gray: #64748b;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg);
+            color: #333;
+            margin: 0;
+            padding: 40px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--white);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* ヘッダー */
+        header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 50px;
+            border-bottom: 5px solid var(--accent);
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin: 0 0 10px 0;
+            line-height: 1.3;
+        }
+
+        header .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .date {
+            float: right;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* 冒頭の依頼まとめボックス */
+        .executive-summary {
+            background-color: #fff7ed; /* 薄いオレンジ背景 */
+            border: 2px solid var(--accent);
+            margin: 40px 50px 0 50px;
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        .summary-title {
+            color: var(--accent);
+            font-size: 20px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .summary-title::before {
+            content: '✔';
+            display: inline-block;
+            margin-right: 10px;
+            font-size: 24px;
+        }
+
+        .summary-list {
+            margin: 0;
+            padding-left: 20px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .summary-list li {
+            margin-bottom: 8px;
+        }
+
+        /* コンテンツ共通 */
+        .content {
+            padding: 50px;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: var(--primary);
+            border-left: 8px solid var(--accent);
+            padding-left: 20px;
+            margin-bottom: 30px;
+            background: #f1f5f9;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #1e293b;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 5px;
+        }
+
+        /* 1. 事業概要 */
+        .about-box {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        /* 2. 商品イメージと価格 */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .product-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+            transition: transform 0.2s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+        }
+
+        .img-area {
+            height: 220px;
+            background: #cbd5e1;
+            overflow: hidden;
+        }
+
+        .img-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .price-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-name {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: block;
+            color: var(--primary);
+        }
+
+        .retail-price {
+            display: block;
+            font-size: 13px;
+            color: var(--gray);
+            text-decoration: line-through;
+            margin-bottom: 5px;
+        }
+
+        .our-price {
+            display: block;
+            font-size: 22px;
+            color: var(--alert); /* 赤字で強調 */
+            font-weight: 900;
+        }
+
+        /* 3. 運営スペック */
+        .spec-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .spec-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .spec-list li {
+            border-bottom: 1px dashed #cbd5e1;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .spec-label { font-weight: bold; color: var(--primary); }
+        .spec-value { font-size: 18px; font-weight: bold; }
+
+        .okaya-box {
+            background: #eff6ff;
+            border: 2px solid #60a5fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        /* 4. メリット・SNS */
+        .benefit-box {
+            background: #ffffff;
+            border: 2px solid var(--accent);
+            padding: 30px;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .benefit-tag {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        /* 5. 安全管理 */
+        .safety-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .safety-item {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 6px;
+        }
+        .safety-item strong { display: block; color: var(--primary); margin-bottom: 5px; }
+
+        /* フッター */
+        .footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            padding: 15px 50px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            margin-top: 20px;
+            box-shadow: 0 4px 0 #b45309;
+            transition: transform 0.1s;
+        }
+
+        .contact-btn:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+
+        @media (max-width: 768px) {
+            .product-grid { grid-template-columns: 1fr; }
+            .spec-container { grid-template-columns: 1fr; }
+            .safety-grid { grid-template-columns: 1fr; }
+            .content { padding: 25px; }
+            .executive-summary { margin: 20px; }
+        }
+        
+        @media print {
+            body { padding: 0; }
+            .container { box-shadow: none; max-width: 100%; }
+            .contact-btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="date">2025年12月1日</div>
+        <h1>ポップアップイベント開催のご提案</h1>
+        <div class="subtitle">NorthHwan（ノースファン） | 循環型ノースフェイス古着プロジェクト</div>
+    </header>
+
+    <div class="executive-summary">
+        <div class="summary-title">今回のご依頼内容</div>
+        <p style="margin-bottom:15px; font-size:16px;">
+            貴施設の空きスペース・通路（10～20㎡程度）をお借りし、週末限定のポップアップストアを開催させていただけないでしょうか。<br>
+            場所をご提供いただくだけで、<strong>「収益化」と「施設全体の広告宣伝（SNS拡散）」</strong>を同時に実現いたします。
+        </p>
+        <ul class="summary-list">
+            <li>開催内容：日本未発売ノースフェイス古着の展示販売</li>
+            <li>運営体制：在庫・什器は全て当方持込、スタッフ常駐（貴施設の手間はゼロです）</li>
+            <li>信頼性　：長野県岡谷市に物流拠点あり（即応・地元密着）</li>
+        </ul>
+    </div>
+
+    <div class="content">
+
+        <section>
+            <h2>1. 事業概要</h2>
+            <div class="about-box">
+                <h3 style="margin-top:0;">NorthHwan（ノースファン）とは</h3>
+                <p>NorthHwanは、韓国・アメリカ企画の日本未発売ノースフェイスを中心とした循環型古着プロジェクトです。「北で使う本物のギアを巡らせ、挑戦する人と街に、あたたかい収入とつながりを生み出す」をミッションに活動しています。</p>
+                <p><strong>ターゲット層：</strong>20代～40代のファッション感度の高い若者、および機能性を求めるアウトドア・スノー愛好家</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>2. 展開商品と価格メリット</h2>
+            <p>日本国内では入手困難なモデルを、<strong>圧倒的なコストパフォーマンス</strong>で提供します。<br>
+            この「価格競争力」と「希少性」が、貴施設への集客と滞留時間の延長を実現します。※以下、実際の製品写真</p>
+            
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="img-area">
+                        <img src="https://i.ibb.co/VWzK0V8Q/Gemini-Generated-Image-4jhxhf4jhxhf4jhx.png" alt="ヌプシ・バルトロ">
+                    </div>
+                    <div class="price-info">
+                        <span class="product-name">ヌプシ / バルトロ等</span>
+                        <span class="retail-price">定価 ¥40,000〜¥100,000</span>
+                        <span class="our-price">¥8,000 〜 ¥25,000</span>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="img-area">
+                        <img src="https://i.ibb.co/C3LgJ7zM/Gemini-Generated-Image-nd0afind0afind0a.png" alt="マウンテンパーカー">
+                    </div>
+                    <div class="price-info">
+                        <span class="product-name">マウンテンパーカー</span>
+                        <span class="retail-price">定価 ¥25,000〜¥60,000</span>
+                        <span class="our-price">¥4,000 〜 ¥15,000</span>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="img-area">
+                        <img src="https://i.ibb.co/7TJgpbs/Gemini-Generated-Image-svg881svg881svg8.png" alt="フリース">
+                    </div>
+                    <div class="price-info">
+                        <span class="product-name">フリース / 希少モデル</span>
+                        <span class="retail-price">定価 ¥15,000〜¥30,000</span>
+                        <span class="our-price">¥4,000 〜 ¥15,000</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>3. 開催規模・運営体制</h2>
+            <div class="spec-container">
+                <div>
+                    <h3>開催スペック（週末開催モデル）</h3>
+                    <ul class="spec-list">
+                        <li>
+                            <span class="spec-label">開催日程</span>
+                            <span class="spec-value">土・日・祝日（週末メイン）</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">必要面積</span>
+                            <span class="spec-value">10～20㎡（3～6坪程度）</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">使用什器</span>
+                            <span class="spec-value">ラック10～15台（当方持込）</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">商品点数</span>
+                            <span class="spec-value">持込200点 / 展示100点前後</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>物流・サポート体制</h3>
+                    <div class="okaya-box">
+                        <div style="font-size:40px; margin-bottom:10px;">🏢</div>
+                        <strong style="font-size:18px; display:block;">長野県岡谷市 物流拠点</strong>
+                        <span style="background:var(--accent); color:white; font-size:12px; padding:2px 6px; border-radius:4px;">2026年1月 OPEN予定</span>
+                        <p style="text-align:left; font-size:14px; margin-top:15px;">
+                            現在、岡谷倉庫にて常時1,000～2,000点の在庫を保有。<br>
+                            信州エリアの地元パートナーとして、商品の即時補充や緊急時の対応も迅速に行います。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>4. 貴施設への副次的メリット</h2>
+            <div class="benefit-box">
+                <span class="benefit-tag">広告宣伝効果</span>
+                <h3 style="border:none; margin-top:10px;">「場所を貸す」だけで、施設の宣伝になります</h3>
+                <p>当方では、割引の適用条件として<strong>お客様によるSNS投稿（貴施設の位置情報＋ハッシュタグ付与）</strong>をお願いしています。</p>
+                <p>
+                    ✓ 来店者が自然と貴施設の宣伝マンになります<br>
+                    ✓ 週末の賑わいや施設の魅力がInstagram等でリアルタイムに拡散されます<br>
+                    ✓ 広告費をかけずに、新規層への認知拡大が期待できます
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <h2>5. リスク管理・安全対策</h2>
+            <p>施設様のリスクを最小限に抑えるため、以下の管理を徹底いたします。</p>
+            <div class="safety-grid">
+                <div class="safety-item">
+                    <strong>■ スタッフ常駐・商品管理</strong>
+                    <p style="margin:0; font-size:13px;">営業時間中は常にスタッフを配置。商品・売上の管理は全て当方で行います。</p>
+                </div>
+                <div class="safety-item">
+                    <strong>■ 清掃・原状回復</strong>
+                    <p style="margin:0; font-size:13px;">開催前後の清掃はもちろん、撤収時は速やかに原状回復を行います。</p>
+                </div>
+                <div class="safety-item">
+                    <strong>■ 商品の品質管理</strong>
+                    <p style="margin:0; font-size:13px;">全商品クリーニング済み。古着特有の衛生面での不安を払拭しています。</p>
+                </div>
+                <div class="safety-item">
+                    <strong>■ 防犯対策</strong>
+                    <p style="margin:0; font-size:13px;">高額商品へのタグ設置やスタッフ監視により、万引き等のトラブルを防ぎます。</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="footer">
+        <h3 style="margin-top:0; border:none; color:white;">スペース活用について、ぜひ一度ご相談ください</h3>
+        <p>開催時期、場所、条件（売上歩合等）について、柔軟にご提案させていただきます。</p>
+        
+        <div style="margin:30px 0; font-size:16px;">
+            <strong>株式会社シー・ビー・ティ・ソリューションズ</strong><br>
+            事業名：NorthHwan（ノースファン）<br>
+            担当者：中村 翼斗<br>
+            TEL：080-8358-2479 / Email：hnakamura@cbt-s.com
+        </div>
+
+        <a href="mailto:hnakamura@cbt-s.com" class="contact-btn">お問い合わせはこちら</a>
+    </div>
+</div>
+
+</body>
+</html>
