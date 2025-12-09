@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>North HWAN 取扱提案資料</title>
+    <title>North HWAN 取扱提案資料 - UI Final Fix</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
     <style>
         /* --- 設定・変数 --- */
@@ -12,7 +12,7 @@
             --paper-color: #ffffff;
             --text-main: #2c3e50;
             --text-sub: #546e7a;
-            --accent: #a67c52;
+            --accent: #a67c52;       /* マットなゴールド */
             --accent-dark: #805a35;
             --red-accent: #c0392b;
             --border-color: #dfe6e9;
@@ -64,14 +64,11 @@
         }
 
         /* --- タイポグラフィ --- */
-        h1 { font-size: 3.4rem; line-height: 1.2; color: var(--accent); margin-bottom: 10px; }
+        h1 { font-size: 3.2rem; line-height: 1.1; color: var(--accent); margin-bottom: 10px; }
         h2 {
-            font-size: 2rem;
-            color: var(--text-main);
+            font-size: 2rem; color: var(--text-main);
             border-left: 8px solid var(--accent);
-            padding-left: 20px;
-            margin-bottom: 20px;
-            line-height: 1.2;
+            padding-left: 20px; margin-bottom: 20px; line-height: 1.2;
         }
         h3 { font-size: 1.3rem; color: var(--accent); margin-bottom: 8px; font-weight: 700; }
         p { font-size: 1rem; line-height: 1.6; color: var(--text-sub); margin-bottom: 0; }
@@ -86,97 +83,66 @@
 
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; height: 100%; }
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 25px; height: 100%; }
-        .grid-4 { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; gap: 15px; align-items: center; justify-content: center; }
 
         /* --- 共通パーツ --- */
         .box {
-            background: var(--box-bg);
-            padding: 25px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--accent);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-            height: 100%;
-            display: flex; flex-direction: column; justify-content: center;
+            background: var(--box-bg); padding: 25px; border-radius: 8px;
+            border: 1px solid var(--border-color); border-left: 4px solid var(--accent);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03); height: 100%; display: flex; flex-direction: column; justify-content: center;
         }
         .box-title { color: var(--text-main); font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; }
 
-        /* P3/P4 グラフエリア */
+        /* P2 悩み解決 */
+        .pain-container { display: flex; height: 100%; align-items: center; gap: 40px; }
+        .pain-left { flex: 1; display: flex; flex-direction: column; gap: 20px; justify-content: center; height: 100%; }
+        .pain-right { flex: 1; background: #fff; border: 3px solid var(--accent); border-radius: 12px; padding: 40px; text-align: center; box-shadow: 0 10px 30px rgba(166, 124, 82, 0.1); display: flex; flex-direction: column; justify-content: center; height: 80%; }
+
+        /* P3 グラフエリア */
         .data-container { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 30px; height: 100%; }
-        .graph-section { 
-            background: var(--box-bg); border: 1px solid var(--border-color); padding: 20px; 
-            position: relative; display: flex; flex-direction: column; border-radius: 8px; justify-content: center;
-        }
+        .graph-section { background: var(--box-bg); border: 1px solid var(--border-color); padding: 20px; border-radius: 8px; display: flex; flex-direction: column; justify-content: center; }
         .text-section { display: flex; flex-direction: column; justify-content: center; gap: 20px; }
         .ref-link { font-size: 0.7rem; color: var(--text-sub); line-height: 1.3; margin-top: 10px; }
         .insight-box { border-left: 4px solid var(--accent); padding-left: 15px; }
         .insight-title { color: var(--accent); font-weight: bold; font-size: 1.2rem; margin-bottom: 5px; }
-        
-        /* P4 ビッグデータボックス */
-        .big-stat-box { display: flex; flex-direction: column; justify-content: space-around; height: 100%; padding: 10px 0; }
-        .stat-item {
-            background: var(--paper-color); padding: 20px; border-left: 6px solid var(--accent);
-            border-radius: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-        .stat-label { font-size: 1rem; font-weight: bold; color: var(--text-sub); margin-bottom: 5px; }
-        .stat-value { font-size: 2.8rem; font-weight: 900; color: var(--text-main); line-height: 1; }
-        .stat-unit { font-size: 1.2rem; font-weight: bold; margin-left: 5px; }
-        .stat-desc { font-size: 0.85rem; margin-top: 5px; }
 
-        /* P8 ニーズイラスト (Vol.10の仕様) */
-        .needs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; height: 90%; }
-        .need-card { 
-            background: #fff; border: 2px solid var(--border-color); border-radius: 12px; padding: 30px 20px;
-            display: flex; flex-direction: column; align-items: center; text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: all 0.3s; position: relative;
-        }
-        .need-illustration {
-            width: 100px; height: 100px; background: var(--box-bg); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-size: 3.5rem;
-            margin-bottom: 20px; border: 3px solid var(--accent);
-        }
-        .need-voice {
-            font-family: "游明朝", serif; font-weight: bold; font-size: 1.2rem; color: var(--accent);
-            margin-bottom: 15px; position: relative; display: inline-block;
-        }
-        .need-voice::before { content: '“'; position: absolute; top: -5px; left: -10px; opacity: 0.5; }
-        .need-voice::after { content: '”'; position: absolute; bottom: -5px; right: -10px; opacity: 0.5; }
-        .need-desc { font-size: 0.95rem; color: var(--text-main); line-height: 1.6; margin-bottom: 20px; flex-grow: 1; }
-        .need-tag-box { background: var(--box-bg); padding: 8px 15px; border-radius: 50px; font-size: 0.85rem; color: var(--text-sub); border: 1px solid var(--border-color); }
-
-        /* P9 運用フロー (修正：マージン調整) */
-        .flow-card { background: var(--paper-color); padding: 25px; border-radius: 8px; border: 1px solid var(--border-color); height: 280px; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; overflow: visible; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .badge-unnecessary { position: absolute; top: -20px; left: -20px; transform: rotate(-15deg); background: var(--red-accent); color: #fff; font-size: 1.3rem; font-weight: 900; padding: 5px 20px; border-radius: 50px; box-shadow: 0 4px 10px rgba(192, 57, 43, 0.3); z-index: 20; border: 3px solid #fff; }
-        .disabled-content { opacity: 0.3; filter: grayscale(100%); }
-
-        /* P12 クロージング (修正：収まり調整) */
-        .step-card-compact { background: var(--box-bg); border: 1px solid var(--border-color); padding: 20px; text-align: center; border-radius: 8px; flex: 1; }
-        .step-num-c { font-size: 2.5rem; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 5px; }
-        .step-title-c { font-size: 1.2rem; font-weight: bold; border-bottom: 2px solid var(--accent); display: inline-block; margin-bottom: 10px; padding-bottom: 5px; }
-        .step-desc-c { font-size: 0.9rem; color: var(--text-sub); line-height: 1.4; }
-        
-        .cta-compact {
-            margin-top: 20px; /* マージン縮小 */
-            border: 4px solid var(--accent);
-            padding: 25px; /* パディング縮小 */
-            text-align: center;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(166, 124, 82, 0.15);
-        }
-
-        /* その他のスタイル（P4, P5, P6, P7, P10, P11） */
+        /* P4 比較表 */
         .comparison-box { display: flex; height: 100%; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
         .comp-left { flex: 1; background: #f8f9fa; padding: 25px; border-right: 1px solid var(--border-color); }
         .comp-right { flex: 1; background: #fff; padding: 25px; border: 3px solid var(--accent); position: relative; z-index: 1; }
         .vs-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #000; color: #fff; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; z-index: 10; border: 4px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        
-        .barrier-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; height: 100%; margin-bottom: 10px; }
-        .barrier-card { background: var(--box-bg); border: 1px solid var(--border-color); padding: 20px; display: flex; flex-direction: column; justify-content: flex-start; border-top: 4px solid var(--text-sub); border-radius: 8px; }
-        .barrier-num { font-size: 1.1rem; color: var(--text-sub); font-weight: bold; margin-bottom: 5px; }
-        .barrier-title { font-size: 1.2rem; color: var(--text-main); font-weight: bold; margin-bottom: 8px; }
-        .barrier-text { font-size: 0.95rem; color: var(--text-sub); line-height: 1.5; }
+        .comp-list { list-style: none; display: flex; flex-direction: column; gap: 25px; height: 100%; justify-content: center; }
 
+        /* P6 障壁 (UI修正：3列x2行グリッド) */
+        .barrier-grid-new { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            grid-template-rows: 1fr 1fr; 
+            gap: 25px; 
+            height: 100%; 
+        }
+        .barrier-card { 
+            background: var(--box-bg); 
+            border: 1px solid var(--border-color); 
+            padding: 20px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; /* 垂直中央 */
+            border-top: 5px solid var(--text-sub); 
+            border-radius: 8px; 
+            box-shadow: 0 3px 6px rgba(0,0,0,0.03);
+        }
+        .barrier-num { font-size: 1.5rem; color: #ccc; font-weight: 900; margin-bottom: 5px; line-height: 1; }
+        .barrier-title { font-size: 1.2rem; color: var(--text-main); font-weight: bold; margin-bottom: 8px; }
+        .barrier-text { font-size: 0.9rem; color: var(--text-sub); line-height: 1.5; }
+        /* 解決策カード */
+        .barrier-card.solution {
+            background: var(--accent); 
+            border: none;
+            border-top: 5px solid var(--accent-dark);
+        }
+        .barrier-card.solution div { color: #fff; text-align: center; font-weight: bold; font-size: 1.4rem; line-height: 1.4; }
+
+        /* P7 商品ラインナップ */
         .product-grid-new { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; height: 100%; align-items: stretch; }
         .prod-card-v { background: var(--paper-color); border: 1px solid var(--border-color); display: flex; flex-direction: column; height: 100%; transition: all 0.3s; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
         .prod-img-v { height: 50%; background-size: contain; background-repeat: no-repeat; background-position: center; position: relative; border-bottom: 3px solid var(--accent); background-color: #fff; }
@@ -187,18 +153,76 @@
         .price-profit-v { font-size: 1.1rem; font-weight: bold; color: var(--accent); display: block; margin-top: 5px; }
         .profit-label { font-size: 0.7rem; color: var(--text-sub); font-weight: normal; display: block; margin-bottom: 2px;}
 
-        .plan-card { background: #fff; border: 1px solid var(--border-color); height: 100%; display: flex; flex-direction: column; position: relative; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .plan-limit-badge { position: absolute; top: 0; right: 0; background: var(--text-sub); color: #fff; font-size: 0.75rem; padding: 4px 12px; border-bottom-left-radius: 8px; }
-        .plan-header { background: #f9f9f9; padding: 15px; text-align: center; border-bottom: 4px solid var(--accent); }
-        .plan-title { font-size: 1.4rem; font-weight: bold; color: var(--text-main); margin: 0; }
-        .plan-sub { font-size: 0.85rem; color: #888; display: block; margin-top: 5px; }
-        .plan-body { padding: 20px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
-        .plan-row { display: flex; justify-content: space-between; border-bottom: 1px dashed #eee; padding-bottom: 8px; align-items: center; }
-        .plan-value { font-weight: bold; color: var(--text-main); font-size: 1rem; text-align: right; }
-        .payback-box { background: var(--accent); color: #fff; padding: 12px; text-align: center; font-weight: bold; margin-top: auto; border-radius: 4px; font-size: 0.95rem; }
+        /* P8 メルカリ実績 */
+        .mercari-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 1fr); gap: 15px; height: 90%; }
+        .mercari-item { border: 1px solid #ddd; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: relative; background: #fff; }
+        .mercari-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .sold-badge { position: absolute; top: 0; left: 0; background: #ea352d; color: #fff; font-size: 0.8rem; font-weight: bold; padding: 3px 12px; border-bottom-right-radius: 4px; z-index: 2; }
 
-        .story-box { background: var(--box-bg); padding: 40px; border-left: 8px solid var(--accent); border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); height: 100%; display: flex; flex-direction: column; justify-content: center; }
-        .story-text { font-size: 1.05rem; color: var(--text-main); line-height: 1.8; margin-bottom: 20px; }
+        /* P9 設置ニーズ */
+        .needs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; height: 90%; }
+        .need-card { background: #fff; border: 2px solid var(--border-color); border-radius: 12px; padding: 30px 20px; display: flex; flex-direction: column; align-items: center; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); position: relative; }
+        .need-illustration { width: 100px; height: 100px; background: var(--box-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; margin-bottom: 20px; border: 3px solid var(--accent); }
+        .need-voice { font-family: "游明朝", serif; font-weight: bold; font-size: 1.2rem; color: var(--accent); margin-bottom: 15px; position: relative; display: inline-block; }
+        .need-voice::before, .need-voice::after { content: '"'; font-size: 1.5rem; position: absolute; opacity: 0.5; }
+        .need-voice::before { top: -5px; left: -10px; } .need-voice::after { bottom: -5px; right: -10px; }
+        .need-desc { font-size: 0.95rem; color: var(--text-main); line-height: 1.6; margin-bottom: 20px; flex-grow: 1; }
+        .need-tag-box { background: var(--box-bg); padding: 8px 15px; border-radius: 50px; font-size: 0.85rem; color: var(--text-sub); border: 1px solid var(--border-color); }
+
+        /* P9 運用フロー (UI修正：FlexBox配置) */
+        .flow-container { 
+            display: flex; justify-content: space-between; align-items: center; gap: 20px; height: 100%; padding: 20px 0;
+        }
+        .flow-card { 
+            background: var(--paper-color); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); 
+            width: 30%; height: 320px; /* 高さ固定 */
+            display: flex; flex-direction: column; justify-content: center; align-items: center; 
+            position: relative; overflow: visible; box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
+        }
+        .flow-arrow { font-size: 3rem; color: #ccc; }
+        
+        .badge-unnecessary { 
+            position: absolute; top: -15px; left: -15px; transform: rotate(-15deg);
+            background: var(--red-accent); color: #fff; font-size: 1.2rem; font-weight: 900;
+            padding: 5px 20px; border-radius: 50px; box-shadow: 0 4px 10px rgba(192, 57, 43, 0.3); z-index: 20; border: 3px solid #fff;
+        }
+        .disabled-content { opacity: 0.3; filter: grayscale(100%); }
+
+        /* P10 収益 */
+        .profit-model-container { display: flex; height: 100%; align-items: center; justify-content: center; gap: 40px; }
+        .profit-step { text-align: center; width: 250px; }
+        .profit-icon { font-size: 3.5rem; margin-bottom: 15px; color: var(--accent); }
+        .profit-text { font-size: 1rem; color: var(--text-main); line-height: 1.5; }
+        .profit-result { background: var(--accent); color: #fff; padding: 25px; border-radius: 12px; width: 320px; text-align: center; box-shadow: 0 10px 20px rgba(166, 124, 82, 0.3); }
+
+        /* P11 リスク回避 */
+        .risk-container { display: flex; height: 100%; gap: 30px; }
+        .risk-left { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 20px; }
+        .risk-right { flex: 1; background: #fff; border: 2px solid var(--accent); border-radius: 12px; padding: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        .risk-safe-badge { background: var(--accent); color: #fff; padding: 5px 15px; border-radius: 50px; font-weight: bold; margin-bottom: 15px; }
+
+        /* P12 プラン */
+        .plan-main-card { width: 600px; background: #fff; border: 4px solid var(--accent); border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(166, 124, 82, 0.15); margin: 0 auto; }
+        .plan-main-header { background: var(--accent); color: #fff; padding: 25px; text-align: center; }
+        .plan-main-title { font-size: 2rem; font-weight: bold; margin-bottom: 5px; }
+        .plan-main-sub { font-size: 1rem; opacity: 0.9; }
+        .plan-main-body { padding: 30px; }
+        .plan-main-row { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #ccc; padding: 15px 0; font-size: 1.1rem; }
+        .plan-main-label { color: var(--text-sub); }
+        .plan-main-value { font-weight: bold; color: var(--text-main); font-size: 1.3rem; }
+        .plan-note { background: #f0f0f0; padding: 20px; text-align: center; color: var(--text-sub); font-size: 0.9rem; }
+
+        /* ストーリー */
+        .story-box { background: var(--box-bg); padding: 40px; border-left: 6px solid var(--accent); border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); height: 100%; display: flex; flex-direction: column; justify-content: center; }
+        .story-text { font-size: 1.1rem; color: var(--text-main); line-height: 1.8; margin-bottom: 20px; }
+
+        /* クロージング */
+        .cta-box { border: 4px solid var(--accent); padding: 35px; text-align: center; background: #fff; border-radius: 12px; margin-top: auto; box-shadow: 0 10px 30px rgba(166, 124, 82, 0.15); width: 100%; }
+        .cta-button { display: inline-block; background-color: var(--accent); color: #fff; padding: 18px 70px; font-size: 1.5rem; font-weight: bold; text-decoration: none; border-radius: 50px; box-shadow: 0 10px 20px rgba(166, 124, 82, 0.3); transition: all 0.3s; margin-top: 25px; }
+        .step-card-compact { background: var(--box-bg); border: 1px solid var(--border-color); padding: 20px; text-align: center; border-radius: 8px; flex: 1; }
+        .step-num-c { font-size: 2.5rem; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 5px; }
+        .step-title-c { font-size: 1.2rem; font-weight: bold; border-bottom: 2px solid var(--accent); display: inline-block; margin-bottom: 10px; padding-bottom: 5px; }
+        .step-desc-c { font-size: 0.9rem; color: var(--text-sub); line-height: 1.4; }
         
         .concept-container { display: flex; flex-direction: column; justify-content: center; height: 100%; padding: 0 50px; }
         .concept-row { display: flex; margin-bottom: 50px; align-items: flex-start; }
@@ -207,222 +231,56 @@
         .concept-footer { margin-top: 40px; text-align: center; border-top: 1px solid var(--border-color); padding-top: 40px; }
         .concept-msg { font-size: 1.6rem; font-weight: bold; color: var(--text-main); line-height: 1.6; }
 
-        .cta-button { display: inline-block; background-color: var(--accent); color: #fff; padding: 18px 70px; font-size: 1.5rem; font-weight: bold; text-decoration: none; border-radius: 50px; box-shadow: 0 10px 20px rgba(166, 124, 82, 0.3); transition: all 0.3s; margin-top: 15px; }
-        
         /* 印刷用 */
         @media print { body { margin: 0; padding: 0; background-color: #fff; gap: 0; } .slide { margin: 0; border: none; page-break-after: always; box-shadow: none; } }
     </style>
 </head>
 <body>
 
-    <div class="slide" style="justify-content: center; align-items: center; text-align: center; background-image: url('https://images.unsplash.com/photo-1506535995048-638aa1b62b77?auto=format&fit=crop&q=80&w=2000'); background-size: cover; background-position: center;">
-        <div style="background: rgba(255,255,255,0.95); padding: 60px 100px; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); border: 1px solid #fff;">
-            <p style="font-family: var(--font-en); color: var(--accent); letter-spacing: 0.3em; margin-bottom: 20px; font-weight: bold;">BUSINESS PROPOSAL</p>
-            <h1 style="font-size: 4rem; margin-bottom: 20px; color: var(--text-main); text-shadow: none;">「置くだけ」でいい<br>空間有効活用戦略ご提案</h1>
-            <p style="font-size: 1.8rem; color: var(--text-sub); font-weight: 500;">
-                韓国・USA限定 The North Face 卸倉庫<br>
-                <span style="color:var(--accent); font-weight:bold; font-size: 2.2rem;">North Hwan（ノース・ファン）</span>
-            </p>
-            <div style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px; color: #888; font-size: 1.1rem;">
-                対象：ゲレンデ / キャンプ場 / 道の駅 / 温泉施設 / レンタルショップ
-            </div>
-        </div>
-        <div class="page-num">01</div>
-    </div>
+    <div class="slide" style="justify-content: center; align-items: center; text-align: center; background-image: url('https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?auto=format&fit=crop&q=80&w=2000'); background-size: cover; background-position: center;"><div style="background: rgba(255,255,255,0.95); padding: 60px 100px; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); border: 1px solid #fff;"><p style="font-family: var(--font-en); color: var(--accent); letter-spacing: 0.3em; margin-bottom: 20px; font-weight: bold;">INDIVIDUAL PARTNER</p><h1 style="font-size: 4rem; margin-bottom: 20px; color: var(--text-main);">「安定した仕入れ」で<br>月5〜10万円の副収入を。</h1><p style="font-size: 1.8rem; color: var(--text-sub); font-weight: 500;">韓国・USA限定 The North Face 卸倉庫<br><span style="color:var(--accent); font-weight:bold; font-size: 2.2rem;">North Hwan（ノース・ファン）</span></p><div style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px; color: #888; font-size: 1.1rem;">対象：副業 / 個人事業主 / 物販プレイヤー</div></div><div class="page-num">01</div></div>
+    <div class="slide"><div class="header-area"><h2>NorthHwanとは？</h2></div><div class="content-area"><div class="concept-container"><div class="concept-row"><div class="concept-term">NORTH<br><span style="font-size:1.5rem; color:#999;">(ノース)</span></div><div class="concept-desc"><h3>北で使う本物のギア</h3><p>極寒の地でも耐えうるダウンやマウンテンパーカなどの本格ギア。<br>特に、世界No.1アウトドアブランド「The North Face」を専門に取り扱うことを意味しています。</p></div></div><div class="concept-row"><div class="concept-term">HWAN<br><span style="font-size:1.5rem; color:#999;">(ファン)</span></div><div class="concept-desc"><h3>価値を「巡らせる」</h3><p>韓国語の「순환（sunhwan）＝循環」に含まれる「환（hwan）」から取った言葉です。「環・巡る」という意味を込めて、本物のNorthfaceギアを、人から人へ、街から街へ巡らせる想いが込められています。</p></div></div><div class="concept-footer"><div class="concept-msg">NorthHwan = 北で使う本物のNorthfaceギアを、<br>個人パートナーと共に巡らせていく<span class="highlight">『循環型の小売倉庫』</span>です。</div></div></div></div><div class="page-num">02</div></div>
+    <div class="slide"><div class="header-area"><h2>🤔 こんな悩みはありませんか？</h2></div><div class="content-area"><div class="pain-container"><div class="pain-left"><div class="box"><div class="box-title">📉 仕入れが安定しない</div><p>「セカンドストリート」やリサイクルショップを何軒回っても、利益が出る商品が見つからない。移動時間とガソリン代だけが消えていく。</p></div><div class="box"><div class="box-title">📦 偽物のリスク</div><p>メルカリやヤフオクでの電脳仕入れは、偽物を掴まされるリスクと隣り合わせ。真贋鑑定に自信がなく、高単価商品に手が出せない。</p></div><div class="box"><div class="box-title">💸 利益率が低い</div><p>誰でも手に入る商品はライバルが多く、すぐに価格競争に。苦労して売っても、手元に残る利益はわずか数百円。</p></div></div><div class="pain-right"><div style="font-size: 5rem; margin-bottom: 20px;">💡</div><h3 style="font-size: 2.2rem; margin-bottom: 30px; line-height: 1.4; color: var(--text-main);">不安定な「店舗せどり」から<br><span class="highlight">脱却</span>しませんか？</h3><p style="font-size: 1.4rem; color: var(--text-sub);">North HWANなら、<br><strong>「売れる商品」</strong>が<br><strong>「安定して」「安く」</strong>手に入ります。</p></div></div></div><div class="page-num">03</div></div>
+    <div class="slide"><div class="header-area"><h2>📈 今、「古着」が爆発的に売れているのか？</h2></div><div class="content-area"><p style="margin-bottom: 20px; text-align: center;">公的データが示すのは、<strong>「新品市場の停滞」と「リユース市場の確実な拡大」</strong>という消費構造の転換です。</p><div class="data-container"><div class="graph-section"><h3 style="color: var(--text-main); font-size: 1.2rem; text-align: center; margin-bottom: 15px;">国内アパレル市場 vs リユース市場の推移</h3><div style="flex: 1; display: flex; align-items: center;"><svg width="100%" height="320" viewBox="0 0 600 350" style="overflow: visible;"><line x1="50" y1="300" x2="550" y2="300" stroke="#bdc3c7" stroke-width="2" /><line x1="50" y1="300" x2="50" y2="50" stroke="#bdc3c7" stroke-width="2" /><path d="M50,100 L150,95 L250,110 L350,105 L450,120 L550,120" fill="none" stroke="#95a5a6" stroke-width="3" stroke-dasharray="5,5" /><circle cx="550" cy="120" r="6" fill="#95a5a6" /><text x="550" y="110" fill="#7f8c8d" font-size="12" text-anchor="middle" font-weight="bold">国内アパレル市場</text><text x="550" y="140" fill="#7f8c8d" font-size="14" font-weight="bold" text-anchor="middle">横ばい・縮小</text><path d="M50,280 L150,260 L250,230 L350,190 L450,140 L550,80" fill="none" stroke="var(--accent)" stroke-width="6" /><circle cx="550" cy="80" r="8" fill="var(--accent)" /><text x="550" y="65" fill="var(--accent)" font-size="16" font-weight="bold" text-anchor="middle">リユース市場</text><text x="550" y="40" fill="var(--text-main)" font-size="18" font-weight="bold" text-anchor="middle">13年連続拡大</text><text x="50" y="325" fill="#7f8c8d" font-size="12" text-anchor="middle">2010</text><text x="300" y="325" fill="#7f8c8d" font-size="12" text-anchor="middle">2018</text><text x="550" y="325" fill="var(--text-main)" font-size="12" text-anchor="middle" font-weight="bold">2025</text></svg></div><div style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 15px;"><p class="ref-link"><strong>[根拠1]</strong> 2025年には3.5兆円規模へ成長予測。(リサイクル通信推計)<br><strong>[根拠2]</strong> 国内アパレル総小売市場規模は横ばい。(矢野経済研究所調査)</p></div></div><div class="text-section"><div class="insight-box"><div class="insight-title">1. 新品市場の「限界」</div><p>人口減少と実質賃金の低下により、高額な新品衣料の購入頻度は減少傾向にあります。</p></div><div class="insight-box"><div class="insight-title">2. リユースへの「構造転換」</div><p>一方、リユース市場は<strong>13年連続で拡大</strong>。「良いものを安く買う」行動が一般化しました。</p></div><div style="background: #fff; padding: 20px; border: 3px solid var(--accent); text-align: center; border-radius: 8px;"><p style="color: var(--text-main); font-weight: bold; font-size: 1.3rem; margin-bottom: 5px;">結論：今、チャンスは<br><span style="color: var(--accent); font-size: 1.8rem;">「新品」より「リユース」</span></p><p style="font-size: 0.9rem; margin: 0; color: var(--text-sub);">この波に乗ることが、最も確実な収益化手段です。</p></div></div></div></div><div class="page-num">04</div></div>
+    <div class="slide"><div class="header-area"><h2>🏔 【理由2】「The North Face」だから売れます</h2></div><div class="content-area"><p style="text-align: center; margin-bottom: 30px; font-size: 1.2rem;">古着なら何でも売れるわけではありません。<br><strong>「なぜ普通の古着は失敗し、North Faceは勝てるのか？」</strong>その違いは明確です。</p><div class="comparison-box" style="position: relative;"><div class="vs-badge">VS</div><div class="comp-left"><h3 style="text-align: center; color: var(--text-sub); border-bottom: 2px solid var(--border-color); padding-bottom: 15px;">✖ 一般的な古着販売</h3><ul style="margin-top: 30px; list-style: none; display: flex; flex-direction: column; gap: 30px; padding: 0 20px;"><li style="display: flex; align-items: center; gap: 20px;"><span style="font-size: 2.5rem; opacity: 0.6;">📉</span><div><div style="font-weight: bold; font-size: 1.3rem; color: var(--text-sub);">流行り廃りが激しい</div><span class="small">売れ残りがすぐゴミになる</span></div></li><li style="display: flex; align-items: center; gap: 20px;"><span style="font-size: 2.5rem; opacity: 0.6;">🧹</span><div><div style="font-weight: bold; font-size: 1.3rem; color: var(--text-sub);">清潔感がない</div><span class="small">「誰が着たか分からない」抵抗感</span></div></li><li style="display: flex; align-items: center; gap: 20px;"><span style="font-size: 2.5rem; opacity: 0.6;">💸</span><div><div style="font-weight: bold; font-size: 1.3rem; color: var(--text-sub);">単価が安い</div><span class="small">薄利多売で、手間の割に儲からない</span></div></li></ul></div><div class="comp-right" style="border-color: var(--accent); background: #fff;"><h3 style="text-align: center; color: var(--accent); border-bottom: 3px solid var(--accent); padding-bottom: 15px;">⭕ North HWANの戦略</h3><ul style="margin-top: 30px; list-style: none; display: flex; flex-direction: column; gap: 30px; padding: 0 20px;"><li style="display: flex; align-items: center; gap: 20px;"><span style="font-size: 2.5rem;">👑</span><div><div style="font-weight: bold; font-size: 1.5rem; color: var(--text-main);">圧倒的な資産価値</div><span class="small" style="color: var(--accent);">流行に左右されず、来年も売れる</span></div></li><li style="display: flex; align-items: center; gap: 20px;"><span style="font-size: 2.5rem;">✨</span><div><div style="font-weight: bold; font-size: 1.4rem; color: var(--text-main);">日本未発売の「レア感」</div><span class="small" style="color: var(--accent);">韓国・USA限定品だから抵抗を超える</span></div></li><li style="display: flex; align-items: center; gap: 20px;"><span style="font-size: 2.5rem;">💰</span><div><div style="font-weight: bold; font-size: 1.4rem; color: var(--text-main);">高単価・高利益</div><span class="small" style="color: var(--accent);">1着売るだけで数千円〜1万円の利益</span></div></li></ul></div></div></div><div class="page-num">05</div></div>
 
     <div class="slide">
         <div class="header-area">
-            <h2>NorthHwanとは？</h2>
-        </div>
-        <div class="content-area">
-            <div class="concept-container">
-                <div class="concept-row">
-                    <div class="concept-term">NORTH<br><span style="font-size:1.5rem; color:#999;">(ノース)</span></div>
-                    <div class="concept-desc">
-                        <h3>北で使う本物のギア</h3>
-                        <p>極寒の地でも耐えうるダウンやマウンテンパーカなどの本格ギア。<br>特に、世界No.1アウトドアブランド「The North Face」を専門に取り扱うことを意味しています。</p>
-                    </div>
-                </div>
-                <div class="concept-row">
-                    <div class="concept-term">HWAN<br><span style="font-size:1.5rem; color:#999;">(ファン)</span></div>
-                    <div class="concept-desc">
-                        <h3>価値を「巡らせる」</h3>
-                        <p>韓国語の「순환（sunhwan）＝循環」に含まれる「환（hwan）」から取った言葉です。「環・巡る」という意味を込めて、本物のNorthfaceギアを、人から人へ、街から街へ巡らせる想いが込められています。</p>
-                    </div>
-                </div>
-                <div class="concept-footer">
-                    <div class="concept-msg">
-                        NorthHwan = 北で使う本物のNorthfaceギアを、<br>
-                        代理店パートナーと共に巡らせていく<span class="highlight">『循環型の小売倉庫』</span>です。
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="page-num">02</div>
-    </div>
-
-    <div class="slide">
-        <div class="header-area">
-            <h2>🤔 こんな悩みはありませんか？</h2>
-        </div>
-        <div class="content-area">
-            <div class="grid-2">
-                <div style="display: flex; flex-direction: column; gap: 20px; justify-content: center;">
-                    <div class="box">
-                        <div class="box-title">📉 売上の悩み</div>
-                        <p style="margin:0;">本業の売上が、季節や天候で左右されてしまう。<br>「もう一本の安定した収入源」が欲しい。</p>
-                    </div>
-                    <div class="box">
-                        <div class="box-title">📦 スペースの悩み</div>
-                        <p style="margin:0;">レジ横や入り口付近に、なんとなく空いているスペースがある。<br>もっと有効活用したいが、何を置けばいいか分からない。</p>
-                    </div>
-                    <div class="box">
-                        <div class="box-title">🙅‍♂️ 人手の悩み</div>
-                        <p style="margin:0;">新しいことを始めたいが、スタッフを増やす余裕はない。<br>手間のかかる作業や、複雑なオペレーションは導入できない。</p>
-                    </div>
-                </div>
-                <div style="border: 3px solid var(--accent); background: #fff; display:flex; flex-direction:column; justify-content: center; text-align: center; padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(166, 124, 82, 0.1);">
-                    <div style="font-size: 6rem; margin-bottom: 20px;">💡</div>
-                    <h3 style="font-size: 2.2rem; margin-bottom: 30px; line-height: 1.4; color: var(--text-main);">その「空きスペース」<br><span class="highlight">価値</span>があります。</h3>
-                    <p style="font-size: 1.4rem; color: var(--text-sub);">
-                        誰もが知っている「The North Face」を置くだけで、<br>
-                        来場者が、勝手に購入していく。<br>
-                        そんな光景を作りませんか？
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="page-num">03</div>
-    </div>
-
-    <div class="slide">
-        <div class="header-area">
-            <h2>📈 今、「古着」が爆発的に売れているのか？</h2>
-        </div>
-        <div class="content-area">
-            <p style="margin-bottom: 20px; text-align: center;">
-                公的データが示すのは、<strong>「新品市場の停滞」と「リユース市場の確実な拡大」</strong>という消費構造の転換です。
-            </p>
-
-            <div class="data-container">
-                <div class="graph-section">
-                    <h3 style="color: var(--text-main); font-size: 1.2rem; text-align: center; margin-bottom: 15px;">国内アパレル市場 vs リユース市場の推移</h3>
-                    <div style="flex: 1; display: flex; align-items: center;">
-                        <svg width="100%" height="320" viewBox="0 0 600 350" style="overflow: visible;">
-                            <line x1="50" y1="300" x2="550" y2="300" stroke="#bdc3c7" stroke-width="2" />
-                            <line x1="50" y1="300" x2="50" y2="50" stroke="#bdc3c7" stroke-width="2" />
-                            
-                            <path d="M50,100 L150,95 L250,110 L350,105 L450,120 L550,120" fill="none" stroke="#95a5a6" stroke-width="3" stroke-dasharray="5,5" />
-                            <circle cx="550" cy="120" r="6" fill="#95a5a6" />
-                            <text x="550" y="110" fill="#7f8c8d" font-size="12" text-anchor="middle" font-weight="bold">国内アパレル市場</text>
-                            <text x="550" y="140" fill="#7f8c8d" font-size="14" font-weight="bold" text-anchor="middle">横ばい・縮小</text>
-                            
-                            <path d="M50,280 L150,260 L250,230 L350,190 L450,140 L550,80" fill="none" stroke="var(--accent)" stroke-width="6" />
-                            <circle cx="550" cy="80" r="8" fill="var(--accent)" />
-                            <text x="550" y="65" fill="var(--accent)" font-size="16" font-weight="bold" text-anchor="middle">リユース市場</text>
-                            <text x="550" y="40" fill="var(--text-main)" font-size="18" font-weight="bold" text-anchor="middle">13年連続拡大</text>
-                            
-                            <text x="50" y="325" fill="#7f8c8d" font-size="12" text-anchor="middle">2010</text>
-                            <text x="300" y="325" fill="#7f8c8d" font-size="12" text-anchor="middle">2018</text>
-                            <text x="550" y="325" fill="var(--text-main)" font-size="12" text-anchor="middle" font-weight="bold">2023-25</text>
-                        </svg>
-                    </div>
-                    <div style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 15px;">
-                        <p class="ref-link">
-                            <strong>[根拠1]</strong> 2025年には3.5兆円規模へ成長予測。(リサイクル通信推計)<br>
-                            <strong>[根拠2]</strong> 国内アパレル総小売市場規模は横ばい。(矢野経済研究所調査)<br>
-                            <strong>[根拠3]</strong> 国策として衣服の廃棄削減・再利用を推進。(環境省)
-                        </p>
-                    </div>
-                </div>
-                <div class="big-stat-box">
-                    <div class="stat-item">
-                        <div class="stat-label">リユース市場規模 (2025予測)</div>
-                        <div class="stat-value">3.5<span class="stat-unit">兆円</span></div>
-                        <div class="stat-desc">2009年以降、13年連続で拡大を継続中。</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">成長率 (対前年比)</div>
-                        <div class="stat-value">118<span class="stat-unit">%</span></div>
-                        <div class="stat-desc">物価高を背景に「賢い消費」へシフト。</div>
-                    </div>
-                    <div style="background: var(--text-main); color: #fff; padding: 20px; border-radius: 4px; text-align: center;">
-                        <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 5px;">結論</div>
-                        <div style="font-size: 1.1rem;">今、ビジネスチャンスは<br><span style="color: var(--accent); font-size: 1.4rem; font-weight: bold;">「新品」より「リユース」</span>にある。</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="page-num">04</div>
-    </div>
-
-    <div class="slide">
-        <div class="header-area">
-            <h2>🏔 【理由2】「The North Face」だから売れます</h2>
-        </div>
-        <div class="content-area">
-            <p style="text-align: center; margin-bottom: 25px; font-size: 1.1rem;">
-                古着なら何でも売れるわけではありません。<br>
-                <strong>「なぜ普通の古着は失敗し、North Faceは勝てるのか？」</strong>その違いは明確です。
-            </p>
-            <div class="comparison-box">
-                <div class="vs-badge">VS</div>
-                <div class="comp-left">
-                    <h3 style="text-align: center; color: var(--text-sub); border-bottom: 2px solid var(--border-color); padding-bottom: 15px;">✖ 一般的な古着販売</h3>
-                    <ul style="margin-top: 30px; list-style: none; display: flex; flex-direction: column; gap: 30px; padding: 0 20px;">
-                        <li style="display: flex; align-items: center; gap: 20px;">
-                            <span style="font-size: 2.5rem; opacity: 0.6;">📉</span>
-                            <div><div style="font-weight: bold; font-size: 1.2rem; color: var(--text-sub);">流行り廃りが激しい</div><span class="small">売れ残りがすぐゴミになる</span></div>
-                        </li>
-                        <li style="display: flex; align-items: center; gap: 20px;">
-                            <span style="font-size: 2.5rem; opacity: 0.6;">🧹</span>
-                            <div><div style="font-weight: bold; font-size: 1.2rem; color: var(--text-sub);">清潔感がない</div><span class="small">「誰が着たか分からない」抵抗感</span></div>
-                        </li>
-                        <li style="display: flex; align-items: center; gap: 20px;">
-                            <span style="font-size: 2.5rem; opacity: 0.6;">💸</span>
-                            <div><div style="font-weight: bold; font-size: 1.2rem; color: var(--text-sub);">単価が安い</div><span class="small">薄利多売で、手間の割に儲からない</span></div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="comp-right">
-                    <h3 style="text-align: center; color: var(--accent); border-bottom: 3px solid var(--accent); padding-bottom: 15px;">⭕ North HWANの戦略</h3>
-                    <ul style="margin-top: 30px; list-style: none; display: flex; flex-direction: column; gap: 30px; padding: 0 20px;">
-                        <li style="display: flex; align-items: center; gap: 20px;">
-                            <span style="font-size: 2.5rem;">👑</span>
-                            <div><div style="font-weight: bold; font-size: 1.4rem; color: var(--text-main);">圧倒的な資産価値</div><span class="small" style="color: var(--accent);">流行に左右されず、来年も売れる</span></div>
-                        </li>
-                        <li style="display: flex; align-items: center; gap: 20px;">
-                            <span style="font-size: 2.5rem;">✨</span>
-                            <div><div style="font-weight: bold; font-size: 1.4rem; color: var(--text-main);">日本未発売の「レア感」</div><span class="small" style="color: var(--accent);">韓国・USA限定品だから抵抗を超える</span></div>
-                        </li>
-                        <li style="display: flex; align-items: center; gap: 20px;">
-                            <span style="font-size: 2.5rem;">💰</span>
-                            <div><div style="font-weight: bold; font-size: 1.4rem; color: var(--text-main);">高単価・高利益</div><span class="small" style="color: var(--accent);">1着売るだけで数千円〜1万円の利益</span></div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="page-num">05</div>
-    </div>
-
-    <div class="slide">
-        <div class="header-area">
-            <h2>✋ なぜ、今まで「単一ブランド特化」は難しかったのか？</h2>
+            <h2>✋ なぜ、今まで「物販、古着」は難しかったのか？</h2>
         </div>
         <div class="content-area">
             <p style="margin-bottom: 25px; text-align: center;">
-                「North Faceが売れる」ことは誰もが知っています。しかし、個人や通常の企業が真似できない<br>
-                <strong>4つの大きな壁</strong>が存在します。
+                「North Faceが売れる」ことは誰もが知っています。しかし、個人では越えられない<br>
+                <strong>5つの大きな壁</strong>が存在します。
             </p>
-            <div class="barrier-grid">
-                <div class="barrier-card"><div class="barrier-num">01</div><div class="barrier-title">仕入れルートの欠如</div><div class="barrier-text">国内古着は高値で利益が出ない。海外買付はコストと時間がかかりすぎる。</div></div>
-                <div class="barrier-card"><div class="barrier-num">02</div><div class="barrier-title">販売の仕組み化が困難</div><div class="barrier-text">1点モノゆえに商品管理や値付けが複雑。スタッフ教育にコストがかかる。</div></div>
-                <div class="barrier-card"><div class="barrier-num">03</div><div class="barrier-title">人的工数とコスト</div><div class="barrier-text">撮影、採寸、出品...。利益率は高くても作業工数が多く割に合わない。</div></div>
-                <div class="barrier-card" style="border-top: 4px solid var(--accent); background: #fff; box-shadow: 0 5px 15px rgba(166, 124, 82, 0.15);"><div class="barrier-num" style="color: var(--accent);">04</div><div class="barrier-title" style="color: var(--accent);">真贋（偽物）リスク</div><div class="barrier-text" style="color: var(--text-main);">最大の難関。人気ゆえに偽造品が多く、素人が見抜くのは困難。偽物を売れば信用失墜。</div></div>
-            </div>
-            <div style="text-align: center; font-weight: bold; color: var(--text-main); font-size: 1.2rem; margin-top: 10px; padding: 15px; background: #fff; border-radius: 8px; border: 2px solid var(--accent);">
-                North HWANは、これら全ての課題を解決済みの「パッケージ」として提供します。
+            <div class="barrier-grid-new">
+                <div class="barrier-card">
+                    <div class="barrier-num">01</div>
+                    <div class="barrier-title">仕入れルートの欠如</div>
+                    <div class="barrier-text">国内古着は高値で利益が出ない。海外買付はコストと時間がかかりすぎるため、個人では不可能。</div>
+                </div>
+                <div class="barrier-card">
+                    <div class="barrier-num">02</div>
+                    <div class="barrier-title">在庫リスク</div>
+                    <div class="barrier-text">売れ残ったら「ただのゴミ」になる恐怖。資金繰りが悪化し、撤退する最大の要因。</div>
+                </div>
+                <div class="barrier-card">
+                    <div class="barrier-num">03</div>
+                    <div class="barrier-title">真贋（偽物）リスク</div>
+                    <div class="barrier-text">人気ブランドゆえに偽造品が多く、素人が見抜くのは困難。偽物を売ればアカウント停止のリスクも。</div>
+                </div>
+                <div class="barrier-card">
+                    <div class="barrier-num">04</div>
+                    <div class="barrier-title">孤独・情報の遮断</div>
+                    <div class="barrier-text">「この商品、本当に売れる？」と相談できる相手がいない。最新のトレンド情報も入ってこない。</div>
+                </div>
+                <div class="barrier-card">
+                    <div class="barrier-num">05</div>
+                    <div class="barrier-title">販売チャネルの限界</div>
+                    <div class="barrier-text">個人では百貨店ポップアップや大型フリマへの出店は困難。ネット販売だけでは限界がある。</div>
+                </div>
+                <div class="barrier-card solution">
+                    <div>North HWANが<br>全て解決します</div>
+                </div>
             </div>
         </div>
         <div class="page-num">06</div>
@@ -430,12 +288,35 @@
 
     <div class="slide">
         <div class="header-area">
-            <h2>🧥 商品ラインナップ例（韓国限定 WHITE LABEL等）</h2>
+            <h2>📱 メルカリでの販売実績（証拠）</h2>
+        </div>
+        <div class="content-area">
+            <p style="margin-bottom: 20px; text-align: center;">
+                論より証拠。現在もこの価格帯で活発に取引されています。<br>
+                日本未発売モデルは希少価値が高く、<strong>「高くても売れる」</strong>状態です。
+            </p>
+            <div class="mercari-grid">
+                <div class="mercari-item"><div class="sold-badge">SOLD</div><img src="https://i.ibb.co/tpz87hpC/Image-20251209-121840-342.png"></div>
+                <div class="mercari-item"><div class="sold-badge">SOLD</div><img src="https://i.ibb.co/CKN22M4z/Image-20251209-121841-209.jpg"></div>
+                <div class="mercari-item"><div class="sold-badge">SOLD</div><img src="https://i.ibb.co/Jw7YxgVp/Image-20251209-121840-464.png"></div>
+                <div class="mercari-item"><div class="sold-badge">SOLD</div><img src="https://i.ibb.co/spYgPXdf/Image-20251209-121840-931.png"></div>
+                <div class="mercari-item"><div class="sold-badge">SOLD</div><img src="https://i.ibb.co/wrR4rLDk/Image-20251209-121841-121.png"></div>
+                <div class="mercari-item"><div class="sold-badge">SOLD</div><img src="https://i.ibb.co/7xRst2gC/Image-20251209-121840-723.png"></div>
+                <div class="mercari-item"><div class="sold-badge">SOLD</div><img src="https://i.ibb.co/YHWfBBd/Image-20251209-121840-979.png"></div>
+                <div class="mercari-item"><div class="sold-badge">SOLD</div><img src="https://i.ibb.co/xKR1QBZc/Image-20251209-121840-593.png"></div>
+            </div>
+        </div>
+        <div class="page-num">07</div>
+    </div>
+
+    <div class="slide">
+        <div class="header-area">
+          <h2>🧥 商品ラインナップ例（韓国限定 WHITE LABEL等）</h2>
         </div>
         <div class="content-area">
             <p style="margin-bottom: 15px;">
                 独自の海外ルートから、日本市場で高値で取引される人気モデルを仕入れます。<br>
-                <span class="small" style="color:var(--text-sub);">※価格は国内流通相場および弊社卸価格の目安です。</span>
+                <span class="small" style="color:var(--text-sub);">※価格は国内流通相場および弊社卸価格の目安（税抜）です。</span>
             </p>
             <div class="product-grid-new">
                 <div class="prod-card-v">
@@ -443,9 +324,9 @@
                     <div class="prod-info-v">
                         <div class="prod-name-v">Nuptse Jacket<br><span style="font-weight:normal; font-size:0.8rem; color:var(--text-sub);">ヌプシ ダウン</span></div>
                         <div style="width:100%;">
-                            <div class="price-row-v"><span>卸価格</span><span style="color:var(--text-main);">¥14,000</span></div>
-                            <div class="price-row-v"><span>国内相場</span><span>¥25-35,000</span></div>
-                            <span class="profit-label">想定売価</span><div class="price-profit-v">¥28,000</div>
+                            <div class="price-row-v"><span>卸価格</span><span style="color:var(--text-main);">¥4,000〜7,200</span></div>
+                            <div class="price-row-v"><span>国内相場</span><span>¥28,000〜40,000</span></div>
+                            <span class="profit-label">想定売価</span><div class="price-profit-v">¥10,000〜22,000</div>
                         </div>
                     </div>
                 </div>
@@ -454,9 +335,9 @@
                     <div class="prod-info-v">
                         <div class="prod-name-v">Himalayan Parka<br><span style="font-weight:normal; font-size:0.8rem; color:var(--text-sub);">ヒマラヤンパーカー</span></div>
                         <div style="width:100%;">
-                            <div class="price-row-v"><span>卸価格</span><span style="color:var(--text-main);">¥18,000</span></div>
-                            <div class="price-row-v"><span>国内相場</span><span>¥40-50,000</span></div>
-                            <span class="profit-label">想定売価</span><div class="price-profit-v">¥39,800</div>
+                            <div class="price-row-v"><span>卸価格</span><span style="color:var(--text-main);">¥8,000〜13,000</span></div>
+                            <div class="price-row-v"><span>国内相場</span><span>¥60,000〜80,000</span></div>
+                            <span class="profit-label">想定売価</span><div class="price-profit-v">¥20,000〜30,000</div>
                         </div>
                     </div>
                 </div>
@@ -465,9 +346,9 @@
                     <div class="prod-info-v">
                         <div class="prod-name-v">Sherpa Fleece<br><span style="font-weight:normal; font-size:0.8rem; color:var(--text-sub);">シェルパフリース JKT</span></div>
                         <div style="width:100%;">
-                            <div class="price-row-v"><span>卸価格</span><span style="color:var(--text-main);">¥7,500</span></div>
-                            <div class="price-row-v"><span>国内相場</span><span>¥15-20,000</span></div>
-                            <span class="profit-label">想定売価</span><div class="price-profit-v">¥15,800</div>
+                            <div class="price-row-v"><span>卸価格</span><span style="color:var(--text-main);">¥3,500〜7,500</span></div>
+                            <div class="price-row-v"><span>国内相場</span><span>¥15,000〜30,000</span></div>
+                            <span class="profit-label">想定売価</span><div class="price-profit-v">¥8,000〜15,000</div>
                         </div>
                     </div>
                 </div>
@@ -476,9 +357,9 @@
                     <div class="prod-info-v">
                         <div class="prod-name-v">Kids Nuptse<br><span style="font-weight:normal; font-size:0.8rem; color:var(--text-sub);">キッズ・ベビー</span></div>
                         <div style="width:100%;">
-                            <div class="price-row-v"><span>卸価格</span><span style="color:var(--text-main);">¥5,000</span></div>
-                            <div class="price-row-v"><span>国内相場</span><span>¥8-12,000</span></div>
-                            <span class="profit-label">想定売価</span><div class="price-profit-v">¥10,000</div>
+                            <div class="price-row-v"><span>卸価格</span><span style="color:var(--text-main);">¥3,600〜5,000</span></div>
+                            <div class="price-row-v"><span>国内相場</span><span>¥8,000〜20,000</span></div>
+                            <span class="profit-label">想定売価</span><div class="price-profit-v">¥8,000〜10,000</div>
                         </div>
                     </div>
                 </div>
@@ -487,159 +368,31 @@
                     <div class="prod-info-v">
                         <div class="prod-name-v">Long Down<br><span style="font-weight:normal; font-size:0.8rem; color:var(--text-sub);">ロングダウン</span></div>
                         <div style="width:100%;">
-                            <div class="price-row-v"><span>卸価格</span><span style="color:var(--text-main);">¥12,000</span></div>
-                            <div class="price-row-v"><span>国内相場</span><span>¥20-30,000</span></div>
-                            <span class="profit-label">想定売価</span><div class="price-profit-v">¥24,800</div>
+                            <div class="price-row-v"><span>卸価格</span><span style="color:var(--text-main);">¥8,000〜15,000</span></div>
+                            <div class="price-row-v"><span>国内相場</span><span>¥26,000〜78,000</span></div>
+                            <span class="profit-label">想定売価</span><div class="price-profit-v">¥13,000〜25,000</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="page-num">07</div>
-    </div>
-
-    <div class="slide">
-        <div class="header-area">
-            <h2>🏔 施設・店舗での設置イメージ</h2>
-        </div>
-        <div class="content-area">
-            <p style="margin-bottom: 25px; text-align: center;">
-                「施設に置く」のではなく、<strong>「来場者の潜在ニーズ（インサイト）に応える」</strong>。<br>
-                その場所にいるお客様が、思わず買ってしまう「理由」があります。
-            </p>
-            
-            <div class="needs-grid">
-                <div class="need-card">
-                    <div class="need-illustration">🥶</div>
-                    <div class="need-voice">「寒い！今すぐ着たい！」</div>
-                    <div class="need-desc">
-                        切実な防寒ニーズに、最強のスペックで応える。<br>
-                        使い捨てではなく「良いもの」が欲しい心理に直撃。
-                    </div>
-                    <div class="need-tag-box">Match: ゲレンデ / キャンプ場</div>
-                </div>
-
-                <div class="need-card">
-                    <div class="need-illustration">💎</div>
-                    <div class="need-voice">「え、こんなレア物が？」</div>
-                    <div class="need-desc">
-                        旅の開放感が財布の紐を緩めます。<br>
-                        「ここでしか出会えない一点物」が最高の自分へのお土産に。
-                    </div>
-                    <div class="need-tag-box">Match: 道の駅 / 温泉施設</div>
-                </div>
-
-                <div class="need-card">
-                    <div class="need-illustration">📸</div>
-                    <div class="need-voice">「写真映えしたい！」</div>
-                    <div class="need-desc">
-                        レンタル品では満足できない層へ。<br>
-                        「購入して着る」選択肢で全身コーデの質が上がり、SNS拡散も。
-                    </div>
-                    <div class="need-tag-box">Match: レンタル / グランピング</div>
-                </div>
-            </div>
-            <div style="margin-top: 20px; text-align: center; font-weight: bold; color: var(--text-main);">
-                必要なスペースはわずか2㎡（畳一畳分）。これらのニーズがある場所ならどこでも収益化可能です。
             </div>
         </div>
         <div class="page-num">08</div>
     </div>
-
     <div class="slide">
         <div class="header-area">
-            <h2>🙅‍♂️ 「販売員」はいりません。置くだけです。</h2>
+            <h2>💰 目標月商(売上) 5〜10万円の達成イメージ</h2>
         </div>
         <div class="content-area">
-            <p style="text-align: center; margin-bottom: 30px; font-size: 1.2rem;">
-                忙しい業務の邪魔をしません。商品は「置くだけ」で売れていきます。
+            <p style="margin-bottom: 30px; text-align: center;">
+                副業で無理なく稼ぐには、「高単価商品」を「月数着」売るのが一番の近道です。<br>
+                相場より安く売ることで、<strong>圧倒的な回転率</strong>を実現します。
             </p>
-            
-            <div class="grid-3" style="gap: 30px; align-items: center;">
-                <div class="flow-card">
-                    <div class="badge-unnecessary">不要</div>
-                    <div class="disabled-content" style="text-align: center;">
-                        <div style="font-size: 4rem; margin-bottom: 10px; opacity: 0.3;">👔</div>
-                        <h3 style="color: var(--text-sub);">接客する</h3>
-                    </div>
-                    <div style="margin-top: 15px; text-align: center;">
-                        <h3 style="color: var(--accent); font-size: 1.4rem; margin-bottom: 10px;">圧倒的な商品力</h3>
-                        <p style="font-size: 1rem; line-height: 1.5; color: var(--text-main);">誰もが知るブランドは説明不要。<br>商品そのものが魅力を語ります。</p>
-                    </div>
-                </div>
-
-                <div class="flow-card">
-                    <div class="badge-unnecessary">不要</div>
-                    <div class="disabled-content" style="text-align: center;">
-                        <div style="font-size: 4rem; margin-bottom: 10px; opacity: 0.3;">🏷️</div>
-                        <h3 style="color: var(--text-sub);">値付け作業</h3>
-                    </div>
-                    <div style="margin-top: 15px; text-align: center;">
-                        <h3 style="color: var(--accent); font-size: 1.4rem; margin-bottom: 10px;">シンプルな価格設定</h3>
-                        <p style="font-size: 1rem; line-height: 1.5; color: var(--text-main);">相場に基づいた推奨価格を提示。<br>面倒なリサーチや値札貼は不要。</p>
-                    </div>
-                </div>
-
-                <div class="flow-card" style="border: 3px solid var(--accent); background: #fff; box-shadow: 0 10px 30px rgba(166, 124, 82, 0.15);">
-                    <div style="text-align: center;">
-                        <div style="font-size: 5rem; margin-bottom: 10px;">🏪</div>
-                        <h3 style="color: var(--text-main); font-size: 1.4rem;">店舗で決済</h3>
-                        <p class="small" style="color: var(--accent); font-weight: bold;">いつものレジで会計するだけ</p>
-                    </div>
-                    <div style="margin-top: 10px; text-align: center;">
-                        <h3 style="color: var(--accent); font-size: 1.4rem; margin-bottom: 10px;">既存オペレーション</h3>
-                        <p style="font-size: 0.8em; line-height: 1.4; color: var(--text-main);">新しいシステム導入は不要。<br>今のレジ設備でそのまま販売可能。</p>
-                    </div>
-                </div>
+            <div class="profit-model-container">
+                <div class="profit-step"><div class="profit-icon">🧥</div><h3 class="box-title" style="justify-content:center;">仕入れる</h3><p class="profit-text"><span class="highlight">月3〜5着</span><br>人気のアウターを中心に、<br>スマホからポチるだけ。</p></div><div class="profit-arrow" style="font-size:3rem; color:#ccc;">➡</div><div class="profit-step"><div class="profit-icon">📱</div><h3 class="box-title" style="justify-content:center;">販売する</h3><p class="profit-text">メルカリやラクマに出品。<br>相場より安いので<br><span class="highlight">「即売れ」</span>します。</p></div><div class="profit-arrow" style="font-size:3rem; color:#ccc;">➡</div><div class="profit-result"><div style="font-size: 1.2rem; margin-bottom: 10px;">月3〜5着販売で</div><div style="font-size: 3.5rem; font-weight: 900; line-height: 1;"><span style="font-size: 2rem;">¥</span>50,000<span style="font-size: 1rem;">〜</span></div><div style="font-size: 1.2rem; margin-top: 10px; font-weight: bold;">の売上を作る！</div></div>
             </div>
-            
-            <div style="margin-top: 40px; background: var(--accent); color: #fff; padding: 20px; text-align: center; font-weight: bold; font-size: 1.3rem; border-radius: 12px; box-shadow: 0 10px 25px rgba(166, 124, 82, 0.3);">
-                今のスタッフ人数、今の設備のまま、売上だけをプラスできます。
-            </div>
-        </div>
-        <div class="page-num">09</div>
-    </div>
-
-    <div class="slide">
-        <div class="header-area">
-            <h2>📝 選べる2つのプラン（登録費・月額・回収期間）</h2>
-        </div>
-        <div class="content-area">
-            <div class="grid-2" style="gap: 40px;">
-                <div class="plan-card" style="border: 3px solid var(--accent); box-shadow: 0 10px 30px rgba(166, 124, 82, 0.15);">
-                    <div class="plan-limit-badge" style="background:var(--accent);">設置数：〜30着 (ラック3台分)</div>
-                    <div class="plan-header" style="background: #fff;">
-                        <div class="plan-title" style="color:var(--accent); font-size: 1.6rem;">A：買取プラン</div>
-                        <span class="plan-sub">利益を最大化したい方向け</span>
-                    </div>
-                    <div class="plan-body" style="background: #fff;">
-                        <div class="plan-row"><span class="plan-label">初期登録費</span><span class="plan-value">300,000円 <span class="small">(税別)</span></span></div>
-                        <div class="plan-row"><span class="plan-label">月額費用</span><span class="plan-value">0円</span></div>
-                        <div class="plan-row"><span class="plan-label">仕入れ費用</span><span class="plan-value">10万円〜/回</span></div>
-                        <div class="plan-row"><span class="plan-label">利益率 (粗利)</span><span class="plan-value" style="color:var(--accent); font-size: 1.2rem;">約50% <span class="small" style="display:block; font-weight:normal; color:var(--text-sub);">※販売価格は仕入値の約2倍設定</span></span></div>
-                        <div class="plan-row"><span class="plan-label">商品仕入方法</span><span class="plan-value">WEB / 自動</span></div>
-                        <div class="payback-box">
-                            回収目安：2〜3ヶ月<br><span class="small" style="color:#fff; font-weight:normal; opacity: 0.9;">(月40万売上時)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-limit-badge">設置数：ご相談 (本格展開)</div>
-                    <div class="plan-header">
-                        <div class="plan-title">S：卸問屋プラン</div>
-                        <span class="plan-sub">本格的に事業化したい方向け</span>
-                    </div>
-                    <div class="plan-body">
-                        <div class="plan-row"><span class="plan-label">初期登録費</span><span class="plan-value">600,000円 <span class="small">(税別)</span></span></div>
-                        <div class="plan-row"><span class="plan-label">月額費用</span><span class="plan-value">0円</span></div>
-                        <div class="plan-row"><span class="plan-label">仕入れ費用</span><span class="plan-value">50万円〜/回</span></div>
-                        <div class="plan-row"><span class="plan-label">利益率 (粗利)</span><span class="plan-value" style="color:var(--text-main);">約50〜70% <span class="small" style="display:block; font-weight:normal; color:var(--text-sub);">※スケールメリットによる</span></span></div>
-                        <div class="plan-row"><span class="plan-label">商品仕入方法</span><span class="plan-value" style="font-size:0.9rem;">自動/WEB/倉庫pic</span></div>
-                        <div class="payback-box" style="background: var(--text-sub);">
-                            回収目安：相談<br><span class="small" style="color:#fff; font-weight:normal; opacity: 0.9;">(販売規模による)</span>
-                        </div>
-                    </div>
-                </div>
+            <div style="margin-top: 30px; text-align: center; color: var(--text-sub); font-size: 0.9rem;">
+                例：ヒマラヤンパーカー(売価2.5万円) × 2着 = 売上5万円 / 月<br>
+                例：ヌプシ(売価1.5万円) × 4着 = 売上6万円 / 月
             </div>
         </div>
         <div class="page-num">10</div>
@@ -647,30 +400,40 @@
 
     <div class="slide">
         <div class="header-area">
-            <h2>🤝 North HWANの創業ストーリーと想い</h2>
+            <h2>🛡️ 在庫リスクの回避策（セカンドストリート活用）</h2>
         </div>
-        <div class="content-area" style="padding: 0;">
-            <div class="story-box">
-                <h3 style="font-size: 1.8rem; color: var(--accent); margin-bottom: 25px;">「年商120億企業の事業開発室長」が見つけた答え</h3>
-                <p class="story-text" style="color: var(--text-main);">
-                    私は元々、年商120億円を超える企業（CBTS）の社長室室長として、6つの事業運営と新規事業開発の総責任者を務めていました。<br>
-                    常に「次に勝てる市場はどこか？」を分析する中で、世界的な環境規制の変化により、<br>
-                    <strong>「服を捨てるコストが高騰し、リユース市場が爆発的に伸びる」</strong>という確信を得ました。
-                </p>
-                <p class="story-text" style="color: var(--text-main);">
-                    そこでアパレル経験と独自の人脈を活かし、韓国からの「ハイブランド古着」の定期輸入ルートを確立。<br>
-                    これは、地域性・気候・需要のすべてにおいて、<span class="highlight">「参入すれば誰でも勝てる」</span>ビジネスモデルでした。
-                </p>
-                <div style="margin-top: 40px; border-top: 2px solid var(--border-color); padding-top: 30px;">
-                    <h3 style="font-size: 1.4rem; color: var(--text-main); margin-bottom: 15px;">なぜ、この仕組みを「施設様」へ提供するのか？</h3>
-                    <p class="story-text" style="font-size: 1rem; color: var(--text-sub); line-height: 1.8;">
-                        当初は、かつての私の母のような「稼ぎたいが時間がない」シングルマザーの方々を支援するために、この仕組みを作りました。<br>
-                        しかし、多くの施設オーナー様とお話しする中で、<strong>「企業もまた、深刻な人手不足と時間不足に悩んでいる」</strong>と気づきました。<br>
-                        <br>
-                        「手間をかけずに、収益を上げたい」。<br>
-                        この切実な課題を解決できるのは、このビジネスモデルしかありません。<br>
-                        皆様の「場所」をお借りして、共に豊かになる。それがNorth HWANの目指す姿です。
-                    </p>
+        <div class="content-area">
+            <p style="margin-bottom: 25px; text-align: center;">
+                「もし売れ残ったら？」という不安も解消します。<br>
+                仕入れ値が安いからこそできる、<strong>「買取店を活用したリスクヘッジ」</strong>があります。
+            </p>
+            <div class="risk-container">
+                <div class="risk-left">
+                    <div class="box">
+                        <div class="box-title">😥 通常のせどり</div>
+                        <p>利益率20%程度で仕入れるため、売れ残ってリサイクルショップに売ると<br><strong style="color:var(--red-accent);">「大赤字」</strong>が確定する。</p>
+                    </div>
+                    <div style="text-align: center; font-size: 2rem; color: #ccc;">▼</div>
+                    <div class="box" style="border-left-color: var(--accent);">
+                        <div class="box-title">😎 North HWANなら</div>
+                        <p>仕入れ値が圧倒的に安いため、リサイクルショップの買取価格でも<br><strong>「トントン〜微益」</strong>で逃げられる。</p>
+                    </div>
+                </div>
+                <div class="risk-right">
+                    <div class="risk-safe-badge">Safe Net</div>
+                    <h3 style="font-size: 1.6rem; color: var(--text-main); margin-bottom: 20px;">ヌプシ買取相場例</h3>
+                    <div style="font-size: 4rem; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 10px;">
+                        <span style="font-size: 2rem;">¥</span>10,000<span style="font-size: 1.5rem;">〜</span>
+                    </div>
+                    <p style="color: var(--text-sub); margin-bottom: 30px;">（セカンドストリート等 買取実績目安）</p>
+                    <div style="background: var(--box-bg); padding: 15px; border-radius: 8px; width: 100%;">
+                        <p style="font-size: 0.9rem; text-align: left;">
+                            North HWAN仕入れ：約4,000〜7,000円<br>
+                            ↓<br>
+                            万が一売れなくても、買取店で約10,000円で売却。<br>
+                            <strong>＝ 資金が減らない（リスク極小）</strong>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -679,41 +442,84 @@
 
     <div class="slide">
         <div class="header-area">
+            <h2>📝 個人パートナー会員プラン</h2>
+        </div>
+        <div class="content-area">
+            <div class="plan-single-container">
+                <div class="plan-main-card">
+                    <div class="plan-main-header">
+                        <div class="plan-main-title">Standard Plan</div>
+                        <div class="plan-main-sub">安定仕入れで副業を加速させる</div>
+                    </div>
+                    <div class="plan-main-body">
+                        <div class="plan-main-row">
+                            <span class="plan-main-label">年間会員費</span>
+                            <span class="plan-main-value" style="color:var(--accent); font-size: 2.2rem;">200,000円 <span class="small" style="font-size:1rem; color:#666;">(税別)</span></span>
+                        </div>
+                        <div class="plan-main-row">
+                            <span class="plan-main-label">月額費用</span>
+                            <span class="plan-main-value">0円 <span class="small">(永年無料)</span></span>
+                        </div>
+                        <div class="plan-main-row">
+                            <span class="plan-main-label">購入下限</span>
+                            <span class="plan-main-value">なし <span class="small">(1点からOK)</span></span>
+                        </div>
+                        <div class="plan-main-row">
+                            <span class="plan-main-label">仕入れ掛け率</span>
+                            <span class="plan-main-value">販売推奨価格の約50%</span>
+                        </div>
+                        <div class="plan-main-row" style="border-bottom: none;">
+                            <span class="plan-main-label">サポート</span>
+                            <span class="plan-main-value" style="font-size:1rem;">真贋保証 / 相場情報提供 / 販促画像</span>
+                        </div>
+                    </div>
+                    <div class="plan-note">
+                        ※クレジットカード分割払い対応可能です。<br>
+                        ※月5万円の売上（利益2-3万）なら、数ヶ月で会員費を回収できます。
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-num">12</div>
+    </div>
+
+    <div class="slide">
+        <div class="header-area">
             <h2>🚀 開始までは、たったの3ステップ</h2>
         </div>
         <div class="content-area">
-            <div style="display: flex; justify-content: space-between; gap: 30px; margin-bottom: 30px;">
+            <div style="display: flex; justify-content: space-between; gap: 30px; margin-bottom: 40px;">
                 <div class="step-card-compact">
                     <div class="step-num-c">1</div>
                     <div class="step-title-c">お問い合わせ</div>
-                    <div class="step-desc-c">まずはフォームから。<br>担当者がプランをご説明します。</div>
+                    <div class="step-desc-c">まずはフォームから。<br>詳細をご説明します。</div>
                 </div>
                 <div style="font-size: 2rem; color: #ccc;">▶</div>
                 <div class="step-card-compact">
                     <div class="step-num-c">2</div>
-                    <div class="step-title-c">商品のお届け</div>
-                    <div class="step-desc-c">契約後、すぐに商品と什器を発送。<br>届いたら並べるだけ。</div>
+                    <div class="step-title-c">会員登録</div>
+                    <div class="step-desc-c">契約手続きと<br>会員費のお支払い。</div>
                 </div>
                 <div style="font-size: 2rem; color: #ccc;">▶</div>
                 <div class="step-card-compact">
                     <div class="step-num-c">3</div>
-                    <div class="step-title-c">販売スタート</div>
-                    <div class="step-desc-c">その日から販売開始。<br>売上は自動で集計されます。</div>
+                    <div class="step-title-c">仕入れ開始</div>
+                    <div class="step-desc-c">専用サイトから発注。<br>1点から購入可能です。</div>
                 </div>
             </div>
 
-            <div class="cta-compact">
-                <p style="font-size: 2rem; color: var(--text-main); margin-bottom: 20px; font-weight: bold; line-height: 1.4;">
-                    あなたの施設の「デッドスペース」を、<br>
-                    今日から<span style="color: var(--accent);">「ドル箱」</span>に変えませんか？
+            <div class="cta-box">
+                <p style="font-size: 2rem; color: var(--text-main); margin-bottom: 30px; font-weight: bold; line-height: 1.4;">
+                    安定した仕入れで、<br>
+                    あなたの副業を<span style="color: var(--accent);">「確実な事業」</span>へ。
                 </p>
                 <a href="#" class="cta-button">
                     今すぐ問い合わせる
                 </a>
-                <p style="margin-top: 15px; font-size: 1rem; color: var(--text-sub);">※エリアごとに取扱店舗数に制限がございます。お早めにご相談ください。</p>
+                <p style="margin-top: 25px; font-size: 1rem; color: var(--text-sub);">※会員数には限りがございます。お早めにご相談ください。</p>
             </div>
         </div>
-        <div class="page-num">12</div>
+        <div class="page-num">13</div>
     </div>
 
 </body>
