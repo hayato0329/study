@@ -12,7 +12,7 @@
             --paper-color: #ffffff;
             --text-main: #2c3e50;
             --text-sub: #546e7a;
-            --accent: #a67c52;       /* マットなゴールド */
+            --accent: #a67c52;        /* マットなゴールド */
             --accent-dark: #805a35;
             --red-accent: #c0392b;
             --border-color: #dfe6e9;
@@ -112,7 +112,7 @@
         .vs-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #000; color: #fff; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; z-index: 10; border: 4px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         .comp-list { list-style: none; display: flex; flex-direction: column; gap: 25px; height: 100%; justify-content: center; }
 
-        /* P6 障壁 (UI修正：3列x2行グリッド) */
+        /* P6 障壁 */
         .barrier-grid-new { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
@@ -126,7 +126,7 @@
             padding: 20px; 
             display: flex; 
             flex-direction: column; 
-            justify-content: center; /* 垂直中央 */
+            justify-content: center; 
             border-top: 5px solid var(--text-sub); 
             border-radius: 8px; 
             box-shadow: 0 3px 6px rgba(0,0,0,0.03);
@@ -134,7 +134,6 @@
         .barrier-num { font-size: 1.5rem; color: #ccc; font-weight: 900; margin-bottom: 5px; line-height: 1; }
         .barrier-title { font-size: 1.2rem; color: var(--text-main); font-weight: bold; margin-bottom: 8px; }
         .barrier-text { font-size: 0.9rem; color: var(--text-sub); line-height: 1.5; }
-        /* 解決策カード */
         .barrier-card.solution {
             background: var(--accent); 
             border: none;
@@ -159,28 +158,17 @@
         .mercari-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .sold-badge { position: absolute; top: 0; left: 0; background: #ea352d; color: #fff; font-size: 0.8rem; font-weight: bold; padding: 3px 12px; border-bottom-right-radius: 4px; z-index: 2; }
 
-        /* P9 設置ニーズ */
-        .needs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; height: 90%; }
-        .need-card { background: #fff; border: 2px solid var(--border-color); border-radius: 12px; padding: 30px 20px; display: flex; flex-direction: column; align-items: center; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); position: relative; }
-        .need-illustration { width: 100px; height: 100px; background: var(--box-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; margin-bottom: 20px; border: 3px solid var(--accent); }
-        .need-voice { font-family: "游明朝", serif; font-weight: bold; font-size: 1.2rem; color: var(--accent); margin-bottom: 15px; position: relative; display: inline-block; }
-        .need-voice::before, .need-voice::after { content: '"'; font-size: 1.5rem; position: absolute; opacity: 0.5; }
-        .need-voice::before { top: -5px; left: -10px; } .need-voice::after { bottom: -5px; right: -10px; }
-        .need-desc { font-size: 0.95rem; color: var(--text-main); line-height: 1.6; margin-bottom: 20px; flex-grow: 1; }
-        .need-tag-box { background: var(--box-bg); padding: 8px 15px; border-radius: 50px; font-size: 0.85rem; color: var(--text-sub); border: 1px solid var(--border-color); }
-
-        /* P9 運用フロー (UI修正：FlexBox配置) */
+        /* P9 運用フロー */
         .flow-container { 
             display: flex; justify-content: space-between; align-items: center; gap: 20px; height: 100%; padding: 20px 0;
         }
         .flow-card { 
             background: var(--paper-color); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); 
-            width: 30%; height: 320px; /* 高さ固定 */
+            width: 30%; height: 320px;
             display: flex; flex-direction: column; justify-content: center; align-items: center; 
             position: relative; overflow: visible; box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
         }
         .flow-arrow { font-size: 3rem; color: #ccc; }
-        
         .badge-unnecessary { 
             position: absolute; top: -15px; left: -15px; transform: rotate(-15deg);
             background: var(--red-accent); color: #fff; font-size: 1.2rem; font-weight: 900;
@@ -201,20 +189,110 @@
         .risk-right { flex: 1; background: #fff; border: 2px solid var(--accent); border-radius: 12px; padding: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
         .risk-safe-badge { background: var(--accent); color: #fff; padding: 5px 15px; border-radius: 50px; font-weight: bold; margin-bottom: 15px; }
 
-        /* P12 プラン */
-        .plan-main-card { width: 600px; background: #fff; border: 4px solid var(--accent); border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(166, 124, 82, 0.15); margin: 0 auto; }
-        .plan-main-header { background: var(--accent); color: #fff; padding: 25px; text-align: center; }
-        .plan-main-title { font-size: 2rem; font-weight: bold; margin-bottom: 5px; }
-        .plan-main-sub { font-size: 1rem; opacity: 0.9; }
-        .plan-main-body { padding: 30px; }
-        .plan-main-row { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #ccc; padding: 15px 0; font-size: 1.1rem; }
-        .plan-main-label { color: var(--text-sub); }
-        .plan-main-value { font-weight: bold; color: var(--text-main); font-size: 1.3rem; }
-        .plan-note { background: #f0f0f0; padding: 20px; text-align: center; color: var(--text-sub); font-size: 0.9rem; }
+        /* P12 プラン（新デザイン） */
+        .plan-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            height: 100%;
+            align-items: stretch;
+        }
+        .plan-card-item {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        /* 推奨プランの強調 */
+        .plan-card-item.featured {
+            border: 2px solid var(--accent);
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(166, 124, 82, 0.15);
+            z-index: 1;
+        }
+        .plan-head {
+            background: #2c3e50;
+            color: #fff;
+            padding: 15px 10px;
+            text-align: center;
+        }
+        .plan-head.light { background: #7f8c8d; }
+        .plan-head.standard { background: var(--accent); }
+        .plan-head.pro { background: #2c3e50; }
 
-        /* ストーリー */
-        .story-box { background: var(--box-bg); padding: 40px; border-left: 6px solid var(--accent); border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); height: 100%; display: flex; flex-direction: column; justify-content: center; }
-        .story-text { font-size: 1.1rem; color: var(--text-main); line-height: 1.8; margin-bottom: 20px; }
+        .plan-name {
+            font-family: var(--font-en);
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            letter-spacing: 0.05em;
+        }
+        .plan-desc {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            font-weight: normal;
+            line-height: 1.3;
+        }
+        .plan-price-box {
+            padding: 20px 10px;
+            text-align: center;
+            border-bottom: 1px dashed var(--border-color);
+            background: #fcfcfc;
+        }
+        .plan-price-val {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent);
+            font-family: var(--font-en);
+            line-height: 1;
+        }
+        .plan-price-val span {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            font-weight: normal;
+        }
+        .plan-body-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            font-size: 0.9rem;
+        }
+        .plan-row-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        .plan-row-item:last-child { border-bottom: none; }
+        
+        .plan-label-item {
+            color: var(--text-sub);
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        .plan-value-item {
+            font-weight: 500;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+        .plan-foot {
+            padding: 10px;
+            text-align: center;
+            font-size: 0.7rem;
+            color: var(--text-sub);
+            background: #f8f9fa;
+            border-top: 1px solid var(--border-color);
+            line-height: 1.3;
+        }
 
         /* クロージング */
         .cta-box { border: 4px solid var(--accent); padding: 35px; text-align: center; background: #fff; border-radius: 12px; margin-top: auto; box-shadow: 0 10px 30px rgba(166, 124, 82, 0.15); width: 100%; }
@@ -440,42 +518,94 @@
         <div class="page-num">11</div>
     </div>
 
+    <!-- 12ページ目の修正部分 -->
     <div class="slide">
         <div class="header-area">
             <h2>📝 個人パートナー会員プラン</h2>
         </div>
         <div class="content-area">
-            <div class="plan-single-container">
-                <div class="plan-main-card">
-                    <div class="plan-main-header">
-                        <div class="plan-main-title">Standard Plan</div>
-                        <div class="plan-main-sub">安定仕入れで副業を加速させる</div>
+            <div class="plan-grid">
+                <!-- Light Plan -->
+                <div class="plan-card-item">
+                    <div class="plan-head light">
+                        <div class="plan-name">Light Plan</div>
+                        <div class="plan-desc">安定仕入れで副業を加速させる</div>
                     </div>
-                    <div class="plan-main-body">
-                        <div class="plan-main-row">
-                            <span class="plan-main-label">年間会員費</span>
-                            <span class="plan-main-value" style="color:var(--accent); font-size: 2.2rem;">200,000円 <span class="small" style="font-size:1rem; color:#666;">(税別)</span></span>
+                    <div class="plan-price-box">
+                        <div class="plan-price-val">100,000<span>円 (税別)</span></div>
+                    </div>
+                    <div class="plan-body-content">
+                        <div class="plan-row-item">
+                            <span class="plan-label-item">購入下限 (1回のPic)</span>
+                            <span class="plan-value-item">10点</span>
                         </div>
-                        <div class="plan-main-row">
-                            <span class="plan-main-label">月額費用</span>
-                            <span class="plan-main-value">0円 <span class="small">(永年無料)</span></span>
+                        <div class="plan-row-item">
+                            <span class="plan-label-item">仕入れ掛け率</span>
+                            <span class="plan-value-item">販売推奨価格の約40-50%</span>
                         </div>
-                        <div class="plan-main-row">
-                            <span class="plan-main-label">購入下限</span>
-                            <span class="plan-main-value">なし <span class="small">(1点からOK)</span></span>
-                        </div>
-                        <div class="plan-main-row">
-                            <span class="plan-main-label">仕入れ掛け率</span>
-                            <span class="plan-main-value">販売推奨価格の約50%</span>
-                        </div>
-                        <div class="plan-main-row" style="border-bottom: none;">
-                            <span class="plan-main-label">サポート</span>
-                            <span class="plan-main-value" style="font-size:1rem;">真贋保証 / 相場情報提供 / 販促画像</span>
+                        <div class="plan-row-item">
+                            <span class="plan-label-item">サポート</span>
+                            <span class="plan-value-item">真贋保証 / 相場情報提供</span>
                         </div>
                     </div>
-                    <div class="plan-note">
-                        ※クレジットカード分割払い対応可能です。<br>
-                        ※月5万円の売上（利益2-3万）なら、数ヶ月で会員費を回収できます。
+                    <div class="plan-foot">
+                        ※クレジットカード分割払い対応可能です。
+                    </div>
+                </div>
+
+                <!-- Standard Plan -->
+                <div class="plan-card-item featured">
+                    <div class="plan-head standard">
+                        <div class="plan-name">Standard Plan</div>
+                        <div class="plan-desc">第二のキャッシュポイントとして安定させる</div>
+                    </div>
+                    <div class="plan-price-box">
+                        <div class="plan-price-val">300,000<span>円 (税別)</span></div>
+                    </div>
+                    <div class="plan-body-content">
+                        <div class="plan-row-item">
+                            <span class="plan-label-item">購入下限 (1回のPic)</span>
+                            <span class="plan-value-item">30点</span>
+                        </div>
+                        <div class="plan-row-item">
+                            <span class="plan-label-item">仕入れ掛け率</span>
+                            <span class="plan-value-item">販売推奨価格の約60%以上</span>
+                        </div>
+                        <div class="plan-row-item">
+                            <span class="plan-label-item">サポート</span>
+                            <span class="plan-value-item">真贋保証 / 相場情報提供<br>店舗Pic可能</span>
+                        </div>
+                    </div>
+                    <div class="plan-foot">
+                        ※クレジットカード払い対応可能です。
+                    </div>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="plan-card-item">
+                    <div class="plan-head pro">
+                        <div class="plan-name">Pro Plan</div>
+                        <div class="plan-desc">販売店として、運営可能</div>
+                    </div>
+                    <div class="plan-price-box">
+                        <div class="plan-price-val" style="color:#2c3e50">500,000<span>円 (税別)</span></div>
+                    </div>
+                    <div class="plan-body-content">
+                        <div class="plan-row-item">
+                            <span class="plan-label-item">購入下限 (1回のPic)</span>
+                            <span class="plan-value-item">無制限</span>
+                        </div>
+                        <div class="plan-row-item">
+                            <span class="plan-label-item">仕入れ掛け率</span>
+                            <span class="plan-value-item">販売推奨価格の約60%</span>
+                        </div>
+                        <div class="plan-row-item">
+                            <span class="plan-label-item">サポート</span>
+                            <span class="plan-value-item" style="font-size:0.85rem">真贋保証 / 相場情報提供 / 店舗Pic可能<br>Popupイベント同行 / オンラインピック相談可能</span>
+                        </div>
+                    </div>
+                    <div class="plan-foot">
+                        ※クレジットカード分割払い対応可能です。
                     </div>
                 </div>
             </div>
